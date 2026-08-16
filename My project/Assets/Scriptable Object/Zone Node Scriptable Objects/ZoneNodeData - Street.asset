@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 766d923eaee06ed4aa6137107c6ab8c6, type: 3}
+  m_Name: ZoneNodeData - Street
+  m_EditorClassIdentifier: 
+  zone_type: 0
+  zone_name: "\uC0AC\uAC70\uB9AC"
+  zone_icon_sprite: {fileID: 21300000, guid: 9ba8c3a5ea77b4b4aa16710813958601, type: 3}
+  zoneBGMList:
+  - {fileID: 8300000, guid: c300ce2a631681742ab57c17cdcf2a9b, type: 3}
+  - {fileID: 8300000, guid: 7020b09810e9a2e4bad90127d87371f5, type: 3}
+  areaList:
+  - area_background_spirte: {fileID: 21300000, guid: 811b892f00d0a8a489c903cb4ed50fcb, type: 3}
+    area_name: "\uD68C\uC804 \uB85C\uD0C0\uB9AC"
+    enemyList:
+    - {fileID: 11400000, guid: c02ac8a76cd4677448753680db501baf, type: 2}
+    - {fileID: 11400000, guid: e183c1317f28f0a4a8d72b3c1e674693, type: 2}
+    - {fileID: 11400000, guid: 7f582a1696c5e32478f6bbc77f8e66f1, type: 2}
+    - {fileID: 11400000, guid: 84c66b6749b71e24494b034572c4ca71, type: 2}
+    - {fileID: 11400000, guid: 75208bea8eb9ffb40b467480ec378dbd, type: 2}
+    - {fileID: 11400000, guid: 10a096a4a7d57c649ab3742e93aabd44, type: 2}
+  - area_background_spirte: {fileID: 21300000, guid: 9117d91e36c893649894992c306e5a6a, type: 3}
+    area_name: "\uC0C1\uAC00 \uC8FC\uBCC0"
+    enemyList:
+    - {fileID: 11400000, guid: c02ac8a76cd4677448753680db501baf, type: 2}
+    - {fileID: 11400000, guid: e183c1317f28f0a4a8d72b3c1e674693, type: 2}
+    - {fileID: 11400000, guid: 7f582a1696c5e32478f6bbc77f8e66f1, type: 2}
+    - {fileID: 11400000, guid: 1b625dcbb2abdf44d9b4e55bbef3ce47, type: 2}
+    - {fileID: 11400000, guid: 4fea7e9d048ce7b41a7c0b9dc007420f, type: 2}
+    - {fileID: 11400000, guid: 10a096a4a7d57c649ab3742e93aabd44, type: 2}

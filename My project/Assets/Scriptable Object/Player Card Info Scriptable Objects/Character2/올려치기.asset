@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327a586e37455eb4e8d2172a10120307, type: 3}
+  m_Name: "\uC62C\uB824\uCE58\uAE30"
+  m_EditorClassIdentifier: 
+  data_code: "\uC62C\uB824\uCE58\uAE30"
+  characterClass: 2
+  cardType: 1
+  cardTarget: 2
+  cardRarity: 1
+  cardPeriod: 1
+  card_image: {fileID: 0}
+  card_name: "\uC62C\uB824\uCE58\uAE30"
+  card_cost: 2
+  buy_card_cost: 200
+  sell_card_cost: 100
+  useAccuracy: 1
+  accuracy: 105
+  card_description: "\uB2E8\uC77C \uB300\uC0C1\uC5D0\uAC8C {DMG5}\uC758 \uD53C\uD574\uB97C
+    \uC90D\uB2C8\uB2E4. \uC0C1\uB300\uBC29\uC774 \uC57D\uD654 \uC0C1\uD0DC\uC77C
+    \uACBD\uC6B0, \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+  effects: []

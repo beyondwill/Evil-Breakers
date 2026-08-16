@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d63b8090d8bb7498771e799a7b59e0, type: 3}
+  m_Name: "\uC870\uAC01\uC0C1\uC758 \uBC84\uD504 3"
+  m_EditorClassIdentifier: 
+  buff_name: "\uC2E0\uC131\uD55C \uD68C\uBCF5"
+  buff_duration: 1
+  duration_show_bool: 1
+  durationReduceList: []
+  passiveEventList:
+  - gameEvent: 8
+    conditionList:
+    - target_type: 2
+      conditionType: 1
+      value: 0.5
+    effectValueList:
+    - targetType: 2
+      effectType: 2
+      value: 5
+      buffInfo: {fileID: 0}
+      cardInfo: {fileID: 0}

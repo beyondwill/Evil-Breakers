@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05ca3e58c617ab2428c30a1094af52d5, type: 3}
+  m_Name: MissionUIConfig
+  m_EditorClassIdentifier: 
+  missionUIDataList:
+  - sort: 0
+    missionName: 
+    icon: {fileID: 21300000, guid: baf0d7521e6d0e64595734f42498628a, type: 3}
+  - sort: 1
+    missionName: 
+    icon: {fileID: 21300000, guid: c4e464492d6fe1e4ba65570431b398bd, type: 3}
+  - sort: 2
+    missionName: 
+    icon: {fileID: 21300000, guid: 6bd1e715c901dd244a670827cc96ae2a, type: 3}
+  - sort: 3
+    missionName: 
+    icon: {fileID: 21300000, guid: 29b1c80050341d541b61b8f2e2da2dd0, type: 3}
+  completionConditionsList: 000000000100000002000000
+  failConditionsList: 03000000
+  completionColor: {r: 0.33374867, g: 0.8759343, b: 0.9433962, a: 1}
+  failColor: {r: 0.9245283, g: 0.501513, b: 0.501513, a: 1}

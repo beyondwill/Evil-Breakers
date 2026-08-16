@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 766d923eaee06ed4aa6137107c6ab8c6, type: 3}
+  m_Name: ZoneNodeData - Subway
+  m_EditorClassIdentifier: 
+  zone_type: 1
+  zone_name: "\uC9C0\uD558\uCCA0"
+  zone_icon_sprite: {fileID: 21300000, guid: 0ecf9adc055033744afffddc519728e0, type: 3}
+  zoneBGMList:
+  - {fileID: 8300000, guid: bee0155bb10cbfa498f1ec8ed4f1726c, type: 3}
+  areaList:
+  - area_background_spirte: {fileID: 21300000, guid: eb2b39ba7d3e24642b08099071691dba, type: 3}
+    area_name: "\uD0D1\uC2B9 \uAD6C\uAC04"
+    enemyList:
+    - {fileID: 11400000, guid: 7c9f1399aea66ae47a79e44b9b47532b, type: 2}
+  - area_background_spirte: {fileID: 21300000, guid: c93bd748876b4324999320bfcd7625f7, type: 3}
+    area_name: "\uC120\uB85C"
+    enemyList:
+    - {fileID: 11400000, guid: 8b8fc1e1d4bc82c47823be66e18b340a, type: 2}

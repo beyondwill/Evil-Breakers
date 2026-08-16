@@ -1,0 +1,4 @@
+id,targetNodeCount,extraEdgeCount,lessLenFromBoss,lessLenEliteBattle,lessLenShop,minShopDistance,normalBattleCount,eliteBattleCount,shopCount,obstacleCount,mask
+Easy,20,4,5,2,3,2,5,1,1,1,111111|111111|111111|111111
+Normal,25,6,6,3,3,2,7,2,1,2,11111111|11111111|11111111|11111111|11111111
+Hard,30,8,6,4,3,2,9,3,2,4,111111|111111|111111|111111|111111|111111

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3737d9368e47f84099e9feb23feee0a, type: 3}
+  m_Name: New Item Data
+  m_EditorClassIdentifier: 
+  data_code: New Item Data
+  itemName: "\uB3C8"
+  description: "\uC628\uAC16 \uAD34\uBB3C\uB4E4\uACFC \uADC0\uC2E0\uC774 \uD758\uB9AC\uACE0
+    \uAC04 \uB3C8\uC785\uB2C8\uB2E4. \uC704\uC870 \uC9C0\uD3D0\uC77C\uC9C0\uB3C4
+    \uBAA8\uB974\uACE0 \uC800\uC8FC\uBC1B\uC558\uC744\uC9C0\uB3C4 \uBAA8\uB974\uC9C0\uB9CC
+    \uC544\uBB34\uD2BC \uB3C8\uC774\uB2C8\uAE4C \uC88B\uC740\uAC70\uC8E0 \uBB50."
+  icon: {fileID: 21300000, guid: f6f6be9a62333e04080599c42b424d73, type: 3}
+  itemType: 0
+  maxStack: 1250
+  sellPrice: 100

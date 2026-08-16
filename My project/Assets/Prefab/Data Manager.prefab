@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6797580365832733587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2346119974084269791}
+  - component: {fileID: 5301685436191082210}
+  m_Layer: 0
+  m_Name: Data Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2346119974084269791
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6797580365832733587}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1010.88684, y: -1053.3386, z: -27.182884}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5301685436191082210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6797580365832733587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b9f39d37ef6fa44582387f0ad005f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  all_data:
+    main_data:
+      player_character_data_list: []
+      money: 0
+      day: 0
+      storage_cards_list: []
+    battle_data:
+      characters_in_battle_data_list: []
+      map_data:
+        current_point: {x: 0, y: 0}
+        missionObjectList:
+        - missionObjectSort: 0
+          current_count: 0
+          need_count: 4
+        - missionObjectSort: 2
+          current_count: 0
+          need_count: 20
+        - missionObjectSort: 1
+          current_count: 0
+          need_count: 1
+        - missionObjectSort: 3
+          current_count: 3
+          need_count: 2
+      battle_result_variables:
+        win_battle_count: 0
+        slained_player_count: 0
+        slained_enemy_count: 0
+        played_card_count: 0
+        used_item_count: 0
+    shop_data:
+      shop_cards: []
+      shop_equipments: []

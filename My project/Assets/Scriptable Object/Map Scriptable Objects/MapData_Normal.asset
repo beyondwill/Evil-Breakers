@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c73ab2a1df83240a93c1ba7a19f6c9, type: 3}
+  m_Name: MapData_Normal
+  m_EditorClassIdentifier: 
+  data_code: MapData_Normal
+  location_name: "\uACBD\uC0C1\uB0A8\uB3C4 - \uC11C\uBA74"
+  targetNodeCount: 15
+  extraEdgeCount: 4
+  lessLenFromBoss: 2
+  lessLenEliteBattle: 2
+  lessLenShop: 1
+  minShopDistance: 2
+  normalBattleCount: 5
+  eliteBattleCount: 1
+  shopCount: 1
+  obstacleCount: 1
+  mask: '111111
+
+    111111
+
+    111111
+
+    111111
+
+    111111'

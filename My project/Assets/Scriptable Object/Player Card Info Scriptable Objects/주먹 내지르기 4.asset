@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327a586e37455eb4e8d2172a10120307, type: 3}
+  m_Name: "\uC8FC\uBA39 \uB0B4\uC9C0\uB974\uAE30 4"
+  m_EditorClassIdentifier: 
+  data_code: "\uC8FC\uBA39 \uB0B4\uC9C0\uB974\uAE30 4"
+  cardType: 1
+  cardTarget: 3
+  cardRarity: 0
+  card_image: {fileID: 21300000, guid: bf0d55f95cb5f0f44902effa0d642b6f, type: 3}
+  card_name: "\uBD84\uB178"
+  card_cost: 1
+  useAccuracy: 1
+  accuracy: 0
+  card_description: "\uC544\uBB34 \uB300\uC0C1\uC5D0\uAC8C 500\uC758 \uD53C\uD574\uB97C
+    \uC90D\uB2C8\uB2E4."
+  effects:
+  - time: 0
+    visual: {fileID: 11400000, guid: cf5ff3604a947944a8cfe930106493a5, type: 2}
+    effect: {fileID: 11400000, guid: 2674240358de0f24d972b82512535264, type: 2}
+    value: 500
+    value2: 0
+    floatValue: 0

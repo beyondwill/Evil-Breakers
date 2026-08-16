@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca9b80b60fc416469598c49bdb12d16, type: 3}
+  m_Name: Stat Config
+  m_EditorClassIdentifier: 
+  baseStatSortList:
+  - type: 0
+    statName: "\uACF5\uACA9\uB825"
+  - type: 1
+    statName: "\uCD5C\uB300 \uC0DD\uBA85\uB825"
+  - type: 2
+    statName: "\uCD5C\uB300 \uC5D0\uB108\uC9C0"
+  - type: 3
+    statName: "\uCE74\uB4DC \uBF51\uAE30 \uAC1C\uC218"
+  - type: 4
+    statName: "\uACF5\uACA9 \uC21C\uC11C"
+  - type: 5
+    statName: "\uBA85\uC911\uB960"
+  runtimeStatSortList:
+  - type: 0
+    statName: "\uD604\uC7AC \uC0DD\uBA85\uB825"
+  - type: 1
+    statName: "\uD604\uC7AC \uC5D0\uB108\uC9C0"
+  - type: 2
+    statName: "\uD604\uC7AC \uBC29\uC5B4\uB3C4"
+  buffList:
+  - type: 0
+    buffName: "\uD798"
+    buffIcon: {fileID: 21300000, guid: fa26b1fe41fbc6840bfabcc8fd3be3dd, type: 3}
+  - type: 1
+    buffName: "\uBC29\uC5B4\uB3C4"
+    buffIcon: {fileID: 21300000, guid: b6eee694a05f0f64b82e1e119fefb260, type: 3}
+  - type: 2
+    buffName: "\uBF51\uAE30"
+    buffIcon: {fileID: 21300000, guid: 2a0cd6d97c50a634c891fceff1ec7baa, type: 3}
+  - type: 3
+    buffName: "\uBE57\uB098\uAC10"
+    buffIcon: {fileID: 21300000, guid: 2e583bebfa245a84b8cd4107930d05c0, type: 3}
+  - type: 4
+    buffName: Stun
+    buffIcon: {fileID: 21300000, guid: 9a615120ad1338f49933169afc4d201c, type: 3}
+  - type: 5
+    buffName: Acceleration
+    buffIcon: {fileID: 21300000, guid: 17df6e2e63c960c4caf9d460173722b2, type: 3}

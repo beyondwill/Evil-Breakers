@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f012307e0391ba140a4b321db6456356, type: 3}
+  m_Name: MapNodeConfig
+  m_EditorClassIdentifier: 
+  mapNodeDataList:
+  - type: 0
+    zone_name: Empty
+    zone_color: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
+  - type: 1
+    zone_name: 
+    zone_color: {r: 0.28776366, g: 0.8301887, b: 0.18405126, a: 1}
+  - type: 2
+    zone_name: Normal
+    zone_color: {r: 1, g: 0, b: 0, a: 1}
+  - type: 3
+    zone_name: Elite
+    zone_color: {r: 1, g: 0.2783019, b: 0.9917959, a: 1}
+  - type: 4
+    zone_name: Shop
+    zone_color: {r: 0.495283, g: 0.58230317, b: 1, a: 1}
+  - type: 5
+    zone_name: Event
+    zone_color: {r: 0.45948458, g: 0, b: 1, a: 1}
+  - type: 6
+    zone_name: Trap
+    zone_color: {r: 0.5377358, g: 0.19023673, b: 0.19023673, a: 1}
+  - type: 7
+    zone_name: Boss
+    zone_color: {r: 0, g: 0, b: 0, a: 1}
+  isVisitedColor: {r: 0, g: 1, b: 0.94729495, a: 1}

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f7f0a4c2ab8fe944890aa8cae2975de, type: 3}
+  m_Name: "\uC804\uD30C \uD0D0\uC9C0\uAE30"
+  m_EditorClassIdentifier: 
+  data_code: Electric
+  relic_name: "\uC804\uD30C \uD0D0\uC9C0\uAE30"
+  sort: 0
+  relic_image: {fileID: 21300000, guid: 470856f4d1e6eca448e33faa6d8d160f, type: 3}
+  relic_script: "\uD0D0\uC0C9 \uC0AC\uAC70\uB9AC\uAC00 1 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  relic_story: "\uC774\uAC70 \uC65C \uC500?"
+  ownerShipScope: 1
+  relicPassiveEventList:
+  - gameEvent: 6
+    conditionList:
+    - target_type: 0
+      conditionType: 0
+      value: 0
+      element: 0
+    ruleValueList:
+    - targetType: 0
+      effectType: 3
+      value: 0
+      buffInfo: {fileID: 0}
+      cardInfo: {fileID: 0}

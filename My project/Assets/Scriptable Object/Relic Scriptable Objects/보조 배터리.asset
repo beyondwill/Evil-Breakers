@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f7f0a4c2ab8fe944890aa8cae2975de, type: 3}
+  m_Name: "\uBCF4\uC870 \uBC30\uD130\uB9AC"
+  m_EditorClassIdentifier: 
+  data_code: "\uBCF4\uC870 \uBC30\uD130\uB9AC"
+  relic_name: "\uBCF4\uC870 \uBC30\uD130\uB9AC"
+  sort: 2
+  relic_image: {fileID: 21300000, guid: 0cc991a260c997e46b87b0691e2f8b11, type: 3}
+  relic_script: "\uCE90\uB9AD\uD130\uC5D0\uAC8C \uACF5\uACA9\uB825\uC744 +100000
+    \uC90D\uB2C8\uB2E4."
+  relic_story: "1% \uB0A8\uC558\uC5B4! \uC81C\uBC1C!! \uC548\uB3FC!!!"
+  ownerShipScope: 0
+  relicEventList:
+  - gameEvent: 2
+    conditionList: []
+    ruleValueList:
+    - targetType: 2
+      effectType: 2
+      value: 100000
+      buffInfo: {fileID: 0}
+      cardInfo: {fileID: 0}

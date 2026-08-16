@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad740c2c35cd424eb24296a09e1ba62, type: 3}
+  m_Name: More Bad Guy
+  m_EditorClassIdentifier: 
+  data_code: More Bad Guy
+  character_name: "\uB354\uB098\uC05C\uB118"
+  character_id: 0
+  element: 0
+  characterClass: 0
+  character_story: "\uB354 \uBABB\uB410\uC2B5\uB2C8\uB2E4!"
+  character_full_art: {fileID: 21300000, guid: d33f465be488a734c9e32b554d22c003, type: 3}
+  character_icon: {fileID: 21300000, guid: d33f465be488a734c9e32b554d22c003, type: 3}
+  icon_background_color: {r: 0, g: 0, b: 0, a: 1}
+  levelStatList: []
+  passiveEventList: []
+  dialogues:
+  - situation: 0
+    dialogue: []
+  - situation: 1
+    dialogue: []
+  - situation: 2
+    dialogue: []
+  - situation: 3
+    dialogue: []
+  - situation: 4
+    dialogue: []
+  - situation: 5
+    dialogue: []
+  - situation: 6
+    dialogue: []
+  enemy_card_info_list:
+  - {fileID: 11400000, guid: 938531a898f70ea479e7f3a544a05bc3, type: 2}
+  - {fileID: 0}

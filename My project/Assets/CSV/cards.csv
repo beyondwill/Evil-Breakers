@@ -1,0 +1,22 @@
+카드 번호,카드 이름,카드 구분,카드 등급,카드 분류,카드 기간,카드 대상,카드 명중률,행동력 비용,카드 구매가격,카드 판매가격,카드 텍스트
+index,CardName,CardClass,CardGrade,CardType,CardPeriod,CardTarget,CardAccuracy,ActionCost,CardBuyCost,CardSellCost,CardText
+1,주먹 내지르기,Character1,Normal,Attack,Repeat,Enemy,100,1,100,50,단일 대상에게 {DMG10}의 피해를 줍니다.
+2,어퍼컷,Character1,Normal,Attack,Repeat,Enemy,95,1,100,50,"단일 대상에게 {DMG5}의 피해를 주고, 방어력을 3 감소시킵니다."
+3,팔꿈치 가격,Character1,Normal,Attack,Repeat,Enemy,105,2,200,100,"단일 대상에게 {DMG5}의 피해를 주고, 적의 속도를 1만큼 감소시킵니다."
+4,분노,Character1,Normal,Attack,Repeat,Enemy,90,1,200,100,단일 대상에게 {DMG5}의 피해를 3번 줍니다.
+5,다리 걸기,Character1,Normal,Attack,Repeat,Enemy,85,1,200,100,"단일 대상에게 {DMG3}의 피해를 주고, 1턴 동안 기절시킵니다."
+6,니킥,Character1,Normal,Attack,Repeat,Enemy,95,1,300,150,단일 대상에게 {DMG10}의 피해를 줍니다.
+7,방어,Character1,Normal,Skill,Repeat,None,100,1,100,50,상대의 공격 데미지를 막습니다.
+8,전투태세,Character1,Normal,Skill,Repeat,None,100,1,200,100,2턴 동안 공격력을 5만큼 얻습니다.
+9,돌려차기,Character1,Normal,Attack,Repeat,None,90,1,200,100,랜덤한 적군 2명에게 {DMG4}의 피해를 줍니다.
+10,백스탭,Character1,Normal,Skill,Repeat,None,80,1,300,150,상대의 공격을 1회 회피합니다.
+11,내려치기,Character2,Normal,Attack,Repeat,Enemy,100,1,100,50,단일 대상에게 {DMG10}의 피해를 줍니다.
+12,연속 내려치기,Character2,Normal,Attack,Repeat,Enemy,90,2,100,50,단일 대상에게 {DMG10}의 피해를 2번 줍니다.
+13,머리깨기,Character2,Normal,Attack,Repeat,Enemy,85,1,200,100,단일 대상에게 {DMG5}의 피해를 주고 1턴간 기절 시킵니다.
+14,휘두르기,Character2,Normal,Attack,Repeat,None,90,1,200,100,랜덤한 적군 2명에게 {DMG5}의 피해를 줍니다.
+15,손목 부수기,Character2,Normal,Attack,Repeat,Enemy,80,1,200,100,"단일 대상에게 {DMG5}의 피해를 주고, 상대의 공격력을 2만큼 감소 시킵니다."
+16,물러서기,Character2,Normal,Skill,Repeat,None,100,1,300,150,속도를 2만큼 얻습니다.
+17,흘려넘기기,Character2,Normal,Skill,Repeat,None,90,1,100,50,데미지를 만큼 막습니다.
+18,반격,Character2,Normal,Skill,Repeat,None,85,2,200,100,상대의 다음 공격을 회피하고 반격합니다.
+19,올려치기,Character2,Normal,Attack,Repeat,Enemy,105,2,200,100,"단일 대상에게 {DMG5}의 피해를 줍니다. 상대방이 약화 상태일 경우, 피해를 줍니다."
+20,명상,Character2,Normal,Skill,Repeat,None,100,1,300,150,3턴 동안 공격력을 2만큼 얻습니다.

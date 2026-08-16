@@ -1,0 +1,941 @@
+{
+  "current_state": 1,
+  "main_data": {
+    "player_character_data_list": [
+      {
+        "player_character_info": "PlayerCharacter - 갈색머리",
+        "player_character_level": 1,
+        "current_health": 200,
+        "current_stress": 0,
+        "current_weapon_level": 1,
+        "current_armor_level": 1,
+        "current_exp": 50,
+        "relicInfoList": [],
+        "player_character_deck": [
+          "전투태세",
+          "전투태세",
+          "다리 걸기",
+          "팔꿈치 가격",
+          "분노",
+          "다리 걸기",
+          "니킥",
+          "어퍼컷",
+          "분노",
+          "주먹 내지르기",
+          "팔꿈치 가격",
+          "니킥",
+          "주먹 내지르기",
+          "어퍼컷"
+        ],
+        "player_equipment_list": [
+          {
+            "equipment_sort": 0,
+            "equipment_info": "Weapon1"
+          },
+          {
+            "equipment_sort": 1,
+            "equipment_info": "갈색머리 Armor1"
+          },
+          {
+            "equipment_sort": 2,
+            "equipment_info": null
+          },
+          {
+            "equipment_sort": 2,
+            "equipment_info": null
+          }
+        ]
+      },
+      {
+        "player_character_info": "PlayerCharacter - 빨간머리",
+        "player_character_level": 1,
+        "current_health": 200,
+        "current_stress": 0,
+        "current_weapon_level": 1,
+        "current_armor_level": 1,
+        "current_exp": 50,
+        "relicInfoList": [],
+        "player_character_deck": [
+          "다리 걸기",
+          "분노",
+          "어퍼컷",
+          "전투태세",
+          "주먹 내지르기",
+          "팔꿈치 가격",
+          "니킥",
+          "다리 걸기",
+          "분노",
+          "어퍼컷",
+          "전투태세",
+          "주먹 내지르기",
+          "팔꿈치 가격",
+          "니킥"
+        ],
+        "player_equipment_list": [
+          {
+            "equipment_sort": 0,
+            "equipment_info": "Weapon1"
+          },
+          {
+            "equipment_sort": 1,
+            "equipment_info": "갈색머리 Armor1"
+          },
+          {
+            "equipment_sort": 2,
+            "equipment_info": null
+          },
+          {
+            "equipment_sort": 2,
+            "equipment_info": null
+          }
+        ]
+      },
+      {
+        "player_character_info": "PlayerCharacter - 파란머리",
+        "player_character_level": 1,
+        "current_health": 167,
+        "current_stress": 0,
+        "current_weapon_level": 3,
+        "current_armor_level": 1,
+        "current_exp": 80,
+        "relicInfoList": [],
+        "player_character_deck": [
+          "니킥",
+          "다리 걸기",
+          "분노",
+          "어퍼컷",
+          "전투태세",
+          "주먹 내지르기",
+          "팔꿈치 가격",
+          "니킥",
+          "다리 걸기",
+          "분노",
+          "어퍼컷",
+          "전투태세",
+          "주먹 내지르기",
+          "팔꿈치 가격"
+        ],
+        "player_equipment_list": [
+          {
+            "equipment_sort": 0,
+            "equipment_info": "Weapon1"
+          },
+          {
+            "equipment_sort": 1,
+            "equipment_info": "갈색머리 Armor1"
+          },
+          {
+            "equipment_sort": 2,
+            "equipment_info": "New Equipment Info 3"
+          },
+          {
+            "equipment_sort": 2,
+            "equipment_info": null
+          }
+        ]
+      }
+    ],
+    "money": 10050,
+    "day": 2,
+    "storage_cards_list": [],
+    "inventoryItemList": [
+      {
+        "item": null,
+        "amount": 0,
+        "IsEmpty": true
+      },
+      {
+        "item": null,
+        "amount": 0,
+        "IsEmpty": true
+      },
+      {
+        "item": "New Item Data 2",
+        "amount": 17,
+        "IsEmpty": false
+      },
+      {
+        "item": "New Item Data 3",
+        "amount": 17,
+        "IsEmpty": false
+      }
+    ],
+    "equipmentInfoList": [
+      "New Equipment Info 1",
+      "New Equipment Info 2"
+    ],
+    "mapDataList": [
+      {
+        "hexMapDataSO": "MapData_Normal",
+        "current_point": {
+          "x": 0,
+          "y": 2,
+          "magnitude": 2.0,
+          "sqrMagnitude": 4
+        },
+        "missionObjectList": [
+          {
+            "missionObjectSort": 0,
+            "current_count": 0,
+            "need_count": 6,
+            "IsComplete": false
+          }
+        ],
+        "IsAllMissionComplete": false
+      },
+      {
+        "hexMapDataSO": "MapData_Hard",
+        "current_point": {
+          "x": 0,
+          "y": 4,
+          "magnitude": 4.0,
+          "sqrMagnitude": 16
+        },
+        "missionObjectList": [],
+        "IsAllMissionComplete": true
+      },
+      {
+        "hexMapDataSO": "MapData_Easy",
+        "current_point": {
+          "x": 4,
+          "y": 3,
+          "magnitude": 5.0,
+          "sqrMagnitude": 25
+        },
+        "missionObjectList": [
+          {
+            "missionObjectSort": 0,
+            "current_count": 0,
+            "need_count": 2,
+            "IsComplete": false
+          }
+        ],
+        "IsAllMissionComplete": false
+      }
+    ],
+    "shopData": {
+      "shop_items": [
+        {
+          "item": "New Item Data 2",
+          "amount": 1000,
+          "IsEmpty": false
+        },
+        {
+          "item": "New Item Data 3",
+          "amount": 1000,
+          "IsEmpty": false
+        }
+      ]
+    }
+  },
+  "battle_data": {
+    "nodeType": 2,
+    "zoneType": 1,
+    "characters_in_battle_data_list": [
+      {
+        "player_character_info": "PlayerCharacter - 갈색머리",
+        "player_character_level": 1,
+        "current_health": 200,
+        "current_stress": 0,
+        "current_weapon_level": 1,
+        "current_armor_level": 1,
+        "current_exp": 50,
+        "relicInfoList": [],
+        "player_character_deck": [
+          "전투태세",
+          "전투태세",
+          "다리 걸기",
+          "팔꿈치 가격",
+          "분노",
+          "다리 걸기",
+          "니킥",
+          "어퍼컷",
+          "분노",
+          "주먹 내지르기",
+          "팔꿈치 가격",
+          "니킥",
+          "주먹 내지르기",
+          "어퍼컷"
+        ],
+        "player_equipment_list": [
+          {
+            "equipment_sort": 0,
+            "equipment_info": "Weapon1"
+          },
+          {
+            "equipment_sort": 1,
+            "equipment_info": "갈색머리 Armor1"
+          },
+          {
+            "equipment_sort": 2,
+            "equipment_info": null
+          },
+          {
+            "equipment_sort": 2,
+            "equipment_info": null
+          }
+        ]
+      },
+      {
+        "player_character_info": "PlayerCharacter - 빨간머리",
+        "player_character_level": 1,
+        "current_health": 200,
+        "current_stress": 0,
+        "current_weapon_level": 1,
+        "current_armor_level": 1,
+        "current_exp": 50,
+        "relicInfoList": [],
+        "player_character_deck": [
+          "다리 걸기",
+          "분노",
+          "어퍼컷",
+          "전투태세",
+          "주먹 내지르기",
+          "팔꿈치 가격",
+          "니킥",
+          "다리 걸기",
+          "분노",
+          "어퍼컷",
+          "전투태세",
+          "주먹 내지르기",
+          "팔꿈치 가격",
+          "니킥"
+        ],
+        "player_equipment_list": [
+          {
+            "equipment_sort": 0,
+            "equipment_info": "Weapon1"
+          },
+          {
+            "equipment_sort": 1,
+            "equipment_info": "갈색머리 Armor1"
+          },
+          {
+            "equipment_sort": 2,
+            "equipment_info": null
+          },
+          {
+            "equipment_sort": 2,
+            "equipment_info": null
+          }
+        ]
+      },
+      {
+        "player_character_info": "PlayerCharacter - 파란머리",
+        "player_character_level": 1,
+        "current_health": 167,
+        "current_stress": 0,
+        "current_weapon_level": 3,
+        "current_armor_level": 1,
+        "current_exp": 80,
+        "relicInfoList": [],
+        "player_character_deck": [
+          "니킥",
+          "다리 걸기",
+          "분노",
+          "어퍼컷",
+          "전투태세",
+          "주먹 내지르기",
+          "팔꿈치 가격",
+          "니킥",
+          "다리 걸기",
+          "분노",
+          "어퍼컷",
+          "전투태세",
+          "주먹 내지르기",
+          "팔꿈치 가격"
+        ],
+        "player_equipment_list": [
+          {
+            "equipment_sort": 0,
+            "equipment_info": "Weapon1"
+          },
+          {
+            "equipment_sort": 1,
+            "equipment_info": "갈색머리 Armor1"
+          },
+          {
+            "equipment_sort": 2,
+            "equipment_info": "New Equipment Info 3"
+          },
+          {
+            "equipment_sort": 2,
+            "equipment_info": null
+          }
+        ]
+      }
+    ],
+    "enemyCharacterList": [],
+    "slots": [
+      {
+        "item": null,
+        "amount": 0,
+        "IsEmpty": true
+      },
+      {
+        "item": null,
+        "amount": 0,
+        "IsEmpty": true
+      },
+      {
+        "item": null,
+        "amount": 0,
+        "IsEmpty": true
+      },
+      {
+        "item": null,
+        "amount": 0,
+        "IsEmpty": true
+      },
+      {
+        "item": null,
+        "amount": 0,
+        "IsEmpty": true
+      },
+      {
+        "item": null,
+        "amount": 0,
+        "IsEmpty": true
+      },
+      {
+        "item": null,
+        "amount": 0,
+        "IsEmpty": true
+      },
+      {
+        "item": null,
+        "amount": 0,
+        "IsEmpty": true
+      }
+    ],
+    "leftRewards": [],
+    "battle_result_variables": {
+      "win_battle_count": 0,
+      "slained_player_count": 0,
+      "slained_enemy_count": 0,
+      "played_card_count": 0,
+      "used_item_count": 0
+    },
+    "map_data": {
+      "mapDataId": "MapData_Normal",
+      "current_point": {
+        "x": 0,
+        "y": 1,
+        "magnitude": 1.0,
+        "sqrMagnitude": 1
+      },
+      "nodes": [
+        {
+          "coord": {
+            "x": 0,
+            "y": 2,
+            "magnitude": 2.0,
+            "sqrMagnitude": 4
+          },
+          "uiX": -16.8664913,
+          "uiY": -398.057343,
+          "orgX": 0.0,
+          "orgY": -450.0,
+          "distance": 0,
+          "node_type": 1,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": true,
+          "linkedCoords": [
+            {
+              "x": 0,
+              "y": 3,
+              "magnitude": 3.0,
+              "sqrMagnitude": 9
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "magnitude": 2.236068,
+              "sqrMagnitude": 5
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 0,
+            "y": 3,
+            "magnitude": 3.0,
+            "sqrMagnitude": 9
+          },
+          "uiX": 116.172363,
+          "uiY": -729.518738,
+          "orgX": 129.903809,
+          "orgY": -675.0,
+          "distance": 1,
+          "node_type": 0,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": true,
+          "linkedCoords": [
+            {
+              "x": 0,
+              "y": 2,
+              "magnitude": 2.0,
+              "sqrMagnitude": 4
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "magnitude": 4.0,
+              "sqrMagnitude": 16
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "magnitude": 3.1622777,
+              "sqrMagnitude": 10
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "magnitude": 4.12310553,
+              "sqrMagnitude": 17
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 0,
+            "y": 1,
+            "magnitude": 1.0,
+            "sqrMagnitude": 1
+          },
+          "uiX": 74.57953,
+          "uiY": -245.778946,
+          "orgX": 129.903809,
+          "orgY": -225.0,
+          "distance": 1,
+          "node_type": 2,
+          "zone_type": 1,
+          "isVisited": true,
+          "isRevealed": true,
+          "linkedCoords": [
+            {
+              "x": 0,
+              "y": 2,
+              "magnitude": 2.0,
+              "sqrMagnitude": 4
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "magnitude": 1.41421354,
+              "sqrMagnitude": 2
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 1,
+            "y": 2,
+            "magnitude": 2.236068,
+            "sqrMagnitude": 5
+          },
+          "uiX": 292.9297,
+          "uiY": -419.258423,
+          "orgX": 259.807617,
+          "orgY": -450.0,
+          "distance": 1,
+          "node_type": 0,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": true,
+          "linkedCoords": [
+            {
+              "x": 0,
+              "y": 2,
+              "magnitude": 2.0,
+              "sqrMagnitude": 4
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "magnitude": 2.828427,
+              "sqrMagnitude": 8
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 0,
+            "y": 4,
+            "magnitude": 4.0,
+            "sqrMagnitude": 16
+          },
+          "uiX": -13.2280073,
+          "uiY": -873.457458,
+          "orgX": 0.0,
+          "orgY": -900.0,
+          "distance": 2,
+          "node_type": 0,
+          "zone_type": 1,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 0,
+              "y": 3,
+              "magnitude": 3.0,
+              "sqrMagnitude": 9
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 1,
+            "y": 3,
+            "magnitude": 3.1622777,
+            "sqrMagnitude": 10
+          },
+          "uiX": 339.7252,
+          "uiY": -684.4219,
+          "orgX": 389.711426,
+          "orgY": -675.0,
+          "distance": 2,
+          "node_type": 2,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 0,
+              "y": 3,
+              "magnitude": 3.0,
+              "sqrMagnitude": 9
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "magnitude": 4.472136,
+              "sqrMagnitude": 20
+            },
+            {
+              "x": 2,
+              "y": 3,
+              "magnitude": 3.60555124,
+              "sqrMagnitude": 13
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 1,
+            "y": 4,
+            "magnitude": 4.12310553,
+            "sqrMagnitude": 17
+          },
+          "uiX": 315.7563,
+          "uiY": -899.3418,
+          "orgX": 259.807617,
+          "orgY": -900.0,
+          "distance": 2,
+          "node_type": 0,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 0,
+              "y": 3,
+              "magnitude": 3.0,
+              "sqrMagnitude": 9
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "magnitude": 4.472136,
+              "sqrMagnitude": 20
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 1,
+            "y": 1,
+            "magnitude": 1.41421354,
+            "sqrMagnitude": 2
+          },
+          "uiX": 363.745117,
+          "uiY": -171.833862,
+          "orgX": 389.711426,
+          "orgY": -225.0,
+          "distance": 2,
+          "node_type": 4,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": true,
+          "linkedCoords": [
+            {
+              "x": 0,
+              "y": 1,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "magnitude": 2.236068,
+              "sqrMagnitude": 5
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "magnitude": 2.0,
+              "sqrMagnitude": 4
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 1,
+            "y": 0,
+            "magnitude": 1.0,
+            "sqrMagnitude": 1
+          },
+          "uiX": 219.210678,
+          "uiY": -13.3864517,
+          "orgX": 259.807617,
+          "orgY": 0.0,
+          "distance": 2,
+          "node_type": 5,
+          "zone_type": 1,
+          "isVisited": false,
+          "isRevealed": true,
+          "linkedCoords": [
+            {
+              "x": 0,
+              "y": 1,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "magnitude": 2.0,
+              "sqrMagnitude": 4
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 0,
+            "y": 0,
+            "magnitude": 0.0,
+            "sqrMagnitude": 0
+          },
+          "uiX": 14.7442322,
+          "uiY": 11.33155,
+          "orgX": 0.0,
+          "orgY": 0.0,
+          "distance": 2,
+          "node_type": 0,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": true,
+          "linkedCoords": [
+            {
+              "x": 0,
+              "y": 1,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 2,
+            "y": 2,
+            "magnitude": 2.828427,
+            "sqrMagnitude": 8
+          },
+          "uiX": 567.0574,
+          "uiY": -427.4759,
+          "orgX": 519.615234,
+          "orgY": -450.0,
+          "distance": 2,
+          "node_type": 3,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 1,
+              "y": 2,
+              "magnitude": 2.236068,
+              "sqrMagnitude": 5
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "magnitude": 2.236068,
+              "sqrMagnitude": 5
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 2,
+            "y": 4,
+            "magnitude": 4.472136,
+            "sqrMagnitude": 20
+          },
+          "uiX": 570.859436,
+          "uiY": -951.7105,
+          "orgX": 519.615234,
+          "orgY": -900.0,
+          "distance": 3,
+          "node_type": 2,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 1,
+              "y": 3,
+              "magnitude": 3.1622777,
+              "sqrMagnitude": 10
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "magnitude": 4.12310553,
+              "sqrMagnitude": 17
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 2,
+            "y": 3,
+            "magnitude": 3.60555124,
+            "sqrMagnitude": 13
+          },
+          "uiX": 604.811035,
+          "uiY": -641.9953,
+          "orgX": 649.519043,
+          "orgY": -675.0,
+          "distance": 3,
+          "node_type": 7,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 1,
+              "y": 3,
+              "magnitude": 3.1622777,
+              "sqrMagnitude": 10
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 2,
+            "y": 1,
+            "magnitude": 2.236068,
+            "sqrMagnitude": 5
+          },
+          "uiX": 619.439331,
+          "uiY": -232.197632,
+          "orgX": 649.519043,
+          "orgY": -225.0,
+          "distance": 3,
+          "node_type": 2,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 1,
+              "y": 1,
+              "magnitude": 1.41421354,
+              "sqrMagnitude": 2
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "magnitude": 2.828427,
+              "sqrMagnitude": 8
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 2,
+            "y": 0,
+            "magnitude": 2.0,
+            "sqrMagnitude": 4
+          },
+          "uiX": 495.815521,
+          "uiY": 58.9756165,
+          "orgX": 519.615234,
+          "orgY": 0.0,
+          "distance": 3,
+          "node_type": 2,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 1,
+              "y": 1,
+              "magnitude": 1.41421354,
+              "sqrMagnitude": 2
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1
+            }
+          ]
+        }
+      ],
+      "missionObjectList": [
+        {
+          "missionObjectSort": 0,
+          "current_count": 1,
+          "need_count": 6,
+          "IsComplete": false
+        }
+      ]
+    },
+    "time": 43
+  }
+}

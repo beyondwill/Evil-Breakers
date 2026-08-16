@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d982a70d015172c42be4ef6ce485b25b, type: 3}
+  m_Name: NPC1
+  m_EditorClassIdentifier: 
+  data_code: NPC1
+  sprite: {fileID: 21300000, guid: a88aba782ee581e45a2539513b335724, type: 3}
+  characterName: NPC1
+  attribute: "\uBB3C\uB9AC"
+  areas: "\uBD80\uC0B0"
+  characterInfo: "\uB4F1\uC0B0\uD558\uB2E4\uAC00 \uADC0\uC2E0\uC744 \uBCF8 \uB4A4\uB85C
+    \uAFC8\uC5D0\uC11C \uADC0\uC2E0\uC774 \uC790\uAFB8 \uB098\uC624\uB294 \uD0D3\uC5D0
+    \uBD88\uBA74\uC99D\uC5D0 \uC2DC\uB2EC\uB9AC\uACE0 \uC788\uB2E4. \uC885\uC885
+    \uBD88\uC548\uD574\uD558\uB294 \uBAA8\uC2B5\uC774 \uBCF4\uC774\uC9C0\uB9CC, \uC774\uC0C1\uD589\uB3D9\uC744
+    \uD558\uC9C0 \uC54A\uC73C\uB2C8 \uC8FC\uC758\uD558\uC9C0 \uC54A\uC544\uB3C4 \uAD1C\uCC2E\uC744
+    \uAC83 \uAC19\uB2E4"

@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1752689578207895555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7801412173257728460}
+  - component: {fileID: 1723985218152711829}
+  m_Layer: 0
+  m_Name: PlayerCharacterTable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7801412173257728460
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752689578207895555}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.47583, y: 3.7166936, z: 197.42355}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1723985218152711829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752689578207895555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f702f4595eadf41b8129ae44791248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerFolderPath: Assets/Scriptable Object/Character Scriptable Objects/Player
+    Character
+  enemyFolderPath: Assets/Scriptable Object/Character Scriptable Objects/Emeny Character
+  equipmentFolderPath: Assets/Scriptable Object/Equipment Scriptable Objects
+  itemFolderPath: Assets/Scriptable Object/Item Scriptable Objects
+  locationFolderPath: Assets/Scriptable Object/Location Info Scriptable Objects
+  missionFolderPath: Assets/Scriptable Object/Mission Info Scriptable Objects
+  playercardFolderPath: Assets/Scriptable Object/Player Card Info Scriptable Objects
+  mapFolderPath: Assets/Scriptable Object/Map Scriptable Objects
+  relicFolderPath: Assets/Scriptable Object/Relic Scriptable Objects
+  PCT:
+    dataList:
+    - {fileID: 11400000, guid: a8c39598ec7d4f44cbbe5904f0aaebc0, type: 2}
+    - {fileID: 11400000, guid: 5c92e3749e952e642b0aa131b1e52dd8, type: 2}
+    - {fileID: 11400000, guid: cf476490280ba744f875b42302899584, type: 2}
+  ECT:
+    dataList:
+    - {fileID: 11400000, guid: 7c9f1399aea66ae47a79e44b9b47532b, type: 2}
+    - {fileID: 11400000, guid: 8b8fc1e1d4bc82c47823be66e18b340a, type: 2}
+    - {fileID: 11400000, guid: fcbef77d9e1fb06418167a68440bbb49, type: 2}
+    - {fileID: 11400000, guid: 10a096a4a7d57c649ab3742e93aabd44, type: 2}
+    - {fileID: 11400000, guid: 84c66b6749b71e24494b034572c4ca71, type: 2}
+    - {fileID: 11400000, guid: 4fea7e9d048ce7b41a7c0b9dc007420f, type: 2}
+    - {fileID: 11400000, guid: e183c1317f28f0a4a8d72b3c1e674693, type: 2}
+    - {fileID: 11400000, guid: 75208bea8eb9ffb40b467480ec378dbd, type: 2}
+    - {fileID: 11400000, guid: c02ac8a76cd4677448753680db501baf, type: 2}
+    - {fileID: 11400000, guid: 7f582a1696c5e32478f6bbc77f8e66f1, type: 2}
+    - {fileID: 11400000, guid: 1b625dcbb2abdf44d9b4e55bbef3ce47, type: 2}
+    - {fileID: 11400000, guid: 424600da8d2d0e64d89fc2343df430e9, type: 2}
+  ET:
+    dataList:
+    - {fileID: 11400000, guid: e6059a6046b4fd3458169ec3a75b26b8, type: 2}
+    - {fileID: 11400000, guid: b13c027572301044c86a7c2dad15746d, type: 2}
+    - {fileID: 11400000, guid: 0e465911b52c3334683963207032d292, type: 2}
+    - {fileID: 11400000, guid: f0f6d46a6eabd4d4e83a7f339829a48c, type: 2}
+    - {fileID: 11400000, guid: ca4c07a18aca4b741800e036898dd0af, type: 2}
+    - {fileID: 11400000, guid: 034b2e927496d884a84e78d297c6277d, type: 2}
+    - {fileID: 11400000, guid: ea805e79b3dc9484eb0d97fe5c80e45c, type: 2}
+    - {fileID: 11400000, guid: 158d3657ece63ec439d2e610611a562d, type: 2}
+    - {fileID: 11400000, guid: ca28b34e77031774d801b3f11feefe45, type: 2}
+    - {fileID: 11400000, guid: d03d5ee1209418847a238e18202eaa65, type: 2}
+    - {fileID: 11400000, guid: 8e89d5a504027c348b3d9febe81f3d3c, type: 2}
+    - {fileID: 11400000, guid: 7276ee2faf87b144ea42ff01c97574ce, type: 2}
+    - {fileID: 11400000, guid: 034b00d18c8786942bfdddf48cfa3c89, type: 2}
+  IT:
+    dataList:
+    - {fileID: 11400000, guid: ce78404fd98e8b745acd631e6c3f081e, type: 2}
+    - {fileID: 11400000, guid: 138d236714ad8ec429395734416647a4, type: 2}
+    - {fileID: 11400000, guid: 1498d2982c86b4f4388c5dc06a95099c, type: 2}
+    - {fileID: 11400000, guid: 25c3dee4792a3bc48a60fabaf5db2a9b, type: 2}
+    - {fileID: 11400000, guid: 6638a656bfb99aa49bd588c62183ee8a, type: 2}
+  LT:
+    dataList:
+    - {fileID: 11400000, guid: 13128d2501fc22047a38dc73c2686b72, type: 2}
+    - {fileID: 11400000, guid: fcfc199e1b720314bb508b3f1927a88f, type: 2}
+    - {fileID: 11400000, guid: 076f28dffa48d4246b2494812116ee40, type: 2}
+  MT:
+    dataList: []
+  CT:
+    dataList:
+    - {fileID: 11400000, guid: d4916e94a3e24b040a4cd8aa82b9a401, type: 2}
+    - {fileID: 11400000, guid: 6fe93c79870d1994d86b0dfe1841d784, type: 2}
+    - {fileID: 11400000, guid: 79c603a0e81cd964aa740ff37d07db3e, type: 2}
+    - {fileID: 11400000, guid: 28ddd81cd305fc44cb6917461a319a8a, type: 2}
+    - {fileID: 11400000, guid: 751ef54bed50fc242ba260d1d259a9b8, type: 2}
+    - {fileID: 11400000, guid: 2cf0bcb0cb6ffe044bfdf1112957fc97, type: 2}
+    - {fileID: 11400000, guid: 4046ca7118358a442bb5979d771273b2, type: 2}
+    - {fileID: 11400000, guid: 90da4226ac42b1c41910d01d74f57fa2, type: 2}
+    - {fileID: 11400000, guid: c8cf30124fff1d1448b8feb8d306cc51, type: 2}
+    - {fileID: 11400000, guid: 222103ca7bf99014799e0a395189233b, type: 2}
+    - {fileID: 11400000, guid: 8e19b54ee32b7b044880fce8f72a7ae7, type: 2}
+    - {fileID: 11400000, guid: 6537997208d8e214986e2c94b2746f8e, type: 2}
+    - {fileID: 11400000, guid: 4c14440f964d81044968f227c2f2caa3, type: 2}
+    - {fileID: 11400000, guid: d9a9a1e8e131171498ae27c0c15ee190, type: 2}
+    - {fileID: 11400000, guid: fa55b2b5890f3b94db43a6d334530d23, type: 2}
+    - {fileID: 11400000, guid: d99751005b2b91f4da3e4dfbc3e3f53c, type: 2}
+    - {fileID: 11400000, guid: 5bc49595ebb869141aa5aa1cbc6ec979, type: 2}
+    - {fileID: 11400000, guid: 51ce696e0755445469e66b843df7847d, type: 2}
+    - {fileID: 11400000, guid: aabcb566640a01c438e6784abda0d33c, type: 2}
+    - {fileID: 11400000, guid: ffacaabda35ea56439a38beefdf0727d, type: 2}
+    - {fileID: 11400000, guid: bd00daa1dff03f249bdad9541374ce69, type: 2}
+    - {fileID: 11400000, guid: 0ed9f7a0a00117f46a9ec304a1de9d4b, type: 2}
+    - {fileID: 11400000, guid: 1db4ee77ac0fdff4b89b9d0ebbd34716, type: 2}
+    - {fileID: 11400000, guid: 29a18d3aea847e04397eac063ef867bf, type: 2}
+    - {fileID: 11400000, guid: f4489cc76b2f9a042b920ebde89f69ae, type: 2}
+    - {fileID: 11400000, guid: 037c2b29902b77149aea28468bf0c5c9, type: 2}
+    - {fileID: 11400000, guid: bf35c4d304e7b684a886499cb2d64a75, type: 2}
+    - {fileID: 11400000, guid: cbb6d1df2e39da840aa7befe90822803, type: 2}
+    - {fileID: 11400000, guid: ac0feef10f25a6d4e8e6bae340003698, type: 2}
+  MAP:
+    dataList:
+    - {fileID: 11400000, guid: 4ee95234e7c376a40bc139d3dbbb30e6, type: 2}
+    - {fileID: 11400000, guid: 71620cf0e948cc343a95bdbeac4a68b5, type: 2}
+    - {fileID: 11400000, guid: 0e212cc1059d42c49af9e50eb2f74b98, type: 2}
+  RT:
+    dataList:
+    - {fileID: 11400000, guid: cc8ec3fee5359a5489a64bb9bc4fc1df, type: 2}
+    - {fileID: 11400000, guid: 548872f9240e3534e84379434d5ff24b, type: 2}
+    - {fileID: 11400000, guid: 45a27ebc05ddbbe419be2b112b27eb90, type: 2}
+    - {fileID: 11400000, guid: 4d6934cbb84c863458a20704e9d2ca44, type: 2}
+    - {fileID: 11400000, guid: 11f2a3733be696d41b10cb9be03805ce, type: 2}
+    - {fileID: 11400000, guid: 17909df905d48b148a745560ed7f2852, type: 2}

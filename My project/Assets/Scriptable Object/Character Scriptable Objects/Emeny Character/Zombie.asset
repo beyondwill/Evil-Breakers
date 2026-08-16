@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad740c2c35cd424eb24296a09e1ba62, type: 3}
+  m_Name: Zombie
+  m_EditorClassIdentifier: 
+  data_code: Zombie
+  character_name: "\uC880\uBE44"
+  character_id: 0
+  element: 0
+  characterClass: 0
+  character_story: "\uC544\uC8FC \uB098\uC068\uB2C8\uB2E4!"
+  character_full_art: {fileID: 21300000, guid: 07eb765e2aa0db445a464301726279ef, type: 3}
+  character_icon: {fileID: 21300000, guid: 07eb765e2aa0db445a464301726279ef, type: 3}
+  icon_background_color: {r: 0, g: 0, b: 0, a: 1}
+  levelStatList:
+  - level: 0
+    statList:
+    - type: 0
+      value: 10
+    - type: 1
+      value: 100
+    - type: 2
+      value: 0
+    - type: 3
+      value: 0
+    - type: 4
+      value: 2
+    - type: 5
+      value: 50
+  passiveEventList: []
+  dialogues:
+  - situation: 0
+    dialogue: []
+  - situation: 1
+    dialogue: []
+  - situation: 2
+    dialogue: []
+  - situation: 3
+    dialogue: []
+  - situation: 4
+    dialogue: []
+  - situation: 5
+    dialogue: []
+  - situation: 6
+    dialogue: []
+  - situation: 7
+    dialogue: []
+  - situation: 8
+    dialogue: []
+  enemy_card_info_list:
+  - {fileID: 11400000, guid: c8cf30124fff1d1448b8feb8d306cc51, type: 2}
+  - {fileID: 11400000, guid: 1db4ee77ac0fdff4b89b9d0ebbd34716, type: 2}

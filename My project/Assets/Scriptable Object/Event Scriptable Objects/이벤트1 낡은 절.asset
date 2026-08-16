@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 796f38479a1c7154b8d90dc30f7d4df8, type: 3}
+  m_Name: "\uC774\uBCA4\uD2B81 \uB0A1\uC740 \uC808"
+  m_EditorClassIdentifier: 
+  event_title: "\uB0A1\uC740 \uC808"
+  event_script: "\uB0A1\uC740 \uC808\uC5D0 \uB3C4\uCC29\uD588\uB2E4... \uC0AC\uB78C\uC774
+    \uD55C \uBA85\uB3C4 \uC5C6\uB2E4...\n\n\uACE0\uAE30\uBC18\uCC2C\uB3C4 \uC5C6\uB2E4...!"
+  event_image: {fileID: 21300000, guid: 5ceadbd4056877345bc26f528e4c7d1a, type: 3}
+  choices:
+  - choiceText: "[\uAD76\uB294\uB2E4] <color=red> \uC0DD\uBA85\uB825 100 \uAC10\uC18C</color>"
+    effects:
+    - {fileID: 11400000, guid: 728cc4b63baf89640945bbfe097204ae, type: 2}
+    nextEvent: {fileID: 11400000, guid: 63dcd1b24cbdf134b8b4b1728dd70a77, type: 2}
+  - choiceText: "[\uBAB0\uB798 \uACE0\uAE30\uB97C \uBA39\uB294\uB2E4] <color=green>
+      \uC0DD\uBA85\uB825 100 \uC99D\uAC00</color>"
+    effects:
+    - {fileID: 11400000, guid: 0bbb8910d5139e04681c18cdfae3dbb8, type: 2}
+    nextEvent: {fileID: 11400000, guid: 794a889860e04044195662064ddf9099, type: 2}

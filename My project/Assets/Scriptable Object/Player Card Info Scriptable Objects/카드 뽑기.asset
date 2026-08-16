@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327a586e37455eb4e8d2172a10120307, type: 3}
+  m_Name: "\uCE74\uB4DC \uBF51\uAE30"
+  m_EditorClassIdentifier: 
+  data_code: "\uCE74\uB4DC \uBF51\uAE30"
+  cardType: 2
+  cardTarget: 0
+  cardRarity: 0
+  card_image: {fileID: 21300000, guid: 2a0cd6d97c50a634c891fceff1ec7baa, type: 3}
+  card_name: "\uCE74\uB4DC \uBF51\uAE30"
+  card_cost: 1
+  useAccuracy: 0
+  accuracy: 0
+  card_description: "\uCE74\uB4DC\uB97C \uB450 \uC7A5 \uBF51\uC2B5\uB2C8\uB2E4."
+  effects:
+  - time: 0
+    visual: {fileID: 11400000, guid: 337536cdfdccfce4d9fe972337715c73, type: 2}
+    effect: {fileID: 11400000, guid: 6a1241b8b436bed44b224093b8ee6d70, type: 2}
+    value: 2
+    value2: 0
+    floatValue: 0

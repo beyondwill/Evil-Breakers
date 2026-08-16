@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327a586e37455eb4e8d2172a10120307, type: 3}
+  m_Name: "\uD314\uAFC8\uCE58 \uAC00\uACA9"
+  m_EditorClassIdentifier: 
+  data_code: "\uD314\uAFC8\uCE58 \uAC00\uACA9"
+  characterClass: 1
+  cardType: 1
+  cardTarget: 2
+  cardRarity: 1
+  cardPeriod: 1
+  card_image: {fileID: 21300000, guid: 7b650e7e12e7f514cb88572899856c0f, type: 3}
+  card_name: "\uD314\uAFC8\uCE58 \uAC00\uACA9"
+  card_cost: 2
+  buy_card_cost: 200
+  sell_card_cost: 100
+  useAccuracy: 1
+  accuracy: 105
+  card_description: "\uB2E8\uC77C \uB300\uC0C1\uC5D0\uAC8C {DMG40}\uC758 \uD53C\uD574\uB97C
+    \uC8FC\uACE0, \uC801\uC758 \uC18D\uB3C4\uB97C 1\uB9CC\uD07C \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4."
+  specialcardCondition: {fileID: 0}
+  effects:
+  - time: 0
+    visual: {fileID: 11400000, guid: cf5ff3604a947944a8cfe930106493a5, type: 2}
+    effect: {fileID: 11400000, guid: 2674240358de0f24d972b82512535264, type: 2}
+    value: 40
+    value2: 0
+    floatValue: 0
+    dataEntity: {fileID: 0}
+    condition: {fileID: 0}
+    AccuracyReset: 0
+  - time: 0
+    visual: {fileID: 0}
+    effect: {fileID: 11400000, guid: e61c2736750196945b023d05dafbec36, type: 2}
+    value: -1
+    value2: 0
+    floatValue: 0
+    dataEntity: {fileID: 0}
+    condition: {fileID: 0}
+    AccuracyReset: 0
