@@ -1,66 +1,119 @@
-using JetBrains.Annotations;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DictionaryData
-{
-    public DataEntity dictionary_data;
-    public bool is_recovered;
-}
-
 public class DictionaryManager : MonoBehaviour
 {
-    // 외부 요소
-    [SerializeField] private GameObject dictionary_content;
-    [SerializeField] private GameObject character_icon;
+    [Header("Dictionary UI")]
+    [SerializeField] private DictionaryUI dictionary_ui;
 
-    [SerializeField] private Image enemy_character_image;
-    [SerializeField] private TextMeshProUGUI enemy_character_name;
-    [SerializeField] private TextMeshProUGUI enemy_character_info;
+    [Header("Dictionary Data")]
+    [SerializeField] private List<DictionaryDataSO> dictionary_data_list;
 
-    // 변수
-    [SerializeField] private List<EnemyCharacterInfo> enemy_character_info_list;
+    [Header("Left List")]
+    [SerializeField] private Transform dictionary_content;
+    [SerializeField] private GameObject dictionary_button_prefab;
 
-    void Start()
+    [Header("Category Button")]
+    [SerializeField] private Button location_button;
+    [SerializeField] private Button monster_button;
+    [SerializeField] private Button npc_button;
+    [SerializeField] private Button attribute_button;
+
+    private DictionaryType current_type;
+
+    private void Start()
     {
-        MonsterDictionaryInit();
+        location_button.onClick.AddListener(
+            () => ShowDictionary(DictionaryType.Location));
+
+        monster_button.onClick.AddListener(
+            () => ShowDictionary(DictionaryType.Monster));
+
+        npc_button.onClick.AddListener(
+            () => ShowDictionary(DictionaryType.NPC));
+
+        attribute_button.onClick.AddListener(
+            () => ShowDictionary(DictionaryType.Attribute));
+
+        // 처음에는 지역 표시
+        ShowDictionary(DictionaryType.Location);
     }
 
-    // 몬스터 사전 초기화
-    public void MonsterDictionaryInit()
+    // 카테고리 변경
+    public void ShowDictionary(DictionaryType type)
     {
-        for (int i = 0; i < enemy_character_info_list.Count; i++)
+        current_type = type;
+
+        // 기존 왼쪽 목록 삭제
+        ClearDictionaryButton();
+
+        // 오른쪽 정보 초기화
+        dictionary_ui.ResetUI();
+
+        // 해당 카테고리만 표시
+        foreach (DictionaryDataSO data in dictionary_data_list)
         {
-            int index = i;
-            EnemyCharacterInfo ECI = enemy_character_info_list[i];
-            GameObject icon = Instantiate(character_icon, dictionary_content.transform);
-            IconButton IB = icon.GetComponent<IconButton>();
-            IB.SetImage(ECI.character_icon);
-            IB.SetColor(ECI.icon_background_color);
-            IB.ActionAdd(() => ShowMonsterInfo(index));
+            if (data == null)
+                continue;
+
+            if (data.dictionary_type != current_type)
+                continue;
+
+            CreateDictionaryButton(data);
         }
     }
 
-    // 몬스터 정보 보여주기
-    public void ShowMonsterInfo(int index)
+    public void ShowDictionary()
     {
-        EnemyCharacterInfo ECI = enemy_character_info_list[index];
-        enemy_character_image.sprite = ECI.character_full_art;
-        enemy_character_name.text = ECI.character_name;
-        enemy_character_info.text = MakeMonsterInfoText(ECI);
+        ShowDictionary(current_type);
     }
 
-    public string MakeMonsterInfoText(EnemyCharacterInfo ECI)
+    public void Add(DictionaryDataSO DDSO)
     {
-        string result = ""; 
-        //result += "생명력: " + ECI.max_health + '\n';
-        //result += "공격력: " + 100 + '\n' + '\n';
-        result += "<i>\"" + ECI.character_story + "</i>\"";
+        dictionary_data_list.Add(DDSO);
+    }
 
-        return result;
+    // 왼쪽 버튼 생성
+    private void CreateDictionaryButton(DictionaryDataSO data)
+    {
+        GameObject buttonObject =
+            Instantiate(
+                dictionary_button_prefab,
+                dictionary_content);
+
+        Button button =
+            buttonObject.GetComponent<Button>();
+
+        TextMeshProUGUI buttonText =
+            buttonObject.GetComponentInChildren<TextMeshProUGUI>();
+
+        // dictionary_name은 왼쪽 버튼에만 사용
+        if (buttonText != null)
+        {
+            buttonText.text = data.dictionary_name;
+        }
+
+        button.onClick.AddListener(
+            () => ShowDictionaryInfo(data));
+    }
+
+    // 오른쪽 정보 표시
+    private void ShowDictionaryInfo(DictionaryDataSO data)
+    {
+        dictionary_ui.Show(data);
+    }
+
+    // 기존 버튼 제거
+    private void ClearDictionaryButton()
+    {
+        for (int i = dictionary_content.childCount - 1; i >= 0; i--)
+        {
+            Destroy(
+                dictionary_content
+                    .GetChild(i)
+                    .gameObject);
+        }
     }
 }

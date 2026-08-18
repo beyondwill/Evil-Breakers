@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522c4f1371c558742a2a8d6172774fe0, type: 3}
+  m_Name: Busan
+  m_EditorClassIdentifier: 
+  dictionary_type: 0
+  dictionary_name: "\uBD80\uC0B0"
+  main_image: {fileID: 21300000, guid: 2e7fc54b0f458c749aa05cf3ce7ba85c, type: 3}
+  side_image: {fileID: 0}
+  first_text: "\uCD9C\uD604 \uBAAC\uC2A4\uD130 : \uC545\uB8391, \uC545\uB8392"
+  second_text: "\uD68D\uB4DD \uAC00\uB2A5\uD55C \uCE74\uB4DC \uC885\uB958 : \uACF5\uACA9,
+    \uBC29\uC5B4"
+  third_text: "\uB4DC\uB86D \uB418\uB294 \uC7A5\uBE44 : \uBC29\uC5B4\uAD6C, \uC7A5\uC2E0\uAD6C"
+  forth_text: "\uC8FC\uC694 \uBC1C\uC0DD \uC0AC\uAC74 : \uC2E4\uC885, \uAD34\uC774,
+    \uC774\uC0C1\uD604\uC0C1"
+  fifth_text: "\uC9C0\uC5ED \uC124\uBA85 : \uBD80\uC0B0\uC774\uB2E4."
