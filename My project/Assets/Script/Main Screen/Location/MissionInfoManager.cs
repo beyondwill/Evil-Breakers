@@ -5,12 +5,6 @@ using UnityEngine.UI;
 
 public class MissionInfoManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI location_title_text;
-    [SerializeField] private TextMeshProUGUI location_info_text;
-    [SerializeField] private TextMeshProUGUI location_rank_text;
-    [SerializeField] private TextMeshProUGUI essential_objects_text;
-    [SerializeField] private TextMeshProUGUI reward_text;
-
     [SerializeField] private Image location_image;
 
     [SerializeField] private Button strike_button;
@@ -52,17 +46,6 @@ public class MissionInfoManager : MonoBehaviour
             Debug.LogError("LocationInfo null");
             return;
         }
-
-        gameObject.SetActive(true);
-
-        location_title_text.text = LI.location_name;
-        location_info_text.text = LI.location_info;
-        location_rank_text.text = $"위험도 : {LI.location_rank}";
-        location_image.sprite = LI.location_image;
-        reward_text.text = $"보상 : {LI.reward_money} Gold";
-
-        essential_objects_text.text =
-            "목표\n- 모든 적 처치";
 
         selectedCharacters.Clear();
 

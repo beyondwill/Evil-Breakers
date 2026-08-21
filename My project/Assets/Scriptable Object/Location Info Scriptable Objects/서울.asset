@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b830069cdfe2bd04ebbdd2c91287a393, type: 3}
-  m_Name: "\uAE08\uC815\uC0B0"
+  m_Name: "\uC11C\uC6B8"
   m_EditorClassIdentifier: 
-  data_code: "\uAE08\uC815\uC0B0"
-  location_name: "\uAE08\uC815\uC0B0"
-  location_info: "\uC0B0\uC624\uB974\uAE30\uC2EB\uC5B4@"
-  location_image: {fileID: 21300000, guid: 984bc23c363650f4ea931d6a8db034ed, type: 3}
-  location_rank: 1
-  reward_money: 100
-  HMDS: {fileID: 11400000, guid: 4ee95234e7c376a40bc139d3dbbb30e6, type: 2}
+  data_code: "\uC11C\uC6B8"
+  location_name: "\uC11C\uC6B8"
+  location_info: "\uC11C\uC6B8\uC785\uB2C8\uB2E4."
+  location_image: {fileID: 21300000, guid: 0ecf9adc055033744afffddc519728e0, type: 3}
+  location_rank: 3
+  reward_money: 10
+  HMDS: {fileID: 11400000, guid: 0e212cc1059d42c49af9e50eb2f74b98, type: 2}

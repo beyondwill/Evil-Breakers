@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MapData_Easy
   m_EditorClassIdentifier: 
   data_code: MapData_Easy
-  location_name: "\uACBD\uC0C1\uB0A8\uB3C4 - \uAE08\uC815\uC0B0"
+  location_name: "\uD55C\uAD6D - \uCDA9\uCCAD"
   targetNodeCount: 5
   extraEdgeCount: 2
   lessLenFromBoss: 0
