@@ -18,7 +18,10 @@ public class ShopUI : MonoBehaviour
     private readonly List<IconButton> shopButtons = new();
     private readonly List<IconButton> inventoryButtons = new();
 
-
+    public void OnEnable()
+    {
+        ConversationManager.Instance.StartConversation(ConversationManager.Instance.conver3);
+    }
 
     // ==========================
     // 상점 아이템 표시

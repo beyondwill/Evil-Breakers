@@ -32,9 +32,14 @@ public class TalkingManager : MonoBehaviour
         Instance = this;
     }
 
+    public void Start()
+    {
+        if (DataManager.Instance.GetMainData.day == 2);
+    }
+
     private void Update()
     {
-        ShowTalkingBox();
+        //ShowTalkingBox();
     }
 
     private void ShowTalkingBox()

@@ -15,7 +15,7 @@ public enum Situation
 
     CantStartCard,                  // 카드 낼 수 없음
     InvalidTarget,                  // 잘못된 대상
-    BattleStart                     // 전투 개시
+    BattleStart,                    // 전투 개시
 }
 
 
@@ -72,7 +72,8 @@ public class CharacterDialogue
 // 캐릭터 정보
 // =========================================================
 
-public abstract class CharacterInfo : DataEntity
+[CreateAssetMenu(fileName = "Character", menuName = "Character/Character")]
+public class CharacterInfo : DataEntity
 {
     // =====================================================
     // 기본 정보

@@ -3,14 +3,18 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// =========================================================
 // 현재 상황
+// =========================================================
+
 public enum CurrentState
 {
-    None,                   // 아무것도 아님
-    MainScreen,             // 메인 화면
-    BattleMap,              // 전투 맵
-    BattleBegin,            // 전투 시작
-    BattleEnd,              // 전투 끝남(보상 받을 차례)
+    None,
+    MainScreen,
+    BattleMap,
+    BattleBegin,
+    BattleEnd,
     End
 }
 
@@ -23,13 +27,16 @@ public enum CurrentState
 public class AllData
 {
     public CurrentState current_state;
+
     public MainData main_data;
     public BattleData battle_data;
+
 
     public void SetCurrentState(CurrentState state)
     {
         current_state = state;
     }
+
 
     public CurrentState GetCurrentState()
     {
@@ -47,13 +54,28 @@ public class BattleSaveData
 {
     public HexNode.NodeType nodeType;
     public HexNode.ZoneType zoneType;
-    public List<PlayerCharacterData> characters_in_battle_data_list;
-    public List<EnemyCharacterInfo> enemyCharacterList;
-    public List<InventoryItem> slots;
-    public List<InventoryItem> leftRewards;
-    public BattleResultVariable battle_result_variables;
+
+    public List<PlayerCharacterData>
+        characters_in_battle_data_list;
+
+    public List<EnemyCharacterInfo>
+        enemyCharacterList;
+
+    public List<InventoryItem>
+        slots;
+
+    public List<InventoryItem>
+        leftRewards;
+
+    public BattleResultVariable
+        battle_result_variables;
+
     public MapSaveData map_data;
+
     public int time;
+
+    // 추가
+    public int horror;
 }
 
 
@@ -65,10 +87,14 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
 
-    [SerializeField] private AllData all_data;
+
+    [SerializeField]
+    private AllData all_data;
+
 
     // 실제 저장 파일
     private string saveFilePath;
+
 
     private JsonSerializerSettings jsonSettings;
 
@@ -77,55 +103,56 @@ public class DataManager : MonoBehaviour
     // Awake
     // =========================================================
 
-    void Awake()
+    private void Awake()
     {
-        if (Instance == null)
+        if (Instance != null &&
+            Instance != this)
         {
-            Instance = this;
+            Destroy(gameObject);
+            return;
+        }
 
-            DontDestroyOnLoad(gameObject);
+
+        Instance = this;
+
+        DontDestroyOnLoad(gameObject);
 
 
-            // =====================================================
-            // 실제 저장 파일 위치
-            //
-            // Unity Editor:
-            // Assets/StreamingAssets/savefile.json
-            //
-            // Build:
-            // 빌드폴더/게임_Data/StreamingAssets/savefile.json
-            // =====================================================
+        // -----------------------------------------------------
+        // 저장 파일 경로
+        // -----------------------------------------------------
 
-            saveFilePath = Path.Combine(
+        saveFilePath =
+            Path.Combine(
                 Application.streamingAssetsPath,
                 "savefile.json"
             );
 
 
-            // =====================================================
-            // JSON 설정
-            // =====================================================
+        // -----------------------------------------------------
+        // JSON 설정
+        // -----------------------------------------------------
 
-            jsonSettings = new JsonSerializerSettings();
-
-            jsonSettings.Converters.Add(
-                new ScriptableObjectConverter()
-            );
-
-            jsonSettings.Formatting = Formatting.Indented;
+        jsonSettings =
+            new JsonSerializerSettings();
 
 
-            Debug.Log(
-                "[DataManager] 사용할 저장 파일 : " +
-                saveFilePath
-            );
+        jsonSettings.Converters.Add(
+            new ScriptableObjectConverter()
+        );
 
-            Init();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+
+        jsonSettings.Formatting =
+            Formatting.Indented;
+
+
+        Debug.Log(
+            "[DataManager] 사용할 저장 파일 : " +
+            saveFilePath
+        );
+
+
+        Init();
     }
 
 
@@ -143,7 +170,7 @@ public class DataManager : MonoBehaviour
     // Destroy
     // =========================================================
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         if (Instance == this)
         {
@@ -158,7 +185,24 @@ public class DataManager : MonoBehaviour
 
     public void SetDataInit()
     {
+        if (all_data == null)
+        {
+            all_data = new AllData();
+        }
 
+
+        if (all_data.main_data == null)
+        {
+            all_data.main_data =
+                new MainData();
+        }
+
+
+        if (all_data.battle_data == null)
+        {
+            all_data.battle_data =
+                new BattleData();
+        }
     }
 
 
@@ -168,55 +212,79 @@ public class DataManager : MonoBehaviour
 
     public void SaveData()
     {
-        BattleData battle = all_data.battle_data;
+        if (all_data == null)
+        {
+            Debug.LogError(
+                "[DataManager] 저장할 데이터가 없습니다."
+            );
+
+            return;
+        }
 
 
-        // ---------------------------------------------------------
-        // 저장할 데이터 구성
-        // ---------------------------------------------------------
+        BattleData battle =
+            all_data.battle_data;
+
+
+        // -----------------------------------------------------
+        // 저장 데이터 구성
+        // -----------------------------------------------------
 
         var saveObj = new
         {
-            all_data.current_state,
+            current_state =
+                all_data.current_state,
 
-            all_data.main_data,
+            main_data =
+                all_data.main_data,
 
-            battle_data = new
-            {
-                battle.nodeType,
+            battle_data =
+                battle == null
+                    ? null
+                    : new
+                    {
+                        battle.nodeType,
 
-                battle.zoneType,
+                        battle.zoneType,
 
-                battle.characters_in_battle_data_list,
+                        battle.characters_in_battle_data_list,
 
-                battle.enemyCharacterList,
+                        battle.enemyCharacterList,
 
-                battle.slots,
+                        battle.slots,
 
-                battle.leftRewards,
+                        battle.leftRewards,
 
-                battle.battle_result_variables,
+                        battle.battle_result_variables,
 
-                map_data = battle.map_data.GetSaveData(),
+                        map_data =
+                            battle.map_data != null
+                                ? battle.map_data.GetSaveData()
+                                : null,
 
-                battle.time
-            }
+                        time =
+                            battle.GetTime(),
+
+                        horror =
+                            battle.GetHorror()
+                    }
         };
 
 
-        // ---------------------------------------------------------
+        // -----------------------------------------------------
         // JSON 변환
-        // ---------------------------------------------------------
+        // -----------------------------------------------------
 
-        string json = JsonConvert.SerializeObject(
-            saveObj,
-            jsonSettings
-        );
+        string json =
+            JsonConvert.SerializeObject(
+                saveObj,
+                jsonSettings
+            );
 
 
-        // ---------------------------------------------------------
+        // -----------------------------------------------------
         // 저장
-        // ---------------------------------------------------------
+        // -----------------------------------------------------
 
         File.WriteAllText(
             saveFilePath,
@@ -252,48 +320,53 @@ public class DataManager : MonoBehaviour
     public void LoadData()
     {
         Debug.Log(
-            $"[DataManager] 저장 경로 : {saveFilePath}"
-        );
-
-
-        Debug.Log(
-            $"[DataManager] 파일 존재 여부 : " +
-            $"{File.Exists(saveFilePath)}"
-        );
-
-
-        // ---------------------------------------------------------
-        // 저장 파일이 없는 경우
-        // ---------------------------------------------------------
-
-        if (!File.Exists(saveFilePath))
-        {
-            Debug.LogError(
-                "[DataManager] 저장 파일이 없습니다.\n" +
-                $"경로 : {saveFilePath}"
-            );
-
-            return;
-        }
-
-
-        // ---------------------------------------------------------
-        // JSON 읽기
-        // ---------------------------------------------------------
-
-        string json = File.ReadAllText(
+            $"[DataManager] 저장 경로 : " +
             saveFilePath
         );
 
 
         Debug.Log(
-            $"[DataManager] 불러온 파일 : {saveFilePath}"
+            $"[DataManager] 파일 존재 여부 : " +
+            File.Exists(saveFilePath)
         );
 
 
-        // ---------------------------------------------------------
+        // -----------------------------------------------------
+        // 파일 없음
+        // -----------------------------------------------------
+
+        if (!File.Exists(saveFilePath))
+        {
+            Debug.LogWarning(
+                "[DataManager] 저장 파일이 없습니다.\n" +
+                $"경로 : {saveFilePath}"
+            );
+
+            SetDataInit();
+
+            return;
+        }
+
+
+        // -----------------------------------------------------
+        // JSON 읽기
+        // -----------------------------------------------------
+
+        string json =
+            File.ReadAllText(
+                saveFilePath
+            );
+
+
+        Debug.Log(
+            $"[DataManager] 불러온 파일 : " +
+            saveFilePath
+        );
+
+
+        // -----------------------------------------------------
         // Deserialize
-        // ---------------------------------------------------------
+        // -----------------------------------------------------
 
         SaveDataWrapper loadedData =
             JsonConvert.DeserializeObject<SaveDataWrapper>(
@@ -305,16 +378,24 @@ public class DataManager : MonoBehaviour
         if (loadedData == null)
         {
             Debug.LogError(
-                "[DataManager] 저장 데이터 Deserialize 실패"
+                "[DataManager] " +
+                "저장 데이터 Deserialize 실패"
             );
 
             return;
         }
 
 
-        // ---------------------------------------------------------
+        // -----------------------------------------------------
         // 기본 데이터
-        // ---------------------------------------------------------
+        // -----------------------------------------------------
+
+        if (all_data == null)
+        {
+            all_data =
+                new AllData();
+        }
+
 
         all_data.current_state =
             loadedData.current_state;
@@ -324,9 +405,16 @@ public class DataManager : MonoBehaviour
             loadedData.main_data;
 
 
-        // ---------------------------------------------------------
-        // 전투 데이터
-        // ---------------------------------------------------------
+        // -----------------------------------------------------
+        // BattleData
+        // -----------------------------------------------------
+
+        if (all_data.battle_data == null)
+        {
+            all_data.battle_data =
+                new BattleData();
+        }
+
 
         BattleSaveData save =
             loadedData.battle_data;
@@ -334,46 +422,78 @@ public class DataManager : MonoBehaviour
 
         if (save != null)
         {
-            all_data.battle_data.nodeType =
+            BattleData battle =
+                all_data.battle_data;
+
+
+            battle.nodeType =
                 save.nodeType;
 
 
-            all_data.battle_data.zoneType =
+            battle.zoneType =
                 save.zoneType;
 
 
-            all_data.battle_data.characters_in_battle_data_list =
-                save.characters_in_battle_data_list;
+            battle.characters_in_battle_data_list =
+                save.characters_in_battle_data_list
+                ?? new List<PlayerCharacterData>();
 
 
-            all_data.battle_data.enemyCharacterList =
-                save.enemyCharacterList;
+            battle.enemyCharacterList =
+                save.enemyCharacterList
+                ?? new List<EnemyCharacterInfo>();
 
 
-            all_data.battle_data.slots =
-                save.slots;
+            battle.slots =
+                save.slots
+                ?? new List<InventoryItem>();
 
 
-            all_data.battle_data.leftRewards =
-                save.leftRewards;
+            battle.leftRewards =
+                save.leftRewards
+                ?? new List<InventoryItem>();
 
 
-            all_data.battle_data.battle_result_variables =
+            battle.battle_result_variables =
                 save.battle_result_variables;
 
 
-            all_data.battle_data.time =
-                save.time;
+            // -------------------------------------------------
+            // 시간
+            // -------------------------------------------------
+
+            battle.SetTime(
+                save.time,
+                false
+            );
 
 
-            // -----------------------------------------------------
-            // Map 데이터
-            // -----------------------------------------------------
+            // -------------------------------------------------
+            // 공포도
+            // -------------------------------------------------
+
+            battle.SetHorror(
+                save.horror,
+                false
+            );
+
+
+            // -------------------------------------------------
+            // Map
+            // -------------------------------------------------
 
             if (save.map_data != null)
             {
-                all_data.battle_data.map_data
-                    .ApplySaveData(save.map_data);
+                if (battle.map_data == null)
+                {
+                    battle.map_data =
+                        new MapData();
+                }
+
+
+                battle.map_data.ApplySaveData(
+                    save.map_data
+                );
             }
         }
 
@@ -388,14 +508,26 @@ public class DataManager : MonoBehaviour
     // 캐릭터 데이터 가져오기
     // =========================================================
 
-    public PlayerCharacterData GetPlayerCharacterDataInBattle(
-        PlayerCharacterInfo PCI
-    )
+    public PlayerCharacterData
+        GetPlayerCharacterDataInBattle(
+            PlayerCharacterInfo PCI)
     {
+        if (all_data == null ||
+            all_data.battle_data == null ||
+            all_data.battle_data
+                .characters_in_battle_data_list == null)
+        {
+            return null;
+        }
+
+
         return all_data
             .battle_data
             .characters_in_battle_data_list
-            .Find(n => n.player_character_info == PCI);
+            .Find(
+                n =>
+                    n.player_character_info == PCI
+            );
     }
 
 
@@ -430,7 +562,8 @@ public class DataManager : MonoBehaviour
     }
 
 
-    public List<PlayerCharacterData> PlayerCharacterDataList
+    public List<PlayerCharacterData>
+        PlayerCharacterDataList
     {
         get
         {

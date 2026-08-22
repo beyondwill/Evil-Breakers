@@ -12852,7 +12852,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &704402028
 GameObject:
@@ -28976,7 +28976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100.00012, y: -200}
+  m_AnchoredPosition: {x: 100, y: -200}
   m_SizeDelta: {x: 900, y: 1500}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1494584359
@@ -29718,7 +29718,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1513051752
 GameObject:
@@ -30617,7 +30617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7271928202919751914, guid: a1938ea454432a14da7b84d9e4c9de2e, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7271928202919751914, guid: a1938ea454432a14da7b84d9e4c9de2e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36278,7 +36278,6 @@ RectTransform:
   - {fileID: 503230998}
   - {fileID: 1210624625}
   - {fileID: 962408967}
-  - {fileID: 654216057}
   - {fileID: 685462574}
   - {fileID: 1433921035}
   - {fileID: 1943778496}
@@ -36289,6 +36288,7 @@ RectTransform:
   - {fileID: 834518557}
   - {fileID: 1332181318}
   - {fileID: 633276339}
+  - {fileID: 654216057}
   - {fileID: 1734701852}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -38616,54 +38616,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013048707}
   m_CullTransparentMesh: 1
---- !u!1 &2013198702
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2013198704}
-  - component: {fileID: 2013198703}
-  m_Layer: 0
-  m_Name: Talking Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2013198703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2013198702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2902ebf2482d954f8fcbf79321b6aaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TS: 0
-  waitingTime: 5
-  talkingBoxUIList: []
-  currentTime: 0
---- !u!4 &2013198704
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2013198702}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.74074084, y: -1.990741, z: 90}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &2023406211 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5894431164232780235, guid: fcaa18046bd7fde49b81c6ae1e2fe845, type: 3}
@@ -40436,11 +40388,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3883953041928644586, guid: cdec87db609d018408305d07d60697eb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1500
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 3883953041928644586, guid: cdec87db609d018408305d07d60697eb, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 400
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 3883953041928644586, guid: cdec87db609d018408305d07d60697eb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -40476,7 +40428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3883953041928644586, guid: cdec87db609d018408305d07d60697eb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 500
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3883953041928644586, guid: cdec87db609d018408305d07d60697eb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -40647,7 +40599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1025270813073235190, guid: 62e2d67509f2da9429210e1db71569e6, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1025270813073235190, guid: 62e2d67509f2da9429210e1db71569e6, type: 3}
       propertyPath: m_LocalPosition.x

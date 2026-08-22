@@ -171,6 +171,7 @@ public class HexMapGenerator : MonoBehaviour
 
             // 생성된 노드 수에 따라 시간 설정
             DataManager.Instance.GetBattleData.SetTime(nodes.Count * 3, false);
+            DataManager.Instance.GetBattleData.SetHorror(0);
             DataManager.Instance.GetBattleData.map_data.missionObjectList.Clear();
             DataManager.Instance.GetBattleData.map_data.AddMissionObject(MissionObjectSort.KillMonsters, normalBattleCount + eliteBattleCount);
 

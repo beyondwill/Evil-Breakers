@@ -261,6 +261,12 @@ public class CharacterVariable
         {
             Die();
         }
+
+        // 아군이 타격받으면: 공포 3 증가
+        if (this is PlayerCharacterVariable)
+        {
+            DataManager.Instance.GetBattleData.AddHorror(3);
+        }
     }
 
 
@@ -296,6 +302,12 @@ public class CharacterVariable
         if (TurnManager.Instance.CurrentCharacter == this)
         {
             TurnManager.Instance.EndCurrentTurn();
+        }
+
+        // 적이 죽으면: 공포 10 감소
+        if (this is EnemyCharacterVariable)
+        {
+            DataManager.Instance.GetBattleData.AddHorror(-10);
         }
     }
 }

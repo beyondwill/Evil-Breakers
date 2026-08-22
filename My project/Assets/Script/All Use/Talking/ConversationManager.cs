@@ -1,104 +1,297 @@
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ConversationManager : MonoBehaviour
 {
+    // =========================================================
+    // Instance
+    // =========================================================
+
+    public static ConversationManager Instance { get; private set; }
+
+
+    // =========================================================
+    // Conversation Box
+    // =========================================================
+
     [Header("Conversation Box")]
-    [SerializeField] private ConversationBoxUI conversationBoxUI;
-
-    [Header("변수")]
-    [SerializeField] private float waitingTime = 5f;
-    [SerializeField] private float currentTime;
-
-    [Header("Characters")]
     [SerializeField]
-    private List<PlayerCharacterData> characters =
-        new List<PlayerCharacterData>();
+    private ConversationBoxUI conversationBoxUI;
+
+
+    // =========================================================
+    // ConversationSO
+    // =========================================================
+
+    // 현재 재생 중인 ConversationSO
+    private ConversationSO currentConversation;
+
+    // 현재 몇 번째 대화인지
+    private int conversationIndex;
+
+    // ConversationSO 대화 재생 중인지
+    private bool isConversationPlaying;
+
+
+    // =========================================================
+    // Test
+    // =========================================================
+
+    [Header("Test")]
+    public ConversationSO conver;
+
+    public ConversationSO conver2;
+
+    public ConversationSO conver3;
+
+    public ConversationSO conver4;
+
+    // =========================================================
+    // Awake
+    // =========================================================
+
+    private void Awake()
+    {
+        // 현재 씬의 ConversationManager를 Instance로 지정
+        Instance = this;
+    }
+
+
+    // =========================================================
+    // Start
+    // =========================================================
 
     private void Start()
     {
-        switch (DataManager.Instance.GetAllData.current_state)
+        // ConversationBox 연결
+        if (conversationBoxUI != null)
         {
-            case CurrentState.MainScreen:
-                characters = DataManager.Instance.GetMainData.player_character_data_list;
-                break;
-            default:
-                characters = DataManager.Instance.GetBattleData.characters_in_battle_data_list;
-                if (DataManager.Instance.GetAllData.current_state == CurrentState.BattleBegin)
-                {
-                    TalkOnCharacter();
-                    gameObject.SetActive(false);
-                }
-                break;
+            conversationBoxUI.OnConversationComplete =
+                OnConversationComplete;
         }
 
-        currentTime = 0f;
+
+        // =====================================================
+        // 테스트
+        // =====================================================
+
+        if (
+            DataManager.Instance.GetMainData.day == 1 &&
+            DataManager.Instance.GetAllData.current_state ==
+            CurrentState.MainScreen &&
+            SceneManager.GetActiveScene().name == "Main Scene"
+        )
+        {
+            Debug.Log("대화 시작!");
+
+            StartConversation(conver4);
+        }
+
+        if (
+            DataManager.Instance.GetMainData.day == 2 &&
+            DataManager.Instance.GetAllData.current_state ==
+            CurrentState.MainScreen &&
+            SceneManager.GetActiveScene().name == "Main Scene"
+        )
+        {
+            Debug.Log("대화 시작!");
+
+            StartConversation(conver);
+        }
     }
 
-    private void Update()
+
+    // =========================================================
+    // ConversationSO 시작
+    // =========================================================
+
+    public void StartConversation(
+        ConversationSO conversation)
     {
-        ShowTalkingBox();
+        if (conversation == null)
+        {
+            Debug.LogWarning(
+                "ConversationManager : ConversationSO가 없습니다."
+            );
+
+            return;
+        }
+
+
+        if (
+            conversation.CACList == null ||
+            conversation.CACList.Count == 0
+        )
+        {
+            Debug.LogWarning(
+                "ConversationManager : 대화가 비어있습니다."
+            );
+
+            return;
+        }
+
+
+        // 이미 대화 중이면 무시
+        if (isConversationPlaying)
+        {
+            Debug.LogWarning(
+                "ConversationManager : 이미 대화 중입니다."
+            );
+
+            return;
+        }
+
+
+        // 현재 대화 설정
+        currentConversation =
+            conversation;
+
+
+        // 첫 번째 대화
+        conversationIndex = 0;
+
+
+        // 대화 중
+        isConversationPlaying = true;
+
+
+        // 첫 대사 출력
+        ShowConversation();
     }
 
-    private void ShowTalkingBox()
+
+    // =========================================================
+    // 대화 출력
+    // =========================================================
+
+    private void ShowConversation()
     {
-        // 대화 중이면 새로운 대화 호출 안 함
-        if (conversationBoxUI.gameObject.activeSelf)
+        if (currentConversation == null)
+        {
+            EndConversation();
             return;
+        }
 
-        currentTime += Time.deltaTime;
 
-        if (currentTime < waitingTime)
+        if (
+            currentConversation.CACList == null ||
+            currentConversation.CACList.Count == 0
+        )
+        {
+            EndConversation();
             return;
+        }
 
-        TalkOnCharacter();
 
-        currentTime = 0f;
-    }
-
-    // 랜덤 캐릭터에게 대화 출력
-    private void TalkOnCharacter()
-    {
-        if (characters == null ||
-            characters.Count == 0)
+        // 모든 대화 종료
+        if (
+            conversationIndex >=
+            currentConversation.CACList.Count
+        )
+        {
+            EndConversation();
             return;
+        }
 
-        // 랜덤 캐릭터 선택
-        int randomIndex =
-            Random.Range(0, characters.Count);
 
-        PlayerCharacterData randomCharacter =
-            characters[randomIndex];
+        CharacterAndConversation data =
+            currentConversation.CACList[
+                conversationIndex
+            ];
 
-        if (randomCharacter == null)
+
+        // 잘못된 데이터
+        if (
+            data == null ||
+            data.characterInfo == null ||
+            string.IsNullOrEmpty(
+                data.character_conversation_text
+            )
+        )
+        {
+            conversationIndex++;
+
+            ShowConversation();
+
             return;
+        }
 
-        Situation situation = GetCurrentSituation();
 
-        // 해당 캐릭터의 현재 상황 대사 출력
+        if (conversationBoxUI == null)
+        {
+            Debug.LogError(
+                "ConversationManager : ConversationBoxUI가 연결되지 않았습니다."
+            );
+
+            EndConversation();
+
+            return;
+        }
+
+
+        // 캐릭터 + 대화 출력
         conversationBoxUI.Talking(
-            randomCharacter,
-            situation
+            data.characterInfo,
+            data.character_conversation_text
         );
     }
 
-    // 현재 게임 상태에 따라 Situation 반환
-    private Situation GetCurrentSituation()
+
+    // =========================================================
+    // 한 줄 대화 종료
+    // =========================================================
+
+    private void OnConversationComplete()
     {
-        switch (DataManager.Instance.GetAllData.current_state)
+        if (!isConversationPlaying)
+            return;
+
+
+        // 다음 대화
+        conversationIndex++;
+
+
+        // 다음 대화가 있으면 출력
+        if (
+            currentConversation != null &&
+            currentConversation.CACList != null &&
+            conversationIndex <
+            currentConversation.CACList.Count
+        )
         {
-            case CurrentState.MainScreen:
-                return Situation.MainNormal;
+            ShowConversation();
 
-            case CurrentState.BattleMap:
-                return Situation.BattleMapNormal;
-
-            case CurrentState.BattleBegin:
-                return Situation.BattleStart;
-
-            default:
-                return Situation.MainNormal;
+            return;
         }
+
+
+        // 모든 대화 종료
+        EndConversation();
+    }
+
+
+    // =========================================================
+    // 대화 종료
+    // =========================================================
+
+    private void EndConversation()
+    {
+        isConversationPlaying = false;
+
+        conversationIndex = 0;
+
+        currentConversation = null;
+
+        Debug.Log("Conversation 종료");
+    }
+
+
+    // =========================================================
+    // 대화 중인지 확인
+    // =========================================================
+
+    public bool IsConversationPlaying()
+    {
+        return isConversationPlaying;
     }
 }

@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   conversationBoxUI: {fileID: 0}
-  waitingTime: 5
-  currentTime: 0
-  characters: []
+  conver: {fileID: 11400000, guid: c557c12b106ab7c4381d901bf86fa772, type: 2}
+  conver2: {fileID: 11400000, guid: abeca2845aa52c64887f752f3479c0bf, type: 2}
+  conver3: {fileID: 11400000, guid: 5b2d74260d9540d4bba6d570f63a8972, type: 2}
+  conver4: {fileID: 11400000, guid: 78b0eb1846caab64d82a4679c57a927a, type: 2}

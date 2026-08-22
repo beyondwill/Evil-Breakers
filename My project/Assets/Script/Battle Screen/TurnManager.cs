@@ -634,6 +634,24 @@ public class TurnManager : MonoBehaviour
 
 
         // =====================================================
+        // 공포 증가
+        // =====================================================
+
+        if (DataManager.Instance != null)
+        {
+            BattleData battleData =
+                DataManager.Instance.GetBattleData;
+
+            if (battleData != null)
+            {
+                Debug.Log(
+                    $"[HORROR] 턴 종료 → 공포 +10 / 현재 공포 : {battleData.GetHorror()}"
+                );
+            }
+        }
+
+
+        // =====================================================
         // Stun 턴이었다면 여기서 Stun 1회 소모
         // =====================================================
 
@@ -644,14 +662,10 @@ public class TurnManager : MonoBehaviour
                 " : Stun 턴 종료 → Stun 1 감소"
             );
 
-
-            // 반드시 CharacterVariable.AddBuff 사용
-            // → 버프 제거 + OnBuffChanged까지 처리
             endCharacter.AddBuff(
                 CharacterBuffType.Stun,
                 -1
             );
-
 
             isCurrentTurnStunned = false;
         }
@@ -783,6 +797,7 @@ public class TurnManager : MonoBehaviour
     }
 
 
+
     // =========================================================
     // End Round
     // =========================================================
@@ -810,6 +825,7 @@ public class TurnManager : MonoBehaviour
             );
         }
 
+        DataManager.Instance.GetBattleData.AddHorror(10);
 
         turnDelayTween =
             DOVirtual.DelayedCall(

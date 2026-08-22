@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data_code: MapData_Easy
   location_name: "\uD55C\uAD6D - \uCDA9\uCCAD"
-  targetNodeCount: 5
+  targetNodeCount: 6
   extraEdgeCount: 2
   lessLenFromBoss: 0
   lessLenEliteBattle: 0

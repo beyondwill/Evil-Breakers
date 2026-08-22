@@ -62,7 +62,7 @@ public class GameOverManager : MonoBehaviour
 
         // 현재 시간이 이미 0 이하인 경우도 검사
         CheckTime(
-            DataManager.Instance.GetBattleData.time,
+            DataManager.Instance.GetBattleData.GetTime(),
             0
         );
     }

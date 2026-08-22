@@ -121,7 +121,7 @@ public class TopSideUI : MonoBehaviour
             return;
 
         SetTimeText(
-            DataManager.Instance.GetBattleData.time
+            DataManager.Instance.GetBattleData.GetTime()
         );
     }
 

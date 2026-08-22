@@ -308,6 +308,7 @@ public class MapManager : MonoBehaviour
 
             case HexNode.NodeType.Event:
                 EventManager.Instance.ShowEvent(testEvent);
+                ConversationManager.Instance.StartConversation(ConversationManager.Instance.conver2);
                 target.isVisited = true;
                 break;
 
