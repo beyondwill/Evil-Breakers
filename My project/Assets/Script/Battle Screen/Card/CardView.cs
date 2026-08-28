@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Localization.Settings;
 
 public class CardView : MonoBehaviour
 {
@@ -19,10 +20,21 @@ public class CardView : MonoBehaviour
     [SerializeField] private GameObject Playable;
     [SerializeField] private GameObject Special;
 
+    [Header("Localization")]
+    [SerializeField] private string localizationTable = "UI_Text";
+
+    // 현재 런타임 카드
     private CardVariable currentCard;
+
+    // 현재 표시 중인 CardData
+    private CardData currentCardData;
 
     private Dictionary<string, Func<int, int>> valueFunctions;
 
+
+    // =========================================================
+    // 초기화
+    // =========================================================
 
     private void Awake()
     {
@@ -30,9 +42,9 @@ public class CardView : MonoBehaviour
     }
 
 
-    // =========================
+    // =========================================================
     // 수치 함수
-    // =========================
+    // =========================================================
 
     private void InitializeValueFunctions()
     {
@@ -43,9 +55,9 @@ public class CardView : MonoBehaviour
     }
 
 
-    // =========================
+    // =========================================================
     // 데미지 계산
-    // =========================
+    // =========================================================
 
     private int DMG(int value)
     {
@@ -90,77 +102,264 @@ public class CardView : MonoBehaviour
     }
 
 
-    // =========================
-    // 카드 초기화
-    // =========================
+    // =========================================================
+    // 카드 설명 번역
+    // =========================================================
+
+    private string GetLocalizedCardDescription(CardData CD)
+    {
+        if (CD == null)
+            return "";
+
+
+        string originalText = CD.card_description;
+
+
+        // 원본 설명이 없으면 그대로 반환
+        if (string.IsNullOrEmpty(originalText))
+            return originalText;
+
+
+        string localizedText =
+            LocalizationSettings.StringDatabase.GetLocalizedString(
+                localizationTable,
+                originalText
+            );
+
+
+        // 번역이 없으면 원본 SO의 설명 사용
+        if (string.IsNullOrEmpty(localizedText) ||
+            localizedText.Contains("No translation found"))
+        {
+            return originalText;
+        }
+
+
+        return localizedText;
+    }
+
+
+    // =========================================================
+    // 카드 이름 번역
+    // =========================================================
+
+    private string GetLocalizedCardName(CardData CD)
+    {
+        if (CD == null)
+            return "";
+
+
+        string originalName = CD.card_name;
+
+
+        if (string.IsNullOrEmpty(originalName))
+            return originalName;
+
+
+        string localizedName =
+            LocalizationSettings.StringDatabase.GetLocalizedString(
+                localizationTable,
+                originalName
+            );
+
+
+        // 번역이 없으면 원본 이름 사용
+        if (string.IsNullOrEmpty(localizedName) ||
+            localizedName.Contains("No translation found"))
+        {
+            return originalName;
+        }
+
+
+        return localizedName;
+    }
+
+
+    // =========================================================
+    // 카드 초기화 - CardData
+    // =========================================================
 
     public void CardInit(CardData CD)
     {
         currentCard = null;
+        currentCardData = CD;
 
-        card_image.sprite = CD.card_image;
-        card_name.text = CD.card_name;
-        card_type.text = CD.cardType.ToString();
-        card_cost.text = CD.card_cost.ToString();
+
+        card_image.sprite =
+            CD.card_image;
+
+
+        card_name.text =
+            GetLocalizedCardName(CD);
+
+
+        card_type.text =
+            CD.cardType.ToString();
+
+
+        card_cost.text =
+            CD.card_cost.ToString();
+
 
         card_text.text =
             MakeBaseText(
-                CD.card_description
+                GetLocalizedCardDescription(CD)
             );
     }
 
+
+    // =========================================================
+    // 카드 초기화 - Character + CardData
+    // =========================================================
 
     public void CardInit(
         CharacterVariable CV,
         CardData CD)
     {
         currentCard = null;
+        currentCardData = CD;
 
-        card_image.sprite = CD.card_image;
-        card_name.text = CD.card_name;
+
+        card_image.sprite =
+            CD.card_image;
+
+
+        card_name.text =
+            GetLocalizedCardName(CD);
     }
 
+
+    // =========================================================
+    // 카드 초기화 - CardVariable
+    // =========================================================
 
     public void CardInit(CardVariable CV)
     {
         currentCard = CV;
 
+
         CardData CD =
             CV.original_card_info;
+
+
+        currentCardData = CD;
+
 
         card_image.sprite =
             CD.card_image;
 
+
         card_name.text =
-            CD.card_name;
+            GetLocalizedCardName(CD);
+
 
         card_cost.text =
             CV.current_card_cost.ToString();
 
+
         card_text.text =
             MakeBaseText(
-                CD.card_description
+                GetLocalizedCardDescription(CD)
             );
     }
 
+
+    // =========================================================
+    // 카드 정보 업데이트
+    // =========================================================
 
     public void CardInfoUpdate()
     {
         if (currentCard == null)
             return;
 
+
         CardInit(currentCard);
     }
 
 
-    // =========================
-    // 카드 설명
-    // =========================
+    // =========================================================
+    // 언어 변경 시 호출
+    // =========================================================
+
+    public void RefreshLocalization()
+    {
+        CardData CD = null;
+
+
+        // 런타임 카드가 있으면 런타임 카드의 원본 데이터 사용
+        if (currentCard != null)
+        {
+            CD =
+                currentCard.original_card_info;
+        }
+        // 일반 CardData 카드
+        else if (currentCardData != null)
+        {
+            CD =
+                currentCardData;
+        }
+
+
+        if (CD == null)
+            return;
+
+
+        // =====================================================
+        // 카드 이름
+        // =====================================================
+
+        card_name.text =
+            GetLocalizedCardName(CD);
+
+
+        // =====================================================
+        // 카드 설명
+        // =====================================================
+
+        card_text.text =
+            MakeBaseText(
+                GetLocalizedCardDescription(CD)
+            );
+
+
+        // =====================================================
+        // 카드 비용
+        // =====================================================
+
+        if (currentCard != null)
+        {
+            card_cost.text =
+                currentCard.current_card_cost.ToString();
+        }
+        else
+        {
+            card_cost.text =
+                CD.card_cost.ToString();
+        }
+
+
+        // =====================================================
+        // 카드 타입
+        // =====================================================
+
+        card_type.text =
+            CD.cardType.ToString();
+    }
+
+
+    // =========================================================
+    // 카드 설명 / 동적 수치
+    // =========================================================
 
     public string MakeBaseText(string text)
     {
         string result = text;
 
+
+        // =====================================================
+        // 동적 수치 치환
+        // =====================================================
 
         result = Regex.Replace(
             result,
@@ -169,6 +368,7 @@ public class CardView : MonoBehaviour
             {
                 string functionName =
                     match.Groups[1].Value;
+
 
                 int value =
                     int.Parse(
@@ -192,9 +392,9 @@ public class CardView : MonoBehaviour
             });
 
 
-        // =========================
+        // =====================================================
         // 명중률
-        // =========================
+        // =====================================================
 
         if (currentCard != null)
         {
@@ -230,6 +430,10 @@ public class CardView : MonoBehaviour
     }
 
 
+    // =========================================================
+    // 런타임 카드 텍스트
+    // =========================================================
+
     public string MakeRuntimeText(
         CharacterVariable CV)
     {
@@ -238,16 +442,16 @@ public class CardView : MonoBehaviour
 
 
         return MakeBaseText(
-            currentCard
-                .original_card_info
-                .card_description
+            GetLocalizedCardDescription(
+                currentCard.original_card_info
+            )
         );
     }
 
 
-    // =========================
+    // =========================================================
     // 카드 상태 표시
-    // =========================
+    // =========================================================
 
     public void ShowUnplayable()
     {
@@ -280,7 +484,7 @@ public class CardView : MonoBehaviour
 
 
         if (CardManager.Instance.CanStartCard(
-                currentCard))
+            currentCard))
         {
             ShowPlayable();
         }

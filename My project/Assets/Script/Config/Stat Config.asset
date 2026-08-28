@@ -25,6 +25,18 @@ MonoBehaviour:
     statName: "\uACF5\uACA9 \uC21C\uC11C"
   - type: 5
     statName: "\uBA85\uC911\uB960"
+  - type: 6
+    statName: "\uB3C5 \uC800\uD56D"
+  - type: 7
+    statName: "\uC801\uD608 \uC800\uD56D"
+  - type: 8
+    statName: "\uAE30\uC808 \uC800\uD56D"
+  - type: 9
+    statName: "\uD63C\uB780 \uC800\uD56D"
+  - type: 10
+    statName: "\uC800\uC8FC \uC800\uD56D"
+  - type: 11
+    statName: "\uAC10\uC5FC \uC800\uD56D"
   runtimeStatSortList:
   - type: 0
     statName: "\uD604\uC7AC \uC0DD\uBA85\uB825"

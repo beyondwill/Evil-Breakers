@@ -12,7 +12,13 @@ public enum CharacterBaseStatType
     MaxEnergy,          // 최대 에너지
     DrawCardCount,      // 카드 뽑기 수
     AttackOrder,        // 공격 순서
-    Accuracy            // 정확도
+    Accuracy,           // 정확도
+    RESPoison,          // 독 저항
+    RESBlood,           // 적혈 저항
+    RESStun,            // 기절 저항
+    RESConfusion,       // 혼란 저항
+    RESCurse,           // 저주 저항
+    RESInfection        // 감염 저항
 }
 
 

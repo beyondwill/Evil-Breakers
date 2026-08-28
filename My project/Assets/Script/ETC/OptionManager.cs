@@ -9,51 +9,162 @@ public class OptionManager : MonoBehaviour
     [SerializeField] private Slider voiceSlider;
     [SerializeField] private Slider sfxSlider;
 
+
+    // =========================================================
+    // Language Buttons
+    // =========================================================
+
+    [Header("Language Buttons")]
+    [SerializeField] private Button koreanButton;
+    [SerializeField] private Button englishButton;
+
+
     private void Start()
     {
         InitSlider();
         AddListener();
+        AddLanguageListener();
     }
 
+
+    // =========================================================
     // 저장값 불러오기
+    // =========================================================
+
     private void InitSlider()
     {
-        masterSlider.value = PlayerPrefs.GetFloat("Master", 100f);
-        bgmSlider.value = PlayerPrefs.GetFloat("BGM", 100f);
-        voiceSlider.value = PlayerPrefs.GetFloat("Voice", 100f);
-        sfxSlider.value = PlayerPrefs.GetFloat("UI", 100f);
+        masterSlider.value =
+            PlayerPrefs.GetFloat("Master", 100f);
+
+        bgmSlider.value =
+            PlayerPrefs.GetFloat("BGM", 100f);
+
+        voiceSlider.value =
+            PlayerPrefs.GetFloat("Voice", 100f);
+
+        sfxSlider.value =
+            PlayerPrefs.GetFloat("UI", 100f);
     }
 
+
+    // =========================================================
     // 슬라이더 이벤트 연결
+    // =========================================================
+
     private void AddListener()
     {
-        masterSlider.onValueChanged.AddListener(ChangeMasterVolume);
-        bgmSlider.onValueChanged.AddListener(ChangeBGMVolume);
-        voiceSlider.onValueChanged.AddListener(ChangeVoiceVolume);
-        sfxSlider.onValueChanged.AddListener(ChangeSFXVolume);
+        masterSlider.onValueChanged.AddListener(
+            ChangeMasterVolume);
+
+        bgmSlider.onValueChanged.AddListener(
+            ChangeBGMVolume);
+
+        voiceSlider.onValueChanged.AddListener(
+            ChangeVoiceVolume);
+
+        sfxSlider.onValueChanged.AddListener(
+            ChangeSFXVolume);
     }
 
+
+    // =========================================================
+    // 언어 버튼 이벤트 연결
+    // =========================================================
+
+    private void AddLanguageListener()
+    {
+        koreanButton.onClick.AddListener(
+            ChangeToKorean);
+
+        englishButton.onClick.AddListener(
+            ChangeToEnglish);
+    }
+
+
+    // =========================================================
+    // 한국어
+    // =========================================================
+
+    private void ChangeToKorean()
+    {
+        if (QuickLocalizationSetup.Instance == null)
+        {
+            Debug.LogWarning(
+                "[OptionManager] QuickLocalizationSetup이 없습니다.");
+
+            return;
+        }
+
+
+        QuickLocalizationSetup.Instance.ChangeLanguage(
+            QuickLocalizationSetup.TargetLanguage.Korean);
+    }
+
+
+    // =========================================================
+    // English
+    // =========================================================
+
+    private void ChangeToEnglish()
+    {
+        if (QuickLocalizationSetup.Instance == null)
+        {
+            Debug.LogWarning(
+                "[OptionManager] QuickLocalizationSetup이 없습니다.");
+
+            return;
+        }
+
+
+        QuickLocalizationSetup.Instance.ChangeLanguage(
+            QuickLocalizationSetup.TargetLanguage.English);
+    }
+
+
+    // =========================================================
     // 마스터
+    // =========================================================
+
     private void ChangeMasterVolume(float value)
     {
-        AudioManager.Instance.ChangeAudioVolume(AudioSort.Master, value);
+        AudioManager.Instance.ChangeAudioVolume(
+            AudioSort.Master,
+            value);
     }
 
+
+    // =========================================================
     // 배경음
+    // =========================================================
+
     private void ChangeBGMVolume(float value)
     {
-        AudioManager.Instance.ChangeAudioVolume(AudioSort.BGM, value);
+        AudioManager.Instance.ChangeAudioVolume(
+            AudioSort.BGM,
+            value);
     }
 
+
+    // =========================================================
     // 음성
+    // =========================================================
+
     private void ChangeVoiceVolume(float value)
     {
-        AudioManager.Instance.ChangeAudioVolume(AudioSort.Voice, value);
+        AudioManager.Instance.ChangeAudioVolume(
+            AudioSort.Voice,
+            value);
     }
 
+
+    // =========================================================
     // 효과음
+    // =========================================================
+
     private void ChangeSFXVolume(float value)
     {
-        AudioManager.Instance.ChangeAudioVolume(AudioSort.UI, value);
+        AudioManager.Instance.ChangeAudioVolume(
+            AudioSort.UI,
+            value);
     }
 }
