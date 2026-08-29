@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8346810a42dd9a942901af8b179b8616, type: 3}
   m_Name: Game Rule
   m_EditorClassIdentifier: 
+  AdvDmg: 1.2
+  DadvDmg: 0.9
   expPerLevelList: 0a000000140000001e0000002800000032000000
   NamePerLevelList:
   - "\uBE44\uC815\uADDC\uC9C1"

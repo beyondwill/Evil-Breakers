@@ -17,5 +17,6 @@ public class GameRuleManager : MonoBehaviour
         }
 
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 }

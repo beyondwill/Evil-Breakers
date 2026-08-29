@@ -63,6 +63,30 @@ MonoBehaviour:
     m_Key: OPTION_LANGUAGE
     m_Metadata:
       m_Items: []
+  - m_Id: 2227136077160448
+    m_Key: CardType_Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2228383765159936
+    m_Key: CardType_Skill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229192221450240
+    m_Key: Accuracy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2258747850153984
+    m_Key: CHARACTER_MONSTER_SHADOW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2259425146363904
+    m_Key: RED_HAIR_CANTSTARTCARD1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2259761361772544
+    m_Key: RED_HAIR_INVALIDTARGET1
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -186,8 +186,43 @@ public class BattleCharacterManager : MonoBehaviour
             );
 
 
+        // =========================================
+        // 최대 체력 초기화
+        // =========================================
+
         enemy.current_health =
             enemy.max_health;
+
+
+        // =========================================
+        // 초기 버프 적용
+        // =========================================
+
+        if (info.initBuffList != null)
+        {
+            foreach (CharacterBuffValue buff
+                     in info.initBuffList)
+            {
+                if (buff == null)
+                    continue;
+
+                if (buff.value == 0)
+                    continue;
+
+
+                enemy.AddBuff(
+                    buff.type,
+                    buff.value
+                );
+
+
+                Debug.Log(
+                    $"[적 초기 버프] " +
+                    $"{info.character_name} : " +
+                    $"{buff.type} +{buff.value}"
+                );
+            }
+        }
 
 
         return enemy;

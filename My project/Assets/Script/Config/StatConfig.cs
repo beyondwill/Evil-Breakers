@@ -39,7 +39,8 @@ public enum CharacterBuffType
     Draw,               // 카드 뽑기
     Evasion,            // 회피력
     Stun,               // 기절
-    Acceleration        // 가속 (공격 속도)
+    Acceleration,       // 가속 (공격 속도)
+    Toughness           // 강인함
 }
 
 #endregion

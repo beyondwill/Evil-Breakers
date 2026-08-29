@@ -6,4 +6,5 @@ using UnityEngine;
 public class EnemyCharacterInfo : CharacterInfo
 {
     public List<CardData> enemy_card_info_list;
+    public List<CharacterBuffValue> initBuffList;       // 초기 버프 리스트
 }

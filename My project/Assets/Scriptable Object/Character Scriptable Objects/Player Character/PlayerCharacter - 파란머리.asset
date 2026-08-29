@@ -20,7 +20,7 @@ MonoBehaviour:
   character_story: 
   character_full_art: {fileID: 21300000, guid: 47b245da1c5b4514da90a321fdc04cc4, type: 3}
   character_icon: {fileID: 21300000, guid: bdc124a2cc90cd84e895bdf9ab59919d, type: 3}
-  icon_background_color: {r: 0, g: 0, b: 0, a: 1}
+  icon_background_color: {r: 0, g: 0.079363585, b: 1, a: 1}
   levelStatList:
   - level: 0
     statList:

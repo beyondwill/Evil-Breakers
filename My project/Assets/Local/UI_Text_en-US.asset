@@ -68,6 +68,30 @@ MonoBehaviour:
     m_Localized: Language
     m_Metadata:
       m_Items: []
+  - m_Id: 2227136077160448
+    m_Localized: Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2228383765159936
+    m_Localized: Skill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229192221450240
+    m_Localized: Accuracy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2258747850153984
+    m_Localized: Shadowman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2259425146363904
+    m_Localized: U R SO disgusting.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2259761361772544
+    m_Localized: Do you have a brain?
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

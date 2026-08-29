@@ -10,32 +10,44 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cad740c2c35cd424eb24296a09e1ba62, type: 3}
-  m_Name: ShadowMan
+  m_Name: Big foot
   m_EditorClassIdentifier: 
-  data_code: ShadowMan
-  character_name: CHARACTER_MONSTER_SHADOW
+  data_code: Big foot
+  character_name: "\uBE45\uD48B"
   character_id: 0
-  element: 4
+  element: 0
   characterClass: 0
-  character_story: "\uB354 \uBABB\uB410\uC2B5\uB2C8\uB2E4!"
-  character_full_art: {fileID: 21300000, guid: 0160c429fc6c99e4d9cd0b4a609a7636, type: 3}
-  character_icon: {fileID: 21300000, guid: 0160c429fc6c99e4d9cd0b4a609a7636, type: 3}
-  icon_background_color: {r: 0, g: 0, b: 0, a: 1}
+  character_story: "\uC4F0\uB808\uAE30\uC785\uB2C8\uB2E4."
+  character_full_art: {fileID: 21300000, guid: 3f18d3728539eb84fad50dbcb047f57e, type: 3}
+  character_icon: {fileID: 21300000, guid: 3f18d3728539eb84fad50dbcb047f57e, type: 3}
+  icon_background_color: {r: 0.1196506, g: 1, b: 0, a: 1}
   levelStatList:
   - level: 0
     statList:
     - type: 0
-      value: 3
+      value: 15
     - type: 1
-      value: 150
+      value: 300
     - type: 2
       value: 0
     - type: 3
       value: 0
     - type: 4
-      value: 3
+      value: 2
     - type: 5
-      value: 30
+      value: 90
+    - type: 6
+      value: 15
+    - type: 7
+      value: 15
+    - type: 8
+      value: 15
+    - type: 9
+      value: 15
+    - type: 10
+      value: 15
+    - type: 11
+      value: 15
   passiveEventList: []
   dialogues:
   - situation: 0
@@ -57,5 +69,9 @@ MonoBehaviour:
   - situation: 8
     dialogue: []
   enemy_card_info_list:
-  - {fileID: 11400000, guid: c8cf30124fff1d1448b8feb8d306cc51, type: 2}
-  - {fileID: 11400000, guid: bd6686ff1aeae464b861e6a7c9520aaa, type: 2}
+  - {fileID: 11400000, guid: 839f9061c40ffd0499790b2042c56ac5, type: 2}
+  - {fileID: 11400000, guid: 09d78a0a121adb34a967a94b0a1a934d, type: 2}
+  - {fileID: 11400000, guid: b6ce1534509c31f4d8b93a9749b38733, type: 2}
+  initBuffList:
+  - type: 6
+    value: 5

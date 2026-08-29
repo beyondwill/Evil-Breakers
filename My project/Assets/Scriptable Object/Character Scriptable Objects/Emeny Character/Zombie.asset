@@ -15,12 +15,12 @@ MonoBehaviour:
   data_code: Zombie
   character_name: "\uC880\uBE44"
   character_id: 0
-  element: 0
+  element: 5
   characterClass: 0
   character_story: "\uC544\uC8FC \uB098\uC068\uB2C8\uB2E4!"
   character_full_art: {fileID: 21300000, guid: 07eb765e2aa0db445a464301726279ef, type: 3}
   character_icon: {fileID: 21300000, guid: 07eb765e2aa0db445a464301726279ef, type: 3}
-  icon_background_color: {r: 0, g: 0, b: 0, a: 1}
+  icon_background_color: {r: 0.1196506, g: 1, b: 0, a: 1}
   levelStatList:
   - level: 0
     statList:

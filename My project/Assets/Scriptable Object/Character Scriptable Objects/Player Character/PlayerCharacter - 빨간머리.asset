@@ -20,7 +20,7 @@ MonoBehaviour:
   character_story: 
   character_full_art: {fileID: 21300000, guid: c42e965ada67997479e1d6b00c0e28e8, type: 3}
   character_icon: {fileID: 21300000, guid: d9ca2ed8a5cdf3a41a2bfb68ba4f5f74, type: 3}
-  icon_background_color: {r: 0, g: 0, b: 0, a: 1}
+  icon_background_color: {r: 1, g: 0, b: 0, a: 1}
   levelStatList:
   - level: 0
     statList:
@@ -151,10 +151,10 @@ MonoBehaviour:
     - "\uBB50\uC57C? \uB611\uBC14\uB85C \uC548 \uD574?"
   - situation: 7
     dialogue:
-    - "\uBA38\uB9AC\uAC00 \uC5B4\uB5BB\uAC8C \uB41C \uAC70 \uC544\uB2C8\uC57C?"
+    - RED_HAIR_CANTSTARTCARD1
   - situation: 8
     dialogue:
-    - "\uC774\uB534\uAC8C \uC9C0\uD718\uAD00?"
+    - RED_HAIR_INVALIDTARGET1
   - situation: 9
     dialogue:
     - "\uC790. \uBAA8\uC870\uB9AC \uB05D\uB0B4\uBCF4\uC790\uACE0."

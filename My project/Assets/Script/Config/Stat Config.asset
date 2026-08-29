@@ -47,10 +47,10 @@ MonoBehaviour:
   buffList:
   - type: 0
     buffName: "\uD798"
-    buffIcon: {fileID: 21300000, guid: fa26b1fe41fbc6840bfabcc8fd3be3dd, type: 3}
+    buffIcon: {fileID: 21300000, guid: 62c2b42ecf0acfe41bb3abf94b7a6639, type: 3}
   - type: 1
     buffName: "\uBC29\uC5B4\uB3C4"
-    buffIcon: {fileID: 21300000, guid: b6eee694a05f0f64b82e1e119fefb260, type: 3}
+    buffIcon: {fileID: 21300000, guid: be60ef42f8c4e89418d547ab6ae38554, type: 3}
   - type: 2
     buffName: "\uBF51\uAE30"
     buffIcon: {fileID: 21300000, guid: 2a0cd6d97c50a634c891fceff1ec7baa, type: 3}
@@ -63,3 +63,6 @@ MonoBehaviour:
   - type: 5
     buffName: Acceleration
     buffIcon: {fileID: 21300000, guid: 17df6e2e63c960c4caf9d460173722b2, type: 3}
+  - type: 6
+    buffName: Toughness
+    buffIcon: {fileID: 21300000, guid: 91af5550e944a844d8eea1e7f42adf89, type: 3}

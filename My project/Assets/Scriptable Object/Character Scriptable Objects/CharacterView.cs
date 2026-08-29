@@ -20,6 +20,7 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [SerializeField] private Image[] l_shape_images;
 
     [SerializeField] private Slider health_bar_slider;
+    [SerializeField] private Image health_bar_fill;
     [SerializeField] private TextMeshProUGUI health_bar_text;
 
     [SerializeField] private Image shield_image;
@@ -159,6 +160,8 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         characterVariable = CV;
 
+        health_bar_fill.color = CV.character_info.icon_background_color;
+
         CV.characterView = this;
 
 
@@ -266,6 +269,8 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void Conversation(string s)
     {
+        QuickLocalizationSetup.Instance.GetTextDictionary.Remove(conversation_text);
+
         conversation_text.text = s;
 
 

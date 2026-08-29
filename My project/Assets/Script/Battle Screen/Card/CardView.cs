@@ -64,14 +64,11 @@ public class CardView : MonoBehaviour
         if (CardManager.Instance == null)
             return value;
 
-
         PlayerCharacterVariable character =
             CardManager.Instance.GetCurrentCharacter();
 
-
         if (character == null)
             return value;
-
 
         // 캐릭터 기본 공격력
         int attack =
@@ -79,24 +76,20 @@ public class CardView : MonoBehaviour
                 CharacterBaseStatType.Attack
             );
 
-
         // 힘 버프
         int strength =
             (int)character.statContainer.GetBuff(
                 CharacterBuffType.Strength
             );
 
-
         // 카드 피해량
         int cardDamage = value;
-
 
         // 최종 표시 데미지
         int damage =
             cardDamage
             + attack
             + strength;
-
 
         return damage;
     }
@@ -111,14 +104,11 @@ public class CardView : MonoBehaviour
         if (CD == null)
             return "";
 
-
         string originalText = CD.card_description;
-
 
         // 원본 설명이 없으면 그대로 반환
         if (string.IsNullOrEmpty(originalText))
             return originalText;
-
 
         string localizedText =
             LocalizationSettings.StringDatabase.GetLocalizedString(
@@ -126,14 +116,12 @@ public class CardView : MonoBehaviour
                 originalText
             );
 
-
         // 번역이 없으면 원본 SO의 설명 사용
         if (string.IsNullOrEmpty(localizedText) ||
             localizedText.Contains("No translation found"))
         {
             return originalText;
         }
-
 
         return localizedText;
     }
@@ -148,20 +136,16 @@ public class CardView : MonoBehaviour
         if (CD == null)
             return "";
 
-
         string originalName = CD.card_name;
-
 
         if (string.IsNullOrEmpty(originalName))
             return originalName;
-
 
         string localizedName =
             LocalizationSettings.StringDatabase.GetLocalizedString(
                 localizationTable,
                 originalName
             );
-
 
         // 번역이 없으면 원본 이름 사용
         if (string.IsNullOrEmpty(localizedName) ||
@@ -170,8 +154,66 @@ public class CardView : MonoBehaviour
             return originalName;
         }
 
-
         return localizedName;
+    }
+
+
+    // =========================================================
+    // 카드 타입 번역
+    // =========================================================
+
+    private string GetLocalizedCardType(CardData CD)
+    {
+        if (CD == null)
+            return "";
+
+        // 예:
+        // Attack -> CardType_Attack
+        // Skill  -> CardType_Skill
+        // Power  -> CardType_Power
+        // Status -> CardType_Status
+        // Curse  -> CardType_Curse
+
+        string key =
+            $"CardType_{CD.cardType}";
+
+        string localizedText =
+            LocalizationSettings.StringDatabase.GetLocalizedString(
+                localizationTable,
+                key
+            );
+
+        // 번역이 없으면 기존 enum 이름 사용
+        if (string.IsNullOrEmpty(localizedText) ||
+            localizedText.Contains("No translation found"))
+        {
+            return CD.cardType.ToString();
+        }
+
+        return localizedText;
+    }
+
+
+    // =========================================================
+    // 명중률 텍스트 번역
+    // =========================================================
+
+    private string GetLocalizedAccuracyText()
+    {
+        string localizedText =
+            LocalizationSettings.StringDatabase.GetLocalizedString(
+                localizationTable,
+                "Accuracy"
+            );
+
+        // 번역이 없으면 기존 한국어 사용
+        if (string.IsNullOrEmpty(localizedText) ||
+            localizedText.Contains("No translation found"))
+        {
+            return "명중률";
+        }
+
+        return localizedText;
     }
 
 
@@ -184,22 +226,17 @@ public class CardView : MonoBehaviour
         currentCard = null;
         currentCardData = CD;
 
-
         card_image.sprite =
             CD.card_image;
-
 
         card_name.text =
             GetLocalizedCardName(CD);
 
-
         card_type.text =
-            CD.cardType.ToString();
-
+            GetLocalizedCardType(CD);
 
         card_cost.text =
             CD.card_cost.ToString();
-
 
         card_text.text =
             MakeBaseText(
@@ -219,13 +256,22 @@ public class CardView : MonoBehaviour
         currentCard = null;
         currentCardData = CD;
 
-
         card_image.sprite =
             CD.card_image;
 
-
         card_name.text =
             GetLocalizedCardName(CD);
+
+        card_type.text =
+            GetLocalizedCardType(CD);
+
+        card_cost.text =
+            CD.card_cost.ToString();
+
+        card_text.text =
+            MakeBaseText(
+                GetLocalizedCardDescription(CD)
+            );
     }
 
 
@@ -237,25 +283,22 @@ public class CardView : MonoBehaviour
     {
         currentCard = CV;
 
-
         CardData CD =
             CV.original_card_info;
 
-
         currentCardData = CD;
-
 
         card_image.sprite =
             CD.card_image;
 
-
         card_name.text =
             GetLocalizedCardName(CD);
 
+        card_type.text =
+            GetLocalizedCardType(CD);
 
         card_cost.text =
             CV.current_card_cost.ToString();
-
 
         card_text.text =
             MakeBaseText(
@@ -273,7 +316,6 @@ public class CardView : MonoBehaviour
         if (currentCard == null)
             return;
 
-
         CardInit(currentCard);
     }
 
@@ -285,7 +327,6 @@ public class CardView : MonoBehaviour
     public void RefreshLocalization()
     {
         CardData CD = null;
-
 
         // 런타임 카드가 있으면 런타임 카드의 원본 데이터 사용
         if (currentCard != null)
@@ -300,7 +341,6 @@ public class CardView : MonoBehaviour
                 currentCardData;
         }
 
-
         if (CD == null)
             return;
 
@@ -311,6 +351,14 @@ public class CardView : MonoBehaviour
 
         card_name.text =
             GetLocalizedCardName(CD);
+
+
+        // =====================================================
+        // 카드 타입
+        // =====================================================
+
+        card_type.text =
+            GetLocalizedCardType(CD);
 
 
         // =====================================================
@@ -337,14 +385,6 @@ public class CardView : MonoBehaviour
             card_cost.text =
                 CD.card_cost.ToString();
         }
-
-
-        // =====================================================
-        // 카드 타입
-        // =====================================================
-
-        card_type.text =
-            CD.cardType.ToString();
     }
 
 
@@ -368,7 +408,6 @@ public class CardView : MonoBehaviour
             {
                 string functionName =
                     match.Groups[1].Value;
-
 
                 int value =
                     int.Parse(
@@ -414,14 +453,18 @@ public class CardView : MonoBehaviour
 
 
                 result +=
-                    "\n명중률: " +
+                    "\n" +
+                    GetLocalizedAccuracyText() +
+                    ": " +
                     accuracy +
                     "%";
             }
             else
             {
                 result +=
-                    "\n명중률: 100%";
+                    "\n" +
+                    GetLocalizedAccuracyText() +
+                    ": 100%";
             }
         }
 
@@ -439,7 +482,6 @@ public class CardView : MonoBehaviour
     {
         if (currentCard == null)
             return "";
-
 
         return MakeBaseText(
             GetLocalizedCardDescription(
@@ -481,7 +523,6 @@ public class CardView : MonoBehaviour
             ShowUnplayable();
             return;
         }
-
 
         if (CardManager.Instance.CanStartCard(
             currentCard))

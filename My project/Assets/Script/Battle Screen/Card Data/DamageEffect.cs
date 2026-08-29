@@ -63,15 +63,50 @@ public class DamageEffect : CardEffect
             // 최종 데미지
             // ==========================================
 
-            float damageAmount =
-                Mathf.Max(
-                    0,
-                    entry.value
-                    + attack
-                    + (strength * strengthMultiplier)
-                    - dexterity
+            float multipleDamage = 1.0f;
+
+            // 유리한 상성
+            if (GameRuleManager.Instance.Rule.IsAdvantage(caster.character_info.element, target.character_info.element))
+            {
+                multipleDamage = GameRuleManager.Instance.Rule.AdvDmg;
+            }
+
+            // 불리한 상성
+            else if (GameRuleManager.Instance.Rule.IsDisadvantage(caster.character_info.element, target.character_info.element))
+            {
+                multipleDamage = GameRuleManager.Instance.Rule.DadvDmg;
+            }
+
+            float toughnessDamage = 1.0f;
+
+            // 상대에게 강인함 패시브가 있으면: 하나 깎고 경우에 따라 설정
+            if (target.statContainer.GetBuff(CharacterBuffType.Toughness) > 0)
+            {
+                target.AddBuff(
+                    CharacterBuffType.Toughness,
+                    -1
                 );
 
+                if (target.character_info.element == Element.Fire)
+                {
+                    toughnessDamage = 0.2f;
+                }
+                else
+                {
+                    toughnessDamage = 0.5f;
+                }
+            }
+
+            float damageAmount =
+                    Mathf.Max(
+                        0,
+                        (entry.value
+                        + attack
+                        + (strength * strengthMultiplier)
+                        - dexterity)
+                        * multipleDamage
+                        * toughnessDamage
+                    );
 
             // ==========================================
             // 로그

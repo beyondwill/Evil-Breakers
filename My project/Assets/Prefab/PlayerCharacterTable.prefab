@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1723985218152711829
 MonoBehaviour:
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f702f4595eadf41b8129ae44791248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataManager: {fileID: 0}
   playerFolderPath: Assets/Scriptable Object/Character Scriptable Objects/Player
     Character
   enemyFolderPath: Assets/Scriptable Object/Character Scriptable Objects/Emeny Character
@@ -62,6 +63,8 @@ MonoBehaviour:
   ECT:
     dataList:
     - {fileID: 11400000, guid: 7c9f1399aea66ae47a79e44b9b47532b, type: 2}
+    - {fileID: 11400000, guid: 0eb64e538fef6f4428084c79d8bfa066, type: 2}
+    - {fileID: 11400000, guid: e3ca1b79a49b2ec42bf99057ffebf39a, type: 2}
     - {fileID: 11400000, guid: 8b8fc1e1d4bc82c47823be66e18b340a, type: 2}
     - {fileID: 11400000, guid: fcbef77d9e1fb06418167a68440bbb49, type: 2}
     - {fileID: 11400000, guid: 10a096a4a7d57c649ab3742e93aabd44, type: 2}
@@ -97,9 +100,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6638a656bfb99aa49bd588c62183ee8a, type: 2}
   LT:
     dataList:
-    - {fileID: 11400000, guid: 13128d2501fc22047a38dc73c2686b72, type: 2}
     - {fileID: 11400000, guid: fcfc199e1b720314bb508b3f1927a88f, type: 2}
     - {fileID: 11400000, guid: 076f28dffa48d4246b2494812116ee40, type: 2}
+    - {fileID: 11400000, guid: 13128d2501fc22047a38dc73c2686b72, type: 2}
   MT:
     dataList: []
   CT:
@@ -124,15 +127,19 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 51ce696e0755445469e66b843df7847d, type: 2}
     - {fileID: 11400000, guid: aabcb566640a01c438e6784abda0d33c, type: 2}
     - {fileID: 11400000, guid: ffacaabda35ea56439a38beefdf0727d, type: 2}
+    - {fileID: 11400000, guid: b6ce1534509c31f4d8b93a9749b38733, type: 2}
+    - {fileID: 11400000, guid: 09d78a0a121adb34a967a94b0a1a934d, type: 2}
     - {fileID: 11400000, guid: bd00daa1dff03f249bdad9541374ce69, type: 2}
     - {fileID: 11400000, guid: 0ed9f7a0a00117f46a9ec304a1de9d4b, type: 2}
+    - {fileID: 11400000, guid: e45ef877ab1548d41a94a62a62e8e687, type: 2}
+    - {fileID: 11400000, guid: bd6686ff1aeae464b861e6a7c9520aaa, type: 2}
     - {fileID: 11400000, guid: 1db4ee77ac0fdff4b89b9d0ebbd34716, type: 2}
     - {fileID: 11400000, guid: 29a18d3aea847e04397eac063ef867bf, type: 2}
     - {fileID: 11400000, guid: f4489cc76b2f9a042b920ebde89f69ae, type: 2}
     - {fileID: 11400000, guid: 037c2b29902b77149aea28468bf0c5c9, type: 2}
-    - {fileID: 11400000, guid: bf35c4d304e7b684a886499cb2d64a75, type: 2}
     - {fileID: 11400000, guid: cbb6d1df2e39da840aa7befe90822803, type: 2}
     - {fileID: 11400000, guid: ac0feef10f25a6d4e8e6bae340003698, type: 2}
+    - {fileID: 11400000, guid: 839f9061c40ffd0499790b2042c56ac5, type: 2}
   MAP:
     dataList:
     - {fileID: 11400000, guid: 4ee95234e7c376a40bc139d3dbbb30e6, type: 2}

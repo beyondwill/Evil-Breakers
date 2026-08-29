@@ -1012,7 +1012,7 @@ RectTransform:
   - {fileID: 4799213515931466802}
   - {fileID: 6718365892516321841}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -1076,6 +1076,7 @@ MonoBehaviour:
   - {fileID: 3014323925687232710}
   - {fileID: 7056807445159200280}
   health_bar_slider: {fileID: 5217561115831210601}
+  health_bar_fill: {fileID: 2427527138839744555}
   health_bar_text: {fileID: 3372015252905362680}
   shield_image: {fileID: 6308836077902911576}
   shield_text: {fileID: 6657713822563759239}
