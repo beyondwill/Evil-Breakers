@@ -10,6 +10,7 @@ public class HealSelfEffect : CardEffect
         CardEffectEntry entry,
         CardData card)
     {
-        caster.Heal(entry.valueList[0]);
+        if (entry.valueList.Count > 0) caster.Heal(entry.valueList[0]);
+        if (entry.floatValueList.Count > 0) caster.Heal(entry.floatValueList[0] * caster.max_health);
     }
 }

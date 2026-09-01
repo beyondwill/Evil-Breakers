@@ -184,7 +184,7 @@ public class CharacterVariable
     // Ω∫≈» √ ±‚»≠
     // =====================================================
 
-    protected void InitializeStat(
+    public void InitializeStat(
         CharacterInfo info,
         int level = 0)
     {
