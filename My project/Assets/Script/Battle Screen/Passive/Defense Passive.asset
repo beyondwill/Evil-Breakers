@@ -22,7 +22,7 @@ MonoBehaviour:
   - time: 0
     visual: {fileID: 11400000, guid: c743f5738da731d4c9c82554b14386e0, type: 2}
     effect: {fileID: 11400000, guid: cf0bce3fbd756b24283afa0c082a916f, type: 2}
-    valueList: 
+    valueList: 03000000
     floatValueList: []
     dataEntity: {fileID: 0}
     condition: {fileID: 0}

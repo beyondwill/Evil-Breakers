@@ -72,8 +72,6 @@ MonoBehaviour:
     dialogue: []
   enemy_card_info_list:
   - {fileID: 11400000, guid: 839f9061c40ffd0499790b2042c56ac5, type: 2}
-  - {fileID: 11400000, guid: 09d78a0a121adb34a967a94b0a1a934d, type: 2}
-  - {fileID: 11400000, guid: b6ce1534509c31f4d8b93a9749b38733, type: 2}
   initBuffList:
   - type: 6
     value: 5
