@@ -31,27 +31,24 @@ MonoBehaviour:
   - time: 0
     visual: {fileID: 11400000, guid: cf5ff3604a947944a8cfe930106493a5, type: 2}
     effect: {fileID: 11400000, guid: 2674240358de0f24d972b82512535264, type: 2}
-    value: 10
-    value2: 0
-    floatValue: 0
+    valueList: 0a000000
+    floatValueList: []
     dataEntity: {fileID: 0}
     condition: {fileID: 0}
     AccuracyReset: 1
   - time: 0.5
     visual: {fileID: 11400000, guid: cf5ff3604a947944a8cfe930106493a5, type: 2}
     effect: {fileID: 11400000, guid: 2674240358de0f24d972b82512535264, type: 2}
-    value: 10
-    value2: 0
-    floatValue: 0
+    valueList: 0a000000
+    floatValueList: []
     dataEntity: {fileID: 0}
     condition: {fileID: 0}
     AccuracyReset: 1
   - time: 0.5
     visual: {fileID: 11400000, guid: cf5ff3604a947944a8cfe930106493a5, type: 2}
     effect: {fileID: 11400000, guid: 2674240358de0f24d972b82512535264, type: 2}
-    value: 10
-    value2: 0
-    floatValue: 0
+    valueList: 0a000000
+    floatValueList: []
     dataEntity: {fileID: 0}
     condition: {fileID: 0}
     AccuracyReset: 1

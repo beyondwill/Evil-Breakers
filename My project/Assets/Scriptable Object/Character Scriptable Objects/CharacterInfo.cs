@@ -2,24 +2,34 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// =========================================================
+// 상황
+// =========================================================
+
 public enum Situation
 {
-    MainNormal,                     // 메인 화면 평상시
-    MainHurt,                       // 메인 화면 부상
-    MainStress,                     // 메인 화면 스트레스
+    MainNormal,
+    MainHurt,
+    MainStress,
 
-    PartyFormation,                 // 파티 구성시
-    BattleMapNormal,                // 전투 맵 평상시
-    BattleMapHurt,                  // 전투 맵 다칠시
-    BattleMapStress,                // 전투 맵 스트레스
+    PartyFormation,
 
-    CantStartCard,                  // 카드 낼 수 없음
-    InvalidTarget,                  // 잘못된 대상
-    BattleStart,                    // 전투 개시
+    BattleMapNormal,
+    BattleMapHurt,
+    BattleMapStress,
+
+    CantStartCard,
+    InvalidTarget,
+
+    BattleStart,
 }
 
 
+// =========================================================
 // 속성
+// =========================================================
+
 public enum Element
 {
     None,
@@ -30,6 +40,10 @@ public enum Element
     Earth
 }
 
+
+// =========================================================
+// 캐릭터 직업
+// =========================================================
 
 public enum CharacterClass
 {
@@ -48,10 +62,8 @@ public enum CharacterClass
 [Serializable]
 public class CharacterLevelStat
 {
-    // 해당 스탯이 적용되는 레벨
     public int level;
 
-    // 해당 레벨의 스탯
     public List<CharacterBaseStatValue> statList = new();
 }
 
@@ -64,6 +76,7 @@ public class CharacterLevelStat
 public class CharacterDialogue
 {
     public Situation situation;
+
     public List<string> dialogue = new();
 }
 
@@ -72,7 +85,10 @@ public class CharacterDialogue
 // 캐릭터 정보
 // =========================================================
 
-[CreateAssetMenu(fileName = "Character", menuName = "Character/Character")]
+[CreateAssetMenu(
+    fileName = "Character",
+    menuName = "Character/Character"
+)]
 public class CharacterInfo : DataEntity
 {
     // =====================================================
@@ -80,15 +96,22 @@ public class CharacterInfo : DataEntity
     // =====================================================
 
     public string character_name;
+
     public int character_id;
+
     public Element element;
+
     public CharacterClass characterClass;
+
 
     [TextArea]
     public string character_story;
 
+
     public Sprite character_full_art;
+
     public Sprite character_icon;
+
     public Color icon_background_color = Color.black;
 
 
@@ -96,15 +119,20 @@ public class CharacterInfo : DataEntity
     // 레벨 스탯
     // =====================================================
 
-    // 레벨별 스탯
     public List<CharacterLevelStat> levelStatList = new();
 
 
     // =====================================================
-    // 기타
+    // 패시브
     // =====================================================
 
-    public List<PassiveEvent> passiveEventList;
+    public List<PassiveSkillData> passiveSkillList = new();
+
+
+    // =====================================================
+    // 대화
+    // =====================================================
+
     public List<CharacterDialogue> dialogues = new();
 
 
@@ -120,11 +148,12 @@ public class CharacterInfo : DataEntity
             return 0;
 
 
-        // 현재 레벨의 데이터 찾기
         CharacterLevelStat levelStat =
             levelStatList.Find(
-                x => x != null &&
-                     x.level == level);
+                x =>
+                    x != null &&
+                    x.level == level
+            );
 
 
         if (levelStat == null ||
@@ -134,10 +163,10 @@ public class CharacterInfo : DataEntity
         }
 
 
-        // 해당 레벨의 해당 스탯 찾기
         CharacterBaseStatValue stat =
             levelStat.statList.Find(
-                x => x.type == type);
+                x => x.type == type
+            );
 
 
         if (stat == null)
@@ -149,7 +178,7 @@ public class CharacterInfo : DataEntity
 
 
     // =====================================================
-    // 상황별 대사 가져오기
+    // 대화 가져오기
     // =====================================================
 
     public string GetDialogue(
@@ -161,7 +190,9 @@ public class CharacterInfo : DataEntity
 
         CharacterDialogue dialogue =
             dialogues.Find(
-                x => x.situation == situation);
+                x =>
+                    x.situation == situation
+            );
 
 
         if (dialogue == null ||
@@ -175,7 +206,8 @@ public class CharacterInfo : DataEntity
         return dialogue.dialogue[
             UnityEngine.Random.Range(
                 0,
-                dialogue.dialogue.Count)
+                dialogue.dialogue.Count
+            )
         ];
     }
 }

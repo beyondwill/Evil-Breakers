@@ -10,6 +10,6 @@ public class HealSelfEffect : CardEffect
         CardEffectEntry entry,
         CardData card)
     {
-        caster.Heal(entry.value);
+        caster.Heal(entry.valueList[0]);
     }
 }

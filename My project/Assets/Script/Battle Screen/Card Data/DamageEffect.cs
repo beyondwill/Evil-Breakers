@@ -54,9 +54,9 @@ public class DamageEffect : CardEffect
             // ==========================================
 
             float strengthMultiplier =
-                entry.value2 == 0
+                entry.floatValueList.Count == 0
                     ? 1
-                    : entry.value2;
+                    : entry.floatValueList[0];
 
 
             // ==========================================
@@ -100,28 +100,13 @@ public class DamageEffect : CardEffect
             float damageAmount =
                     Mathf.Max(
                         0,
-                        (entry.value
+                        (entry.valueList[0] 
                         + attack
                         + (strength * strengthMultiplier)
                         - dexterity)
                         * multipleDamage
                         * toughnessDamage
                     );
-
-            // ==========================================
-            // ·Î±×
-            // ==========================================
-
-            Debug.Log(
-                $"[Damage] " +
-                $"{caster.character_info.character_name} ¡æ " +
-                $"{target.character_info.character_name} | " +
-                $"Ä«µå:{entry.value} + " +
-                $"°ø°Ý·Â:{attack} + " +
-                $"Èû:{strength * strengthMultiplier} - " +
-                $"¹ÎÃ¸:{dexterity} = " +
-                $"{damageAmount}"
-            );
 
 
             // ==========================================

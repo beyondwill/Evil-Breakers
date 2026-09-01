@@ -239,6 +239,9 @@ public class TurnManager : MonoBehaviour
             CurrentCharacter.character_info.character_name
         );
 
+        CurrentCharacter.TriggerPassive(
+            PassiveTriggerType.TurnStart
+        );
 
         // =====================================================
         // Turn Order UI

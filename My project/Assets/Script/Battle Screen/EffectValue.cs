@@ -32,6 +32,5 @@ public class EffectValue
     public TargetType targetType;       // 목표 대상
     public EffectType effectType;       // 효과 발휘
     public float value;                 // 밸류
-    public BuffInfo buffInfo;           // 대상에게 주어지는 버프
     public CardData cardInfo;           // 대상에게 발휘되는 카드 효과
 }

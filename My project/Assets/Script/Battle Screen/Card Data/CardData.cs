@@ -65,11 +65,8 @@ public class CardEffectEntry
     public CardEffect effect;
 
     // 효과 수치
-    public int value;
-
-    // 필요하면 추가 수치
-    public int value2;
-    public float floatValue;
+    public List<int> valueList;
+    public List<float> floatValueList;
 
     public DataEntity dataEntity;
     public CardCondition condition;

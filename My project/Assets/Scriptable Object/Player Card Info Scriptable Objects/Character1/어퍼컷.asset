@@ -32,18 +32,16 @@ MonoBehaviour:
   - time: 0
     visual: {fileID: 11400000, guid: c69a4fedecf79f84f9796e8191a81feb, type: 2}
     effect: {fileID: 11400000, guid: 77c50c28cee705e4db96731e01e002f5, type: 2}
-    value: -3
-    value2: 0
-    floatValue: 0
+    valueList: 03000000
+    floatValueList: []
     dataEntity: {fileID: 0}
     condition: {fileID: 0}
     AccuracyReset: 0
   - time: 0
     visual: {fileID: 0}
     effect: {fileID: 11400000, guid: 2674240358de0f24d972b82512535264, type: 2}
-    value: 30
-    value2: 0
-    floatValue: 0
+    valueList: 1e000000
+    floatValueList: []
     dataEntity: {fileID: 0}
     condition: {fileID: 0}
     AccuracyReset: 0

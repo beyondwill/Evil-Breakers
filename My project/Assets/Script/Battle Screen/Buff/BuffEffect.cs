@@ -18,12 +18,9 @@ public class BuffEffect : CardEffect
             if (target == null)
                 continue;
 
-            if (card == null)
-                continue;
-
             target.AddBuff(
                 buffType,
-                entry.value
+                entry.valueList[0]
             );
         }
     }

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c52d3c4a53a55f429e5c5c160b59475, type: 3}
+  m_Name: Defense Passive
+  m_EditorClassIdentifier: 
+  data_code: Defense
+  skill_name: 
+  skill_description: 
+  skill_image: {fileID: 0}
+  triggerType: 1
+  conditionList: []
+  effects:
+  - time: 0
+    visual: {fileID: 11400000, guid: c743f5738da731d4c9c82554b14386e0, type: 2}
+    effect: {fileID: 11400000, guid: cf0bce3fbd756b24283afa0c082a916f, type: 2}
+    valueList: 
+    floatValueList: []
+    dataEntity: {fileID: 0}
+    condition: {fileID: 0}
+    AccuracyReset: 0

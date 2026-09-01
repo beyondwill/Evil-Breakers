@@ -11,7 +11,7 @@ public class DrawEffect : CardEffect
         CardData card)
     {
 
-        for (int i = 0; i < entry.value; i++)
+        for (int i = 0; i < entry.valueList[0]; i++)
         {
             CardManager.Instance.DrawCard();
         }

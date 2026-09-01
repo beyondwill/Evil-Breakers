@@ -962,7 +962,7 @@ public class CardDataGeneratorEditor : EditorWindow
             $"{prefix}_Value"
         ))
         {
-            entry.value =
+            entry.valueList[0] =    
                 ParseInt(
                     data,
                     $"{prefix}_Value"
@@ -978,7 +978,7 @@ public class CardDataGeneratorEditor : EditorWindow
             $"{prefix}_Value2"
         ))
         {
-            entry.value2 =
+            entry.valueList[1] =
                 ParseInt(
                     data,
                     $"{prefix}_Value2"
@@ -994,7 +994,7 @@ public class CardDataGeneratorEditor : EditorWindow
             $"{prefix}_FloatValue"
         ))
         {
-            entry.floatValue =
+            entry.floatValueList[0] =
                 ParseFloat(
                     data,
                     $"{prefix}_FloatValue"

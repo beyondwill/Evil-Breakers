@@ -10,6 +10,6 @@ public class ReduceTimeEffect : CardEffect
         CardEffectEntry entry,
         CardData card)
     {
-        DataManager.Instance.GetBattleData.ReduceTime(entry.value);
+        DataManager.Instance.GetBattleData.ReduceTime(entry.valueList[0]);
     }
 }

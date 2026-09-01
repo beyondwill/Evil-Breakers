@@ -32,8 +32,8 @@ MonoBehaviour:
   - time: 0
     visual: {fileID: 11400000, guid: 21a197e8d9dc4e342970c5593df90a57, type: 2}
     effect: {fileID: 11400000, guid: fff0c5aec57d3e546834e8a2b59e96fd, type: 2}
-    value: 5
-    value2: 2
-    floatValue: 0
+    valueList: 05000000
+    floatValueList: []
     dataEntity: {fileID: 0}
     condition: {fileID: 0}
+    AccuracyReset: 0

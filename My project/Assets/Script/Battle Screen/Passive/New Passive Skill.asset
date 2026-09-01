@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c52d3c4a53a55f429e5c5c160b59475, type: 3}
+  m_Name: New Passive Skill
+  m_EditorClassIdentifier: 
+  data_code: New Passive Skill
+  skill_name: 
+  skill_description: 
+  skill_image: {fileID: 0}
+  triggerType: 7
+  conditionList:
+  - conditionType: 0
+    compareType: 1
+    value: 200
+  effects:
+  - time: 0
+    visual: {fileID: 11400000, guid: 21a197e8d9dc4e342970c5593df90a57, type: 2}
+    effect: {fileID: 11400000, guid: 0243dcb6d7ca7004c97287fa3488a97f, type: 2}
+    value: 50
+    value2: 0
+    floatValue: 0
+    dataEntity: {fileID: 0}
+    condition: {fileID: 0}
+    AccuracyReset: 0
