@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 // =========================================================
@@ -1003,13 +1005,10 @@ public class EnemyCharacterVariable
 {
     public EnemyCharacterInfo enemy_character_info;
 
-
     public List<CardVariable> enemy_card_list =
         new();
 
-
     public CardVariable next_card;
-
 
     public int target_index = -1;
 
@@ -1086,16 +1085,16 @@ public class EnemyCharacterVariable
 
     public void ChooseRandomCard()
     {
+        if (next_card != null) return;
+
         if (enemy_card_list.Count == 0)
         {
             next_card = null;
-
 
             Debug.LogWarning(
                 enemy_character_info.character_name +
                 " : 사용할 카드가 없음"
             );
-
 
             return;
         }
@@ -1223,27 +1222,5 @@ public class EnemyCharacterVariable
 
             targetList.Add(character);
         }
-    }
-
-
-    // =====================================================
-    // 카드 + 타겟 결정
-    // =====================================================
-
-    public void ChooseRandomAction(
-        List<CharacterVariable> playerCharacters,
-        List<CharacterVariable> enemyCharacters)
-    {
-        ChooseRandomCard();
-
-
-        if (next_card == null)
-            return;
-
-
-        ChooseRandomTarget(
-            playerCharacters,
-            enemyCharacters
-        );
     }
 }

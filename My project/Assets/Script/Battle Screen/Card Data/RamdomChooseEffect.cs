@@ -71,7 +71,6 @@ public class RandomChooseEffect : CardEffect
             $"선택된 Effect = {selectedEffect.name}"
         );
 
-        entry.valueList[0] = entry.valueList[randomIndex];
 
         // -------------------------------------------------
         // 선택된 Effect 실행

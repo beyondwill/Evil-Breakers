@@ -48,7 +48,8 @@ MonoBehaviour:
       value: 20
     - type: 11
       value: 20
-  passiveSkillList: []
+  passiveSkillList:
+  - {fileID: 11400000, guid: b94a5e20047d10a4fa1734ab48c8647f, type: 2}
   dialogues:
   - situation: 0
     dialogue: []

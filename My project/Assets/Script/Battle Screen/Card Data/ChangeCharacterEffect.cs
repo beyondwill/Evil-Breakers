@@ -12,8 +12,10 @@ public class ChangeCharacterEffect : CardEffect
     {
         caster.character_info = (CharacterInfo)entry.dataEntity;
         int current_health = (int)caster.current_health;
+        caster.passiveSkillList.Clear();
         caster.InitializeStat(caster.character_info);
         caster.current_health = current_health;
         caster.characterView.CharacterInit(caster);
+        caster.passiveSkillList = ((CharacterInfo)entry.dataEntity).passiveSkillList;
     }
 }
