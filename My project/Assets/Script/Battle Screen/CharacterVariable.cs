@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 
 // =========================================================
@@ -240,9 +238,9 @@ public class CharacterVariable
     }
 
 
-    // =========================================================
+    // =====================================================
     // Passive Trigger
-    // =========================================================
+    // =====================================================
 
     public void TriggerPassive(
         PassiveTriggerType triggerType,
@@ -263,6 +261,19 @@ public class CharacterVariable
         {
             return;
         }
+
+
+        // =================================================
+        // 발동할 패시브를 먼저 수집
+        // =================================================
+        //
+        // foreach 도중 passiveSkillList를 수정하면
+        // Collection was modified 오류가 발생할 수 있으므로
+        // 실제 리스트 제거는 foreach가 끝난 뒤 처리한다.
+        // =================================================
+
+        List<PassiveSkillData> triggeredPassives =
+            new List<PassiveSkillData>();
 
 
         foreach (PassiveSkillData passive
@@ -322,18 +333,54 @@ public class CharacterVariable
             );
 
 
-            // ---------------------------------------------
-            // Effect 실행
-            // ---------------------------------------------
+            triggeredPassives.Add(passive);
+        }
+
+
+        // =================================================
+        // 발동된 패시브 실행
+        // =================================================
+
+        foreach (PassiveSkillData passive
+                 in triggeredPassives)
+        {
+            if (passive == null)
+                continue;
+
 
             ExecutePassive(passive);
+        }
+
+
+        // =================================================
+        // 일회성 패시브 제거
+        // =================================================
+
+        foreach (PassiveSkillData passive
+                 in triggeredPassives)
+        {
+            if (passive == null)
+                continue;
+
+
+            if (!passive.isOneTime)
+                continue;
+
+
+            if (passiveSkillList.Remove(passive))
+            {
+                Debug.Log(
+                    $"[Passive 일회성 제거] " +
+                    $"{passive.skill_name}"
+                );
+            }
         }
     }
 
 
-    // =========================================================
+    // =====================================================
     // Passive Condition 검사
-    // =========================================================
+    // =====================================================
 
     private bool CheckPassiveConditions(
         PassiveSkillData passive,
@@ -392,9 +439,9 @@ public class CharacterVariable
     }
 
 
-    // =========================================================
+    // =====================================================
     // Passive Condition 값 가져오기
-    // =========================================================
+    // =====================================================
 
     private float GetPassiveConditionValue(
         PassiveConditionType conditionType,
@@ -472,9 +519,9 @@ public class CharacterVariable
     }
 
 
-    // =========================================================
+    // =====================================================
     // Passive Condition 비교
-    // =========================================================
+    // =====================================================
 
     private bool CheckPassiveCondition(
         float currentValue,
@@ -522,9 +569,9 @@ public class CharacterVariable
     }
 
 
-    // =========================================================
+    // =====================================================
     // Passive 실행
-    // =========================================================
+    // =====================================================
 
     private void ExecutePassive(
         PassiveSkillData passive)
@@ -564,9 +611,9 @@ public class CharacterVariable
     }
 
 
-    // =========================================================
+    // =====================================================
     // Passive Effect 실행
-    // =========================================================
+    // =====================================================
 
     private void ExecutePassiveEffect(
         CardEffectEntry effectEntry)
@@ -616,9 +663,9 @@ public class CharacterVariable
     }
 
 
-    // =========================================================
+    // =====================================================
     // 버프 추가
-    // =========================================================
+    // =====================================================
 
     public void AddBuff(
         CharacterBuffType type,
@@ -661,9 +708,9 @@ public class CharacterVariable
     }
 
 
-    // =========================================================
+    // =====================================================
     // 버프 제거
-    // =========================================================
+    // =====================================================
 
     public void RemoveBuff(
         CharacterBuffType type)
@@ -693,9 +740,9 @@ public class CharacterVariable
     }
 
 
-    // =========================================================
+    // =====================================================
     // 피해
-    // =========================================================
+    // =====================================================
 
     public virtual void TakeDamage(
         float damage)
@@ -709,25 +756,6 @@ public class CharacterVariable
 
 
         // ---------------------------------------------
-        // 피해 받기 전 HP
-        // ---------------------------------------------
-
-        float previousHealth =
-            current_health;
-
-
-        // ---------------------------------------------
-        // 실제 적용 피해량 계산
-        // ---------------------------------------------
-
-        float actualDamage =
-            Mathf.Min(
-                previousHealth,
-                damage
-            );
-
-
-        // ---------------------------------------------
         // 피해 적용
         // ---------------------------------------------
 
@@ -738,32 +766,18 @@ public class CharacterVariable
             );
 
 
-        Debug.Log(
-            $"[CharacterVariable] TakeDamage : " +
-            $"{character_info?.character_name} / " +
-            $"Before={previousHealth} / " +
-            $"Damage={damage} / " +
-            $"ActualDamage={actualDamage} / " +
-            $"After={current_health}"
-        );
-
-
         characterView?.TakeDamage(
-            (int)actualDamage
+            (int)damage
         );
 
 
         // ---------------------------------------------
         // Damaged Passive
-        //
-        // 중요:
-        // current_health가 감소한 후 실행한다.
-        // 따라서 HP 조건은 감소된 현재 HP를 검사한다.
         // ---------------------------------------------
 
         TriggerPassive(
             PassiveTriggerType.Damaged,
-            actualDamage
+            damage
         );
 
 
@@ -790,9 +804,9 @@ public class CharacterVariable
     }
 
 
-    // =========================================================
+    // =====================================================
     // 회복
-    // =========================================================
+    // =====================================================
 
     public virtual void Heal(
         float amount)
@@ -813,9 +827,9 @@ public class CharacterVariable
     }
 
 
-    // =========================================================
+    // =====================================================
     // 사망
-    // =========================================================
+    // =====================================================
 
     protected virtual void Die()
     {
@@ -1085,16 +1099,20 @@ public class EnemyCharacterVariable
 
     public void ChooseRandomCard()
     {
-        if (next_card != null) return;
+        if (next_card != null)
+            return;
+
 
         if (enemy_card_list.Count == 0)
         {
             next_card = null;
 
+
             Debug.LogWarning(
                 enemy_character_info.character_name +
                 " : 사용할 카드가 없음"
             );
+
 
             return;
         }
@@ -1166,6 +1184,7 @@ public class EnemyCharacterVariable
                 targetList,
                 playerCharacters
             );
+
 
             AddAliveCharacters(
                 targetList,

@@ -18,5 +18,6 @@ public class HexMapData
 
     public int shopCount;
     public int obstacleCount;
+    public int bossCount;
     public string mask;
 }

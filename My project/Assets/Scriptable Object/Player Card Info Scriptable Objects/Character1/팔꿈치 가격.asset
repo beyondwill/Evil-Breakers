@@ -27,6 +27,7 @@ MonoBehaviour:
   accuracy: 105
   card_description: "\uB2E8\uC77C \uB300\uC0C1\uC5D0\uAC8C {DMG40}\uC758 \uD53C\uD574\uB97C
     \uC8FC\uACE0, \uC801\uC758 \uC18D\uB3C4\uB97C 1\uB9CC\uD07C \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4."
+  useConditions: []
   specialcardCondition: {fileID: 0}
   effects:
   - time: 0
@@ -40,7 +41,7 @@ MonoBehaviour:
   - time: 0
     visual: {fileID: 0}
     effect: {fileID: 11400000, guid: e61c2736750196945b023d05dafbec36, type: 2}
-    valueList: 01000000
+    valueList: ffffffff
     floatValueList: []
     dataEntity: {fileID: 0}
     condition: {fileID: 0}

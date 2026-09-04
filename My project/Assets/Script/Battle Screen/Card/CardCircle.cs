@@ -102,8 +102,14 @@ public class CardCircle : MonoBehaviour, IBattleCardInteraction
     {
         foreach (CardMoving card in cards)
         {
+            if (card == null)
+                continue;
+
             CardView view =
                 card.GetComponent<CardView>();
+
+            if (view == null)
+                continue;
 
             view.RefreshPlayableState();
         }

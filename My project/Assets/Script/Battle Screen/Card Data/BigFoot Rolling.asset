@@ -17,6 +17,7 @@ MonoBehaviour:
   skill_description: 
   skill_image: {fileID: 0}
   triggerType: 7
+  isOneTime: 1
   conditionList:
   - conditionType: 0
     compareType: 1
@@ -26,8 +27,15 @@ MonoBehaviour:
     visual: {fileID: 0}
     effect: {fileID: 11400000, guid: 4fcc8e3881e3ce14caea6b4db1a7b674, type: 2}
     valueList: 
-    floatValueList:
-    - 0.2
-    dataEntity: {fileID: 11400000, guid: 801cb0cad54765f4997670cb47204c54, type: 2}
+    floatValueList: []
+    dataEntity: {fileID: 11400000, guid: 6bd2172e9ac8eb64c8bfe8b7f239deb8, type: 2}
+    condition: {fileID: 0}
+    AccuracyReset: 0
+  - time: 0
+    visual: {fileID: 0}
+    effect: {fileID: 11400000, guid: 902a0659d800e0941b9030585ba09af4, type: 2}
+    valueList: 
+    floatValueList: []
+    dataEntity: {fileID: 11400000, guid: 3025a023a2371fb438d69d309fd89d03, type: 2}
     condition: {fileID: 0}
     AccuracyReset: 0

@@ -6,33 +6,95 @@ public class DataManagerEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        // 1. 기존 변수들(all_data 등)을 인스펙터에 기본으로 띄워줍니다.
+        // 기존 Inspector
         base.OnInspectorGUI();
 
-        DataManager dataManager = (DataManager)target;
 
-        GUILayout.Space(15); // 약간의 여백
+        DataManager dataManager =
+            (DataManager)target;
 
-        // 가로로 버튼 배치 시작
+
+        GUILayout.Space(15);
+
+
+        // =====================================================
+        // Save / Load
+        // =====================================================
+
         GUILayout.BeginHorizontal();
 
-        // 2. 데이터 저장 버튼 (하늘색)
-        GUI.backgroundColor = Color.cyan;
-        if (GUILayout.Button("데이터 저장 (Save)", GUILayout.Height(35)))
+
+        // -----------------------------------------------------
+        // 데이터 저장
+        // -----------------------------------------------------
+
+        GUI.backgroundColor =
+            Color.cyan;
+
+
+        if (GUILayout.Button(
+            "데이터 저장 (Save)",
+            GUILayout.Height(35)))
         {
             dataManager.SaveData();
         }
 
-        // 3. 데이터 불러오기 버튼 (연두색)
-        GUI.backgroundColor = Color.green;
-        if (GUILayout.Button("데이터 불러오기 (Load)", GUILayout.Height(35)))
+
+        // -----------------------------------------------------
+        // 데이터 불러오기
+        // -----------------------------------------------------
+
+        GUI.backgroundColor =
+            Color.green;
+
+
+        if (GUILayout.Button(
+            "데이터 불러오기 (Load)",
+            GUILayout.Height(35)))
         {
             dataManager.LoadData();
         }
 
+
         GUILayout.EndHorizontal();
 
+
+        // =====================================================
+        // 기본 JSON 생성
+        // =====================================================
+
+        GUILayout.Space(5);
+
+
+        GUI.backgroundColor =
+            Color.yellow;
+
+
+        if (GUILayout.Button(
+            "기본 Json 생성",
+            GUILayout.Height(35)))
+        {
+            bool confirm =
+                EditorUtility.DisplayDialog(
+                    "기본 Json 생성",
+                    "현재 데이터를 default.json으로 생성하시겠습니까?",
+                    "생성",
+                    "취소"
+                );
+
+
+            if (confirm)
+            {
+                dataManager.CreateDefaultJson();
+            }
+        }
+
+
+        // =====================================================
         // GUI 색상 초기화
-        GUI.backgroundColor = Color.white;
+        // =====================================================
+
+        GUI.backgroundColor =
+            Color.white;
     }
 }

@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.58961684, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -863,7 +863,7 @@ RectTransform:
   m_Children:
   - {fileID: 6667394891674539605}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -921,6 +921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost_box: {fileID: 3961428400954948856}
+  card_background: {fileID: 8233378775362055908}
   card_image: {fileID: 28802107893155845}
   card_name: {fileID: 727244348923489021}
   card_type: {fileID: 3385661924820664755}
@@ -928,6 +929,8 @@ MonoBehaviour:
   card_text: {fileID: 7227732225974395535}
   Playable: {fileID: 4884191407288596177}
   Special: {fileID: 8160805731126578515}
+  localizationTable: UI_Text
+  CCC: {fileID: 11400000, guid: 462b6c9cba845cf44961ba3722fd9fdf, type: 2}
 --- !u!114 &3021670675345513469
 MonoBehaviour:
   m_ObjectHideFlags: 0

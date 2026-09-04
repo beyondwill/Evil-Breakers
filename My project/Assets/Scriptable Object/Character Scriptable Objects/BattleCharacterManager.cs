@@ -80,8 +80,8 @@ public class BattleCharacterManager : MonoBehaviour
 
 
     private PlayerCharacterVariable CreatePlayerCharacter(
-    PlayerCharacterData data,
-    int index)
+        PlayerCharacterData data,
+        int index)
     {
         PlayerCharacterVariable character =
             new PlayerCharacterVariable(
@@ -410,7 +410,12 @@ public class BattleCharacterManager : MonoBehaviour
         // 1. 카드 선택
         // =================================================
 
-        enemy.ChooseRandomCard();
+        // next_card가 이미 지정되어 있다면
+        // 랜덤 카드를 뽑지 않는다.
+        if (enemy.next_card == null)
+        {
+            enemy.ChooseRandomCard();
+        }
 
 
         if (enemy.next_card == null)
@@ -440,6 +445,7 @@ public class BattleCharacterManager : MonoBehaviour
 
 
             enemy.next_card = null;
+
 
             TurnManager.Instance.EndCurrentTurn();
 
@@ -496,8 +502,6 @@ public class BattleCharacterManager : MonoBehaviour
 
         if (card.original_card_info == null)
         {
-            enemy.next_card = null;
-
             TurnManager.Instance.EndCurrentTurn();
 
             return;
@@ -527,6 +531,7 @@ public class BattleCharacterManager : MonoBehaviour
                     targetType
                 );
 
+
             if (target == null)
             {
                 Debug.LogWarning(
@@ -534,7 +539,9 @@ public class BattleCharacterManager : MonoBehaviour
                     " : 카드의 대상이 없습니다."
                 );
 
+
                 enemy.next_card = null;
+
 
                 TurnManager.Instance.EndCurrentTurn();
 
@@ -591,70 +598,128 @@ public class BattleCharacterManager : MonoBehaviour
 
 
                 // =================================================
-                // 카드 효과 실행
+                // 카드 효과 Sequence
                 // =================================================
+
+                Sequence sequence =
+                    DOTween.Sequence();
+
 
                 foreach (
                     CardEffectEntry entry
                     in card.original_card_info.effects)
                 {
-                    if (entry.visual != null)
+                    if (entry == null)
+                        continue;
+
+
+                    // -------------------------------------------------
+                    // Effect Time
+                    // -------------------------------------------------
+
+                    sequence.AppendInterval(
+                        entry.time
+                    );
+
+
+                    // -------------------------------------------------
+                    // Visual + Effect
+                    // -------------------------------------------------
+
+                    sequence.AppendCallback(() =>
                     {
-                        entry.visual.Play(
-                            enemy,
-                            targets
+                        // ---------------------------------------------
+                        // Visual
+                        // ---------------------------------------------
+
+                        if (entry.visual != null)
+                        {
+                            entry.visual.Play(
+                                enemy,
+                                targets
+                            );
+                        }
+
+
+                        // ---------------------------------------------
+                        // Effect
+                        // ---------------------------------------------
+
+                        if (entry.effect != null)
+                        {
+                            entry.effect.Execute(
+                                enemy,
+                                targets,
+                                entry,
+                                card.original_card_info
+                            );
+                        }
+                    });
+                }
+
+
+                // =================================================
+                // 모든 Effect 종료
+                // =================================================
+
+                sequence.OnComplete(() =>
+                {
+                    if (enemy == null)
+                        return;
+
+
+                    // =================================================
+                    // 로그
+                    // =================================================
+
+                    if (target != null)
+                    {
+                        Debug.Log(
+                            enemy.enemy_character_info.character_name +
+                            " → " +
+                            card.original_card_info.card_name +
+                            " → " +
+                            target.character_info.character_name
+                        );
+                    }
+                    else
+                    {
+                        Debug.Log(
+                            enemy.enemy_character_info.character_name +
+                            " → " +
+                            card.original_card_info.card_name
                         );
                     }
 
 
-                    if (entry.effect != null)
+                    // =================================================
+                    // 초기화
+                    // =================================================
+                    //
+                    // 일반 카드:
+                    // enemy.next_card == card
+                    // → null 처리
+                    //
+                    // SetNextCardEffect로 새로운 카드가 지정된 경우:
+                    // enemy.next_card != card
+                    // → 새로 지정된 카드를 유지
+                    // =================================================
+
+                    if (enemy.next_card == card)
                     {
-                        entry.effect.Execute(
-                            enemy,
-                            targets,
-                            entry,
-                            card.original_card_info
-                        );
+                        enemy.next_card = null;
                     }
-                }
 
 
-                // =================================================
-                // 로그
-                // =================================================
+                    // =================================================
+                    // 턴 종료
+                    // =================================================
 
-                if (target != null)
-                {
-                    Debug.Log(
-                        enemy.enemy_character_info.character_name +
-                        " → " +
-                        card.original_card_info.card_name +
-                        " → " +
-                        target.character_info.character_name
-                    );
-                }
-                else
-                {
-                    Debug.Log(
-                        enemy.enemy_character_info.character_name +
-                        " → " +
-                        card.original_card_info.card_name
-                    );
-                }
+                    TurnManager.Instance.EndCurrentTurn();
+                });
 
 
-                // =================================================
-                // 초기화
-                // =================================================
-
-                enemy.next_card = null;
-
-
-                // =================================================
-                // 턴 종료
-                // =================================================
-
-                TurnManager.Instance.EndCurrentTurn();
+                sequence.Play();
             }
         );
     }

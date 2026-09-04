@@ -27,12 +27,13 @@ MonoBehaviour:
   accuracy: 95
   card_description: "\uB2E8\uC77C \uB300\uC0C1\uC5D0\uAC8C {DMG30}\uC758 \uD53C\uD574\uB97C
     \uC8FC\uACE0, \uBC29\uC5B4\uB825\uC744 3 \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4."
+  useConditions: []
   specialcardCondition: {fileID: 0}
   effects:
   - time: 0
     visual: {fileID: 11400000, guid: c69a4fedecf79f84f9796e8191a81feb, type: 2}
     effect: {fileID: 11400000, guid: 77c50c28cee705e4db96731e01e002f5, type: 2}
-    valueList: 03000000
+    valueList: fdffffff
     floatValueList: []
     dataEntity: {fileID: 0}
     condition: {fileID: 0}

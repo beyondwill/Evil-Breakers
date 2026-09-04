@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: "PlayerCharacter - \uBE68\uAC04\uBA38\uB9AC"
   m_EditorClassIdentifier: 
   data_code: "PlayerCharacter - \uBE68\uAC04\uBA38\uB9AC"
-  character_name: "\uBE68\uAC04\uBA38\uB9AC"
+  character_name: 10002
   character_id: 1
   element: 4
-  characterClass: 0
+  characterClass: 2
   character_story: 
   character_full_art: {fileID: 21300000, guid: c42e965ada67997479e1d6b00c0e28e8, type: 3}
   character_icon: {fileID: 21300000, guid: d9ca2ed8a5cdf3a41a2bfb68ba4f5f74, type: 3}
@@ -108,18 +108,7 @@ MonoBehaviour:
       value: 5
     - type: 5
       value: 0
-  passiveEventList:
-  - triggerType: 3
-    conditionList:
-    - statType: 1
-      compare: 3
-      value: 3
-    effectValueList:
-    - targetType: 2
-      effectType: 1
-      value: 2
-      buffInfo: {fileID: 0}
-      cardInfo: {fileID: 0}
+  passiveSkillList: []
   dialogues:
   - situation: 0
     dialogue:

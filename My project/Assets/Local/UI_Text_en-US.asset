@@ -92,6 +92,18 @@ MonoBehaviour:
     m_Localized: Do you have a brain?
     m_Metadata:
       m_Items: []
+  - m_Id: 4474798457524224
+    m_Localized: Chloe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4474760578764800
+    m_Localized: Hyun Si-yoon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4474762315206656
+    m_Localized: Fuyuka
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

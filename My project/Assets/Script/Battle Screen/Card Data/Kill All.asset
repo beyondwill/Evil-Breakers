@@ -19,17 +19,18 @@ MonoBehaviour:
   cardRarity: 0
   cardPeriod: 0
   card_image: {fileID: 0}
-  card_name: "\uC804\uBA78\uC758 \uAD11\uC120"
+  card_name: "\uBC1C\uAD74\uB9AC\uAE30 \uD30C\uB3D9"
   card_cost: 0
   buy_card_cost: 0
   sell_card_cost: 0
   useAccuracy: 0
   accuracy: 99999
   card_description: 
+  useConditions: []
   specialcardCondition: {fileID: 0}
   effects:
   - time: 0
-    visual: {fileID: 11400000, guid: a34e6bdbe63976947ba990cc90ae9255, type: 2}
+    visual: {fileID: 11400000, guid: d7229a2283e38fb47a869ca803e99c82, type: 2}
     effect: {fileID: 11400000, guid: bd0ec207cd57da94a80c409bc86cabf6, type: 2}
     valueList: 9f860100
     floatValueList: []

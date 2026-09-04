@@ -18,7 +18,7 @@ MonoBehaviour:
   cardTarget: 0
   cardRarity: 1
   cardPeriod: 1
-  card_image: {fileID: 0}
+  card_image: {fileID: 21300000, guid: 384835d67729d12408aee63c6228e6a1, type: 3}
   card_name: "\uBB3C\uB7EC\uC11C\uAE30"
   card_cost: 1
   buy_card_cost: 300
@@ -26,4 +26,14 @@ MonoBehaviour:
   useAccuracy: 1
   accuracy: 100
   card_description: "\uC18D\uB3C4\uB97C 2\uB9CC\uD07C \uC5BB\uC2B5\uB2C8\uB2E4."
-  effects: []
+  useConditions: []
+  specialcardCondition: {fileID: 0}
+  effects:
+  - time: 0
+    visual: {fileID: 11400000, guid: e34959084c5547b42beb1632c6b8b161, type: 2}
+    effect: {fileID: 11400000, guid: e61c2736750196945b023d05dafbec36, type: 2}
+    valueList: 02000000
+    floatValueList: []
+    dataEntity: {fileID: 0}
+    condition: {fileID: 0}
+    AccuracyReset: 0

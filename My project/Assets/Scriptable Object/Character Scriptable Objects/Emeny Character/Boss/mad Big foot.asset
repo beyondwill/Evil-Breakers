@@ -27,7 +27,7 @@ MonoBehaviour:
     - type: 0
       value: 25
     - type: 1
-      value: 300
+      value: 100
     - type: 2
       value: 0
     - type: 3
@@ -70,7 +70,8 @@ MonoBehaviour:
   - situation: 8
     dialogue: []
   enemy_card_info_list:
-  - {fileID: 11400000, guid: 839f9061c40ffd0499790b2042c56ac5, type: 2}
+  - {fileID: 11400000, guid: 52e537214369152469c10e1269d75d1c, type: 2}
+  - {fileID: 11400000, guid: 9fb7d2a65a70798409f7c8fd9d056a89, type: 2}
   initBuffList:
   - type: 6
     value: 7

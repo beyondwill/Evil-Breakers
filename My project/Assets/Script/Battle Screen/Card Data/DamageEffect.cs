@@ -10,13 +10,88 @@ public class DamageEffect : CardEffect
         CardEffectEntry entry,
         CardData card)
     {
+
+
+        Debug.Log(
+        $"[DamageEffect] Target Count = {targets.Count}"
+        );
+
         if (caster == null)
             return;
+
+        if (targets == null)
+            return;
+
+        if (entry == null)
+            return;
+
+        if (entry.valueList == null ||
+            entry.valueList.Count == 0)
+        {
+            return;
+        }
+
 
         foreach (CharacterVariable target in targets)
         {
             if (target == null)
                 continue;
+
+
+            // ==========================================
+            // 데미지 기본값
+            // ==========================================
+
+            int damageValueIndex = 0;
+
+
+            // ==========================================
+            // 특수 조건 확인
+            // ==========================================
+            //
+            // 예:
+            // 대상이 약화 상태라면
+            // valueList[1] 사용
+            //
+            // 그렇지 않으면
+            // valueList[0] 사용
+            // ==========================================
+
+            if (card != null &&
+                card.specialcardCondition != null)
+            {
+                List<CharacterVariable> conditionTargets =
+                    new List<CharacterVariable>
+                    {
+                        target
+                    };
+
+
+                bool specialCondition =
+                    card.specialcardCondition.Check(
+                        caster,
+                        conditionTargets,
+                        card
+                    );
+
+
+                if (specialCondition)
+                {
+                    // valueList[1]이 존재할 때만 사용
+                    if (entry.valueList.Count > 1)
+                    {
+                        damageValueIndex = 1;
+                    }
+                }
+            }
+
+
+            // ==========================================
+            // 실제 카드 피해량
+            // ==========================================
+
+            float cardDamage =
+                entry.valueList[damageValueIndex];
 
 
             // ==========================================
@@ -60,34 +135,50 @@ public class DamageEffect : CardEffect
 
 
             // ==========================================
-            // 최종 데미지
+            // 상성 배율
             // ==========================================
 
             float multipleDamage = 1.0f;
 
+
             // 유리한 상성
-            if (GameRuleManager.Instance.Rule.IsAdvantage(caster.character_info.element, target.character_info.element))
+            if (GameRuleManager.Instance.Rule.IsAdvantage(
+                caster.character_info.element,
+                target.character_info.element))
             {
-                multipleDamage = GameRuleManager.Instance.Rule.AdvDmg;
+                multipleDamage =
+                    GameRuleManager.Instance.Rule.AdvDmg;
             }
 
+
             // 불리한 상성
-            else if (GameRuleManager.Instance.Rule.IsDisadvantage(caster.character_info.element, target.character_info.element))
+            else if (GameRuleManager.Instance.Rule.IsDisadvantage(
+                caster.character_info.element,
+                target.character_info.element))
             {
-                multipleDamage = GameRuleManager.Instance.Rule.DadvDmg;
+                multipleDamage =
+                    GameRuleManager.Instance.Rule.DadvDmg;
             }
+
+
+            // ==========================================
+            // 강인함
+            // ==========================================
 
             float toughnessDamage = 1.0f;
 
-            // 상대에게 강인함 패시브가 있으면: 하나 깎고 경우에 따라 설정
-            if (target.statContainer.GetBuff(CharacterBuffType.Toughness) > 0)
+
+            if (target.statContainer.GetBuff(
+                CharacterBuffType.Toughness) > 0)
             {
                 target.AddBuff(
                     CharacterBuffType.Toughness,
                     -1
                 );
 
-                if (target.character_info.element == Element.Fire)
+
+                if (target.character_info.element ==
+                    Element.Fire)
                 {
                     toughnessDamage = 0.2f;
                 }
@@ -97,16 +188,23 @@ public class DamageEffect : CardEffect
                 }
             }
 
+
+            // ==========================================
+            // 최종 데미지
+            // ==========================================
+
             float damageAmount =
-                    Mathf.Max(
-                        0,
-                        (entry.valueList[0] 
+                Mathf.Max(
+                    0,
+                    (
+                        cardDamage
                         + attack
                         + (strength * strengthMultiplier)
-                        - dexterity)
-                        * multipleDamage
-                        * toughnessDamage
-                    );
+                        - dexterity
+                    )
+                    * multipleDamage
+                    * toughnessDamage
+                );
 
 
             // ==========================================

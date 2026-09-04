@@ -18,7 +18,7 @@ MonoBehaviour:
   cardTarget: 0
   cardRarity: 1
   cardPeriod: 1
-  card_image: {fileID: 0}
+  card_image: {fileID: 21300000, guid: caee935cb57532944b8a49d0ac5a5fc0, type: 3}
   card_name: "\uD718\uB450\uB974\uAE30"
   card_cost: 1
   buy_card_cost: 200
@@ -27,4 +27,6 @@ MonoBehaviour:
   accuracy: 90
   card_description: "\uB79C\uB364\uD55C \uC801\uAD70 2\uBA85\uC5D0\uAC8C {DMG5}\uC758
     \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+  useConditions: []
+  specialcardCondition: {fileID: 0}
   effects: []

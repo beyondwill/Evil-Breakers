@@ -3085,6 +3085,7 @@ MonoBehaviour:
   current_point: {x: 0, y: 0}
   enemy1: {fileID: 11400000, guid: 424600da8d2d0e64d89fc2343df430e9, type: 2}
   enemy2: {fileID: 11400000, guid: fcbef77d9e1fb06418167a68440bbb49, type: 2}
+  boss: {fileID: 11400000, guid: 0eb64e538fef6f4428084c79d8bfa066, type: 2}
 --- !u!4 &823606947
 Transform:
   m_ObjectHideFlags: 0
@@ -4969,7 +4970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1366559619
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6834,6 +6835,10 @@ PrefabInstance:
     - target: {fileID: 607624374286472602, guid: 6caf419e771ac7f4092874835e4ca540, type: 3}
       propertyPath: m_Name
       value: ItemToolTip
+      objectReference: {fileID: 0}
+    - target: {fileID: 607624374286472602, guid: 6caf419e771ac7f4092874835e4ca540, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 724966537870808721, guid: 6caf419e771ac7f4092874835e4ca540, type: 3}
       propertyPath: m_AnchorMax.y

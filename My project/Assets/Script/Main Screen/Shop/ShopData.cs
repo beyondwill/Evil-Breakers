@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class ShopData
 {
     public List<InventoryItem> shop_items = new();
+    public List<CardData> card_items = new();
 
     public void Clear()
     {

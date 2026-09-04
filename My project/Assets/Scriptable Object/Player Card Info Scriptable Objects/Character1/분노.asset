@@ -26,7 +26,8 @@ MonoBehaviour:
   useAccuracy: 1
   accuracy: 90
   card_description: CARD_RAGE_SCRIPT
-  specialcardCondition: {fileID: 0}
+  useConditions: []
+  specialcardCondition: {fileID: 11400000, guid: cc085f60df948cc46a14818c9445908e, type: 2}
   effects:
   - time: 0
     visual: {fileID: 11400000, guid: cf5ff3604a947944a8cfe930106493a5, type: 2}

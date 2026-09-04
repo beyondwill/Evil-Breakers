@@ -314,7 +314,9 @@ public class MapManager : MonoBehaviour
 
 
             case HexNode.NodeType.Boss:
-                EventManager.Instance.ShowEvent(testEvent2);
+                UpdateMissionInfos(MissionObjectSort.KillBosses, 1, false);
+                target.isVisited = true;
+                BattleStart();
                 break;
 
             case HexNode.NodeType.Shop:
@@ -478,6 +480,7 @@ public class MapManager : MonoBehaviour
     // 테스트용
     public EnemyCharacterInfo enemy1;
     public EnemyCharacterInfo enemy2;
+    public EnemyCharacterInfo boss;
 
     public void BattleStart()
     {
@@ -498,6 +501,11 @@ public class MapManager : MonoBehaviour
                 DataManager.Instance.GetBattleData.enemyCharacterList.Add(enemy1);
                 DataManager.Instance.GetBattleData.enemyCharacterList.Add(enemy1);
             }
+
+            if (currentNode.type == HexNode.NodeType.Boss)
+            {
+                DataManager.Instance.GetBattleData.enemyCharacterList.Add(boss);
+            }
         }
 
         else if (currentNode.zone == HexNode.ZoneType.Subway)
@@ -513,6 +521,11 @@ public class MapManager : MonoBehaviour
                 DataManager.Instance.GetBattleData.enemyCharacterList.Add(enemy2);
                 DataManager.Instance.GetBattleData.enemyCharacterList.Add(enemy2);
                 DataManager.Instance.GetBattleData.enemyCharacterList.Add(enemy2);
+            }
+
+            if (currentNode.type == HexNode.NodeType.Boss)
+            {
+                DataManager.Instance.GetBattleData.enemyCharacterList.Add(boss);
             }
         }
 

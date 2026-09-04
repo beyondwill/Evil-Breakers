@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8affd1384590c5343a9a68aceb7d0cee, type: 3}
+  m_Name: Shockwave Move Impact Visual
+  m_EditorClassIdentifier: 
+  effectSprite: {fileID: 21300000, guid: 93c6ce6fc618a3f4a89ab80127b3cec0, type: 3}
+  effectSize: {x: 200, y: 200}
+  moveDistance: 50
+  duration: 3
+  direction: 0
+  startMode: 0

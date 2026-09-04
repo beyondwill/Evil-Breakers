@@ -19,6 +19,7 @@ public class HexMapDataSO : DataEntity
 
     public int shopCount;
     public int obstacleCount;
+    public int bossCount;
 
     public string mask;
 }

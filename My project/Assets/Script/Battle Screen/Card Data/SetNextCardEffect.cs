@@ -10,6 +10,19 @@ public class SetNextCardEffect : CardEffect
         CardEffectEntry entry,
         CardData card)
     {
-        ((EnemyCharacterVariable)caster).next_card = new CardVariable((CardData)entry.dataEntity);
+        if (caster is not EnemyCharacterVariable enemy)
+            return;
+
+        CardData nextCard =
+            entry.dataEntity as CardData;
+
+        if (nextCard == null)
+        {
+            enemy.next_card = null;
+            return;
+        }
+
+        enemy.next_card =
+            new CardVariable(nextCard);
     }
 }

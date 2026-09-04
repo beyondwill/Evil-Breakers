@@ -51,7 +51,8 @@ public enum CharacterClass
     Character1,
     Character2,
     Character3,
-    Character4
+    Character4,
+    Neutral
 }
 
 

@@ -207,30 +207,25 @@ public class DataManager : MonoBehaviour
 
 
     // =========================================================
-    // 저장
+    // 저장용 데이터 생성
+    // =========================================================
+    //
+    // SaveData()와 CreateDefaultJson()에서
+    // 동일한 JSON 구조를 사용하기 위한 함수.
+    //
     // =========================================================
 
-    public void SaveData()
+    private object CreateSaveObject()
     {
         if (all_data == null)
-        {
-            Debug.LogError(
-                "[DataManager] 저장할 데이터가 없습니다."
-            );
-
-            return;
-        }
+            return null;
 
 
         BattleData battle =
             all_data.battle_data;
 
 
-        // -----------------------------------------------------
-        // 저장 데이터 구성
-        // -----------------------------------------------------
-
-        var saveObj = new
+        return new
         {
             current_state =
                 all_data.current_state,
@@ -269,17 +264,72 @@ public class DataManager : MonoBehaviour
                             battle.GetHorror()
                     }
         };
+    }
 
 
-        // -----------------------------------------------------
-        // JSON 변환
-        // -----------------------------------------------------
+    // =========================================================
+    // 현재 데이터를 JSON 문자열로 변환
+    // =========================================================
+
+    private string CreateJson()
+    {
+        object saveObj =
+            CreateSaveObject();
+
+
+        if (saveObj == null)
+        {
+            return null;
+        }
+
+
+        return JsonConvert.SerializeObject(
+            saveObj,
+            jsonSettings
+        );
+    }
+
+
+    // =========================================================
+    // 저장
+    // =========================================================
+
+    public void SaveData()
+    {
+        if (all_data == null)
+        {
+            Debug.LogError(
+                "[DataManager] 저장할 데이터가 없습니다."
+            );
+
+            return;
+        }
+
 
         string json =
-            JsonConvert.SerializeObject(
-                saveObj,
-                jsonSettings
+            CreateJson();
+
+
+        if (string.IsNullOrEmpty(json))
+        {
+            Debug.LogError(
+                "[DataManager] JSON 생성에 실패했습니다."
             );
+
+            return;
+        }
+
+
+        // -----------------------------------------------------
+        // StreamingAssets 폴더 확인
+        // -----------------------------------------------------
+
+        if (!Directory.Exists(
+                Application.streamingAssetsPath))
+        {
+            Directory.CreateDirectory(
+                Application.streamingAssetsPath);
+        }
 
 
         // -----------------------------------------------------
@@ -296,6 +346,92 @@ public class DataManager : MonoBehaviour
             $"게임 저장 완료!\n" +
             $"저장 경로 : {saveFilePath}"
         );
+    }
+
+
+    // =========================================================
+    // 기본 Json 생성
+    // =========================================================
+    //
+    // 현재 메모리에 들어있는 all_data를
+    // default.json으로 저장한다.
+    //
+    // 저장 위치:
+    // Assets/StreamingAssets/default.json
+    //
+    // =========================================================
+
+    public void CreateDefaultJson()
+    {
+        if (all_data == null)
+        {
+            Debug.LogError(
+                "[DataManager] 기본 JSON으로 저장할 데이터가 없습니다."
+            );
+
+            return;
+        }
+
+
+        string json =
+            CreateJson();
+
+
+        if (string.IsNullOrEmpty(json))
+        {
+            Debug.LogError(
+                "[DataManager] 기본 JSON 생성에 실패했습니다."
+            );
+
+            return;
+        }
+
+
+        // -----------------------------------------------------
+        // StreamingAssets 폴더 확인
+        // -----------------------------------------------------
+
+        if (!Directory.Exists(
+                Application.streamingAssetsPath))
+        {
+            Directory.CreateDirectory(
+                Application.streamingAssetsPath);
+        }
+
+
+        // -----------------------------------------------------
+        // 기본 JSON 경로
+        // -----------------------------------------------------
+
+        string defaultFilePath =
+            Path.Combine(
+                Application.streamingAssetsPath,
+                "default.json"
+            );
+
+
+        // -----------------------------------------------------
+        // 저장
+        // -----------------------------------------------------
+
+        File.WriteAllText(
+            defaultFilePath,
+            json
+        );
+
+
+        Debug.Log(
+            $"기본 JSON 생성 완료!\n" +
+            $"저장 경로 : {defaultFilePath}"
+        );
+
+
+#if UNITY_EDITOR
+
+        // Unity Editor에서 파일 변경 즉시 반영
+        UnityEditor.AssetDatabase.Refresh();
+
+#endif
     }
 
 
@@ -342,7 +478,9 @@ public class DataManager : MonoBehaviour
                 $"경로 : {saveFilePath}"
             );
 
+
             SetDataInit();
+
 
             return;
         }
@@ -381,6 +519,7 @@ public class DataManager : MonoBehaviour
                 "[DataManager] " +
                 "저장 데이터 Deserialize 실패"
             );
+
 
             return;
         }

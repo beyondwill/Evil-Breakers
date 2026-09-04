@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1248909357352417174}
   - component: {fileID: 2835688287657187756}
   m_Layer: 5
-  m_Name: Inherence
+  m_Name: Neutral
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,9 +35,9 @@ RectTransform:
   m_Father: {fileID: 1858125689208062825}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 492.5, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 193, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2612139062565128965
@@ -121,7 +121,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1248909357352417174}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6067346468705122617}
+        m_TargetAssemblyTypeName: CardManageBox, Assembly-CSharp
+        m_MethodName: OnClickNeutral
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &304201802827988719
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,9 +373,9 @@ RectTransform:
   m_Father: {fileID: 1858125689208062825}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 96.5, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 193, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2143399010716417
@@ -447,7 +459,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7245510090238458933}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6067346468705122617}
+        m_TargetAssemblyTypeName: CardManageBox, Assembly-CSharp
+        m_MethodName: OnClickAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1646573840173288055
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +485,7 @@ GameObject:
   - component: {fileID: 2982600314868806074}
   - component: {fileID: 505914251408617312}
   m_Layer: 5
-  m_Name: Common
+  m_Name: Class
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -483,9 +507,9 @@ RectTransform:
   m_Father: {fileID: 1858125689208062825}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 294.5, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 193, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7025685075488765976
@@ -569,7 +593,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2982600314868806074}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6067346468705122617}
+        m_TargetAssemblyTypeName: CardManageBox, Assembly-CSharp
+        m_MethodName: OnClickJob
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1736360908555328539
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,7 +737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8110289795562771552
 RectTransform:
   m_ObjectHideFlags: 0
@@ -840,7 +876,7 @@ RectTransform:
   - {fileID: 7905397327713614557}
   - {fileID: 1858125689208062825}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -899,7 +935,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   card_content: {fileID: 1736360908555328539}
   card_prefab: {fileID: 5466805477484984614, guid: fe8eb91db62ea0148b4db2571c8efe77, type: 3}
+  allButton: {fileID: 7245510090238458933}
+  jobButton: {fileID: 2982600314868806074}
+  neutralButton: {fileID: 1248909357352417174}
+  attackButton: {fileID: 2787031407321269874}
+  skillButton: {fileID: 4246249136081738899}
+  allText: {fileID: 3117392147391777578}
+  jobText: {fileID: 4422110762970791893}
+  neutralText: {fileID: 5704669588659742136}
+  attackText: {fileID: 7986244294648745850}
+  skillText: {fileID: 7481158531862961719}
+  selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  normalColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
+  selectedTextColor: {r: 0, g: 0, b: 0, a: 1}
+  normalTextColor: {r: 1, g: 1, b: 1, a: 1}
   cards: []
+  currentJob: 0
 --- !u!1 &2818991689327698080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,7 +1099,7 @@ GameObject:
   - component: {fileID: 4246249136081738899}
   - component: {fileID: 8898702980574747320}
   m_Layer: 5
-  m_Name: Defense
+  m_Name: Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1070,9 +1121,9 @@ RectTransform:
   m_Father: {fileID: 1858125689208062825}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 888.5, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 193, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5753879808596842686
@@ -1156,7 +1207,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4246249136081738899}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6067346468705122617}
+        m_TargetAssemblyTypeName: CardManageBox, Assembly-CSharp
+        m_MethodName: OnClickSkill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3208155181535837733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1314,9 +1377,9 @@ RectTransform:
   m_Father: {fileID: 1858125689208062825}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 690.5, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 193, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &388088509969183330
@@ -1400,7 +1463,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2787031407321269874}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6067346468705122617}
+        m_TargetAssemblyTypeName: CardManageBox, Assembly-CSharp
+        m_MethodName: OnClickAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4331592999714031125
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,7 +1629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1858125689208062825
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1665,7 +1740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4297684708883197361
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1835,7 +1910,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBC29\uC5B4"
+  m_text: "\uC2A4\uD0AC"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f9ddf06bdee3f6a45a73a8285eaf520d, type: 2}
   m_sharedMaterial: {fileID: -6409284311824588669, guid: f9ddf06bdee3f6a45a73a8285eaf520d, type: 2}
@@ -2105,7 +2180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uACE0\uC720"
+  m_text: "\uC911\uB9BD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f9ddf06bdee3f6a45a73a8285eaf520d, type: 2}
   m_sharedMaterial: {fileID: -6409284311824588669, guid: f9ddf06bdee3f6a45a73a8285eaf520d, type: 2}
@@ -2192,7 +2267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3976300259567740891
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2773,7 +2848,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC73C\uC559"
+  m_text: "\uC804\uCCB4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f9ddf06bdee3f6a45a73a8285eaf520d, type: 2}
   m_sharedMaterial: {fileID: -6409284311824588669, guid: f9ddf06bdee3f6a45a73a8285eaf520d, type: 2}
@@ -2908,7 +2983,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uACF5\uD1B5"
+  m_text: "\uC9C1\uC5C5"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f9ddf06bdee3f6a45a73a8285eaf520d, type: 2}
   m_sharedMaterial: {fileID: -6409284311824588669, guid: f9ddf06bdee3f6a45a73a8285eaf520d, type: 2}

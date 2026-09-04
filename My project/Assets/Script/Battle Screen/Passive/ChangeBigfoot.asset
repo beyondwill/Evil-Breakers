@@ -17,6 +17,7 @@ MonoBehaviour:
   skill_description: 
   skill_image: {fileID: 0}
   triggerType: 7
+  isOneTime: 1
   conditionList:
   - conditionType: 0
     compareType: 1

@@ -24,6 +24,7 @@ MonoBehaviour:
   eliteBattleCount: 3
   shopCount: 2
   obstacleCount: 4
+  bossCount: 1
   mask: '111111
 
     111111

@@ -269,10 +269,40 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void Conversation(string s)
     {
-        QuickLocalizationSetup.Instance.GetTextDictionary.Remove(conversation_text);
+        if (string.IsNullOrEmpty(s))
+            return;
 
-        conversation_text.text = s;
 
+        // ========================================
+        // 말풍선 Localization Key 갱신
+        // ========================================
+
+        if (QuickLocalizationSetup.Instance != null)
+        {
+            // 기존 Key 제거
+            QuickLocalizationSetup.Instance
+                .GetTextDictionary
+                .Remove(conversation_text);
+
+
+            // 새 Key 등록
+            QuickLocalizationSetup.Instance
+                .RegisterText(
+                    conversation_text,
+                    s
+                );
+        }
+        else
+        {
+            // Localization 시스템이 없으면
+            // 일단 원문 표시
+            conversation_text.text = s;
+        }
+
+
+        // ========================================
+        // 말풍선 연출
+        // ========================================
 
         if (currentSeq != null)
             currentSeq.Kill();

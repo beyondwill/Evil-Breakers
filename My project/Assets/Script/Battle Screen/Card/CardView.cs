@@ -10,6 +10,7 @@ public class CardView : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private GameObject cost_box;
+    [SerializeField] private Image card_background;
     [SerializeField] private Image card_image;
     [SerializeField] private TextMeshProUGUI card_name;
     [SerializeField] private TextMeshProUGUI card_type;
@@ -31,6 +32,7 @@ public class CardView : MonoBehaviour
 
     private Dictionary<string, Func<int, int>> valueFunctions;
 
+    [SerializeField] private CharacterColorConfig CCC;
 
     // =========================================================
     // 초기화
@@ -242,38 +244,9 @@ public class CardView : MonoBehaviour
             MakeBaseText(
                 GetLocalizedCardDescription(CD)
             );
+
+        card_background.color = CCC.FindClassColor(CD.characterClass);
     }
-
-
-    // =========================================================
-    // 카드 초기화 - Character + CardData
-    // =========================================================
-
-    public void CardInit(
-        CharacterVariable CV,
-        CardData CD)
-    {
-        currentCard = null;
-        currentCardData = CD;
-
-        card_image.sprite =
-            CD.card_image;
-
-        card_name.text =
-            GetLocalizedCardName(CD);
-
-        card_type.text =
-            GetLocalizedCardType(CD);
-
-        card_cost.text =
-            CD.card_cost.ToString();
-
-        card_text.text =
-            MakeBaseText(
-                GetLocalizedCardDescription(CD)
-            );
-    }
-
 
     // =========================================================
     // 카드 초기화 - CardVariable
@@ -304,6 +277,9 @@ public class CardView : MonoBehaviour
             MakeBaseText(
                 GetLocalizedCardDescription(CD)
             );
+
+        card_background.color =
+            CCC.FindClassColor(CD.characterClass);
     }
 
 
@@ -518,20 +494,47 @@ public class CardView : MonoBehaviour
 
     public void RefreshPlayableState()
     {
+        // 카드가 없으면 사용 불가
         if (currentCard == null)
         {
             ShowUnplayable();
             return;
         }
 
-        if (CardManager.Instance.CanStartCard(
-            currentCard))
-        {
-            ShowPlayable();
-        }
-        else
+        // CardManager가 없으면 사용 불가
+        if (CardManager.Instance == null)
         {
             ShowUnplayable();
+            return;
         }
+
+
+        // =====================================================
+        // 1. 기본적으로 카드를 낼 수 있는가?
+        // =====================================================
+
+        if (!CardManager.Instance.CanStartCard(currentCard))
+        {
+            ShowUnplayable();
+            return;
+        }
+
+
+        // =====================================================
+        // 2. 특수 조건을 만족하는가?
+        // =====================================================
+
+        if (CardManager.Instance.CheckSpecialCondition(currentCard))
+        {
+            ShowSpecial();
+            return;
+        }
+
+
+        // =====================================================
+        // 3. 일반 카드
+        // =====================================================
+
+        ShowPlayable();
     }
 }

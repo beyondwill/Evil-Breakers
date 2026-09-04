@@ -13,20 +13,36 @@ public class DeckCardInteraction : IDeckCardInteraction
     }
 
 
+    // =========================================================
+    // 좌클릭
+    // =========================================================
+
     public void LeftClick(CardInteraction card)
     {
+        if (card == null)
+            return;
+
+
         deckManager.MoveCard(
-            card.DeckIndex,
+            card.DeckCard,
             isPlayer
         );
     }
 
+
+    // =========================================================
+    // 우클릭
+    // =========================================================
 
     public void RightClick(CardData card)
     {
 
     }
 
+
+    // =========================================================
+    // 드래그
+    // =========================================================
 
     public void BeginDrag(CardData card)
     {

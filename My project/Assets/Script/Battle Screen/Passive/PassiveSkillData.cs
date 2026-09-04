@@ -12,7 +12,7 @@ public enum PassiveTriggerType
     TurnStart,          // 턴 시작
     TurnEnd,            // 턴 종료
     RoundStart,         // 라운드 시작
-    RoundEnd,           // 라운드 종료
+    RoundEnd,            // 라운드 종료
     PlayCard,           // 카드를 사용했을 때
     EnemyCard,          // 적이 카드를 사용했을 때
     Damaged,            // 피해를 받았을 때
@@ -96,7 +96,7 @@ public class PassiveSkillData : DataEntity
 
 
     // =====================================================
-    // 발동 조건
+    // 발동 설정
     // =====================================================
 
     [Header("Trigger")]
@@ -104,8 +104,14 @@ public class PassiveSkillData : DataEntity
     public PassiveTriggerType triggerType;
 
 
+    // 일회성 여부
+    // true  = 한 번 발동하면 다시 발동하지 않음
+    // false = 조건을 만족할 때마다 발동
+    public bool isOneTime;
+
+
     // =====================================================
-    // 조건
+    // 발동 조건
     // =====================================================
 
     [Header("Conditions")]

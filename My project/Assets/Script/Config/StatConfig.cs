@@ -74,6 +74,7 @@ public class CharacterBuffSort
     public CharacterBuffType type;
     public string buffName;
     public Sprite buffIcon;
+    public bool isDebuff;
 }
 
 #endregion

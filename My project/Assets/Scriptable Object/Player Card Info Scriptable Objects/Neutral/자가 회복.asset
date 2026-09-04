@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\uC790\uAC00 \uD68C\uBCF5"
   m_EditorClassIdentifier: 
   data_code: "\uC790\uAC00 \uD68C\uBCF5"
-  characterClass: 0
+  characterClass: 5
   cardType: 2
   cardTarget: 0
   cardRarity: 0
@@ -26,14 +26,14 @@ MonoBehaviour:
   useAccuracy: 0
   accuracy: 1
   card_description: "\uC790\uC2E0\uC758 \uC0DD\uBA85\uB825\uC744 100 \uD68C\uBCF5\uC2DC\uD0B5\uB2C8\uB2E4."
+  useConditions: []
   specialcardCondition: {fileID: 0}
   effects:
   - time: 0
     visual: {fileID: 11400000, guid: c743f5738da731d4c9c82554b14386e0, type: 2}
     effect: {fileID: 11400000, guid: 54210723aea6d514fbd59663b3356775, type: 2}
-    value: 10
-    value2: 0
-    floatValue: 0
+    valueList: 
+    floatValueList: []
     dataEntity: {fileID: 0}
     condition: {fileID: 0}
     AccuracyReset: 0

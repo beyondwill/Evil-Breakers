@@ -45,6 +45,7 @@ public class MapDataBuilder
 
         so.shopCount = data.shopCount;
         so.obstacleCount = data.obstacleCount;
+        so.bossCount = data.bossCount;
         so.mask = NormalizeMask(data.mask);
 
         string path = $"Assets/MapData_{data.id}.asset";
