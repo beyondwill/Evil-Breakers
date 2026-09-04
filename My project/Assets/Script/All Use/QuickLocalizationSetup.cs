@@ -35,10 +35,24 @@ public class QuickLocalizationSetup : MonoBehaviour
 
 
     // =========================================================
-    // TMP → 원본 번역 Key
+    // TMP → Localization Key
     // =========================================================
 
     private Dictionary<TextMeshProUGUI, string> localizedTexts =
+        new Dictionary<TextMeshProUGUI, string>();
+
+
+    // =========================================================
+    // TMP → 마지막으로 Localization 시스템이 적용한 문자열
+    //
+    // 이걸 이용해서
+    //
+    // tmp.text = "CARD_FIRE_NAME"
+    //
+    // 처럼 외부 코드가 TMP를 변경했는지 감지한다.
+    // =========================================================
+
+    private Dictionary<TextMeshProUGUI, string> lastLocalizedValues =
         new Dictionary<TextMeshProUGUI, string>();
 
 
@@ -75,7 +89,8 @@ public class QuickLocalizationSetup : MonoBehaviour
 
 
         // 씬 전환 감지
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded +=
+            OnSceneLoaded;
 
 
         // 언어 변경 감지
@@ -110,10 +125,11 @@ public class QuickLocalizationSetup : MonoBehaviour
     // Update
     // =========================================================
     //
-    // 런타임에서 Instantiate 된 TMP를 자동으로 발견한다.
+    // 1. 이미 등록된 TMP
+    //    → 매 프레임 text 변경 여부 확인
     //
-    // 기존에 등록된 TMP는 Dictionary에 있으므로
-    // 다시 번역하지 않는다.
+    // 2. 새 TMP
+    //    → 0.1초마다 전체 검색
     //
     // =========================================================
 
@@ -122,6 +138,17 @@ public class QuickLocalizationSetup : MonoBehaviour
         if (!isInitialized)
             return;
 
+
+        // =====================================================
+        // 이미 등록된 TMP는 매 프레임 확인
+        // =====================================================
+
+        CheckRegisteredTexts();
+
+
+        // =====================================================
+        // 새 TMP 검색은 0.1초마다
+        // =====================================================
 
         dynamicScanTimer +=
             Time.unscaledDeltaTime;
@@ -226,11 +253,7 @@ public class QuickLocalizationSetup : MonoBehaviour
         isInitialized = true;
 
 
-        // =====================================================
         // 초기 씬에 이미 존재하는 TMP 검색
-        // 비활성화된 오브젝트도 포함
-        // =====================================================
-
         ScanExistingTexts();
     }
 
@@ -272,11 +295,6 @@ public class QuickLocalizationSetup : MonoBehaviour
     // =========================================================
     // 기존 TMP 검색
     // =========================================================
-    //
-    // FindObjectsInactive.Include를 사용해서
-    // SetActive(false) 상태의 UI도 검색한다.
-    //
-    // =========================================================
 
     private void ScanExistingTexts()
     {
@@ -306,32 +324,19 @@ public class QuickLocalizationSetup : MonoBehaviour
                 continue;
 
 
-            // =================================================
             // 이미 등록된 TMP
-            // =================================================
-
             if (localizedTexts.ContainsKey(tmp))
             {
-                // 이미 등록되어 있어도
-                // 현재 언어로 다시 번역한다.
-
                 TryTranslateText(
                     tmp,
                     localizedTexts[tmp]
                 );
 
-
                 continue;
             }
 
 
-            // =================================================
             // 처음 발견된 TMP
-            // =================================================
-            //
-            // 현재 TMP의 text를 Localization Key로 사용
-            //
-
             RegisterText(
                 tmp,
                 currentText
@@ -344,12 +349,12 @@ public class QuickLocalizationSetup : MonoBehaviour
 
 
     // =========================================================
-    // 새로 생성된 TMP 검색
+    // 새 TMP 검색
     // =========================================================
     //
-    // Update()에서 일정 시간마다 호출된다.
+    // 새로 Instantiate 된 TMP를 찾는다.
     //
-    // 이미 localizedTexts에 들어있는 TMP는 무시한다.
+    // 이 함수 자체는 0.1초마다 실행된다.
     //
     // =========================================================
 
@@ -368,10 +373,7 @@ public class QuickLocalizationSetup : MonoBehaviour
                 continue;
 
 
-            // =================================================
             // 이미 등록된 TMP
-            // =================================================
-
             if (localizedTexts.ContainsKey(tmp))
                 continue;
 
@@ -380,26 +382,16 @@ public class QuickLocalizationSetup : MonoBehaviour
                 tmp.text;
 
 
-            // =================================================
             // 아직 텍스트가 없는 TMP
-            // =================================================
-
             if (string.IsNullOrEmpty(currentText))
                 continue;
 
 
-            // =================================================
             // Localization 오류 문자열
-            // =================================================
-
             if (currentText.Contains(
                     "No translation found"))
                 continue;
 
-
-            // =================================================
-            // 새 TMP 발견
-            // =================================================
 
             Debug.Log(
                 $"[Localization] 새 TMP 발견: " +
@@ -420,16 +412,152 @@ public class QuickLocalizationSetup : MonoBehaviour
 
 
     // =========================================================
-    // 동적 TMP 등록
+    // 등록된 TMP의 text 변경 감지
     // =========================================================
     //
-    // 런타임에서 TMP를 생성한 경우에도 사용 가능:
+    // 중요!
     //
-    // QuickLocalizationSetup.Instance.RegisterText(
-    //     tmp,
-    //     "CARD_RAGE_NAME"
-    // );
+    // 이 함수는 Update()에서 매 프레임 실행된다.
     //
+    // 예:
+    //
+    // 기존:
+    // CARD_FIRE_NAME
+    //
+    // 번역 결과:
+    // Fire
+    //
+    // 이후 다른 코드에서:
+    // CARD_ICE_NAME
+    //
+    // 으로 변경하면 즉시 감지한다.
+    //
+    // =========================================================
+
+    private void CheckRegisteredTexts()
+    {
+        List<KeyValuePair<TextMeshProUGUI, string>> textList =
+            new List<KeyValuePair<TextMeshProUGUI, string>>(
+                localizedTexts
+            );
+
+
+        foreach (var pair in textList)
+        {
+            TextMeshProUGUI tmp =
+                pair.Key;
+
+
+            string key =
+                pair.Value;
+
+
+            if (tmp == null)
+                continue;
+
+
+            if (string.IsNullOrEmpty(key))
+                continue;
+
+
+            // =================================================
+            // 우리가 마지막으로 적용했던 번역 문자열
+            // =================================================
+
+            string lastValue = "";
+
+
+            lastLocalizedValues.TryGetValue(
+                tmp,
+                out lastValue
+            );
+
+
+            // =================================================
+            // 현재 TMP.text가
+            // 우리가 마지막으로 넣었던 값과 같음
+            //
+            // → 정상 상태
+            // =================================================
+
+            if (tmp.text == lastValue)
+                continue;
+
+
+            // =================================================
+            // 아직 번역되지 않은 상태
+            //
+            // 예:
+            //
+            // tmp.text = "CARD_FIRE_NAME"
+            // key      = "CARD_FIRE_NAME"
+            // =================================================
+
+            if (tmp.text == key)
+            {
+                StartCoroutine(
+                    TranslateTextCoroutine(
+                        tmp,
+                        key
+                    )
+                );
+
+                continue;
+            }
+
+
+            // =================================================
+            // 여기까지 왔다면
+            //
+            // 다른 코드가 TMP.text를 변경한 것
+            // =================================================
+
+            string newKey =
+                tmp.text;
+
+
+            if (string.IsNullOrEmpty(newKey))
+                continue;
+
+
+            if (newKey.Contains(
+                    "No translation found"))
+                continue;
+
+
+            Debug.Log(
+                $"[Localization] TMP Key 변경 감지: " +
+                $"{key} → {newKey}"
+            );
+
+
+            // =================================================
+            // 새로운 Key로 변경
+            // =================================================
+
+            localizedTexts[tmp] =
+                newKey;
+
+
+            // =================================================
+            // 새 Key 번역
+            // =================================================
+
+            StartCoroutine(
+                TranslateTextCoroutine(
+                    tmp,
+                    newKey
+                )
+            );
+        }
+
+
+        CleanupNullReferences();
+    }
+
+
+    // =========================================================
+    // 동적 TMP 등록
     // =========================================================
 
     public void RegisterText(
@@ -455,10 +583,15 @@ public class QuickLocalizationSetup : MonoBehaviour
                 key
             );
         }
+        else
+        {
+            localizedTexts[tmp] =
+                key;
+        }
 
 
         // =====================================================
-        // Localization 초기화 전이면
+        // 초기화 전이면
         // Dictionary에만 등록
         // =====================================================
 
@@ -540,10 +673,7 @@ public class QuickLocalizationSetup : MonoBehaviour
         yield return operation;
 
 
-        // =====================================================
         // TMP가 번역 도중 파괴되었을 경우
-        // =====================================================
-
         if (tmp == null)
             yield break;
 
@@ -582,7 +712,37 @@ public class QuickLocalizationSetup : MonoBehaviour
             !localizedString.Contains(
                 "No translation found"))
         {
+            // =================================================
+            // Dictionary Key이 현재 번역 요청 Key와
+            // 동일한지 확인
+            //
+            // 번역 요청 중 다른 Key로 바뀌었을 경우
+            // 오래된 번역 결과가 덮어쓰는 것을 방지
+            // =================================================
+
+            if (localizedTexts.TryGetValue(
+                    tmp,
+                    out string currentKey
+                ))
+            {
+                if (currentKey != key)
+                    yield break;
+            }
+
+
+            // =================================================
+            // 실제 적용
+            // =================================================
+
             tmp.text =
+                localizedString;
+
+
+            // =================================================
+            // 우리가 적용한 값 기록
+            // =================================================
+
+            lastLocalizedValues[tmp] =
                 localizedString;
         }
     }
@@ -814,15 +974,10 @@ public class QuickLocalizationSetup : MonoBehaviour
 
     private void RefreshAllTexts()
     {
-        // =====================================================
-        // Dictionary 복사
-        // =====================================================
-
-        List<KeyValuePair<TextMeshProUGUI, string>>
-            textList =
-                new List<KeyValuePair<TextMeshProUGUI, string>>(
-                    localizedTexts
-                );
+        List<KeyValuePair<TextMeshProUGUI, string>> textList =
+            new List<KeyValuePair<TextMeshProUGUI, string>>(
+                localizedTexts
+            );
 
 
         foreach (var pair in textList)
@@ -842,10 +997,6 @@ public class QuickLocalizationSetup : MonoBehaviour
             if (string.IsNullOrEmpty(key))
                 continue;
 
-
-            // =================================================
-            // 비동기 번역
-            // =================================================
 
             StartCoroutine(
                 TranslateTextCoroutine(
@@ -905,6 +1056,12 @@ public class QuickLocalizationSetup : MonoBehaviour
         foreach (var tmp in removeList)
         {
             localizedTexts.Remove(tmp);
+
+
+            if (lastLocalizedValues.ContainsKey(tmp))
+            {
+                lastLocalizedValues.Remove(tmp);
+            }
         }
     }
 
@@ -921,15 +1078,17 @@ public class QuickLocalizationSetup : MonoBehaviour
         localizedTexts.Clear();
 
 
+        lastLocalizedValues.Clear();
+
+
+        dynamicScanTimer = 0f;
+
+
         Debug.Log(
             $"[Localization] 씬 변경 → Dictionary 초기화: " +
             $"{scene.name}"
         );
 
-
-        // =====================================================
-        // 새 씬의 TMP 검색
-        // =====================================================
 
         if (isInitialized)
         {

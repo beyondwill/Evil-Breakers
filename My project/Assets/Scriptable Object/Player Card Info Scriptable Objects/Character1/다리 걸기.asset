@@ -25,8 +25,9 @@ MonoBehaviour:
   sell_card_cost: 100
   useAccuracy: 1
   accuracy: 85
-  card_description: "\uB2E8\uC77C \uB300\uC0C1\uC5D0\uAC8C {DMG20}\uC758 \uD53C\uD574\uB97C
+  card_description: "\uB2E8\uC77C \uB300\uC0C1\uC5D0\uAC8C {DMG3}\uC758 \uD53C\uD574\uB97C
     \uC8FC\uACE0, 1\uD134 \uB3D9\uC548 \uAE30\uC808\uC2DC\uD0B5\uB2C8\uB2E4."
+  useConditions: []
   specialcardCondition: {fileID: 0}
   effects:
   - time: 0

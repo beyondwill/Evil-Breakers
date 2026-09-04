@@ -10,22 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 327a586e37455eb4e8d2172a10120307, type: 3}
-  m_Name: "\uBC29\uC5B4"
+  m_Name: "\uBB34\uD55C\uD55C \uC0AC\uB791"
   m_EditorClassIdentifier: 
-  data_code: "\uBC29\uC5B4"
-  characterClass: 1
+  data_code: "\uBB34\uD55C\uD55C \uC0AC\uB791"
+  characterClass: 3
   cardType: 2
   cardTarget: 0
   cardRarity: 1
   cardPeriod: 1
-  card_image: {fileID: 21300000, guid: 98e3fc51a5b582d468c097c6da6f0c85, type: 3}
-  card_name: "\uBC29\uC5B4"
+  card_image: {fileID: 21300000, guid: 6ae412e3ccae41e46809c909dde1dbb1, type: 3}
+  card_name: "\uBB34\uD55C\uD55C \uC0AC\uB791"
   card_cost: 1
-  buy_card_cost: 100
-  sell_card_cost: 50
+  buy_card_cost: 200
+  sell_card_cost: 100
   useAccuracy: 1
   accuracy: 100
-  card_description: "\uC0C1\uB300\uC758 \uACF5\uACA9 \uB370\uBBF8\uC9C0\uB97C \uB9C9\uC2B5\uB2C8\uB2E4."
+  card_description: "\uC774\uBC88 \uD134 \uB3D9\uC548 \uD1A0\uB07C\uAC00 \uACF5\uACA9\uC744
+    \uB300\uC2E0 \uB9DE\uC2B5\uB2C8\uB2E4. \uD1A0\uB07C\uAC00 \uBC29\uC5B4\uB825\uC744
+    3\uB9CC\uD07C \uC5BB\uC2B5\uB2C8\uB2E4."
   useConditions: []
   specialcardCondition: {fileID: 0}
   effects: []

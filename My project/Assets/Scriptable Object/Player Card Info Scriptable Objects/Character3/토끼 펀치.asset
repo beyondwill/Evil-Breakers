@@ -10,22 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 327a586e37455eb4e8d2172a10120307, type: 3}
-  m_Name: "\uBC29\uC5B4"
+  m_Name: "\uD1A0\uB07C \uD380\uCE58"
   m_EditorClassIdentifier: 
-  data_code: "\uBC29\uC5B4"
-  characterClass: 1
-  cardType: 2
-  cardTarget: 0
+  data_code: "\uD1A0\uB07C \uD380\uCE58"
+  characterClass: 3
+  cardType: 1
+  cardTarget: 2
   cardRarity: 1
   cardPeriod: 1
-  card_image: {fileID: 21300000, guid: 98e3fc51a5b582d468c097c6da6f0c85, type: 3}
-  card_name: "\uBC29\uC5B4"
+  card_image: {fileID: 21300000, guid: f65cbc11cd194ae4a9f5f9f77267ac66, type: 3}
+  card_name: "\uD1A0\uB07C \uD380\uCE58"
   card_cost: 1
-  buy_card_cost: 100
-  sell_card_cost: 50
+  buy_card_cost: 200
+  sell_card_cost: 100
   useAccuracy: 1
   accuracy: 100
-  card_description: "\uC0C1\uB300\uC758 \uACF5\uACA9 \uB370\uBBF8\uC9C0\uB97C \uB9C9\uC2B5\uB2C8\uB2E4."
+  card_description: "\uD1A0\uB07C\uAC00 \uB2E8\uC77C \uB300\uC0C1\uC5D0\uAC8C {DMG10}\uC758
+    \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
   useConditions: []
   specialcardCondition: {fileID: 0}
   effects: []

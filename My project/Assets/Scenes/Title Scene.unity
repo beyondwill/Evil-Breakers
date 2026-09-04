@@ -1307,6 +1307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tableName: UI_Text
   targetLanguage: 0
+  dynamicScanInterval: 0.1
 --- !u!1 &1098056268
 GameObject:
   m_ObjectHideFlags: 0

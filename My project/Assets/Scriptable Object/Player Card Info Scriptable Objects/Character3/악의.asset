@@ -10,30 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 327a586e37455eb4e8d2172a10120307, type: 3}
-  m_Name: "\uC804\uD22C\uD0DC\uC138"
+  m_Name: "\uC545\uC758"
   m_EditorClassIdentifier: 
-  data_code: "\uC804\uD22C\uD0DC\uC138"
-  characterClass: 1
+  data_code: "\uC545\uC758"
+  characterClass: 3
   cardType: 2
-  cardTarget: 0
+  cardTarget: 2
   cardRarity: 1
   cardPeriod: 1
-  card_image: {fileID: 21300000, guid: 491f19ef039b60e41b6caa09b5237c11, type: 3}
-  card_name: "\uC804\uD22C\uD0DC\uC138"
+  card_image: {fileID: 21300000, guid: f0e7140798cb38d4e8d2936a9b13b763, type: 3}
+  card_name: "\uC545\uC758"
   card_cost: 1
-  buy_card_cost: 200
-  sell_card_cost: 100
+  buy_card_cost: 300
+  sell_card_cost: 150
   useAccuracy: 1
-  accuracy: 100
-  card_description: "2\uD134 \uB3D9\uC548 \uACF5\uACA9\uB825\uC744 5\uB9CC\uD07C
-    \uC5BB\uC2B5\uB2C8\uB2E4."
+  accuracy: 90
+  card_description: "\uB2E8\uC77C \uB300\uC0C1\uC744 1\uD134 \uB3D9\uC548 \uAE30\uC808\uC2DC\uD0B5\uB2C8\uB2E4."
   useConditions: []
   specialcardCondition: {fileID: 0}
   effects:
   - time: 0
-    visual: {fileID: 11400000, guid: 21a197e8d9dc4e342970c5593df90a57, type: 2}
-    effect: {fileID: 11400000, guid: fff0c5aec57d3e546834e8a2b59e96fd, type: 2}
-    valueList: 05000000
+    visual: {fileID: 11400000, guid: 337536cdfdccfce4d9fe972337715c73, type: 2}
+    effect: {fileID: 11400000, guid: 0243dcb6d7ca7004c97287fa3488a97f, type: 2}
+    valueList: 01000000
     floatValueList: []
     dataEntity: {fileID: 0}
     condition: {fileID: 0}

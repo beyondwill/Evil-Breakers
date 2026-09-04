@@ -20,14 +20,3 @@ index,CardName,CardClass,CardGrade,CardType,CardPeriod,CardTarget,CardAccuracy,A
 18,반격,Character2,Normal,Skill,Repeat,None,85,2,200,100,상대의 다음 공격을 회피하고 반격합니다.
 19,올려치기,Character2,Normal,Attack,Repeat,Enemy,105,2,200,100,"단일 대상에게 {DMG5}의 피해를 줍니다. 상대방이 약화 상태일 경우, 피해를 줍니다."
 20,명상,Character2,Normal,Skill,Repeat,None,100,1,300,150,3턴 동안 공격력을 2만큼 얻습니다.
-21,토끼 마술,Character3,Normal,Skill,Repeat,None,100,1,100,50,"토끼 인형을 소환합니다. 인형이 소환된 상태라면, 인형의 방어력이 3 증가합니다."
-22,포옹,Character3,Normal,Skill,Repeat,None,100,1,100,50,토끼 인형의 공격력이 5만큼 상승합니다.
-23,무한한 사랑,Character3,Normal,Skill,Repeat,None,100,1,200,100,이번 턴 동안 토끼가 공격을 대신 맞습니다. 토끼가 방어력을 3만큼 얻습니다.
-24,조정,Character3,Normal,Skill,Repeat,None,100,2,200,100,속도를 2만큼 얻습니다.
-25,토끼 펀치,Character3,Normal,Attack,Repeat,Enemy,100,1,200,100,토끼가 단일 대상에게 {DMG10}의 피해를 줍니다.
-26,지면 강타,Character3,Normal,Attack,Repeat,None,90,2,300,150,"토끼가 모든 적에게 {DMG5}의 피해를 주고, 속도를 2만큼 낮춥니다."
-27,수선,Character3,Normal,Skill,Repeat,None,100,1,100,50,토끼의 체력을 50만큼 회복시킵니다.
-28,염동력,Character3,Normal,Attack,Repeat,Enemy,100,1,200,100,단일 대상에게 {DMG10}의 피해를 줍니다.
-29,생명 공유,Character3,Normal,Skill,Repeat,None,100,2,200,100,토끼의 체력이 절반으로 줄어듭니다. 줄어든 체력만큼 주인의 생명력을 회복시킵니다.
-30,악의,Character3,Normal,Skill,Repeat,Enemy,90,1,300,150,단일 대상을 1턴 동안 기절시킵니다.
-,,,,,,,,,,,

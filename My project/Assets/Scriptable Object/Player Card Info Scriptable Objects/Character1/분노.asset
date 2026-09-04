@@ -19,13 +19,14 @@ MonoBehaviour:
   cardRarity: 1
   cardPeriod: 1
   card_image: {fileID: 21300000, guid: 3a14b8c8e55e49c449e13a49c0a1f944, type: 3}
-  card_name: CARD_RAGE_NAME
+  card_name: "\uBD84\uB178"
   card_cost: 1
   buy_card_cost: 200
   sell_card_cost: 100
   useAccuracy: 1
   accuracy: 90
-  card_description: CARD_RAGE_SCRIPT
+  card_description: "\uB2E8\uC77C \uB300\uC0C1\uC5D0\uAC8C {DMG5}\uC758 \uD53C\uD574\uB97C
+    3\uBC88 \uC90D\uB2C8\uB2E4."
   useConditions: []
   specialcardCondition: {fileID: 11400000, guid: cc085f60df948cc46a14818c9445908e, type: 2}
   effects:
