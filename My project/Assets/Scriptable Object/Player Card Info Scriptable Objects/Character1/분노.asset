@@ -28,7 +28,7 @@ MonoBehaviour:
   card_description: "\uB2E8\uC77C \uB300\uC0C1\uC5D0\uAC8C {DMG5}\uC758 \uD53C\uD574\uB97C
     3\uBC88 \uC90D\uB2C8\uB2E4."
   useConditions: []
-  specialcardCondition: {fileID: 11400000, guid: cc085f60df948cc46a14818c9445908e, type: 2}
+  specialcardCondition: {fileID: 0}
   effects:
   - time: 0
     visual: {fileID: 11400000, guid: cf5ff3604a947944a8cfe930106493a5, type: 2}
