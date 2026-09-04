@@ -43,6 +43,18 @@ public class QuickLocalizationSetup : MonoBehaviour
 
 
     // =========================================================
+    // 런타임 새 TMP 검색 설정
+    // =========================================================
+
+    [Header("런타임 TMP 자동 검색")]
+    [SerializeField]
+    private float dynamicScanInterval = 0.1f;
+
+
+    private float dynamicScanTimer = 0f;
+
+
+    // =========================================================
     // 초기화
     // =========================================================
 
@@ -95,6 +107,37 @@ public class QuickLocalizationSetup : MonoBehaviour
 
 
     // =========================================================
+    // Update
+    // =========================================================
+    //
+    // 런타임에서 Instantiate 된 TMP를 자동으로 발견한다.
+    //
+    // 기존에 등록된 TMP는 Dictionary에 있으므로
+    // 다시 번역하지 않는다.
+    //
+    // =========================================================
+
+    private void Update()
+    {
+        if (!isInitialized)
+            return;
+
+
+        dynamicScanTimer +=
+            Time.unscaledDeltaTime;
+
+
+        if (dynamicScanTimer >= dynamicScanInterval)
+        {
+            dynamicScanTimer = 0f;
+
+
+            ScanNewTexts();
+        }
+    }
+
+
+    // =========================================================
     // Localization 초기화
     // =========================================================
 
@@ -122,6 +165,10 @@ public class QuickLocalizationSetup : MonoBehaviour
                      .AvailableLocales
                      .Locales)
         {
+            if (locale == null)
+                continue;
+
+
             string code =
                 locale.Identifier.Code;
 
@@ -226,7 +273,6 @@ public class QuickLocalizationSetup : MonoBehaviour
     // 기존 TMP 검색
     // =========================================================
     //
-    // 중요:
     // FindObjectsInactive.Include를 사용해서
     // SetActive(false) 상태의 UI도 검색한다.
     //
@@ -298,10 +344,86 @@ public class QuickLocalizationSetup : MonoBehaviour
 
 
     // =========================================================
+    // 새로 생성된 TMP 검색
+    // =========================================================
+    //
+    // Update()에서 일정 시간마다 호출된다.
+    //
+    // 이미 localizedTexts에 들어있는 TMP는 무시한다.
+    //
+    // =========================================================
+
+    private void ScanNewTexts()
+    {
+        TextMeshProUGUI[] texts =
+            FindObjectsByType<TextMeshProUGUI>(
+                FindObjectsInactive.Include,
+                FindObjectsSortMode.None
+            );
+
+
+        foreach (var tmp in texts)
+        {
+            if (tmp == null)
+                continue;
+
+
+            // =================================================
+            // 이미 등록된 TMP
+            // =================================================
+
+            if (localizedTexts.ContainsKey(tmp))
+                continue;
+
+
+            string currentText =
+                tmp.text;
+
+
+            // =================================================
+            // 아직 텍스트가 없는 TMP
+            // =================================================
+
+            if (string.IsNullOrEmpty(currentText))
+                continue;
+
+
+            // =================================================
+            // Localization 오류 문자열
+            // =================================================
+
+            if (currentText.Contains(
+                    "No translation found"))
+                continue;
+
+
+            // =================================================
+            // 새 TMP 발견
+            // =================================================
+
+            Debug.Log(
+                $"[Localization] 새 TMP 발견: " +
+                $"{tmp.gameObject.name} / " +
+                $"Key = {currentText}"
+            );
+
+
+            RegisterText(
+                tmp,
+                currentText
+            );
+        }
+
+
+        CleanupNullReferences();
+    }
+
+
+    // =========================================================
     // 동적 TMP 등록
     // =========================================================
     //
-    // 런타임에서 TMP를 생성한 경우:
+    // 런타임에서 TMP를 생성한 경우에도 사용 가능:
     //
     // QuickLocalizationSetup.Instance.RegisterText(
     //     tmp,
@@ -614,6 +736,10 @@ public class QuickLocalizationSetup : MonoBehaviour
                      .AvailableLocales
                      .Locales)
         {
+            if (locale == null)
+                continue;
+
+
             string code =
                 locale.Identifier.Code;
 
@@ -801,7 +927,10 @@ public class QuickLocalizationSetup : MonoBehaviour
         );
 
 
+        // =====================================================
         // 새 씬의 TMP 검색
+        // =====================================================
+
         if (isInitialized)
         {
             StartCoroutine(

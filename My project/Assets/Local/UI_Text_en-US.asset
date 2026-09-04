@@ -33,7 +33,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 552696985718784
-    m_Localized: ' Deal {DMG10} damage to an enemy 3 times.'
+    m_Localized: Deal {DMG10} damage to an enemy 3 times.
     m_Metadata:
       m_Items: []
   - m_Id: 754711196110848
@@ -102,6 +102,467 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4474762315206656
     m_Localized: Fuyuka
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844683476992
+    m_Localized: World Map
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844733808640
+    m_Localized: South Korea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844733808641
+    m_Localized: Seoul
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844733808642
+    m_Localized: Busan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844733808643
+    m_Localized: Gyeonggi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844733808644
+    m_Localized: Gangwon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844733808645
+    m_Localized: Gyeongsang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002944
+    m_Localized: Jeolla
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002945
+    m_Localized: Chungcheong
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002946
+    m_Localized: Jeju
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002947
+    m_Localized: United States
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002948
+    m_Localized: Washington
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002949
+    m_Localized: New York
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002950
+    m_Localized: Seattle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002951
+    m_Localized: Los Angeles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002952
+    m_Localized: Texas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002953
+    m_Localized: San Francisco
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002954
+    m_Localized: Chicago
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002955
+    m_Localized: Europe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002956
+    m_Localized: Romania
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002957
+    m_Localized: Germany
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002958
+    m_Localized: United Kingdom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002959
+    m_Localized: France
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002960
+    m_Localized: Russia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002961
+    m_Localized: Poland
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002962
+    m_Localized: Sweden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002963
+    m_Localized: Japan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002964
+    m_Localized: Tokyo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002965
+    m_Localized: Kyoto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002966
+    m_Localized: Osaka
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002967
+    m_Localized: Sapporo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844738002968
+    m_Localized: Fukuoka
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197248
+    m_Localized: Yokohama
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197249
+    m_Localized: Nara
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197250
+    m_Localized: China
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197251
+    m_Localized: Beijing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197252
+    m_Localized: Qingdao
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197253
+    m_Localized: Shanghai
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197254
+    m_Localized: Xi'an
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197255
+    m_Localized: Chengdu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197256
+    m_Localized: Guangzhou
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197257
+    m_Localized: Tianjin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197258
+    m_Localized: Character
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197259
+    m_Localized: Training Room
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197260
+    m_Localized: Card
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197261
+    m_Localized: Shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197262
+    m_Localized: Maintenance Room
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197263
+    m_Localized: Anomaly Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197264
+    m_Localized: Deploy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197265
+    m_Localized: D - 50
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197266
+    m_Localized: 'Episode_1: The Beginning of the Mystery'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197267
+    m_Localized: 'Episode_2: The Beginning of the Mystery'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197268
+    m_Localized: 'Episode_3: The Beginning of the Mystery'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197269
+    m_Localized: 'Episode_4: The Beginning of the Mystery'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197270
+    m_Localized: 'Episode_5: The Beginning of the Mystery'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197271
+    m_Localized: 'Episode_6: The Beginning of the Mystery'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844742197272
+    m_Localized: Human Casualties
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391552
+    m_Localized: Missing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391553
+    m_Localized: Anomaly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391554
+    m_Localized: Infection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391555
+    m_Localized: Frenzy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391556
+    m_Localized: Mental Disorder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391557
+    m_Localized: Anomaly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391558
+    m_Localized: Enter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391559
+    m_Localized: Sophia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391560
+    m_Localized: Sage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391561
+    m_Localized: Jeon Woo-chi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391562
+    m_Localized: Hyun Seol-ah
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391563
+    m_Localized: Leon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391564
+    m_Localized: Akane
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391565
+    m_Localized: Stella
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391566
+    m_Localized: "\uD604\uC2DC\uC724"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391567
+    m_Localized: "\uD6C4\uC720\uCE74"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391568
+    m_Localized: "\uD074\uB85C\uC774"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391569
+    m_Localized: Qi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391570
+    m_Localized: Faith
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391571
+    m_Localized: Spiritual Power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844746391572
+    m_Localized: Superpower
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585856
+    m_Localized: Physical Force
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585857
+    m_Localized: Cosmic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585858
+    m_Localized: Chaos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585859
+    m_Localized: An ordinary college student who loves martial arts.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585860
+    m_Localized: She may seem cold and aloof, but she has a warm heart.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585861
+    m_Localized: A playful and adorable girl.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585862
+    m_Localized: A devout and kind-hearted nun.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585863
+    m_Localized: A strict-looking but open-minded onmyoji.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585864
+    m_Localized: A Taoist who longs for freedom.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585865
+    m_Localized: Kind and gentle, but terrifyingly powerful.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585866
+    m_Localized: He is serious and taciturn, making it difficult to tell what he
+      is thinking.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585867
+    m_Localized: A gifted astrologer whose predictions have never been wrong.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585868
+    m_Localized: She looks harmless, but she is remarkably skilled.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585869
+    m_Localized: "\uC8FC\uC778\uACF5\uC785\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585870
+    m_Localized: "\uC8FC\uC778\uACF5\uC785\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585871
+    m_Localized: "\uC8FC\uC778\uACF5\uC785\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585872
+    m_Localized: "\uC8FC\uC778\uACF5\uC785\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585873
+    m_Localized: "\uC8FC\uC778\uACF5\uC785\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585874
+    m_Localized: "\uC8FC\uC778\uACF5\uC785\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585875
+    m_Localized: "\uC8FC\uC778\uACF5\uC785\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585876
+    m_Localized: "\uC8FC\uC778\uACF5\uC785\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585877
+    m_Localized: "\uC8FC\uC778\uACF5\uC785\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585878
+    m_Localized: "\uC8FC\uC778\uACF5\uC785\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585879
+    m_Localized: "\uC8FC\uC778\uACF5\uC785\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844750585880
+    m_Localized: "\uC8FC\uC778\uACF5\uC785\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844754780160
+    m_Localized: "\uC8FC\uC778\uACF5\uC785\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844754780161
+    m_Localized: "\uC8FC\uC778\uACF5\uC785\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844754780162
+    m_Localized: "\uC8FC\uC778\uACF5\uC785\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844754780163
+    m_Localized: Incident List
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844754780164
+    m_Localized: Anomaly Discovered on Jangsan Mountain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844754780165
+    m_Localized: Water Ghost Spotted Near the Nakdong River
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844754780166
+    m_Localized: Murder Reported in the Industrial Complex
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844754780167
+    m_Localized: Disappearance Reported on Geumjeongsan Mountain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844754780168
+    m_Localized: Mysterious Infection Reported at North Port
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844754780169
+    m_Localized: 'Mission Objective: Investigate the Anomaly'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844767363072
+    m_Localized: 
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4681844767363073
+    m_Localized: 
     m_Metadata:
       m_Items: []
   references:

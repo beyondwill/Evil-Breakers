@@ -1,0 +1,25 @@
+﻿Key,Id,Korean (South Korea)(ko-KR),English (United States)(en-US),Japanese (Japan)(ja-JP),Chinese (Simplified)(zh-CN),Chinese (Traditional)(zh-TW)
+"GAME_TITLE",1093836771328,"이블
+브레이커스","Evil
+Breakers","イービル・
+ブレイカーズ","邪恶粉碎者","邪惡粉碎者"
+"NEW_START",7152995438592,"새로 시작","new start","시작",,
+"CARD_RAGE_NAME",13748819496960,"분노","Rage",,,
+"CARD_RAGE_SCRIPT",552696985718784,"단일 대상에게 {DMG10}의 피해를 3번 줍니다."," Deal {DMG10} damage to an enemy 3 times.","d","d","d"
+"OPTION_TITLE",754711196110848,"옵션","Option",,,
+"OPTION_GRAPHIC",754920781287424,"그래픽 설정","Graphic Setting",,,
+"OPTION_SOUND",755046132256768,"사운드 설정","Sound Setting",,,
+"OPTION_SOUND_MASTER",755105288720384,"마스터 볼륨","Master Volume",,,
+"OPTION_SOUND_BGM",755161123295232,"배경 음악","Background",,,
+"OPTION_SOUND_VOICE",755165820915712,"캐릭터 음성","Voice",,,
+"OPTION_SOUND_SFX",755167632855040,"효과음","SFX",,,
+"OPTION_LANGUAGE",755727056539648,"언어","Language",,,
+"CardType_Attack",2227136077160448,"공격","Attack",,,
+"CardType_Skill",2228383765159936,"스킬","Skill",,,
+"Accuracy",2229192221450240,"명중률","Accuracy",,,
+"CHARACTER_MONSTER_SHADOW",2258747850153984,"검은 신사","Shadowman",,,
+"RED_HAIR_CANTSTARTCARD1",2259425146363904,"너 진짜 역겹구나.","U R SO disgusting.",,,
+"RED_HAIR_INVALIDTARGET1",2259761361772544,"이딴게 지휘관?","Do you have a brain?",,,
+"10001",4474760578764800,"현시윤","Hyun Si-yoon",,,
+"10002",4474762315206656,"후유카","Fuyuka",,,
+"10003",4474798457524224,"클로이","Chloe",,,
