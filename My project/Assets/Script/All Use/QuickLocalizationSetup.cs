@@ -10,10 +10,8 @@ public class QuickLocalizationSetup : MonoBehaviour
 {
     public static QuickLocalizationSetup Instance { get; private set; }
 
-
     [SerializeField]
     private string tableName = "UI_Text";
-
 
     public enum TargetLanguage
     {
@@ -24,15 +22,31 @@ public class QuickLocalizationSetup : MonoBehaviour
         ChineseTraditional
     }
 
-
     [Header("게임 시작 시 적용할 언어")]
     [SerializeField]
-    private TargetLanguage targetLanguage =
-        TargetLanguage.English;
+    private TargetLanguage targetLanguage = TargetLanguage.English;
 
+    // =========================================================
+    // 언어별 TMP Font Asset
+    // =========================================================
+
+    [Header("언어별 TMP Font Asset")]
+    [SerializeField] private TMP_FontAsset koreanFont;
+    [SerializeField] private TMP_FontAsset englishFont;
+    [SerializeField] private TMP_FontAsset japaneseFont;
+    [SerializeField] private TMP_FontAsset chineseSimplifiedFont;
+    [SerializeField] private TMP_FontAsset chineseTraditionalFont;
+
+    // =========================================================
+    // Localization에서 완전히 제외할 TMP
+    // =========================================================
+
+    [Header("Localization에서 제외할 TMP")]
+    [SerializeField]
+    private List<TextMeshProUGUI> excludedTexts =
+        new List<TextMeshProUGUI>();
 
     private bool isInitialized = false;
-
 
     // =========================================================
     // TMP → Localization Key
@@ -41,32 +55,22 @@ public class QuickLocalizationSetup : MonoBehaviour
     private Dictionary<TextMeshProUGUI, string> localizedTexts =
         new Dictionary<TextMeshProUGUI, string>();
 
-
     // =========================================================
     // TMP → 마지막으로 Localization 시스템이 적용한 문자열
-    //
-    // 이걸 이용해서
-    //
-    // tmp.text = "CARD_FIRE_NAME"
-    //
-    // 처럼 외부 코드가 TMP를 변경했는지 감지한다.
     // =========================================================
 
     private Dictionary<TextMeshProUGUI, string> lastLocalizedValues =
         new Dictionary<TextMeshProUGUI, string>();
 
-
     // =========================================================
-    // 런타임 새 TMP 검색 설정
+    // 런타임 TMP 자동 검색
     // =========================================================
 
     [Header("런타임 TMP 자동 검색")]
     [SerializeField]
     private float dynamicScanInterval = 0.1f;
 
-
     private float dynamicScanTimer = 0f;
-
 
     // =========================================================
     // 초기화
@@ -81,56 +85,37 @@ public class QuickLocalizationSetup : MonoBehaviour
             return;
         }
 
-
         Instance = this;
-
 
         DontDestroyOnLoad(gameObject);
 
-
         // 씬 전환 감지
-        SceneManager.sceneLoaded +=
-            OnSceneLoaded;
-
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
         // 언어 변경 감지
         LocalizationSettings.SelectedLocaleChanged +=
             OnLanguageChanged;
-
 
         StartCoroutine(
             InitializeLocalizationSequence()
         );
     }
 
-
     private void OnDestroy()
     {
         if (Instance == this)
         {
-            SceneManager.sceneLoaded -=
-                OnSceneLoaded;
-
+            SceneManager.sceneLoaded -= OnSceneLoaded;
 
             LocalizationSettings.SelectedLocaleChanged -=
                 OnLanguageChanged;
-
 
             Instance = null;
         }
     }
 
-
     // =========================================================
     // Update
-    // =========================================================
-    //
-    // 1. 이미 등록된 TMP
-    //    → 매 프레임 text 변경 여부 확인
-    //
-    // 2. 새 TMP
-    //    → 0.1초마다 전체 검색
-    //
     // =========================================================
 
     private void Update()
@@ -138,31 +123,33 @@ public class QuickLocalizationSetup : MonoBehaviour
         if (!isInitialized)
             return;
 
-
-        // =====================================================
-        // 이미 등록된 TMP는 매 프레임 확인
-        // =====================================================
-
+        // 이미 등록된 TMP의 text 변경 감지
         CheckRegisteredTexts();
 
-
-        // =====================================================
-        // 새 TMP 검색은 0.1초마다
-        // =====================================================
-
+        // 새로운 TMP 검색
         dynamicScanTimer +=
             Time.unscaledDeltaTime;
-
 
         if (dynamicScanTimer >= dynamicScanInterval)
         {
             dynamicScanTimer = 0f;
 
-
             ScanNewTexts();
         }
     }
 
+    // =========================================================
+    // Localization 제외 TMP 확인
+    // =========================================================
+
+    private bool IsExcludedTMP(
+        TextMeshProUGUI tmp)
+    {
+        if (tmp == null)
+            return false;
+
+        return excludedTexts.Contains(tmp);
+    }
 
     // =========================================================
     // Localization 초기화
@@ -173,19 +160,13 @@ public class QuickLocalizationSetup : MonoBehaviour
         // Unity Localization 초기화 대기
         yield return LocalizationSettings.InitializationOperation;
 
-
         // 한 프레임 대기
         yield return null;
 
-
         string targetCode =
-            GetLanguageCode(
-                targetLanguage
-            );
-
+            GetLanguageCode(targetLanguage);
 
         bool found = false;
-
 
         foreach (var locale in
                  LocalizationSettings
@@ -195,10 +176,8 @@ public class QuickLocalizationSetup : MonoBehaviour
             if (locale == null)
                 continue;
 
-
             string code =
                 locale.Identifier.Code;
-
 
             if (code.Equals(
                     targetCode,
@@ -209,19 +188,15 @@ public class QuickLocalizationSetup : MonoBehaviour
                 LocalizationSettings.SelectedLocale =
                     locale;
 
-
                 found = true;
-
 
                 Debug.Log(
                     $"[Localization] 시작 언어 설정 완료: {code}"
                 );
 
-
                 break;
             }
         }
-
 
         if (!found &&
             LocalizationSettings
@@ -234,29 +209,26 @@ public class QuickLocalizationSetup : MonoBehaviour
                     .AvailableLocales
                     .Locales[0];
 
-
             Debug.LogWarning(
                 "[Localization] 일치하는 언어를 찾지 못해 기본 언어를 사용합니다."
             );
         }
-
 
         PlayerPrefs.SetString(
             "ForcedTargetLang",
             targetCode
         );
 
-
         PlayerPrefs.Save();
-
 
         isInitialized = true;
 
+        // 현재 언어 폰트 적용
+        ApplyFontToAllTexts(targetLanguage);
 
-        // 초기 씬에 이미 존재하는 TMP 검색
+        // 초기 씬 TMP 검색
         ScanExistingTexts();
     }
-
 
     // =========================================================
     // 언어 코드 매핑
@@ -270,27 +242,94 @@ public class QuickLocalizationSetup : MonoBehaviour
             case TargetLanguage.Korean:
                 return "ko";
 
-
             case TargetLanguage.English:
                 return "en";
-
 
             case TargetLanguage.Japanese:
                 return "ja";
 
-
             case TargetLanguage.ChineseSimplified:
                 return "zh-CN";
-
 
             case TargetLanguage.ChineseTraditional:
                 return "zh-TW";
         }
 
-
         return "en";
     }
 
+    // =========================================================
+    // 언어별 Font Asset 가져오기
+    // =========================================================
+
+    private TMP_FontAsset GetFont(
+        TargetLanguage language)
+    {
+        switch (language)
+        {
+            case TargetLanguage.Korean:
+                return koreanFont;
+
+            case TargetLanguage.English:
+                return englishFont;
+
+            case TargetLanguage.Japanese:
+                return japaneseFont;
+
+            case TargetLanguage.ChineseSimplified:
+                return chineseSimplifiedFont;
+
+            case TargetLanguage.ChineseTraditional:
+                return chineseTraditionalFont;
+        }
+
+        return englishFont;
+    }
+
+    // =========================================================
+    // 모든 TMP에 현재 언어 Font 적용
+    // =========================================================
+
+    private void ApplyFontToAllTexts(
+        TargetLanguage language)
+    {
+        TMP_FontAsset font =
+            GetFont(language);
+
+        if (font == null)
+        {
+            Debug.LogWarning(
+                $"[Localization] {language} Font Asset이 등록되지 않았습니다."
+            );
+
+            return;
+        }
+
+        TextMeshProUGUI[] texts =
+            FindObjectsByType<TextMeshProUGUI>(
+                FindObjectsInactive.Include,
+                FindObjectsSortMode.None
+            );
+
+        foreach (var tmp in texts)
+        {
+            if (tmp == null)
+                continue;
+
+            // =================================================
+            // 제외 TMP
+            // =================================================
+            // 폰트조차 변경하지 않는다.
+            if (IsExcludedTMP(tmp))
+                continue;
+
+            tmp.font = font;
+        }
+
+        Debug.Log(
+            $"[Localization] 전체 TMP Font 변경: {language}"
+        );
+    }
 
     // =========================================================
     // 기존 TMP 검색
@@ -304,25 +343,30 @@ public class QuickLocalizationSetup : MonoBehaviour
                 FindObjectsSortMode.None
             );
 
-
         foreach (var tmp in texts)
         {
             if (tmp == null)
                 continue;
 
+            // =================================================
+            // Localization 완전 제외
+            // =================================================
+
+            if (IsExcludedTMP(tmp))
+                continue;
 
             string currentText =
                 tmp.text;
 
-
             if (string.IsNullOrEmpty(currentText))
                 continue;
-
 
             if (currentText.Contains(
                     "No translation found"))
                 continue;
 
+            // 현재 언어 Font 적용
+            ApplyCurrentFont(tmp);
 
             // 이미 등록된 TMP
             if (localizedTexts.ContainsKey(tmp))
@@ -335,7 +379,6 @@ public class QuickLocalizationSetup : MonoBehaviour
                 continue;
             }
 
-
             // 처음 발견된 TMP
             RegisterText(
                 tmp,
@@ -343,19 +386,11 @@ public class QuickLocalizationSetup : MonoBehaviour
             );
         }
 
-
         CleanupNullReferences();
     }
 
-
     // =========================================================
     // 새 TMP 검색
-    // =========================================================
-    //
-    // 새로 Instantiate 된 TMP를 찾는다.
-    //
-    // 이 함수 자체는 0.1초마다 실행된다.
-    //
     // =========================================================
 
     private void ScanNewTexts()
@@ -366,32 +401,33 @@ public class QuickLocalizationSetup : MonoBehaviour
                 FindObjectsSortMode.None
             );
 
-
         foreach (var tmp in texts)
         {
             if (tmp == null)
                 continue;
 
+            // =================================================
+            // Localization 완전 제외
+            // =================================================
+
+            if (IsExcludedTMP(tmp))
+                continue;
 
             // 이미 등록된 TMP
             if (localizedTexts.ContainsKey(tmp))
                 continue;
 
-
             string currentText =
                 tmp.text;
-
 
             // 아직 텍스트가 없는 TMP
             if (string.IsNullOrEmpty(currentText))
                 continue;
 
-
             // Localization 오류 문자열
             if (currentText.Contains(
                     "No translation found"))
                 continue;
-
 
             Debug.Log(
                 $"[Localization] 새 TMP 발견: " +
@@ -399,39 +435,43 @@ public class QuickLocalizationSetup : MonoBehaviour
                 $"Key = {currentText}"
             );
 
-
             RegisterText(
                 tmp,
                 currentText
             );
         }
 
-
         CleanupNullReferences();
     }
 
+    // =========================================================
+    // 현재 언어 Font 적용
+    // =========================================================
+
+    private void ApplyCurrentFont(
+        TextMeshProUGUI tmp)
+    {
+        if (tmp == null)
+            return;
+
+        // 제외 TMP는 폰트도 변경하지 않는다.
+        if (IsExcludedTMP(tmp))
+            return;
+
+        TMP_FontAsset font =
+            GetFont(targetLanguage);
+
+        if (font == null)
+            return;
+
+        if (tmp.font != font)
+        {
+            tmp.font = font;
+        }
+    }
 
     // =========================================================
     // 등록된 TMP의 text 변경 감지
-    // =========================================================
-    //
-    // 중요!
-    //
-    // 이 함수는 Update()에서 매 프레임 실행된다.
-    //
-    // 예:
-    //
-    // 기존:
-    // CARD_FIRE_NAME
-    //
-    // 번역 결과:
-    // Fire
-    //
-    // 이후 다른 코드에서:
-    // CARD_ICE_NAME
-    //
-    // 으로 변경하면 즉시 감지한다.
-    //
     // =========================================================
 
     private void CheckRegisteredTexts()
@@ -441,58 +481,43 @@ public class QuickLocalizationSetup : MonoBehaviour
                 localizedTexts
             );
 
-
         foreach (var pair in textList)
         {
             TextMeshProUGUI tmp =
                 pair.Key;
 
-
             string key =
                 pair.Value;
-
 
             if (tmp == null)
                 continue;
 
+            // =================================================
+            // Localization 제외 TMP
+            // =================================================
+
+            if (IsExcludedTMP(tmp))
+                continue;
 
             if (string.IsNullOrEmpty(key))
                 continue;
 
+            // 현재 언어 Font가 아니라면 다시 적용
+            ApplyCurrentFont(tmp);
 
-            // =================================================
-            // 우리가 마지막으로 적용했던 번역 문자열
-            // =================================================
-
+            // 마지막으로 Localization이 적용한 값
             string lastValue = "";
-
 
             lastLocalizedValues.TryGetValue(
                 tmp,
                 out lastValue
             );
 
-
-            // =================================================
-            // 현재 TMP.text가
             // 우리가 마지막으로 넣었던 값과 같음
-            //
-            // → 정상 상태
-            // =================================================
-
             if (tmp.text == lastValue)
                 continue;
 
-
-            // =================================================
             // 아직 번역되지 않은 상태
-            //
-            // 예:
-            //
-            // tmp.text = "CARD_FIRE_NAME"
-            // key      = "CARD_FIRE_NAME"
-            // =================================================
-
             if (tmp.text == key)
             {
                 StartCoroutine(
@@ -505,43 +530,24 @@ public class QuickLocalizationSetup : MonoBehaviour
                 continue;
             }
 
-
-            // =================================================
-            // 여기까지 왔다면
-            //
-            // 다른 코드가 TMP.text를 변경한 것
-            // =================================================
-
+            // 다른 코드가 TMP.text를 변경한 경우
             string newKey =
                 tmp.text;
-
 
             if (string.IsNullOrEmpty(newKey))
                 continue;
 
-
             if (newKey.Contains(
                     "No translation found"))
                 continue;
-
 
             Debug.Log(
                 $"[Localization] TMP Key 변경 감지: " +
                 $"{key} → {newKey}"
             );
 
-
-            // =================================================
-            // 새로운 Key로 변경
-            // =================================================
-
             localizedTexts[tmp] =
                 newKey;
-
-
-            // =================================================
-            // 새 Key 번역
-            // =================================================
 
             StartCoroutine(
                 TranslateTextCoroutine(
@@ -551,10 +557,8 @@ public class QuickLocalizationSetup : MonoBehaviour
             );
         }
 
-
         CleanupNullReferences();
     }
-
 
     // =========================================================
     // 동적 TMP 등록
@@ -567,10 +571,21 @@ public class QuickLocalizationSetup : MonoBehaviour
         if (tmp == null)
             return;
 
+        // =====================================================
+        // Localization 완전 제외
+        // =====================================================
+
+        if (IsExcludedTMP(tmp))
+            return;
 
         if (string.IsNullOrEmpty(key))
             return;
 
+        // =====================================================
+        // 현재 언어 Font 적용
+        // =====================================================
+
+        ApplyCurrentFont(tmp);
 
         // =====================================================
         // Dictionary 등록
@@ -589,15 +604,12 @@ public class QuickLocalizationSetup : MonoBehaviour
                 key;
         }
 
-
         // =====================================================
-        // 초기화 전이면
-        // Dictionary에만 등록
+        // 초기화 전이면 Dictionary에만 등록
         // =====================================================
 
         if (!isInitialized)
             return;
-
 
         // =====================================================
         // 번역
@@ -611,7 +623,6 @@ public class QuickLocalizationSetup : MonoBehaviour
         );
     }
 
-
     // =========================================================
     // 번역 시도
     // =========================================================
@@ -623,14 +634,17 @@ public class QuickLocalizationSetup : MonoBehaviour
         if (tmp == null)
             return;
 
+        // 제외 TMP
+        if (IsExcludedTMP(tmp))
+            return;
 
         if (string.IsNullOrEmpty(key))
             return;
 
-
         if (!isInitialized)
             return;
 
+        ApplyCurrentFont(tmp);
 
         StartCoroutine(
             TranslateTextCoroutine(
@@ -639,7 +653,6 @@ public class QuickLocalizationSetup : MonoBehaviour
             )
         );
     }
-
 
     // =========================================================
     // 실제 비동기 번역
@@ -652,14 +665,21 @@ public class QuickLocalizationSetup : MonoBehaviour
         if (tmp == null)
             yield break;
 
+        // =====================================================
+        // Localization 완전 제외
+        // =====================================================
+
+        if (IsExcludedTMP(tmp))
+            yield break;
 
         if (string.IsNullOrEmpty(key))
             yield break;
 
-
         if (!isInitialized)
             yield break;
 
+        // 번역 시작 시 현재 언어 Font 적용
+        ApplyCurrentFont(tmp);
 
         var operation =
             LocalizationSettings
@@ -669,14 +689,14 @@ public class QuickLocalizationSetup : MonoBehaviour
                     key
                 );
 
-
         yield return operation;
 
-
-        // TMP가 번역 도중 파괴되었을 경우
         if (tmp == null)
             yield break;
 
+        // 번역 도중 제외된 경우
+        if (IsExcludedTMP(tmp))
+            yield break;
 
         // =====================================================
         // Operation 실패
@@ -694,14 +714,11 @@ public class QuickLocalizationSetup : MonoBehaviour
                 $"Table = {tableName}, Key = {key}"
             );
 
-
             yield break;
         }
 
-
         string localizedString =
             operation.Result;
-
 
         // =====================================================
         // 번역 결과 적용
@@ -712,14 +729,7 @@ public class QuickLocalizationSetup : MonoBehaviour
             !localizedString.Contains(
                 "No translation found"))
         {
-            // =================================================
-            // Dictionary Key이 현재 번역 요청 Key와
-            // 동일한지 확인
-            //
-            // 번역 요청 중 다른 Key로 바뀌었을 경우
-            // 오래된 번역 결과가 덮어쓰는 것을 방지
-            // =================================================
-
+            // 요청 중 Key가 변경됐는지 확인
             if (localizedTexts.TryGetValue(
                     tmp,
                     out string currentKey
@@ -729,24 +739,22 @@ public class QuickLocalizationSetup : MonoBehaviour
                     yield break;
             }
 
+            // 혹시 번역 도중 제외된 경우
+            if (IsExcludedTMP(tmp))
+                yield break;
 
-            // =================================================
+            // 혹시 번역 도중 언어가 변경됐을 경우
+            ApplyCurrentFont(tmp);
+
             // 실제 적용
-            // =================================================
-
             tmp.text =
                 localizedString;
 
-
-            // =================================================
             // 우리가 적용한 값 기록
-            // =================================================
-
             lastLocalizedValues[tmp] =
                 localizedString;
         }
     }
-
 
     // =========================================================
     // 외부 스크립트에서 Localization 문자열 가져오기
@@ -758,10 +766,8 @@ public class QuickLocalizationSetup : MonoBehaviour
         if (string.IsNullOrEmpty(key))
             return string.Empty;
 
-
         if (!isInitialized)
             return key;
-
 
         string localizedString =
             LocalizationSettings
@@ -771,7 +777,6 @@ public class QuickLocalizationSetup : MonoBehaviour
                     key
                 );
 
-
         if (string.IsNullOrEmpty(localizedString)
             ||
             localizedString.Contains(
@@ -780,10 +785,8 @@ public class QuickLocalizationSetup : MonoBehaviour
             return key;
         }
 
-
         return localizedString;
     }
-
 
     // =========================================================
     // 비동기 Localization 문자열 가져오기
@@ -799,10 +802,8 @@ public class QuickLocalizationSetup : MonoBehaviour
                 string.Empty
             );
 
-
             yield break;
         }
-
 
         if (!isInitialized)
         {
@@ -810,10 +811,8 @@ public class QuickLocalizationSetup : MonoBehaviour
                 key
             );
 
-
             yield break;
         }
-
 
         var operation =
             LocalizationSettings
@@ -823,9 +822,7 @@ public class QuickLocalizationSetup : MonoBehaviour
                     key
                 );
 
-
         yield return operation;
-
 
         if (operation.Status !=
             UnityEngine
@@ -838,14 +835,11 @@ public class QuickLocalizationSetup : MonoBehaviour
                 key
             );
 
-
             yield break;
         }
 
-
         string result =
             operation.Result;
-
 
         if (string.IsNullOrEmpty(result)
             ||
@@ -856,16 +850,13 @@ public class QuickLocalizationSetup : MonoBehaviour
                 key
             );
 
-
             yield break;
         }
-
 
         onComplete?.Invoke(
             result
         );
     }
-
 
     // =========================================================
     // 언어 변경
@@ -880,16 +871,11 @@ public class QuickLocalizationSetup : MonoBehaviour
                 "[Localization] 아직 초기화되지 않았습니다."
             );
 
-
             return;
         }
 
-
         string targetCode =
-            GetLanguageCode(
-                language
-            );
-
+            GetLanguageCode(language);
 
         foreach (var locale in
                  LocalizationSettings
@@ -899,10 +885,8 @@ public class QuickLocalizationSetup : MonoBehaviour
             if (locale == null)
                 continue;
 
-
             string code =
                 locale.Identifier.Code;
-
 
             if (code.Equals(
                     targetCode,
@@ -910,38 +894,43 @@ public class QuickLocalizationSetup : MonoBehaviour
                 ||
                 code.StartsWith(targetCode))
             {
-                LocalizationSettings.SelectedLocale =
-                    locale;
-
+                // =================================================
+                // 현재 언어 변경
+                // =================================================
 
                 targetLanguage =
                     language;
 
+                LocalizationSettings.SelectedLocale =
+                    locale;
+
+                // =================================================
+                // 언어 변경 즉시 Font 변경
+                // =================================================
+
+                ApplyFontToAllTexts(
+                    targetLanguage
+                );
 
                 PlayerPrefs.SetString(
                     "ForcedTargetLang",
                     targetCode
                 );
 
-
                 PlayerPrefs.Save();
-
 
                 Debug.Log(
                     $"[Localization] 언어 변경: {code}"
                 );
 
-
                 return;
             }
         }
-
 
         Debug.LogWarning(
             $"[Localization] 언어를 찾을 수 없습니다: {targetCode}"
         );
     }
-
 
     // =========================================================
     // 언어 변경 이벤트
@@ -953,20 +942,80 @@ public class QuickLocalizationSetup : MonoBehaviour
         if (!isInitialized)
             return;
 
-
         if (newLocale == null)
             return;
-
 
         Debug.Log(
             $"[Localization] 언어 변경 감지: " +
             $"{newLocale.Identifier.Code}"
         );
 
+        // =====================================================
+        // Locale에서 현재 TargetLanguage 갱신
+        // =====================================================
+
+        UpdateTargetLanguageFromLocale(
+            newLocale
+        );
+
+        // =====================================================
+        // 모든 TMP Font 변경
+        // =====================================================
+
+        ApplyFontToAllTexts(
+            targetLanguage
+        );
+
+        // =====================================================
+        // 모든 텍스트 갱신
+        // =====================================================
 
         RefreshAllTexts();
     }
 
+    // =========================================================
+    // Locale → TargetLanguage
+    // =========================================================
+
+    private void UpdateTargetLanguageFromLocale(
+        Locale locale)
+    {
+        if (locale == null)
+            return;
+
+        string code =
+            locale.Identifier.Code;
+
+        if (code.StartsWith("ko"))
+        {
+            targetLanguage =
+                TargetLanguage.Korean;
+        }
+        else if (code.StartsWith("en"))
+        {
+            targetLanguage =
+                TargetLanguage.English;
+        }
+        else if (code.StartsWith("ja"))
+        {
+            targetLanguage =
+                TargetLanguage.Japanese;
+        }
+        else if (code.Equals(
+                     "zh-CN",
+                     System.StringComparison.OrdinalIgnoreCase))
+        {
+            targetLanguage =
+                TargetLanguage.ChineseSimplified;
+        }
+        else if (code.Equals(
+                     "zh-TW",
+                     System.StringComparison.OrdinalIgnoreCase))
+        {
+            targetLanguage =
+                TargetLanguage.ChineseTraditional;
+        }
+    }
 
     // =========================================================
     // 모든 텍스트 갱신
@@ -979,24 +1028,29 @@ public class QuickLocalizationSetup : MonoBehaviour
                 localizedTexts
             );
 
-
         foreach (var pair in textList)
         {
             TextMeshProUGUI tmp =
                 pair.Key;
 
-
             string key =
                 pair.Value;
-
 
             if (tmp == null)
                 continue;
 
+            // =================================================
+            // Localization 완전 제외
+            // =================================================
+
+            if (IsExcludedTMP(tmp))
+                continue;
 
             if (string.IsNullOrEmpty(key))
                 continue;
 
+            // Font 적용
+            ApplyCurrentFont(tmp);
 
             StartCoroutine(
                 TranslateTextCoroutine(
@@ -1006,9 +1060,7 @@ public class QuickLocalizationSetup : MonoBehaviour
             );
         }
 
-
         CleanupNullReferences();
-
 
         // =====================================================
         // CardView 갱신
@@ -1020,17 +1072,14 @@ public class QuickLocalizationSetup : MonoBehaviour
                 FindObjectsSortMode.None
             );
 
-
         foreach (var cardView in cardViews)
         {
             if (cardView == null)
                 continue;
 
-
             cardView.RefreshLocalization();
         }
     }
-
 
     // =========================================================
     // 파괴된 TMP 정리
@@ -1040,7 +1089,6 @@ public class QuickLocalizationSetup : MonoBehaviour
     {
         List<TextMeshProUGUI> removeList =
             new List<TextMeshProUGUI>();
-
 
         foreach (var pair in localizedTexts)
         {
@@ -1052,11 +1100,9 @@ public class QuickLocalizationSetup : MonoBehaviour
             }
         }
 
-
         foreach (var tmp in removeList)
         {
             localizedTexts.Remove(tmp);
-
 
             if (lastLocalizedValues.ContainsKey(tmp))
             {
@@ -1064,7 +1110,6 @@ public class QuickLocalizationSetup : MonoBehaviour
             }
         }
     }
-
 
     // =========================================================
     // 씬 전환
@@ -1077,18 +1122,14 @@ public class QuickLocalizationSetup : MonoBehaviour
         // 이전 씬의 TMP 제거
         localizedTexts.Clear();
 
-
         lastLocalizedValues.Clear();
 
-
         dynamicScanTimer = 0f;
-
 
         Debug.Log(
             $"[Localization] 씬 변경 → Dictionary 초기화: " +
             $"{scene.name}"
         );
-
 
         if (isInitialized)
         {
@@ -1098,7 +1139,6 @@ public class QuickLocalizationSetup : MonoBehaviour
         }
     }
 
-
     // =========================================================
     // 씬 로딩 직후 검색
     // =========================================================
@@ -1107,13 +1147,15 @@ public class QuickLocalizationSetup : MonoBehaviour
     {
         // 새 씬의 Awake / OnEnable / Start가
         // 어느 정도 끝난 다음 검색
-
         yield return null;
 
+        // 새 씬 TMP에 현재 Font 적용
+        ApplyFontToAllTexts(
+            targetLanguage
+        );
 
         ScanExistingTexts();
     }
-
 
     // =========================================================
     // Dictionary 반환

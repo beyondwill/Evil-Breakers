@@ -3,7 +3,7 @@
   "main_data": {
     "player_character_data_list": [
       {
-        "player_character_info": "PlayerCharacter - 갈색머리",
+        "player_character_info": "10001",
         "player_character_level": 1,
         "current_health": 200,
         "current_stress": 0,
@@ -47,7 +47,7 @@
         ]
       },
       {
-        "player_character_info": "PlayerCharacter - 빨간머리",
+        "player_character_info": "10002",
         "player_character_level": 1,
         "current_health": 200,
         "current_stress": 0,
@@ -91,7 +91,7 @@
         ]
       },
       {
-        "player_character_info": "PlayerCharacter - 파란머리",
+        "player_character_info": "10003",
         "player_character_level": 1,
         "current_health": 200,
         "current_stress": 0,
@@ -226,7 +226,7 @@
     "zoneType": 0,
     "characters_in_battle_data_list": [
       {
-        "player_character_info": "PlayerCharacter - 파란머리",
+        "player_character_info": null,
         "player_character_level": 3,
         "current_health": 200,
         "current_stress": 76,

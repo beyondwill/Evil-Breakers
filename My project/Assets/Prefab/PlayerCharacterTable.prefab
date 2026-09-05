@@ -60,6 +60,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: a8c39598ec7d4f44cbbe5904f0aaebc0, type: 2}
     - {fileID: 11400000, guid: 5c92e3749e952e642b0aa131b1e52dd8, type: 2}
     - {fileID: 11400000, guid: cf476490280ba744f875b42302899584, type: 2}
+    - {fileID: 11400000, guid: 54bbd19ff036f4d41b306cc9666a113b, type: 2}
   ECT:
     dataList:
     - {fileID: 11400000, guid: 7c9f1399aea66ae47a79e44b9b47532b, type: 2}

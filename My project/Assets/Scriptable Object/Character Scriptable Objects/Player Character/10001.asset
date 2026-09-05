@@ -1,0 +1,166 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff707bace54e054b9aba9ca58e23710, type: 3}
+  m_Name: 10001
+  m_EditorClassIdentifier: 
+  data_code: 10001
+  attack_impossible: 0
+  character_name: 10001
+  character_id: 0
+  element: 5
+  characterClass: 1
+  character_story: 
+  character_full_art: {fileID: 21300000, guid: cd8142ce888d8154a8f41d34433afd60, type: 3}
+  character_icon: {fileID: 21300000, guid: 939e0d71a4ade2b41bc174649af605d9, type: 3}
+  icon_background_color: {r: 0.41419765, g: 0.34042364, b: 0.15686275, a: 1}
+  levelStatList:
+  - level: 0
+    statList:
+    - type: 0
+      value: 2
+    - type: 1
+      value: 200
+    - type: 2
+      value: 3
+    - type: 3
+      value: 5
+    - type: 4
+      value: 4
+    - type: 5
+      value: 0
+  - level: 1
+    statList:
+    - type: 0
+      value: 3
+    - type: 1
+      value: 200
+    - type: 2
+      value: 3
+    - type: 3
+      value: 5
+    - type: 4
+      value: 5
+    - type: 5
+      value: 0
+  - level: 2
+    statList:
+    - type: 0
+      value: 4
+    - type: 1
+      value: 200
+    - type: 2
+      value: 3
+    - type: 3
+      value: 5
+    - type: 4
+      value: 5
+    - type: 5
+      value: 0
+  - level: 3
+    statList:
+    - type: 0
+      value: 5
+    - type: 1
+      value: 200
+    - type: 2
+      value: 3
+    - type: 3
+      value: 5
+    - type: 4
+      value: 5
+    - type: 5
+      value: 0
+  - level: 4
+    statList:
+    - type: 0
+      value: 6
+    - type: 1
+      value: 200
+    - type: 2
+      value: 3
+    - type: 3
+      value: 5
+    - type: 4
+      value: 5
+    - type: 5
+      value: 0
+  - level: 5
+    statList:
+    - type: 0
+      value: 7
+    - type: 1
+      value: 200
+    - type: 2
+      value: 3
+    - type: 3
+      value: 5
+    - type: 4
+      value: 5
+    - type: 5
+      value: 0
+  characterBaseStatValues:
+  - type: 0
+    value: 0
+  - type: 0
+    value: 0
+  characterUpgradeBaseStatValues: []
+  passiveSkillList: []
+  dialogues:
+  - situation: 0
+    dialogue:
+    - "\uC774\uB7EC\uACE0 \uC788\uC744 \uC2DC\uAC04 \uC5C6\uC5B4!"
+    - "\uC790 \uAC00\uBCF4\uC790\uACE0!"
+    - "\uD55C\uD310 \uBD99\uC5B4\uBCFC\uAE4C \uC560\uC1A1\uC774?"
+  - situation: 1
+    dialogue:
+    - "\uB098 \uC880 \uB204\uC6CC\uC788\uC5B4\uC57C \uACA0\uC5B4..."
+    - "\uC880\uB9CC \uC26C\uBA74 \uC548 \uB420\uAE4C?"
+    - "\uC73C\uC545 \uB2E4\uB9AC\uAC00!"
+  - situation: 2
+    dialogue: []
+  - situation: 3
+    dialogue:
+    - "\uBAB8\uC774 \uADFC\uC9C8\uAC70\uB9AC\uB294\uAC78?"
+  - situation: 4
+    dialogue:
+    - "\uBAB8\uC774 \uADFC\uC9C8\uAC70\uB9AC\uB294\uAC78?"
+    - "\uC5EC\uAE30 \uC624\uB798 \uC788\uC744 \uC218 \uC5C6\uC5B4!"
+    - "\uC9C0\uD718\uAD00! \uBB50 \uD558\uB294 \uAC70\uC57C?"
+  - situation: 5
+    dialogue:
+    - "\uC73C\uC545 \uB108\uBB34\uC544\uD30C!"
+    - "\uC73C\uC544\uC544\uC544\uC544\uC559"
+    - "\uD750\uC5B4\uC5B4\uC5B4 \uB098 \uC544\uD30C!"
+  - situation: 6
+    dialogue: []
+  - situation: 7
+    dialogue:
+    - "\uC798\uBABB\uB41C \uB300\uC0C1\uC774\uC57C!"
+  - situation: 8
+    dialogue:
+    - "\uADF8\uAC74 \uBD88\uAC00\uB2A5\uD574!"
+  - situation: 9
+    dialogue:
+    - "\uC2EC\uC2EC\uD588\uB294\uB370 \uC5B4\uB514 \uB364\uBCBC\uBCF4\uB77C\uACE0!"
+  weaponItemDataList:
+  - {fileID: 11400000, guid: f0f6d46a6eabd4d4e83a7f339829a48c, type: 2}
+  - {fileID: 11400000, guid: ca4c07a18aca4b741800e036898dd0af, type: 2}
+  - {fileID: 11400000, guid: 034b2e927496d884a84e78d297c6277d, type: 2}
+  - {fileID: 11400000, guid: ea805e79b3dc9484eb0d97fe5c80e45c, type: 2}
+  - {fileID: 11400000, guid: 158d3657ece63ec439d2e610611a562d, type: 2}
+  armorItemDataList:
+  - {fileID: 11400000, guid: ca28b34e77031774d801b3f11feefe45, type: 2}
+  - {fileID: 11400000, guid: d03d5ee1209418847a238e18202eaa65, type: 2}
+  - {fileID: 11400000, guid: 8e89d5a504027c348b3d9febe81f3d3c, type: 2}
+  - {fileID: 11400000, guid: 7276ee2faf87b144ea42ff01c97574ce, type: 2}
+  - {fileID: 11400000, guid: 034b00d18c8786942bfdddf48cfa3c89, type: 2}
+  levelcolorList: []

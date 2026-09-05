@@ -49,7 +49,7 @@ public class CardDragController : MonoBehaviour
                 CardManager.Instance.GetCurrentCharacter();
 
             CV.characterView.Conversation(
-                CV.character_info.GetDialogue(
+                ((PlayerCharacterInfo)CV.character_info).GetDialogue(
                     Situation.CantStartCard
                 )
             );
@@ -185,7 +185,7 @@ public class CardDragController : MonoBehaviour
                     CardManager.Instance.GetCurrentCharacter();
 
                 CV.characterView.Conversation(
-                    CV.character_info.GetDialogue(
+                    ((PlayerCharacterInfo)CV.character_info).GetDialogue(
                         Situation.InvalidTarget
                     )
                 );

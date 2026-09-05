@@ -17,6 +17,9 @@ public class OptionManager : MonoBehaviour
     [Header("Language Buttons")]
     [SerializeField] private Button koreanButton;
     [SerializeField] private Button englishButton;
+    [SerializeField] private Button japaneseButton;
+    [SerializeField] private Button chineseButton;
+    [SerializeField] private Button taiwaneseButton;
 
 
     private void Start()
@@ -78,6 +81,15 @@ public class OptionManager : MonoBehaviour
 
         englishButton.onClick.AddListener(
             ChangeToEnglish);
+
+        japaneseButton.onClick.AddListener(
+            ChangeToJapanese);
+
+        chineseButton.onClick.AddListener(
+            ChangeToChinese);
+
+        taiwaneseButton.onClick.AddListener(
+            ChangeToTaiwanese);
     }
 
 
@@ -94,7 +106,6 @@ public class OptionManager : MonoBehaviour
 
             return;
         }
-
 
         QuickLocalizationSetup.Instance.ChangeLanguage(
             QuickLocalizationSetup.TargetLanguage.Korean);
@@ -115,9 +126,65 @@ public class OptionManager : MonoBehaviour
             return;
         }
 
-
         QuickLocalizationSetup.Instance.ChangeLanguage(
             QuickLocalizationSetup.TargetLanguage.English);
+    }
+
+
+    // =========================================================
+    // ìíÜâåÞ
+    // =========================================================
+
+    private void ChangeToJapanese()
+    {
+        if (QuickLocalizationSetup.Instance == null)
+        {
+            Debug.LogWarning(
+                "[OptionManager] QuickLocalizationSetupÀÌ ¾ø½À´Ï´Ù.");
+
+            return;
+        }
+
+        QuickLocalizationSetup.Instance.ChangeLanguage(
+            QuickLocalizationSetup.TargetLanguage.Japanese);
+    }
+
+
+    // =========================================================
+    // ñéÙþ
+    // =========================================================
+
+    private void ChangeToChinese()
+    {
+        if (QuickLocalizationSetup.Instance == null)
+        {
+            Debug.LogWarning(
+                "[OptionManager] QuickLocalizationSetupÀÌ ¾ø½À´Ï´Ù.");
+
+            return;
+        }
+
+        QuickLocalizationSetup.Instance.ChangeLanguage(
+            QuickLocalizationSetup.TargetLanguage.ChineseSimplified);
+    }
+
+
+    // =========================================================
+    // Ûåô÷ñéÙþ
+    // =========================================================
+
+    private void ChangeToTaiwanese()
+    {
+        if (QuickLocalizationSetup.Instance == null)
+        {
+            Debug.LogWarning(
+                "[OptionManager] QuickLocalizationSetupÀÌ ¾ø½À´Ï´Ù.");
+
+            return;
+        }
+
+        QuickLocalizationSetup.Instance.ChangeLanguage(
+            QuickLocalizationSetup.TargetLanguage.ChineseTraditional);
     }
 
 

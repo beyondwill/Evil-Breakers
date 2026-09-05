@@ -178,9 +178,9 @@ public class DamageEffect : CardEffect
 
 
                 if (target.character_info.element ==
-                    Element.Fire)
+                    Element.PHYSIC)
                 {
-                    toughnessDamage = 0.2f;
+                    toughnessDamage = 0f;
                 }
                 else
                 {

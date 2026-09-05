@@ -89,7 +89,7 @@ public class DamageAllEffect : CardEffect
                     -1
                 );
 
-                if (target.character_info.element == Element.Fire)
+                if (target.character_info.element == Element.PHYSIC)
                 {
                     toughnessDamage = 0.2f;
                 }

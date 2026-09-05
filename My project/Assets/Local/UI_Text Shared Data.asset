@@ -551,12 +551,16 @@ MonoBehaviour:
     m_Key: 70007
     m_Metadata:
       m_Items: []
-  - m_Id: 4681844767363072
-    m_Key: "Breakers,\u30A4\u30FC\u30D3\u30EB\u30FB"
+  - m_Id: 4791612538281984
+    m_Key: CONTINUE
     m_Metadata:
       m_Items: []
-  - m_Id: 4681844767363073
-    m_Key: "\u30D6\u30EC\u30A4\u30AB\u30FC\u30BA,\u90AA\u6076\u7C89\u788E\u8005,\u90AA\u60E1\u7C89\u788E\u8005"
+  - m_Id: 4791667760488448
+    m_Key: OPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4791675209572352
+    m_Key: EXIT
     m_Metadata:
       m_Items: []
   m_Metadata:

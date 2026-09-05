@@ -184,7 +184,7 @@ public class ConversationBoxUI : MonoBehaviour
 
 
         string conversation =
-            characterInfo.GetDialogue(situation);
+            ((PlayerCharacterInfo)characterInfo).GetDialogue(situation);
 
 
         if (string.IsNullOrEmpty(conversation))

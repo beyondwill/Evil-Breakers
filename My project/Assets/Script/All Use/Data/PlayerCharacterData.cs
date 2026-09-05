@@ -41,7 +41,7 @@ public class PlayerCharacterData
     public PlayerCharacterData(PlayerCharacterInfo info)
     {
         player_character_info = info;
-        current_health = 100;
+        current_health = (int)info.GetStatValue(CharacterBaseStatType.MaxHealth);
     }
 
     // 생성자 (복사용)

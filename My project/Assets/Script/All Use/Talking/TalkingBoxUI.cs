@@ -44,7 +44,7 @@ public class TalkingBoxUI : MonoBehaviour
             return;
 
         string conversation =
-            characterInfo.GetDialogue(situation);
+            ((PlayerCharacterInfo)characterInfo).GetDialogue(situation);
 
         Talking(conversation);
     }

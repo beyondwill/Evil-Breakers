@@ -80,9 +80,27 @@ public class BattleCharacterManager : MonoBehaviour
 
 
     private PlayerCharacterVariable CreatePlayerCharacter(
-        PlayerCharacterData data,
-        int index)
+    PlayerCharacterData data,
+    int index)
     {
+        if (data == null)
+        {
+            Debug.LogError(
+                $"[BattleCharacterManager] PlayerCharacterData가 NULL! index={index}"
+            );
+
+            return null;
+        }
+
+        if (data.player_character_info == null)
+        {
+            Debug.LogError(
+                $"[BattleCharacterManager] player_character_info가 NULL! index={index}"
+            );
+
+            return null;
+        }
+
         PlayerCharacterVariable character =
             new PlayerCharacterVariable(
                 data.player_character_info,
@@ -90,21 +108,10 @@ public class BattleCharacterManager : MonoBehaviour
                 data
             );
 
-
         character.originalPlayerCharacterData = data;
-
-
-        // ========================================
-        // 저장된 현재 체력 적용
-        // ========================================
 
         character.current_health =
             data.current_health;
-
-
-        // ========================================
-        // 덱 생성
-        // ========================================
 
         foreach (CardData cardData
                  in data.player_character_deck)
@@ -119,31 +126,10 @@ public class BattleCharacterManager : MonoBehaviour
                 continue;
             }
 
-
             character.deck_card_list.Add(
                 new CardVariable(cardData)
             );
         }
-
-
-        // ========================================
-        // 스탯 확인 로그
-        // ========================================
-
-        Debug.Log(
-            $"[캐릭터 생성] " +
-            $"{data.player_character_info.character_name} " +
-            $"Lv.{data.player_character_level}"
-        );
-
-        Debug.Log(
-            $"최대 체력 : {character.max_health}"
-        );
-
-        Debug.Log(
-            $"공격 순서 : {character.AttackOrder}"
-        );
-
 
         return character;
     }

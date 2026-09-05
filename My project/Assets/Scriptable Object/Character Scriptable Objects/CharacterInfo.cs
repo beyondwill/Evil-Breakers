@@ -12,16 +12,12 @@ public enum Situation
     MainNormal,
     MainHurt,
     MainStress,
-
     PartyFormation,
-
     BattleMapNormal,
     BattleMapHurt,
     BattleMapStress,
-
     CantStartCard,
     InvalidTarget,
-
     BattleStart,
 }
 
@@ -32,12 +28,14 @@ public enum Situation
 
 public enum Element
 {
-    None,
-    Light,
-    Shadow,
-    Water,
-    Fire,
-    Earth
+    None,               // 없음
+    QIGONG,             // 기공
+    BELIEF,             // 신앙
+    SPIRITPOWER,        // 영력
+    SUPERPOWER,         // 초능력
+    PHYSIC,             // 물리
+    SPACE,              // 우주
+    CHAOS               // 혼돈
 }
 
 
@@ -92,48 +90,29 @@ public class CharacterDialogue
 )]
 public class CharacterInfo : DataEntity
 {
-    // =====================================================
-    // 기본 정보
-    // =====================================================
-
+    [Header("캐릭터 기본 정보")]
+    public bool attack_impossible;    // 해당 캐릭터가 공격 가능한가
     public string character_name;
-
     public int character_id;
-
     public Element element;
-
     public CharacterClass characterClass;
 
-
+    [Header("UI")]
     [TextArea]
     public string character_story;
-
-
     public Sprite character_full_art;
-
     public Sprite character_icon;
-
     public Color icon_background_color = Color.black;
-
-
-    // =====================================================
-    // 레벨 스탯
-    // =====================================================
 
     public List<CharacterLevelStat> levelStatList = new();
 
+    public List<CharacterBaseStatValue> characterBaseStatValues = new();
+    public List<CharacterBaseStatValue> characterUpgradeBaseStatValues = new();
 
-    // =====================================================
     // 패시브
-    // =====================================================
-
     public List<PassiveSkillData> passiveSkillList = new();
 
-
-    // =====================================================
-    // 대화
-    // =====================================================
-
+    // 대화문
     public List<CharacterDialogue> dialogues = new();
 
 
@@ -177,11 +156,20 @@ public class CharacterInfo : DataEntity
         return stat.value;
     }
 
+    // 스탯 밸류 가져오기
+    public float GetStatValue(CharacterBaseStatType type, bool gozarani, int level = 0)
+    {
+        float value = 0f;
+        var stat = characterBaseStatValues.Find(x => x.type == type);
+        if (stat != null) { value = stat.value; }
+        var levelUpStat = characterUpgradeBaseStatValues.Find(x => x.type == type);
+        if (levelUpStat != null) { value += stat.value * level; }
 
-    // =====================================================
-    // 대화 가져오기
-    // =====================================================
+        return value;
+    }
 
+
+    // 대화문 가져오기
     public string GetDialogue(
         Situation situation)
     {

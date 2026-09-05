@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-#region Enum
+#region Stat
 
 // 불변 스탯
 public enum CharacterBaseStatType
@@ -18,7 +18,9 @@ public enum CharacterBaseStatType
     RESStun,            // 기절 저항
     RESConfusion,       // 혼란 저항
     RESCurse,           // 저주 저항
-    RESInfection        // 감염 저항
+    RESInfection,       // 감염 저항
+    DEF,                // 방어력
+    Dodge               // 회피율
 }
 
 

@@ -158,79 +158,102 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void CharacterInit(CharacterVariable CV)
     {
+        if (CV == null)
+        {
+            Debug.LogError("[CharacterView] CV가 NULL!");
+            return;
+        }
+
+        if (CV.character_info == null)
+        {
+            Debug.LogError(
+                $"[CharacterView] character_info가 NULL! 캐릭터:"
+            );
+            return;
+        }
+
+        if (health_bar_fill == null)
+        {
+            Debug.LogError("[CharacterView] health_bar_fill이 NULL!");
+            return;
+        }
+
+        if (character_image == null)
+        {
+            Debug.LogError("[CharacterView] character_image가 NULL!");
+            return;
+        }
+
+        if (health_bar_slider == null)
+        {
+            Debug.LogError("[CharacterView] health_bar_slider가 NULL!");
+            return;
+        }
+
+        if (health_bar_text == null)
+        {
+            Debug.LogError("[CharacterView] health_bar_text가 NULL!");
+            return;
+        }
+
+        if (character_name_text == null)
+        {
+            Debug.LogError("[CharacterView] character_name_text가 NULL!");
+            return;
+        }
+
         characterVariable = CV;
 
-        health_bar_fill.color = CV.character_info.icon_background_color;
+        health_bar_fill.color =
+            CV.character_info.icon_background_color;
 
         CV.characterView = this;
 
-
-        // 이벤트 구독
         characterVariable.OnHealthChanged +=
             HealthUpdate;
 
         characterVariable.OnDeath +=
             DeathAnimation;
 
-        // ⭐ 버프 변경 이벤트 구독
         characterVariable.OnBuffChanged +=
             ShowBuffIcons;
 
-
         gameObject.SetActive(true);
-
 
         character_image.sprite =
             CV.character_info.character_full_art;
 
-
         health_bar_slider.maxValue =
             CV.max_health;
 
-
         health_bar_slider.value =
             CV.current_health;
-
 
         health_bar_text.text =
             CV.current_health + "/" +
             CV.max_health;
 
-
         character_name_text.text =
             CV.character_info.character_name;
-
 
         targeting_info.choosed_index =
             CV.character_location_index;
 
-
         if (CV is PlayerCharacterVariable)
         {
-            selected_color =
-                Color.green;
-
-            targeting_info.is_player_choosed =
-                true;
-
+            selected_color = Color.green;
+            targeting_info.is_player_choosed = true;
             CharacterFlip(true);
         }
         else
         {
-            selected_color =
-                Color.red;
-
-            targeting_info.is_player_choosed =
-                false;
-
+            selected_color = Color.red;
+            targeting_info.is_player_choosed = false;
             CharacterFlip(false);
         }
 
-
-        // 현재 가지고 있는 버프도 한번 갱신
         ShowBuffIcons(
             characterVariable.statContainer.buffList);
-
 
         SetNameAlpha(0);
     }

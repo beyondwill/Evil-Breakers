@@ -30,4 +30,12 @@ MonoBehaviour:
     \uBC29\uC5B4\uB825\uC774 3 \uC99D\uAC00\uD569\uB2C8\uB2E4."
   useConditions: []
   specialcardCondition: {fileID: 0}
-  effects: []
+  effects:
+  - time: 0
+    visual: {fileID: 0}
+    effect: {fileID: 11400000, guid: 63ebea7a7bf7d414dab293eb17d1e093, type: 2}
+    valueList: 
+    floatValueList: []
+    dataEntity: {fileID: 11400000, guid: 54bbd19ff036f4d41b306cc9666a113b, type: 2}
+    condition: {fileID: 0}
+    AccuracyReset: 0

@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 0c30f43368c74844a867cb729c304db4
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Shin Retro Maru Gothic
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: e6965b4d50b66844696803f5ff52e716, type: 3}
+  - {fileID: 12800000, guid: bb1113ed3784e1943b34627c7f790dea, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
