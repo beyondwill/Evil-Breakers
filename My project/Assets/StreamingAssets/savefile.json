@@ -59,7 +59,6 @@
         "relicInfoList": [],
         "player_character_deck": [
           "올려치기",
-          "손목 부수기",
           "연속 내려치기",
           "내려치기",
           "머리깨기",
@@ -71,7 +70,8 @@
           "머리깨기",
           "명상",
           "물러서기",
-          "내려치기"
+          "내려치기",
+          "손목 부수기"
         ],
         "player_equipment_list": [
           {
@@ -156,8 +156,8 @@
     ],
     "equipmentInfoList": [
       "New Equipment Info 1",
-      "New Equipment Info 2",
-      "New Equipment Info 3"
+      "New Equipment Info 3",
+      "New Equipment Info 2"
     ],
     "mapDataList": [
       {
