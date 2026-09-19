@@ -6,11 +6,11 @@ using UnityEngine;
 public class CharacterVariable
 {
     // 변수
-    public CharacterInfo character_info;                        // 캐릭터 원본 데이터
-    public CharacterView characterView;                         // 캐릭터 뷰
-    public bool is_player_character = true;                     // 플레이어 캐릭터인가?
-    public int character_location_index = -1;                   // 캐릭터 위치 인덱스
-    public bool is_dead = false;                                // 캐릭터 사망 여부
+    public CharacterInfo character_info;
+    public CharacterView characterView;
+    public bool is_player_character = true;
+    public int character_location_index = -1;
+    public bool is_dead = false;
 
     // 스탯, 패시브
     public CharacterStatContainer statContainer = new();
@@ -19,11 +19,8 @@ public class CharacterVariable
 
     // 구독 이벤트
     public event Action<int, int> OnHealthChanged;
-
     public event Action<int, int> OnEnergyChanged;
-
     public event Action OnDeath;
-
     public event Action<List<CharacterBuffValue>> OnBuffChanged;
 
     // 현재 생명력
@@ -40,20 +37,15 @@ public class CharacterVariable
         {
             CharacterRuntimeStatValue stat =
                 statContainer.runtimeStatList.Find(
-                    x =>
-                        x.type ==
-                        CharacterRuntimeStatType.CurrentHealth
+                    x => x.type == CharacterRuntimeStatType.CurrentHealth
                 );
-
 
             if (stat == null)
             {
                 statContainer.runtimeStatList.Add(
                     new CharacterRuntimeStatValue
                     {
-                        type =
-                            CharacterRuntimeStatType.CurrentHealth,
-
+                        type = CharacterRuntimeStatType.CurrentHealth,
                         value = value
                     }
                 );
@@ -62,7 +54,6 @@ public class CharacterVariable
             {
                 stat.value = value;
             }
-
 
             OnHealthChanged?.Invoke(
                 (int)current_health,
@@ -85,20 +76,15 @@ public class CharacterVariable
         {
             CharacterRuntimeStatValue stat =
                 statContainer.runtimeStatList.Find(
-                    x =>
-                        x.type ==
-                        CharacterRuntimeStatType.CurrentEnergy
+                    x => x.type == CharacterRuntimeStatType.CurrentEnergy
                 );
-
 
             if (stat == null)
             {
                 statContainer.runtimeStatList.Add(
                     new CharacterRuntimeStatValue
                     {
-                        type =
-                            CharacterRuntimeStatType.CurrentEnergy,
-
+                        type = CharacterRuntimeStatType.CurrentEnergy,
                         value = value
                     }
                 );
@@ -107,7 +93,6 @@ public class CharacterVariable
             {
                 stat.value = value;
             }
-
 
             OnEnergyChanged?.Invoke(
                 (int)current_energy,
@@ -128,19 +113,26 @@ public class CharacterVariable
             CharacterBaseStatType.MaxHealth
         );
 
-
-    // 공격 순서 구하기: 원본 공격 순서 + 가속력
+    // 공격 순서
     public float AttackOrder =>
-        statContainer.GetBaseStat(CharacterBaseStatType.AttackOrder) + statContainer.GetBuff(CharacterBuffType.Acceleration);
+        statContainer.GetBaseStat(
+            CharacterBaseStatType.AttackOrder
+        )
+        +
+        statContainer.GetBuff(
+            CharacterBuffType.Acceleration
+        );
 
+    // =====================================================
     // 스탯 초기화
+    // =====================================================
+
     public void InitializeStat(
         CharacterInfo info,
         int level = 0)
     {
         if (info == null)
             return;
-
 
         if (statContainer.baseStatList == null)
         {
@@ -152,7 +144,6 @@ public class CharacterVariable
             statContainer.baseStatList.Clear();
         }
 
-
         CharacterLevelStat levelStat =
             info.levelStatList.Find(
                 x =>
@@ -160,16 +151,15 @@ public class CharacterVariable
                     x.level == level
             );
 
-
         if (levelStat != null &&
             levelStat.statList != null)
         {
-            foreach (CharacterBaseStatValue stat
-                     in levelStat.statList)
+            foreach (
+                CharacterBaseStatValue stat
+                in levelStat.statList)
             {
                 if (stat == null)
                     continue;
-
 
                 statContainer.baseStatList.Add(
                     new CharacterBaseStatValue
@@ -185,6 +175,10 @@ public class CharacterVariable
         current_energy = 0;
     }
 
+    // =====================================================
+    // Passive
+    // =====================================================
+
     public void TriggerPassive(
         PassiveTriggerType triggerType,
         float triggerValue = 0)
@@ -198,37 +192,21 @@ public class CharacterVariable
             $"PassiveCount={passiveSkillList?.Count ?? 0}"
         );
 
-
         if (passiveSkillList == null ||
             passiveSkillList.Count == 0)
         {
             return;
         }
 
-
-        // =================================================
-        // 발동할 패시브를 먼저 수집
-        // =================================================
-        //
-        // foreach 도중 passiveSkillList를 수정하면
-        // Collection was modified 오류가 발생할 수 있으므로
-        // 실제 리스트 제거는 foreach가 끝난 뒤 처리한다.
-        // =================================================
-
         List<PassiveSkillData> triggeredPassives =
             new List<PassiveSkillData>();
 
-
-        foreach (PassiveSkillData passive
-                 in passiveSkillList)
+        foreach (
+            PassiveSkillData passive
+            in passiveSkillList)
         {
             if (passive == null)
                 continue;
-
-
-            // ---------------------------------------------
-            // Trigger 검사
-            // ---------------------------------------------
 
             Debug.Log(
                 $"[Passive 검사] " +
@@ -237,27 +215,19 @@ public class CharacterVariable
                 $"CurrentTrigger={triggerType}"
             );
 
-
             if (passive.triggerType != triggerType)
                 continue;
-
 
             Debug.Log(
                 $"[Passive Trigger 일치] " +
                 $"{passive.skill_name}"
             );
 
-
-            // ---------------------------------------------
-            // Condition 검사
-            // ---------------------------------------------
-
             bool conditionResult =
                 CheckPassiveConditions(
                     passive,
                     triggerValue
                 );
-
 
             if (!conditionResult)
             {
@@ -269,46 +239,33 @@ public class CharacterVariable
                 continue;
             }
 
-
             Debug.Log(
                 $"[Passive 발동] " +
                 $"{passive.skill_name}"
             );
 
-
             triggeredPassives.Add(passive);
         }
 
-
-        // =================================================
-        // 발동된 패시브 실행
-        // =================================================
-
-        foreach (PassiveSkillData passive
-                 in triggeredPassives)
+        foreach (
+            PassiveSkillData passive
+            in triggeredPassives)
         {
             if (passive == null)
                 continue;
-
 
             ExecutePassive(passive);
         }
 
-
-        // =================================================
-        // 일회성 패시브 제거
-        // =================================================
-
-        foreach (PassiveSkillData passive
-                 in triggeredPassives)
+        foreach (
+            PassiveSkillData passive
+            in triggeredPassives)
         {
             if (passive == null)
                 continue;
 
-
             if (!passive.isOneTime)
                 continue;
-
 
             if (passiveSkillList.Remove(passive))
             {
@@ -319,7 +276,6 @@ public class CharacterVariable
             }
         }
     }
-
 
     // =====================================================
     // Passive Condition 검사
@@ -332,20 +288,18 @@ public class CharacterVariable
         if (passive == null)
             return false;
 
-
         if (passive.conditionList == null ||
             passive.conditionList.Count == 0)
         {
             return true;
         }
 
-
-        foreach (PassiveCondition condition
-                 in passive.conditionList)
+        foreach (
+            PassiveCondition condition
+            in passive.conditionList)
         {
             if (condition == null)
                 continue;
-
 
             float currentValue =
                 GetPassiveConditionValue(
@@ -353,14 +307,12 @@ public class CharacterVariable
                     triggerValue
                 );
 
-
             bool result =
                 CheckPassiveCondition(
                     currentValue,
                     condition.compareType,
                     condition.value
                 );
-
 
             Debug.Log(
                 $"[Passive Condition] " +
@@ -372,18 +324,15 @@ public class CharacterVariable
                 $"Result={result}"
             );
 
-
             if (!result)
                 return false;
         }
 
-
         return true;
     }
 
-
     // =====================================================
-    // Passive Condition 값 가져오기
+    // Passive Condition 값
     // =====================================================
 
     private float GetPassiveConditionValue(
@@ -392,75 +341,39 @@ public class CharacterVariable
     {
         switch (conditionType)
         {
-            // ---------------------------------------------
-            // HP
-            // ---------------------------------------------
-
             case PassiveConditionType.HP:
 
                 return current_health;
-
-
-            // ---------------------------------------------
-            // Turn
-            // ---------------------------------------------
 
             case PassiveConditionType.Turn:
 
                 if (TurnManager.Instance == null)
                     return 0;
 
-
-                // 현재 TurnManager에
-                // CurrentTurn 값이 구현되어 있다면
-                // 해당 값을 연결하면 됨.
                 return 0;
-
-
-            // ---------------------------------------------
-            // Round
-            // ---------------------------------------------
 
             case PassiveConditionType.Round:
 
                 if (TurnManager.Instance == null)
                     return 0;
 
-
                 return TurnManager.Instance.CurrentRound;
-
-
-            // ---------------------------------------------
-            // Damage Taken
-            // ---------------------------------------------
 
             case PassiveConditionType.DamageTaken:
 
                 return triggerValue;
 
-
-            // ---------------------------------------------
-            // Mana Spent
-            // ---------------------------------------------
-
             case PassiveConditionType.ManaSpent:
 
                 return triggerValue;
-
-
-            // ---------------------------------------------
-            // Cards Played
-            // ---------------------------------------------
 
             case PassiveConditionType.CardsPlayedThisTurn:
 
                 return triggerValue;
         }
 
-
         return 0;
     }
-
 
     // =====================================================
     // Passive Condition 비교
@@ -480,37 +393,31 @@ public class CharacterVariable
                     conditionValue
                 );
 
-
             case PassiveCompareType.Greater:
 
                 return currentValue >
                        conditionValue;
-
 
             case PassiveCompareType.GreaterEqual:
 
                 return currentValue >=
                        conditionValue;
 
-
             case PassiveCompareType.Less:
 
                 return currentValue <
                        conditionValue;
-
 
             case PassiveCompareType.LessEqual:
 
                 return currentValue <=
                        conditionValue;
 
-
             default:
 
                 return false;
         }
     }
-
 
     // =====================================================
     // Passive 실행
@@ -521,7 +428,6 @@ public class CharacterVariable
     {
         if (passive == null)
             return;
-
 
         if (passive.effects == null ||
             passive.effects.Count == 0)
@@ -534,25 +440,22 @@ public class CharacterVariable
             return;
         }
 
-
         Debug.Log(
             $"[Passive Effect 실행] " +
             $"{passive.skill_name} / " +
             $"EffectCount={passive.effects.Count}"
         );
 
-
-        foreach (CardEffectEntry effectEntry
-                 in passive.effects)
+        foreach (
+            CardEffectEntry effectEntry
+            in passive.effects)
         {
             if (effectEntry == null)
                 continue;
 
-
             ExecutePassiveEffect(effectEntry);
         }
     }
-
 
     // =====================================================
     // Passive Effect 실행
@@ -564,7 +467,6 @@ public class CharacterVariable
         if (effectEntry == null)
             return;
 
-
         if (effectEntry.effect == null)
         {
             Debug.LogWarning(
@@ -575,27 +477,15 @@ public class CharacterVariable
             return;
         }
 
-
-        // ---------------------------------------------
-        // 기본적으로 자기 자신을 대상으로 함
-        // ---------------------------------------------
-
         List<CharacterVariable> targets =
             new List<CharacterVariable>();
 
-
         targets.Add(this);
-
 
         Debug.Log(
             $"[Passive Effect Execute] " +
             $"Target={character_info?.character_name}"
         );
-
-
-        // ---------------------------------------------
-        // 기존 CardEffect 시스템 사용
-        // ---------------------------------------------
 
         effectEntry.effect.Execute(
             this,
@@ -604,7 +494,6 @@ public class CharacterVariable
             null
         );
     }
-
 
     // =====================================================
     // 버프 추가
@@ -619,24 +508,20 @@ public class CharacterVariable
             $"{type} / {value}"
         );
 
-
         statContainer.AddBuff(
             type,
             value
         );
-
 
         CharacterBuffValue buff =
             statContainer.buffList.Find(
                 x => x.type == type
             );
 
-
         if (buff != null &&
             Mathf.Approximately(buff.value, 0))
         {
             statContainer.buffList.Remove(buff);
-
 
             Debug.Log(
                 $"[CharacterVariable] 버프 제거 : " +
@@ -644,12 +529,10 @@ public class CharacterVariable
             );
         }
 
-
         OnBuffChanged?.Invoke(
             statContainer.buffList
         );
     }
-
 
     // =====================================================
     // 버프 제거
@@ -663,81 +546,78 @@ public class CharacterVariable
                 x => x.type == type
             );
 
-
         if (buff == null)
             return;
 
-
         statContainer.buffList.Remove(buff);
-
 
         Debug.Log(
             $"[CharacterVariable] 버프 제거 : " +
             $"{type}"
         );
 
-
         OnBuffChanged?.Invoke(
             statContainer.buffList
         );
     }
 
-
     // =====================================================
     // 피해
     // =====================================================
 
-    public virtual void TakeDamage(
-        float damage)
+    public virtual void TakeDamage(float damage)
     {
         if (is_dead)
             return;
 
-
         if (damage < 0)
             damage = 0;
 
+        Debug.Log(
+            $"[TakeDamage] {character_info?.character_name} " +
+            $"Damage={damage} / " +
+            $"CharacterView={(characterView != null ? "있음" : "NULL")}"
+        );
 
-        // ---------------------------------------------
         // 피해 적용
-        // ---------------------------------------------
-
         current_health =
             Mathf.Max(
                 0,
                 current_health - damage
             );
 
-
-        characterView?.TakeDamage(
-            (int)damage
+        Debug.Log(
+            $"[TakeDamage] HP 감소 완료 : " +
+            $"{character_info?.character_name} / " +
+            $"HP={current_health}"
         );
 
+        // 피격 애니메이션
+        if (characterView != null)
+        {
+            characterView.TakeDamage((int)damage, current_health <= 0 ? true : false);
+        }
+        else
+        {
+            Debug.LogError(
+                $"[TakeDamage] CharacterView가 NULL : " +
+                $"{character_info?.character_name}"
+            );
+        }
 
-        // ---------------------------------------------
         // Damaged Passive
-        // ---------------------------------------------
-
         TriggerPassive(
             PassiveTriggerType.Damaged,
             damage
         );
 
-
-        // ---------------------------------------------
         // 사망
-        // ---------------------------------------------
-
         if (current_health <= 0)
         {
             Die();
         }
 
-
-        // ---------------------------------------------
         // 아군 피격 시 공포 증가
-        // ---------------------------------------------
-
         if (this is PlayerCharacterVariable)
         {
             DataManager.Instance
@@ -745,7 +625,6 @@ public class CharacterVariable
                 .AddHorror(3);
         }
     }
-
 
     // =====================================================
     // 회복
@@ -757,10 +636,8 @@ public class CharacterVariable
         if (is_dead)
             return;
 
-
         if (amount <= 0)
             return;
-
 
         current_health =
             Mathf.Min(
@@ -768,7 +645,6 @@ public class CharacterVariable
                 current_health + amount
             );
     }
-
 
     // =====================================================
     // 사망
@@ -779,9 +655,7 @@ public class CharacterVariable
         if (is_dead)
             return;
 
-
         is_dead = true;
-
 
         // ---------------------------------------------
         // Death Passive
@@ -791,13 +665,11 @@ public class CharacterVariable
             PassiveTriggerType.Death
         );
 
-
         // ---------------------------------------------
         // Death Event
         // ---------------------------------------------
 
         OnDeath?.Invoke();
-
 
         // ---------------------------------------------
         // 현재 턴 종료
@@ -808,7 +680,6 @@ public class CharacterVariable
         {
             TurnManager.Instance.EndCurrentTurn();
         }
-
 
         // ---------------------------------------------
         // 적 사망 시 공포 감소
@@ -836,7 +707,6 @@ public class PlayerCharacterVariable
 
     public PlayerCharacterData originalPlayerCharacterData;
 
-
     public List<CardVariable> hand_card_list =
         new();
 
@@ -846,9 +716,7 @@ public class PlayerCharacterVariable
     public List<CardVariable> deck_card_list =
         new();
 
-
     public int stress_count = 0;
-
 
     // =====================================================
     // Constructor
@@ -869,7 +737,6 @@ public class PlayerCharacterVariable
 
         originalPlayerCharacterData = data;
 
-
         // ---------------------------------------------
         // 스탯
         // ---------------------------------------------
@@ -881,13 +748,11 @@ public class PlayerCharacterVariable
                 : 0
         );
 
-
         // ---------------------------------------------
         // 장비
         // ---------------------------------------------
 
         ApplyEquipmentStats(data);
-
 
         // ---------------------------------------------
         // 패시브
@@ -903,7 +768,6 @@ public class PlayerCharacterVariable
         }
     }
 
-
     // =====================================================
     // 장비 스탯
     // =====================================================
@@ -914,34 +778,28 @@ public class PlayerCharacterVariable
         if (data == null)
             return;
 
-
         if (data.player_equipment_list == null)
             return;
 
-
-        foreach (EquipmentSlot slot
-                 in data.player_equipment_list)
+        foreach (
+            EquipmentSlot slot
+            in data.player_equipment_list)
         {
             if (slot == null)
                 continue;
 
-
             if (slot.equipment_info == null)
                 continue;
-
 
             EquipmentInfo equipment =
                 slot.equipment_info;
 
-
             if (equipment.baseStatList == null)
                 continue;
-
 
             statContainer.MergeBaseStatList(
                 equipment.baseStatList
             );
-
 
             Debug.Log(
                 $"장비 스탯 적용 : " +
@@ -969,7 +827,6 @@ public class EnemyCharacterVariable
 
     public int target_index = -1;
 
-
     // =====================================================
     // Constructor
     // =====================================================
@@ -986,13 +843,11 @@ public class EnemyCharacterVariable
 
         enemy_character_info = ECI;
 
-
         // ---------------------------------------------
         // 스탯
         // ---------------------------------------------
 
         InitializeStat(ECI);
-
 
         // ---------------------------------------------
         // 패시브
@@ -1007,15 +862,15 @@ public class EnemyCharacterVariable
                 );
         }
 
-
         // ---------------------------------------------
         // 적 카드
         // ---------------------------------------------
 
         if (ECI.enemy_card_info_list != null)
         {
-            foreach (CardData card
-                     in ECI.enemy_card_info_list)
+            foreach (
+                CardData card
+                in ECI.enemy_card_info_list)
             {
                 if (card == null)
                 {
@@ -1027,14 +882,12 @@ public class EnemyCharacterVariable
                     continue;
                 }
 
-
                 enemy_card_list.Add(
                     new CardVariable(card)
                 );
             }
         }
     }
-
 
     // =====================================================
     // 랜덤 카드
@@ -1045,21 +898,17 @@ public class EnemyCharacterVariable
         if (next_card != null)
             return;
 
-
         if (enemy_card_list.Count == 0)
         {
             next_card = null;
-
 
             Debug.LogWarning(
                 enemy_character_info.character_name +
                 " : 사용할 카드가 없음"
             );
 
-
             return;
         }
-
 
         int randomIndex =
             UnityEngine.Random.Range(
@@ -1067,11 +916,9 @@ public class EnemyCharacterVariable
                 enemy_card_list.Count
             );
 
-
         next_card =
             enemy_card_list[randomIndex];
     }
-
 
     // =====================================================
     // 랜덤 타겟
@@ -1083,18 +930,14 @@ public class EnemyCharacterVariable
     {
         target_index = -1;
 
-
         if (next_card == null)
             return;
-
 
         if (next_card.original_card_info == null)
             return;
 
-
         CardTarget targetType =
             next_card.original_card_info.cardTarget;
-
 
         if (targetType == CardTarget.None)
         {
@@ -1102,10 +945,8 @@ public class EnemyCharacterVariable
             return;
         }
 
-
         List<CharacterVariable> targetList =
             new List<CharacterVariable>();
-
 
         if (targetType == CardTarget.Enemy)
         {
@@ -1128,13 +969,11 @@ public class EnemyCharacterVariable
                 playerCharacters
             );
 
-
             AddAliveCharacters(
                 targetList,
                 enemyCharacters
             );
         }
-
 
         if (targetList.Count == 0)
         {
@@ -1142,22 +981,18 @@ public class EnemyCharacterVariable
             return;
         }
 
-
         int randomIndex =
             UnityEngine.Random.Range(
                 0,
                 targetList.Count
             );
 
-
         CharacterVariable target =
             targetList[randomIndex];
-
 
         target_index =
             target.character_location_index;
     }
-
 
     // =====================================================
     // 살아있는 캐릭터 추가
@@ -1170,17 +1005,15 @@ public class EnemyCharacterVariable
         if (characters == null)
             return;
 
-
-        foreach (CharacterVariable character
-                 in characters)
+        foreach (
+            CharacterVariable character
+            in characters)
         {
             if (character == null)
                 continue;
 
-
             if (character.is_dead)
                 continue;
-
 
             targetList.Add(character);
         }

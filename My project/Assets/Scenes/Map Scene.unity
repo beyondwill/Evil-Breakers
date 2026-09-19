@@ -227,6 +227,17 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &58231672 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5301685436191082210, guid: b8cc33c83cd3892469daa81698b9858e, type: 3}
+  m_PrefabInstance: {fileID: 316382193}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b9f39d37ef6fa44582387f0ad005f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &137667608
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,6 +726,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1723985218152711829, guid: 442aa381d94de984dbfc53c36ea43be0, type: 3}
+      propertyPath: dataManager
+      value: 
+      objectReference: {fileID: 58231672}
     - target: {fileID: 1752689578207895555, guid: 442aa381d94de984dbfc53c36ea43be0, type: 3}
       propertyPath: m_Name
       value: PlayerCharacterTable
@@ -4844,6 +4859,7 @@ MonoBehaviour:
   minShopDistance: 2
   normalBattleCount: 5
   eliteBattleCount: 2
+  bossCount: 1
   shopCount: 1
   obstacleCount: 1
   startCandidates: []

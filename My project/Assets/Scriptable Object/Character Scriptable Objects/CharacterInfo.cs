@@ -1,3 +1,4 @@
+using Spine.Unity;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -102,6 +103,7 @@ public class CharacterInfo : DataEntity
     public string character_story;
     public Sprite character_full_art;
     public Sprite character_icon;
+    public SkeletonDataAsset character_spine_data;
     public Color icon_background_color = Color.black;
 
     public List<CharacterLevelStat> levelStatList = new();

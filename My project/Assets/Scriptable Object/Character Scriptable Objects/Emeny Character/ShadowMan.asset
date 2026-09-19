@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ShadowMan
   m_EditorClassIdentifier: 
   data_code: ShadowMan
+  attack_impossible: 0
   character_name: CHARACTER_MONSTER_SHADOW
   character_id: 0
   element: 4
@@ -20,6 +21,7 @@ MonoBehaviour:
   character_story: "\uB354 \uBABB\uB410\uC2B5\uB2C8\uB2E4!"
   character_full_art: {fileID: 21300000, guid: 0160c429fc6c99e4d9cd0b4a609a7636, type: 3}
   character_icon: {fileID: 21300000, guid: 0160c429fc6c99e4d9cd0b4a609a7636, type: 3}
+  character_spine_data: {fileID: 11400000, guid: 2f899e95232e6144786de8fb99678a8d, type: 2}
   icon_background_color: {r: 0, g: 0, b: 0, a: 1}
   levelStatList:
   - level: 0
@@ -36,7 +38,9 @@ MonoBehaviour:
       value: 3
     - type: 5
       value: 30
-  passiveEventList: []
+  characterBaseStatValues: []
+  characterUpgradeBaseStatValues: []
+  passiveSkillList: []
   dialogues:
   - situation: 0
     dialogue: []
@@ -59,3 +63,4 @@ MonoBehaviour:
   enemy_card_info_list:
   - {fileID: 11400000, guid: c8cf30124fff1d1448b8feb8d306cc51, type: 2}
   - {fileID: 11400000, guid: bd6686ff1aeae464b861e6a7c9520aaa, type: 2}
+  initBuffList: []

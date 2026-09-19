@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Spine.Unity;
+
 
 [System.Serializable]
 public class TargetingInfo
@@ -13,57 +15,130 @@ public class TargetingInfo
     public bool is_player_choosed;
 }
 
-public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+
+public class CharacterView :
+    MonoBehaviour,
+    IPointerEnterHandler,
+    IPointerExitHandler
 {
-    // 외부 요소
+    // =====================================================
+    // 외부 UI
+    // =====================================================
+
+    [Header("Character")]
     [SerializeField] private Image character_image;
+
+    // Character Image와 같은 레벨의 빈 UI 오브젝트
+    // Character
+    // ├─ Character Image
+    // ├─ Spine Parent
+    [SerializeField] private Transform spine_parent;
+
     [SerializeField] private Image[] l_shape_images;
 
+
+    [Header("Health")]
     [SerializeField] private Slider health_bar_slider;
+
     [SerializeField] private Image health_bar_fill;
+
     [SerializeField] private TextMeshProUGUI health_bar_text;
 
+
+    [Header("Shield")]
     [SerializeField] private Image shield_image;
+
     [SerializeField] private TextMeshProUGUI shield_text;
 
-    [SerializeField] private TextMeshProUGUI character_name_text;
 
-    [SerializeField] private GameObject conversation_box;
-    [SerializeField] private TextMeshProUGUI conversation_text;
+    [Header("Name")]
+    [SerializeField] private TextMeshProUGUI character_name_text;
 
     [SerializeField] private Image name_box;
 
+
+    [Header("Conversation")]
+    [SerializeField] private GameObject conversation_box;
+
+    [SerializeField] private TextMeshProUGUI conversation_text;
+
+
+    [Header("Turn")]
     [SerializeField] private GameObject current_turn;
 
-    // 피해 텍스트 위치
+
+    [Header("Damage")]
     [SerializeField] private Transform damaged_text_location;
+
     [SerializeField] private GameObject damaged_text;
 
-    // 모든 이펙트 생성 기준 위치
+
+    [Header("Effect")]
     [SerializeField] private Transform effect_point;
 
+
+    [Header("Buff")]
     [SerializeField] private BuffUI buffUI;
 
 
+    // =====================================================
     // 변수
+    // =====================================================
+
     [SerializeField] private RectTransform image_rect;
+
     [SerializeField] private CharacterVariable characterVariable;
+
+
+    // =====================================================
+    // Spine
+    // =====================================================
+
+    // UI 렌더링
+    private SkeletonGraphic spine_graphic;
+
+    // Spine 애니메이션
+    private SkeletonAnimation spine_animation;
+
+
+    // =====================================================
+    // Tween
+    // =====================================================
 
     private Sequence currentSeq;
 
-    // 이름 페이드
     private Sequence nameSeq;
 
-    // 죽음 연출
     private Sequence deathSeq;
+
+
+    // =====================================================
+    // HP
+    // =====================================================
+
+    private Coroutine hpCoroutine;
+
+
+    // =====================================================
+    // Target
+    // =====================================================
 
     private TargetingInfo targeting_info =
         new TargetingInfo();
 
 
+    // =====================================================
+    // Color
+    // =====================================================
+
     [SerializeField] private Color normal_color;
+
     [SerializeField] private Color selected_color;
 
+
+    // =====================================================
+    // Start
+    // =====================================================
 
     private void Start()
     {
@@ -71,17 +146,28 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
 
 
-    public void OnPointerEnter(PointerEventData eventData)
+    // =====================================================
+    // Pointer Enter
+    // =====================================================
+
+    public void OnPointerEnter(
+        PointerEventData eventData)
     {
+        if (characterVariable == null)
+            return;
+
+
         if (characterVariable.is_dead)
             return;
 
 
         SetLShapeColor(true);
+
         ShowName(true);
 
 
-        if (CardDragController.Instance.IsDragging &&
+        if (CardDragController.Instance != null &&
+            CardDragController.Instance.IsDragging &&
             CardDragController.Instance.IsTargetCard())
         {
             CardDragController.Instance.SetTarget(
@@ -89,20 +175,34 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+
+    // =====================================================
+    // Pointer Exit
+    // =====================================================
+
+    public void OnPointerExit(
+        PointerEventData eventData)
     {
         SetLShapeColor(false);
+
         ShowName(false);
 
 
-        if (CardDragController.Instance.IsDragging &&
+        if (CardDragController.Instance != null &&
+            CardDragController.Instance.IsDragging &&
             CardDragController.Instance.IsTargetCard())
         {
             CardDragController.Instance.ClearTarget();
         }
     }
 
-    private void ShowName(bool show)
+
+    // =====================================================
+    // 이름 표시
+    // =====================================================
+
+    private void ShowName(
+        bool show)
     {
         if (nameSeq != null)
             nameSeq.Kill();
@@ -116,98 +216,161 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             DOTween.Sequence();
 
 
-        nameSeq.Join(
-            character_name_text.DOFade(
-                alpha,
-                0.5f)
-        );
+        if (character_name_text != null)
+        {
+            nameSeq.Join(
+                character_name_text.DOFade(
+                    alpha,
+                    0.5f));
+        }
 
 
-        nameSeq.Join(
-            name_box.DOFade(
-                alpha,
-                0.5f)
-        );
+        if (name_box != null)
+        {
+            nameSeq.Join(
+                name_box.DOFade(
+                    alpha,
+                    0.5f));
+        }
     }
 
 
-    private void SetNameAlpha(float alpha)
+    // =====================================================
+    // 이름 Alpha
+    // =====================================================
+
+    private void SetNameAlpha(
+        float alpha)
     {
-        Color textColor =
-            character_name_text.color;
+        if (character_name_text != null)
+        {
+            Color textColor =
+                character_name_text.color;
 
-        textColor.a = alpha;
+            textColor.a =
+                alpha;
 
-        character_name_text.color =
-            textColor;
+            character_name_text.color =
+                textColor;
+        }
 
 
-        Color boxColor =
-            name_box.color;
+        if (name_box != null)
+        {
+            Color boxColor =
+                name_box.color;
 
-        boxColor.a = alpha;
+            boxColor.a =
+                alpha;
 
-        name_box.color =
-            boxColor;
+            name_box.color =
+                boxColor;
+        }
     }
 
 
-    // ========================================
+    // =====================================================
     // 캐릭터 초기화
-    // ========================================
+    // =====================================================
 
-    public void CharacterInit(CharacterVariable CV)
+    public void CharacterInit(
+        CharacterVariable CV)
     {
         if (CV == null)
         {
-            Debug.LogError("[CharacterView] CV가 NULL!");
+            Debug.LogError(
+                "[CharacterView] CV가 NULL!");
+
             return;
         }
+
 
         if (CV.character_info == null)
         {
             Debug.LogError(
-                $"[CharacterView] character_info가 NULL! 캐릭터:"
-            );
+                "[CharacterView] character_info가 NULL!");
+
             return;
         }
+
 
         if (health_bar_fill == null)
         {
-            Debug.LogError("[CharacterView] health_bar_fill이 NULL!");
+            Debug.LogError(
+                "[CharacterView] health_bar_fill이 NULL!");
+
             return;
         }
+
 
         if (character_image == null)
         {
-            Debug.LogError("[CharacterView] character_image가 NULL!");
+            Debug.LogError(
+                "[CharacterView] character_image가 NULL!");
+
             return;
         }
+
 
         if (health_bar_slider == null)
         {
-            Debug.LogError("[CharacterView] health_bar_slider가 NULL!");
+            Debug.LogError(
+                "[CharacterView] health_bar_slider가 NULL!");
+
             return;
         }
+
 
         if (health_bar_text == null)
         {
-            Debug.LogError("[CharacterView] health_bar_text가 NULL!");
+            Debug.LogError(
+                "[CharacterView] health_bar_text가 NULL!");
+
             return;
         }
+
 
         if (character_name_text == null)
         {
-            Debug.LogError("[CharacterView] character_name_text가 NULL!");
+            Debug.LogError(
+                "[CharacterView] character_name_text가 NULL!");
+
             return;
         }
 
-        characterVariable = CV;
+
+        // =================================================
+        // 기존 이벤트 중복 방지
+        // =================================================
+
+        if (characterVariable != null)
+        {
+            characterVariable.OnHealthChanged -=
+                HealthUpdate;
+
+            characterVariable.OnDeath -=
+                DeathAnimation;
+
+            characterVariable.OnBuffChanged -=
+                ShowBuffIcons;
+        }
+
+
+        characterVariable =
+            CV;
+
 
         health_bar_fill.color =
             CV.character_info.icon_background_color;
 
-        CV.characterView = this;
+
+        CV.characterView =
+            this;
+
+
+        // =================================================
+        // 이벤트
+        // =================================================
 
         characterVariable.OnHealthChanged +=
             HealthUpdate;
@@ -218,10 +381,21 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         characterVariable.OnBuffChanged +=
             ShowBuffIcons;
 
+
         gameObject.SetActive(true);
 
-        character_image.sprite =
-            CV.character_info.character_full_art;
+
+        // =================================================
+        // 캐릭터 표시
+        // =================================================
+
+        SetupCharacter(
+            CV.character_info);
+
+
+        // =================================================
+        // HP
+        // =================================================
 
         health_bar_slider.maxValue =
             CV.max_health;
@@ -229,42 +403,638 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         health_bar_slider.value =
             CV.current_health;
 
+
         health_bar_text.text =
-            CV.current_health + "/" +
+            CV.current_health +
+            "/" +
             CV.max_health;
+
+
+        // =================================================
+        // 이름
+        // =================================================
 
         character_name_text.text =
             CV.character_info.character_name;
 
+
+        // =================================================
+        // Target
+        // =================================================
+
         targeting_info.choosed_index =
             CV.character_location_index;
 
+
         if (CV is PlayerCharacterVariable)
         {
-            selected_color = Color.green;
-            targeting_info.is_player_choosed = true;
+            selected_color =
+                Color.green;
+
+            targeting_info.is_player_choosed =
+                true;
+
             CharacterFlip(true);
         }
         else
         {
-            selected_color = Color.red;
-            targeting_info.is_player_choosed = false;
+            selected_color =
+                Color.red;
+
+            targeting_info.is_player_choosed =
+                false;
+
             CharacterFlip(false);
         }
 
-        ShowBuffIcons(
-            characterVariable.statContainer.buffList);
+
+        // =================================================
+        // Buff
+        // =================================================
+
+        if (CV.statContainer != null)
+        {
+            ShowBuffIcons(
+                CV.statContainer.buffList);
+        }
+
 
         SetNameAlpha(0);
     }
 
 
-    public void SetLShapeColor(bool is_selected)
+    // =====================================================
+    // 캐릭터 표시 설정
+    // =====================================================
+
+    private void SetupCharacter(
+        CharacterInfo info)
     {
+        // =================================================
+        // 기존 Spine 제거
+        // =================================================
+
+        if (spine_graphic != null)
+        {
+            Destroy(
+                spine_graphic.gameObject);
+
+            spine_graphic =
+                null;
+
+            spine_animation =
+                null;
+        }
+
+
+        // =================================================
+        // Spine 데이터가 없으면 기존 Sprite 사용
+        // =================================================
+
+        if (info.character_spine_data == null)
+        {
+            if (character_image != null)
+            {
+                character_image.gameObject.SetActive(true);
+
+                character_image.sprite =
+                    info.character_full_art;
+            }
+
+            return;
+        }
+
+
+        // =================================================
+        // Spine Parent 검사
+        // =================================================
+
+        if (spine_parent == null)
+        {
+            Debug.LogError(
+                "[CharacterView] Spine Parent가 지정되지 않았습니다.");
+
+            return;
+        }
+
+
+        // =================================================
+        // 기존 Sprite 숨기기
+        // =================================================
+
+        Color color = character_image.color;
+        color.a = 0f;
+        character_image.color = color;
+
+
+        // =================================================
+        // 생성 전 자식 개수 저장
+        // =================================================
+
+        int previousChildCount =
+            spine_parent.childCount;
+
+
+        // =================================================
+        // Spine 4.3 UI 생성
+        //
+        // SkeletonAnimation
+        // +
+        // SkeletonGraphic
+        //
+        // 공식 API 사용
+        // =================================================
+
+        SkeletonGraphic.NewSkeletonGraphicGameObject(
+            info.character_spine_data,
+            spine_parent,
+            null);
+
+
+        // =================================================
+        // 생성된 GameObject 확인
+        // =================================================
+
+        if (spine_parent.childCount <=
+            previousChildCount)
+        {
+            Debug.LogError(
+                "[CharacterView] " +
+                "Spine UI 생성에 실패했습니다.");
+
+            return;
+        }
+
+
+        Transform createdObject =
+            spine_parent.GetChild(
+                spine_parent.childCount - 1);
+
+
+        // =================================================
+        // SkeletonGraphic 가져오기
+        // =================================================
+
+        spine_graphic =
+            createdObject.GetComponent<
+                SkeletonGraphic>();
+
+
+        // =================================================
+        // SkeletonAnimation 가져오기
+        // =================================================
+
+        spine_animation =
+            createdObject.GetComponent<
+                SkeletonAnimation>();
+
+
+        // =================================================
+        // 확인
+        // =================================================
+
+        if (spine_graphic == null)
+        {
+            Debug.LogError(
+                "[CharacterView] " +
+                "생성된 Spine 오브젝트에 " +
+                "SkeletonGraphic이 없습니다.");
+
+            return;
+        }
+
+
+        if (spine_animation == null)
+        {
+            Debug.LogError(
+                "[CharacterView] " +
+                "생성된 Spine 오브젝트에 " +
+                "SkeletonAnimation이 없습니다.");
+
+            return;
+        }
+
+
+        // =================================================
+        // 이름
+        // =================================================
+
+        createdObject.name =
+            info.character_name +
+            "_SpineUI";
+
+
+        // =================================================
+        // RectTransform
+        // =================================================
+
+        RectTransform spineRect =
+            createdObject.GetComponent<
+                RectTransform>();
+
+
+        if (spineRect != null)
+        {
+            spineRect.anchorMin =
+                new Vector2(0.5f, 0.5f);
+
+            spineRect.anchorMax =
+                new Vector2(0.5f, 0.5f);
+
+            spineRect.pivot =
+                new Vector2(0.5f, 0.5f);
+
+            spineRect.anchoredPosition =
+                Vector2.zero;
+
+            spineRect.localRotation =
+                Quaternion.identity;
+
+            spineRect.localScale =
+                Vector3.one;
+        }
+
+
+        // =================================================
+        // 초기화
+        // =================================================
+
+        if (!spine_graphic.IsValid)
+        {
+            spine_graphic.Initialize(false);
+        }
+
+
+        if (!spine_animation.IsValid)
+        {
+            spine_animation.Initialize(false);
+        }
+
+        if (spine_graphic.Skeleton != null)
+        {
+            var skin = spine_graphic.Skeleton.Data.FindSkin("base");
+
+            if (skin != null)
+            {
+                spine_graphic.Skeleton.SetSkin("base");
+            }
+
+            else
+            {
+                skin = spine_graphic.Skeleton.Data.FindSkin("weapon/sword");
+
+
+                if (skin != null)
+                {
+                    spine_graphic.Skeleton.SetSkin("weapon/sword");
+                }
+            }
+        }
+
+        // =================================================
+        // 기본 애니메이션
+        // =================================================
+
+        PlayIdleAnimation();
+    }
+
+
+    // =====================================================
+    // Spine 애니메이션 존재 여부
+    // =====================================================
+
+    private bool HasAnimation(
+        string animationName)
+    {
+        if (spine_animation == null)
+            return false;
+
+
+        if (!spine_animation.IsValid)
+            return false;
+
+
+        if (spine_animation.Skeleton == null)
+            return false;
+
+
+        if (spine_animation.Skeleton.Data == null)
+            return false;
+
+
+        return
+            spine_animation
+                .Skeleton
+                .Data
+                .FindAnimation(
+                    animationName) != null;
+    }
+
+
+    // =====================================================
+    // 애니메이션 재생
+    // =====================================================
+
+    private void PlayAnimation(
+        string animationName,
+        bool loop)
+    {
+        if (!HasAnimation(
+                animationName))
+        {
+            return;
+        }
+
+
+        spine_animation
+            .AnimationState
+            .SetAnimation(
+                0,
+                animationName,
+                loop);
+    }
+
+
+    // =====================================================
+    // Idle
+    // =====================================================
+
+    public void PlayIdleAnimation()
+    {
+        PlayAnimation(
+            "idle",
+            true);
+    }
+
+
+    // =====================================================
+    // Turn
+    // =====================================================
+
+    public void PlayTurnAnimation()
+    {
+        PlayAnimation(
+            "turn",
+            true);
+    }
+
+
+    // =====================================================
+    // Attack
+    // =====================================================
+
+    public void PlayAttackAnimation()
+    {
+        if (!HasAnimation(
+                "shoot"))
+        {
+            PlayIdleAnimation();
+            return;
+        }
+
+
+        Spine.TrackEntry entry =
+            spine_animation
+                .AnimationState
+                .SetAnimation(
+                    0,
+                    "shoot",
+                    false);
+
+
+        if (entry == null)
+            return;
+
+
+        entry.Complete +=
+            OnAttackComplete;
+    }
+
+
+    private void OnAttackComplete(
+        Spine.TrackEntry entry)
+    {
+        if (entry != null)
+        {
+            entry.Complete -=
+                OnAttackComplete;
+        }
+
+
+        PlayIdleAnimation();
+    }
+
+
+    // =====================================================
+    // Hit
+    // =====================================================
+
+    public void PlayHitAnimation()
+    {
+        if (!HasAnimation("hit"))
+        {
+            Debug.Log("없어요");
+            return;
+        }
+
+
+        Spine.TrackEntry entry =
+            spine_animation
+                .AnimationState
+                .SetAnimation(
+                    0,
+                    "hit",
+                    false);
+
+
+        if (entry == null)
+            return;
+
+
+        entry.Complete +=
+            OnHitComplete;
+    }
+
+
+    private void OnHitComplete(
+        Spine.TrackEntry entry)
+    {
+        if (entry != null)
+        {
+            entry.Complete -=
+                OnHitComplete;
+        }
+
+
+        PlayIdleAnimation();
+    }
+
+
+    // =====================================================
+    // Buff
+    // =====================================================
+
+    public void PlayBuffAnimation()
+    {
+        if (!HasAnimation(
+                "buff"))
+        {
+            return;
+        }
+
+
+        Spine.TrackEntry entry =
+            spine_animation
+                .AnimationState
+                .SetAnimation(
+                    0,
+                    "buff",
+                    false);
+
+
+        if (entry == null)
+            return;
+
+
+        entry.Complete +=
+            OnBuffComplete;
+    }
+
+
+    private void OnBuffComplete(
+        Spine.TrackEntry entry)
+    {
+        if (entry != null)
+        {
+            entry.Complete -=
+                OnBuffComplete;
+        }
+
+
+        PlayIdleAnimation();
+    }
+
+
+    // =====================================================
+    // 현재 턴
+    // =====================================================
+
+    public void SetCurrentTurn(
+        bool is_current_turn)
+    {
+        if (current_turn != null)
+        {
+            current_turn.SetActive(
+                is_current_turn);
+        }
+
+
+        if (spine_animation == null)
+            return;
+
+
+        if (is_current_turn)
+        {
+            if (HasAnimation("turn"))
+            {
+                PlayTurnAnimation();
+            }
+            else
+            {
+                PlayIdleAnimation();
+            }
+        }
+        else
+        {
+            PlayIdleAnimation();
+        }
+    }
+
+
+    // =====================================================
+    // 좌우 반전
+    // =====================================================
+
+    public void CharacterFlip(
+        bool isPlayer)
+    {
+        // =================================================
+        // Spine
+        // =================================================
+
+        if (spine_graphic != null)
+        {
+            RectTransform rect =
+                spine_graphic.GetComponent<
+                    RectTransform>();
+
+
+            if (rect != null)
+            {
+                Vector3 scale =
+                    rect.localScale;
+
+
+                scale.x =
+                    isPlayer
+                    ? Mathf.Abs(scale.x)
+                    : -Mathf.Abs(scale.x);
+
+
+                rect.localScale =
+                    scale;
+            }
+
+
+            return;
+        }
+
+
+        // =================================================
+        // 기존 Image
+        // =================================================
+
+        if (character_image != null)
+        {
+            Vector3 scale =
+                character_image
+                    .rectTransform
+                    .localScale;
+
+
+            scale.x =
+                isPlayer
+                ? Mathf.Abs(scale.x)
+                : -Mathf.Abs(scale.x);
+
+
+            character_image
+                .rectTransform
+                .localScale =
+                scale;
+        }
+    }
+
+
+    // =====================================================
+    // L Shape 색상
+    // =====================================================
+
+    public void SetLShapeColor(
+        bool is_selected)
+    {
+        if (l_shape_images == null)
+            return;
+
+
         for (int i = 0;
              i < l_shape_images.Length;
              i++)
         {
+            if (l_shape_images[i] == null)
+                continue;
+
+
             l_shape_images[i].color =
                 is_selected
                 ? selected_color
@@ -273,59 +1043,43 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
 
 
-    public void CharacterFlip(bool isPlayer)
-    {
-        Vector3 scale =
-            character_image.rectTransform.localScale;
+    // =====================================================
+    // 대화
+    // =====================================================
 
-
-        scale.x =
-            isPlayer
-            ? Mathf.Abs(scale.x)
-            : -Mathf.Abs(scale.x);
-
-
-        character_image.rectTransform.localScale =
-            scale;
-    }
-
-
-    public void Conversation(string s)
+    public void Conversation(
+        string s)
     {
         if (string.IsNullOrEmpty(s))
             return;
 
 
-        // ========================================
-        // 말풍선 Localization Key 갱신
-        // ========================================
+        // =================================================
+        // Localization
+        // =================================================
 
         if (QuickLocalizationSetup.Instance != null)
         {
-            // 기존 Key 제거
             QuickLocalizationSetup.Instance
                 .GetTextDictionary
                 .Remove(conversation_text);
 
 
-            // 새 Key 등록
             QuickLocalizationSetup.Instance
                 .RegisterText(
                     conversation_text,
-                    s
-                );
+                    s);
         }
         else
         {
-            // Localization 시스템이 없으면
-            // 일단 원문 표시
-            conversation_text.text = s;
+            conversation_text.text =
+                s;
         }
 
 
-        // ========================================
+        // =================================================
         // 말풍선 연출
-        // ========================================
+        // =================================================
 
         if (currentSeq != null)
             currentSeq.Kill();
@@ -335,7 +1089,9 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
 
         RectTransform rect =
-            conversation_box.GetComponent<RectTransform>();
+            conversation_box
+                .GetComponent<
+                    RectTransform>();
 
 
         rect.localScale =
@@ -349,18 +1105,17 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         currentSeq.Append(
             rect.DOScale(
                 Vector3.one,
-                0.3f)
-        );
+                0.3f));
 
 
-        currentSeq.AppendInterval(1f);
+        currentSeq.AppendInterval(
+            1f);
 
 
         currentSeq.Append(
             rect.DOScale(
                 Vector3.zero,
-                0.3f)
-        );
+                0.3f));
 
 
         currentSeq.OnComplete(() =>
@@ -370,15 +1125,25 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
 
 
-    private Coroutine hpCoroutine;
-
+    // =====================================================
+    // HP 변경
+    // =====================================================
 
     public void HealthUpdate(
         int current,
         int max)
     {
-        health_bar_text.text =
-            current + " / " + max;
+        if (health_bar_text != null)
+        {
+            health_bar_text.text =
+                current +
+                " / " +
+                max;
+        }
+
+
+        if (health_bar_slider == null)
+            return;
 
 
         health_bar_slider.maxValue =
@@ -386,21 +1151,31 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
 
         if (hpCoroutine != null)
-            StopCoroutine(hpCoroutine);
+        {
+            StopCoroutine(
+                hpCoroutine);
+        }
 
 
         hpCoroutine =
             StartCoroutine(
-                SmoothHealthChange(current));
+                SmoothHealthChange(
+                    current));
     }
 
 
-    IEnumerator SmoothHealthChange(
+    // =====================================================
+    // HP 부드럽게 변경
+    // =====================================================
+
+    private IEnumerator SmoothHealthChange(
         int targetHealth)
     {
-        float duration = 1f;
+        float duration =
+            1f;
 
-        float time = 0f;
+        float time =
+            0f;
 
 
         float startValue =
@@ -409,7 +1184,8 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         while (time < duration)
         {
-            time += Time.deltaTime;
+            time +=
+                Time.deltaTime;
 
 
             float t =
@@ -432,97 +1208,165 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
 
 
-    // ========================================
-    // 버프 UI
-    // ========================================
+    // =====================================================
+    // Buff UI
+    // =====================================================
 
     public void ShowBuffIcons(
         List<CharacterBuffValue> CBV)
     {
+        if (CBV == null)
+            return;
+
+
         Debug.Log(
-            $"[CharacterView] 버프 UI 갱신 : {CBV.Count}"
-        );
+            $"[CharacterView] 버프 UI 갱신 : {CBV.Count}");
+
 
         if (buffUI == null)
         {
             Debug.LogError(
-                "[CharacterView] BuffUI가 NULL임!"
-            );
+                "[CharacterView] BuffUI가 NULL임!");
 
             return;
         }
 
-        buffUI.ShowBuffIcons(CBV);
+
+        buffUI.ShowBuffIcons(
+            CBV);
     }
 
 
-    public void TakeDamage(int damage_amount)
+    // =====================================================
+    // 피해
+    // =====================================================
+
+    public void TakeDamage(int damage_amount, bool death)
     {
+        // 사망 처리가 아닌 경우: 피격 애니메이션 동작
+        if (!death)
+        {
+            PlayHitAnimation();
+        } 
+
+        if (damaged_text == null)
+            return;
+
+
+        if (damaged_text_location == null)
+            return;
+
+
         Canvas canvas =
             GetComponentInParent<Canvas>();
 
+
         GameObject DT;
+
 
         if (canvas != null)
         {
-            DT = Instantiate(
-                damaged_text,
-                canvas.transform
-            );
+            DT =
+                Instantiate(
+                    damaged_text,
+                    canvas.transform);
+
 
             DT.transform.position =
                 damaged_text_location.position;
 
+
             DT.transform.localScale =
                 Vector3.one;
+
 
             DT.transform.SetAsLastSibling();
         }
         else
         {
-            DT = Instantiate(
-                damaged_text,
-                damaged_text_location,
-                false);
+            DT =
+                Instantiate(
+                    damaged_text,
+                    damaged_text_location,
+                    false);
         }
 
-        DT.GetComponent<ShowText>()
-            .Init(damage_amount);
+
+        ShowText showText =
+            DT.GetComponent<ShowText>();
+
+
+        if (showText != null)
+        {
+            showText.Init(
+                damage_amount);
+        }
     }
+
+
+    // =====================================================
+    // Miss
+    // =====================================================
 
     public void Miss()
     {
+        if (damaged_text == null)
+            return;
+
+
+        if (damaged_text_location == null)
+            return;
+
+
         Canvas canvas =
             GetComponentInParent<Canvas>();
 
+
         GameObject DT;
+
 
         if (canvas != null)
         {
-            DT = Instantiate(
-                damaged_text,
-                canvas.transform
-            );
+            DT =
+                Instantiate(
+                    damaged_text,
+                    canvas.transform);
+
 
             DT.transform.position =
                 damaged_text_location.position;
 
+
             DT.transform.localScale =
                 Vector3.one;
+
 
             DT.transform.SetAsLastSibling();
         }
         else
         {
-            DT = Instantiate(
-                damaged_text,
-                damaged_text_location,
-                false);
+            DT =
+                Instantiate(
+                    damaged_text,
+                    damaged_text_location,
+                    false);
         }
 
-        DT.GetComponent<ShowText>().Miss();
+
+        ShowText showText =
+            DT.GetComponent<ShowText>();
+
+
+        if (showText != null)
+        {
+            showText.Miss();
+        }
     }
 
+
+    // =====================================================
+    // 죽음
+    // =====================================================
 
     private void DeathAnimation()
     {
@@ -530,21 +1374,86 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             deathSeq.Kill();
 
 
+        // =================================================
+        // Spine Death
+        // =================================================
+
+        if (spine_animation != null &&
+            HasAnimation("death"))
+        {
+            Spine.TrackEntry entry =
+                spine_animation
+                    .AnimationState
+                    .SetAnimation(
+                        0,
+                        "death",
+                        false);
+
+
+            if (entry != null)
+            {
+                entry.Complete +=
+                    OnSpineDeathComplete;
+
+                return;
+            }
+        }
+
+
+        // =================================================
+        // Spine이 없으면 기존 Image Death
+        // =================================================
+
+        PlayImageDeathAnimation();
+    }
+
+
+    // =====================================================
+    // Spine Death 완료
+    // =====================================================
+
+    private void OnSpineDeathComplete(
+        Spine.TrackEntry entry)
+    {
+        if (entry != null)
+        {
+            entry.Complete -=
+                OnSpineDeathComplete;
+        }
+
+
+        gameObject.SetActive(false);
+    }
+
+
+    // =====================================================
+    // 기존 Sprite 죽음 연출
+    // =====================================================
+
+    private void PlayImageDeathAnimation()
+    {
         CanvasGroup cg =
             GetComponent<CanvasGroup>();
 
 
         if (cg == null)
+        {
             cg =
-                gameObject.AddComponent<CanvasGroup>();
+                gameObject.AddComponent<
+                    CanvasGroup>();
+        }
 
 
         RectTransform rt =
-            GetComponent<RectTransform>();
+            GetComponent<
+                RectTransform>();
 
 
-        float width =
-            rt.sizeDelta.x;
+        if (rt == null)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
 
 
         deathSeq =
@@ -554,8 +1463,7 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         deathSeq.Append(
             cg.DOFade(
                 0f,
-                0.5f)
-        );
+                0.5f));
 
 
         deathSeq.Append(
@@ -569,8 +1477,7 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                             rt.sizeDelta.y);
                 },
                 0f,
-                0.5f)
-        );
+                0.5f));
 
 
         deathSeq.OnComplete(() =>
@@ -580,13 +1487,25 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
 
 
+    // =====================================================
+    // L Shape 표시
+    // =====================================================
+
     public void ShowLShapes(
         bool is_show)
     {
+        if (l_shape_images == null)
+            return;
+
+
         for (int i = 0;
              i < l_shape_images.Length;
              i++)
         {
+            if (l_shape_images[i] == null)
+                continue;
+
+
             l_shape_images[i]
                 .gameObject
                 .SetActive(is_show);
@@ -594,9 +1513,47 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
 
 
-    // ========================================
+    // =====================================================
+    // 이펙트 위치
+    // =====================================================
+
+    public Vector3 GetEffectPosition()
+    {
+        Vector3 position;
+
+        if (effect_point != null)
+        {
+            position = effect_point.position;
+        }
+        else if (spine_graphic != null)
+        {
+            position = spine_graphic.transform.position;
+        }
+        else if (character_image != null)
+        {
+            position = character_image.rectTransform.position;
+        }
+        else
+        {
+            position = transform.position;
+        }
+
+        position.z = 0f;
+
+        return position;
+    }
+
+
+    // =====================================================
+    // 현재 턴
+    // =====================================================
+
+    // 기존 코드에서 이 함수를 호출하고 있으므로
+    // Spine이 있으면 turn 애니메이션도 같이 실행한다.
+
+    // =====================================================
     // 이벤트 해제
-    // ========================================
+    // =====================================================
 
     private void OnDestroy()
     {
@@ -605,45 +1562,32 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             characterVariable.OnHealthChanged -=
                 HealthUpdate;
 
+
             characterVariable.OnDeath -=
                 DeathAnimation;
 
-            // ⭐ 버프 변경 이벤트 해제
+
             characterVariable.OnBuffChanged -=
                 ShowBuffIcons;
         }
+
+
+        if (currentSeq != null)
+            currentSeq.Kill();
+
+
+        if (nameSeq != null)
+            nameSeq.Kill();
+
+
+        if (deathSeq != null)
+            deathSeq.Kill();
     }
 
 
-    // ========================================
-    // 호출 위치
-    // ========================================
-
-    public Vector3 GetEffectPosition()
-    {
-        return character_image.rectTransform.position
-            + new Vector3(0, 0, -50);
-    }
-
-
-    // ========================================
-    // 캐릭터 턴
-    // ========================================
-
-    public void SetCurrentTurn(
-        bool is_current_turn)
-    {
-        if (current_turn == null)
-            return;
-
-
-        current_turn.SetActive(
-            is_current_turn);
-    }
-
-    // ========================================
+    // =====================================================
     // 반환
-    // ========================================
+    // =====================================================
 
     public Image CharacterImage =>
         character_image;
@@ -651,4 +1595,8 @@ public class CharacterView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public CharacterVariable GetCharacterVariable =>
         characterVariable;
+
+
+    public SkeletonAnimation GetSpine =>
+        spine_animation;
 }

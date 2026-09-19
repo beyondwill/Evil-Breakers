@@ -10,32 +10,129 @@ public class DamageEffect : CardEffect
         CardEffectEntry entry,
         CardData card)
     {
-
-
-        Debug.Log(
-        $"[DamageEffect] Target Count = {targets.Count}"
-        );
+        // ==========================================
+        // 기본 참조 확인
+        // ==========================================
 
         if (caster == null)
+        {
+            Debug.LogError("[DamageEffect] caster is NULL");
             return;
+        }
 
         if (targets == null)
+        {
+            Debug.LogError("[DamageEffect] targets is NULL");
             return;
+        }
 
         if (entry == null)
+        {
+            Debug.LogError("[DamageEffect] entry is NULL");
             return;
+        }
 
         if (entry.valueList == null ||
             entry.valueList.Count == 0)
         {
+            Debug.LogError(
+                "[DamageEffect] entry.valueList is NULL or EMPTY");
+
             return;
         }
+
+
+        // ==========================================
+        // 공격 애니메이션
+        // ==========================================
+
+        if (caster.characterView != null)
+        {
+            caster.characterView.PlayAttackAnimation();
+        }
+        else
+        {
+            Debug.LogWarning(
+                "[DamageEffect] caster.characterView is NULL");
+        }
+
+
+        // ==========================================
+        // 디버그
+        // ==========================================
+
+        Debug.Log(
+            $"[DamageEffect] " +
+            $"caster={caster}, " +
+            $"caster.statContainer={caster.statContainer}, " +
+            $"caster.character_info={caster.character_info}, " +
+            $"entry={entry}, " +
+            $"entry.floatValueList={entry.floatValueList}, " +
+            $"GameRuleManager={GameRuleManager.Instance}"
+        );
+
+        Debug.Log(
+            $"[DamageEffect] Target Count = {targets.Count}"
+        );
 
 
         foreach (CharacterVariable target in targets)
         {
             if (target == null)
+            {
+                Debug.LogWarning(
+                    "[DamageEffect] target is NULL");
+
                 continue;
+            }
+
+
+            // ==========================================
+            // Target 참조 확인
+            // ==========================================
+
+            Debug.Log(
+                $"[DamageEffect] " +
+                $"target={target}, " +
+                $"target.statContainer={target.statContainer}, " +
+                $"target.character_info={target.character_info}"
+            );
+
+
+            if (caster.statContainer == null)
+            {
+                Debug.LogError(
+                    "[DamageEffect] caster.statContainer is NULL");
+
+                return;
+            }
+
+
+            if (target.statContainer == null)
+            {
+                Debug.LogError(
+                    "[DamageEffect] target.statContainer is NULL");
+
+                continue;
+            }
+
+
+            if (caster.character_info == null)
+            {
+                Debug.LogError(
+                    "[DamageEffect] caster.character_info is NULL");
+
+                return;
+            }
+
+
+            if (target.character_info == null)
+            {
+                Debug.LogError(
+                    "[DamageEffect] target.character_info is NULL");
+
+                continue;
+            }
 
 
             // ==========================================
@@ -47,14 +144,6 @@ public class DamageEffect : CardEffect
 
             // ==========================================
             // 특수 조건 확인
-            // ==========================================
-            //
-            // 예:
-            // 대상이 약화 상태라면
-            // valueList[1] 사용
-            //
-            // 그렇지 않으면
-            // valueList[0] 사용
             // ==========================================
 
             if (card != null &&
@@ -77,7 +166,6 @@ public class DamageEffect : CardEffect
 
                 if (specialCondition)
                 {
-                    // valueList[1]이 존재할 때만 사용
                     if (entry.valueList.Count > 1)
                     {
                         damageValueIndex = 1;
@@ -128,10 +216,14 @@ public class DamageEffect : CardEffect
             // 힘 버프 배율
             // ==========================================
 
-            float strengthMultiplier =
-                entry.floatValueList.Count == 0
-                    ? 1
-                    : entry.floatValueList[0];
+            float strengthMultiplier = 1f;
+
+            if (entry.floatValueList != null &&
+                entry.floatValueList.Count > 0)
+            {
+                strengthMultiplier =
+                    entry.floatValueList[0];
+            }
 
 
             // ==========================================
@@ -139,6 +231,24 @@ public class DamageEffect : CardEffect
             // ==========================================
 
             float multipleDamage = 1.0f;
+
+
+            if (GameRuleManager.Instance == null)
+            {
+                Debug.LogError(
+                    "[DamageEffect] GameRuleManager.Instance is NULL");
+
+                return;
+            }
+
+
+            if (GameRuleManager.Instance.Rule == null)
+            {
+                Debug.LogError(
+                    "[DamageEffect] GameRuleManager.Instance.Rule is NULL");
+
+                return;
+            }
 
 
             // 유리한 상성

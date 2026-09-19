@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Zombie
   m_EditorClassIdentifier: 
   data_code: Zombie
+  attack_impossible: 0
   character_name: "\uC880\uBE44"
   character_id: 0
   element: 5
@@ -20,6 +21,7 @@ MonoBehaviour:
   character_story: "\uC544\uC8FC \uB098\uC068\uB2C8\uB2E4!"
   character_full_art: {fileID: 21300000, guid: 07eb765e2aa0db445a464301726279ef, type: 3}
   character_icon: {fileID: 21300000, guid: 07eb765e2aa0db445a464301726279ef, type: 3}
+  character_spine_data: {fileID: 11400000, guid: a467507a4ffb1d542a558739b2fede77, type: 2}
   icon_background_color: {r: 0.1196506, g: 1, b: 0, a: 1}
   levelStatList:
   - level: 0
@@ -36,7 +38,9 @@ MonoBehaviour:
       value: 2
     - type: 5
       value: 50
-  passiveEventList: []
+  characterBaseStatValues: []
+  characterUpgradeBaseStatValues: []
+  passiveSkillList: []
   dialogues:
   - situation: 0
     dialogue: []
@@ -57,5 +61,5 @@ MonoBehaviour:
   - situation: 8
     dialogue: []
   enemy_card_info_list:
-  - {fileID: 11400000, guid: c8cf30124fff1d1448b8feb8d306cc51, type: 2}
-  - {fileID: 11400000, guid: 1db4ee77ac0fdff4b89b9d0ebbd34716, type: 2}
+  - {fileID: 11400000, guid: 116f684564284c44d9ebe5361b4c6602, type: 2}
+  initBuffList: []
