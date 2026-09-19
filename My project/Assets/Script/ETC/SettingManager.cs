@@ -10,16 +10,19 @@ public class SettingManager : MonoBehaviour
         Time.timeScale = 0f;
     }
     
+    // 게임 재개
     public void GameResume()
     {
         Time.timeScale = 1f;
     }
 
+    // 씬 다시 불러오기
     public void ReloadScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneLoader.LoadInstance(SceneType.Battle);
     }
 
+    // 게임 끝내기
     public void EndGame()
     {
         Debug.Log("게임 종료");
