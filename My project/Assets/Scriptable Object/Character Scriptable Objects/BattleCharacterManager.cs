@@ -7,9 +7,7 @@ public class BattleCharacterManager : MonoBehaviour
 {
     public static BattleCharacterManager Instance;
 
-
     [SerializeField] private Turn enemySkillName;
-
 
     [Header("Character View")]
     [SerializeField] private CharacterView characterViewPrefab;
@@ -17,11 +15,9 @@ public class BattleCharacterManager : MonoBehaviour
     [SerializeField] private Transform enemyCharacterParent;
     [SerializeField] private CharactersStand charactersStand;
 
-
     [Header("Battle Character")]
     [SerializeField] private List<CharacterVariable> playerCharacterList = new();
     [SerializeField] private List<CharacterVariable> enemyCharacterList = new();
-
 
     [Header("Victory Defeat")]
     private bool battleEnded = false;
@@ -29,12 +25,10 @@ public class BattleCharacterManager : MonoBehaviour
     [SerializeField] private GameObject victoryObject;
     [SerializeField] private GameObject defeatObject;
 
-
     private void Awake()
     {
         Instance = this;
     }
-
 
     public void InitializeBattleCharacters()
     {
@@ -45,7 +39,6 @@ public class BattleCharacterManager : MonoBehaviour
         CreateEnemyCharacters();
     }
 
-
     // =====================================================
     // 플레이어 생성
     // =====================================================
@@ -55,7 +48,6 @@ public class BattleCharacterManager : MonoBehaviour
         BattleData battleData =
             DataManager.Instance.GetBattleData;
 
-
         for (int i = 0;
              i < battleData.characters_in_battle_data_list.Count;
              i++)
@@ -63,14 +55,14 @@ public class BattleCharacterManager : MonoBehaviour
             PlayerCharacterData data =
                 battleData.characters_in_battle_data_list[i];
 
-
             if (data.current_health == 0)
                 continue;
-
 
             PlayerCharacterVariable character =
                 CreatePlayerCharacter(data, i);
 
+            if (character == null)
+                continue;
 
             playerCharacterList.Add(character);
 
@@ -78,10 +70,9 @@ public class BattleCharacterManager : MonoBehaviour
         }
     }
 
-
     private PlayerCharacterVariable CreatePlayerCharacter(
-    PlayerCharacterData data,
-    int index)
+        PlayerCharacterData data,
+        int index)
     {
         if (data == null)
         {
@@ -110,11 +101,13 @@ public class BattleCharacterManager : MonoBehaviour
 
         character.originalPlayerCharacterData = data;
 
-        character.current_health =
-            data.current_health;
+        character.current_health = data.current_health;
 
-        foreach (CardData cardData
-                 in data.player_character_deck)
+        // =================================================
+        // 덱 카드 추가
+        // =================================================
+
+        foreach (CardData cardData in data.player_character_deck)
         {
             if (cardData == null)
             {
@@ -131,9 +124,30 @@ public class BattleCharacterManager : MonoBehaviour
             );
         }
 
+        // =================================================
+        // 덱 카드 순서 랜덤으로 섞기
+        // =================================================
+
+        ShuffleDeck(character.deck_card_list);
+
         return character;
     }
 
+    // =====================================================
+    // 덱 셔플 (Fisher-Yates Shuffle)
+    // =====================================================
+
+    private void ShuffleDeck(List<CardVariable> deck)
+    {
+        for (int i = deck.Count - 1; i > 0; i--)
+        {
+            int randomIndex = Random.Range(0, i + 1);
+
+            CardVariable temp = deck[i];
+            deck[i] = deck[randomIndex];
+            deck[randomIndex] = temp;
+        }
+    }
 
     // =====================================================
     // 적 생성
@@ -153,6 +167,8 @@ public class BattleCharacterManager : MonoBehaviour
                     i
                 );
 
+            if (enemy == null)
+                continue;
 
             enemyCharacterList.Add(enemy);
 
@@ -160,34 +176,32 @@ public class BattleCharacterManager : MonoBehaviour
         }
     }
 
-
     private EnemyCharacterVariable CreateEnemyCharacter(
         EnemyCharacterInfo info,
         int index)
     {
+        if (info == null)
+        {
+            Debug.LogError(
+                $"[BattleCharacterManager] EnemyCharacterInfo가 NULL! index={index}"
+            );
+
+            return null;
+        }
+
         EnemyCharacterVariable enemy =
             new EnemyCharacterVariable(
                 info,
                 index
             );
 
-
-        // =========================================
         // 최대 체력 초기화
-        // =========================================
+        enemy.current_health = enemy.max_health;
 
-        enemy.current_health =
-            enemy.max_health;
-
-
-        // =========================================
         // 초기 버프 적용
-        // =========================================
-
         if (info.initBuffList != null)
         {
-            foreach (CharacterBuffValue buff
-                     in info.initBuffList)
+            foreach (CharacterBuffValue buff in info.initBuffList)
             {
                 if (buff == null)
                     continue;
@@ -195,12 +209,10 @@ public class BattleCharacterManager : MonoBehaviour
                 if (buff.value == 0)
                     continue;
 
-
                 enemy.AddBuff(
                     buff.type,
                     buff.value
                 );
-
 
                 Debug.Log(
                     $"[적 초기 버프] " +
@@ -210,26 +222,21 @@ public class BattleCharacterManager : MonoBehaviour
             }
         }
 
-
         return enemy;
     }
-
 
     // =====================================================
     // View 생성
     // =====================================================
 
-    private void CreateCharacterView(
-        CharacterVariable character)
+    private void CreateCharacterView(CharacterVariable character)
     {
         character.OnDeath += CheckBattleResult;
-
 
         Transform parent =
             character.is_player_character
                 ? playerCharacterParent
                 : enemyCharacterParent;
-
 
         CharacterView view =
             Instantiate(
@@ -237,12 +244,10 @@ public class BattleCharacterManager : MonoBehaviour
                 parent
             );
 
-
         view.CharacterInit(character);
 
         charactersStand.AddCharacterView(view);
     }
-
 
     // =====================================================
     // 전투 결과
@@ -260,111 +265,93 @@ public class BattleCharacterManager : MonoBehaviour
         }
     }
 
-
     private bool IsAllEnemyDead()
     {
-        foreach (CharacterVariable enemy
-                 in enemyCharacterList)
+        foreach (CharacterVariable enemy in enemyCharacterList)
         {
-            if (!enemy.is_dead)
+            if (enemy != null && !enemy.is_dead)
                 return false;
         }
 
         return true;
     }
-
 
     private bool IsAllPlayerDead()
     {
-        foreach (CharacterVariable player
-                 in playerCharacterList)
+        foreach (CharacterVariable player in playerCharacterList)
         {
-            if (!player.is_dead)
+            if (player != null && !player.is_dead)
                 return false;
         }
 
         return true;
     }
 
-
     // =====================================================
-    // 임시
+    // 임시 보상
     // =====================================================
 
     public InventoryItem item1;
     public InventoryItem item2;
     public InventoryItem item3;
 
-
     private void EndBattle(bool win)
     {
         if (battleEnded)
             return;
 
-
         battleEnded = true;
-
 
         DataManager.Instance
             .GetBattleData
             .leftRewards
             .Add(item1);
 
-
         DataManager.Instance
             .GetBattleData
             .leftRewards
             .Add(item2);
-
 
         DataManager.Instance
             .GetBattleData
             .leftRewards
             .Add(item3);
 
-
         DataManager.Instance
             .GetAllData
-            .current_state =
-            CurrentState.BattleEnd;
-
+            .current_state = CurrentState.BattleEnd;
 
         DataManager.Instance
             .GetBattleData
             .enemyCharacterList
             .Clear();
 
-
-        foreach (PlayerCharacterVariable PCV
-                 in playerCharacterList)
+        foreach (PlayerCharacterVariable PCV in playerCharacterList)
         {
-            PCV.originalPlayerCharacterData.current_health =
-                (int)PCV.current_health;
+            if (PCV.originalPlayerCharacterData != null)
+            {
+                PCV.originalPlayerCharacterData.current_health =
+                    (int)PCV.current_health;
+            }
         }
 
-
         DataManager.Instance.SaveData();
-
 
         if (win)
         {
             victoryObject.SetActive(true);
 
-
             DOVirtual.DelayedCall(
                 2f,
                 () =>
                 {
-                    SceneManager.LoadScene(
-                        "Map Scene"
-                    );
+                    SceneManager.LoadScene("Map Scene");
                 }
             );
         }
         else
         {
-            //defeatObject.SetActive(true);
-
+            // defeatObject.SetActive(true);
 
             DOVirtual.DelayedCall(
                 1f,
@@ -376,33 +363,24 @@ public class BattleCharacterManager : MonoBehaviour
         }
     }
 
-
     // =====================================================
     // Enemy Turn
     // =====================================================
 
-    public void EnemyTurn(
-        EnemyCharacterVariable enemy)
+    public void EnemyTurn(EnemyCharacterVariable enemy)
     {
         if (enemy == null)
             return;
 
-
         if (enemy.is_dead)
             return;
 
-
-        // =================================================
-        // 1. 카드 선택
-        // =================================================
-
-        // next_card가 이미 지정되어 있다면
-        // 랜덤 카드를 뽑지 않는다.
+        // 카드 선택
+        // next_card가 이미 지정되어 있다면 랜덤 카드를 뽑지 않는다.
         if (enemy.next_card == null)
         {
             enemy.ChooseRandomCard();
         }
-
 
         if (enemy.next_card == null)
         {
@@ -411,16 +389,12 @@ public class BattleCharacterManager : MonoBehaviour
                 " : 사용할 카드가 없습니다."
             );
 
-
             TurnManager.Instance.EndCurrentTurn();
 
             return;
         }
 
-
-        CardVariable card =
-            enemy.next_card;
-
+        CardVariable card = enemy.next_card;
 
         if (card.original_card_info == null)
         {
@@ -429,19 +403,12 @@ public class BattleCharacterManager : MonoBehaviour
                 " : 카드 정보가 없습니다."
             );
 
-
             enemy.next_card = null;
-
 
             TurnManager.Instance.EndCurrentTurn();
 
             return;
         }
-
-
-        // =================================================
-        // 2. 로그
-        // =================================================
 
         Debug.Log(
             enemy.enemy_character_info.character_name +
@@ -449,42 +416,28 @@ public class BattleCharacterManager : MonoBehaviour
             card.original_card_info.card_name
         );
 
-
-        // =================================================
-        // 3. 카드 실행
-        // =================================================
-
         ExecuteEnemyCard(enemy);
     }
-
 
     // =====================================================
     // 적 카드 실행
     // =====================================================
 
-    private void ExecuteEnemyCard(
-        EnemyCharacterVariable enemy)
+    private void ExecuteEnemyCard(EnemyCharacterVariable enemy)
     {
         if (enemy == null)
             return;
 
-
-        CardVariable card =
-            enemy.next_card;
-
+        CardVariable card = enemy.next_card;
 
         if (card == null)
         {
-            Debug.LogWarning(
-                "적이 사용할 카드가 없습니다."
-            );
-
+            Debug.LogWarning("적이 사용할 카드가 없습니다.");
 
             TurnManager.Instance.EndCurrentTurn();
 
             return;
         }
-
 
         if (card.original_card_info == null)
         {
@@ -493,16 +446,11 @@ public class BattleCharacterManager : MonoBehaviour
             return;
         }
 
-
-        // =================================================
         // Target
-        // =================================================
-
         CharacterVariable target = null;
 
         CardTarget targetType =
             card.original_card_info.cardTarget;
-
 
         // None = 자기 자신
         if (targetType == CardTarget.None)
@@ -511,12 +459,7 @@ public class BattleCharacterManager : MonoBehaviour
         }
         else
         {
-            target =
-                GetEnemyCardTarget(
-                    enemy,
-                    targetType
-                );
-
+            target = GetEnemyCardTarget(enemy, targetType);
 
             if (target == null)
             {
@@ -525,9 +468,7 @@ public class BattleCharacterManager : MonoBehaviour
                     " : 카드의 대상이 없습니다."
                 );
 
-
                 enemy.next_card = null;
-
 
                 TurnManager.Instance.EndCurrentTurn();
 
@@ -535,89 +476,47 @@ public class BattleCharacterManager : MonoBehaviour
             }
         }
 
-
-        // =================================================
         // Target List
-        // =================================================
-
-        List<CharacterVariable> targets =
-            new List<CharacterVariable>();
-
+        List<CharacterVariable> targets = new List<CharacterVariable>();
 
         if (target != null)
         {
             targets.Add(target);
         }
 
-
-        // =================================================
         // 스킬 이름
-        // =================================================
-
         enemySkillName.gameObject.SetActive(true);
-
 
         enemySkillName.Init(
             card.original_card_info.card_name
         );
 
-
-        // =================================================
         // 0.8초 후 실제 효과
-        // =================================================
-
         DOVirtual.DelayedCall(
             0.8f,
             () =>
             {
-                if (enemy == null ||
-                    enemy.is_dead)
-                {
+                if (enemy == null || enemy.is_dead)
                     return;
-                }
-
 
                 if (TurnManager.Instance.CurrentCharacter != enemy)
-                {
                     return;
-                }
 
-
-                // =================================================
                 // 카드 효과 Sequence
-                // =================================================
+                Sequence sequence = DOTween.Sequence();
 
-                Sequence sequence =
-                    DOTween.Sequence();
-
-
-                foreach (
-                    CardEffectEntry entry
-                    in card.original_card_info.effects)
+                foreach (CardEffectEntry entry in card.original_card_info.effects)
                 {
                     if (entry == null)
                         continue;
 
-
-                    // -------------------------------------------------
                     // Effect Time
-                    // -------------------------------------------------
+                    sequence.AppendInterval(entry.time);
 
-                    sequence.AppendInterval(
-                        entry.time
-                    );
-
-
-                    // -------------------------------------------------
                     // Visual + Effect
-                    // -------------------------------------------------
-
                     sequence.AppendCallback(() =>
                     {
-                        // ---------------------------------------------
                         // Visual
-                        // ---------------------------------------------
-
                         if (entry.visual != null)
                         {
                             entry.visual.Play(
@@ -626,11 +525,7 @@ public class BattleCharacterManager : MonoBehaviour
                             );
                         }
 
-
-                        // ---------------------------------------------
                         // Effect
-                        // ---------------------------------------------
-
                         if (entry.effect != null)
                         {
                             entry.effect.Execute(
@@ -643,21 +538,13 @@ public class BattleCharacterManager : MonoBehaviour
                     });
                 }
 
-
-                // =================================================
                 // 모든 Effect 종료
-                // =================================================
-
                 sequence.OnComplete(() =>
                 {
                     if (enemy == null)
                         return;
 
-
-                    // =================================================
                     // 로그
-                    // =================================================
-
                     if (target != null)
                     {
                         Debug.Log(
@@ -677,39 +564,20 @@ public class BattleCharacterManager : MonoBehaviour
                         );
                     }
 
-
-                    // =================================================
-                    // 초기화
-                    // =================================================
-                    //
-                    // 일반 카드:
-                    // enemy.next_card == card
-                    // → null 처리
-                    //
-                    // SetNextCardEffect로 새로운 카드가 지정된 경우:
-                    // enemy.next_card != card
-                    // → 새로 지정된 카드를 유지
-                    // =================================================
-
+                    // 새로 지정된 카드가 있다면 유지
                     if (enemy.next_card == card)
                     {
                         enemy.next_card = null;
                     }
 
-
-                    // =================================================
                     // 턴 종료
-                    // =================================================
-
                     TurnManager.Instance.EndCurrentTurn();
                 });
-
 
                 sequence.Play();
             }
         );
     }
-
 
     // =====================================================
     // 적 카드 타겟 결정
@@ -722,117 +590,62 @@ public class BattleCharacterManager : MonoBehaviour
         if (enemy == null)
             return null;
 
-
         List<CharacterVariable> targetList =
             new List<CharacterVariable>();
 
-
-        // =================================================
-        // Enemy
-        // 적 입장에서 Enemy = 플레이어
-        // =================================================
-
+        // Enemy: 적 입장에서 Enemy = 플레이어
         if (targetType == CardTarget.Enemy)
         {
-            foreach (CharacterVariable player
-                     in playerCharacterList)
+            foreach (CharacterVariable player in playerCharacterList)
             {
-                if (player == null)
+                if (player == null || player.is_dead)
                     continue;
-
-
-                if (player.is_dead)
-                    continue;
-
 
                 targetList.Add(player);
             }
         }
 
-
-        // =================================================
-        // Ally
-        // 적 입장에서 Ally = 적
-        // =================================================
-
+        // Ally: 적 입장에서 Ally = 적
         else if (targetType == CardTarget.Ally)
         {
-            foreach (CharacterVariable ally
-                     in enemyCharacterList)
+            foreach (CharacterVariable ally in enemyCharacterList)
             {
-                if (ally == null)
+                if (ally == null || ally.is_dead)
                     continue;
-
-
-                if (ally.is_dead)
-                    continue;
-
 
                 targetList.Add(ally);
             }
         }
 
-
-        // =================================================
-        // Any
-        // 플레이어 + 적
-        // =================================================
-
+        // Any: 플레이어 + 적
         else if (targetType == CardTarget.Any)
         {
-            foreach (CharacterVariable player
-                     in playerCharacterList)
+            foreach (CharacterVariable player in playerCharacterList)
             {
-                if (player == null)
+                if (player == null || player.is_dead)
                     continue;
-
-
-                if (player.is_dead)
-                    continue;
-
 
                 targetList.Add(player);
             }
 
-
-            foreach (CharacterVariable ally
-                     in enemyCharacterList)
+            foreach (CharacterVariable ally in enemyCharacterList)
             {
-                if (ally == null)
+                if (ally == null || ally.is_dead)
                     continue;
-
-
-                if (ally.is_dead)
-                    continue;
-
 
                 targetList.Add(ally);
             }
         }
 
-
-        // =================================================
         // 대상 없음
-        // =================================================
-
         if (targetList.Count == 0)
             return null;
 
-
-        // =================================================
         // 랜덤 선택
-        // =================================================
-
-        int randomIndex =
-            Random.Range(
-                0,
-                targetList.Count
-            );
-
+        int randomIndex = Random.Range(0, targetList.Count);
 
         return targetList[randomIndex];
     }
-
 
     // =====================================================
     // 외부 접근
@@ -840,7 +653,6 @@ public class BattleCharacterManager : MonoBehaviour
 
     public List<CharacterVariable> PlayerCharacters
         => playerCharacterList;
-
 
     public List<CharacterVariable> EnemyCharacters
         => enemyCharacterList;
