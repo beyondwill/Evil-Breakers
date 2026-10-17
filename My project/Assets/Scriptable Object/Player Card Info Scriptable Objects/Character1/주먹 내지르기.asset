@@ -28,7 +28,7 @@ MonoBehaviour:
   card_description: "\uB2E8\uC77C \uB300\uC0C1\uC5D0\uAC8C {DMG10}\uC758 \uD53C\uD574\uB97C
     \uC90D\uB2C8\uB2E4."
   useConditions: []
-  specialcardCondition: {fileID: 0}
+  specialcardCondition: {fileID: 11400000, guid: f025b5a2e4de80946a02c0d6f5463f9b, type: 2}
   effects:
   - time: 0
     visual: {fileID: 11400000, guid: cf5ff3604a947944a8cfe930106493a5, type: 2}
@@ -38,3 +38,11 @@ MonoBehaviour:
     dataEntity: {fileID: 0}
     condition: {fileID: 0}
     AccuracyReset: 0
+  skillEffectEntry:
+  - visual: {fileID: 11400000, guid: e34959084c5547b42beb1632c6b8b161, type: 2}
+    effect: {fileID: 11400000, guid: 2a21385849a9735439eb6356084ba2fe, type: 2}
+    intValue: 20
+  skillEffectEntryBonus:
+  - visual: {fileID: 11400000, guid: e34959084c5547b42beb1632c6b8b161, type: 2}
+    effect: {fileID: 11400000, guid: 2a21385849a9735439eb6356084ba2fe, type: 2}
+    intValue: 30
