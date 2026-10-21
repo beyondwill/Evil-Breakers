@@ -145,7 +145,6 @@ public class CardData : DataEntity
     // 모든 조건을 만족해야 카드를 낼 수 있음
     public List<CardCondition> useConditions = new();
 
-
     // 이 조건을 만족하면 카드가 황금색으로 표시됨
     public CardCondition specialcardCondition;
 
@@ -157,4 +156,8 @@ public class CardData : DataEntity
     [Header("Timeline")]
 
     public List<CardEffectEntry> effects = new();
+
+    public List<SkillEntry> skillEffectEntry = new();
+
+    public List<SkillEntry> skillEffectEntryBonus = new();
 }
