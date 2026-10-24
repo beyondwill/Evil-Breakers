@@ -1,5 +1,5 @@
 {
-  "current_state": 4,
+  "current_state": 2,
   "main_data": {
     "player_character_data_list": [
       {
@@ -325,7 +325,7 @@
         ]
       },
       {
-        "player_character_info": "10005",
+        "player_character_info": null,
         "player_character_level": 1,
         "current_health": 92,
         "current_stress": 0,
@@ -334,15 +334,15 @@
         "current_exp": 80,
         "relicInfoList": [],
         "player_character_deck": [
-          "급급여율령",
-          "상극",
-          "상생",
-          "속박 주문",
-          "쇠약진법",
-          "양의 기운",
-          "양의 힘",
-          "음의 힘",
-          "퇴마 부적"
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
         ],
         "player_equipment_list": [
           {
@@ -407,19 +407,19 @@
     ],
     "slots": [
       {
-        "item": null,
-        "amount": 0,
-        "IsEmpty": true
+        "item": "New Item Data",
+        "amount": 100,
+        "IsEmpty": false
       },
       {
-        "item": null,
-        "amount": 0,
-        "IsEmpty": true
+        "item": "New Item Data 2",
+        "amount": 1,
+        "IsEmpty": false
       },
       {
-        "item": null,
-        "amount": 0,
-        "IsEmpty": true
+        "item": "New Item Data 3",
+        "amount": 1,
+        "IsEmpty": false
       },
       {
         "item": null,
@@ -447,38 +447,7 @@
         "IsEmpty": true
       }
     ],
-    "leftRewards": [
-      {
-        "item": "New Item Data",
-        "amount": 50,
-        "IsEmpty": false
-      },
-      {
-        "item": "New Item Data 2",
-        "amount": 1,
-        "IsEmpty": false
-      },
-      {
-        "item": "New Item Data 3",
-        "amount": 1,
-        "IsEmpty": false
-      },
-      {
-        "item": "New Item Data",
-        "amount": 50,
-        "IsEmpty": false
-      },
-      {
-        "item": "New Item Data 2",
-        "amount": 1,
-        "IsEmpty": false
-      },
-      {
-        "item": "New Item Data 3",
-        "amount": 1,
-        "IsEmpty": false
-      }
-    ],
+    "leftRewards": [],
     "battle_result_variables": {
       "win_battle_count": 0,
       "slained_player_count": 0,

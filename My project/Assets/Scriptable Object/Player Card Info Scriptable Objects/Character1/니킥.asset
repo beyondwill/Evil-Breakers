@@ -38,3 +38,8 @@ MonoBehaviour:
     dataEntity: {fileID: 0}
     condition: {fileID: 0}
     AccuracyReset: 0
+  skillEffectEntry:
+  - visual: {fileID: 0}
+    effect: {fileID: 0}
+    intValue: 20
+  skillEffectEntryBonus: []

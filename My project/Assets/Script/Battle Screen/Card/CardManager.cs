@@ -533,7 +533,6 @@ public class CardManager : MonoBehaviour
         if (card.original_card_info == null)
             return;
 
-
         List<CharacterVariable> targets =
             new List<CharacterVariable>();
 
@@ -549,7 +548,6 @@ public class CardManager : MonoBehaviour
         {
             targets.Add(target);
         }
-
 
         Sequence sequence =
             DOTween.Sequence();

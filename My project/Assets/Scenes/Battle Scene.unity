@@ -10059,6 +10059,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5532371805224683171, guid: 62c53be19a11c94479387349b1dfbefb, type: 3}
+      propertyPath: targetLanguage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532371805224683171, guid: 62c53be19a11c94479387349b1dfbefb, type: 3}
       propertyPath: excludedTexts.Array.data[0]
       value: 
       objectReference: {fileID: 1998615847}
