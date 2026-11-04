@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ccc920209332af49a6be6581d99a003, type: 3}
   m_Name: Single Hit
   m_EditorClassIdentifier: 
+  data_code: 10001

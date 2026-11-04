@@ -21,6 +21,7 @@ public class EquipmentInfo : ItemData
     #endif
 
     public EquipmentSort equipment_sort;
+    public EquipmentType equipmentType;
 
     // 장비가 제공하는 기본 스탯
     public List<CharacterBaseStatValue> baseStatList = new();

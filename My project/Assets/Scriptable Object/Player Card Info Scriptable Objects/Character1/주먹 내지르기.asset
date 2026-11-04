@@ -39,9 +39,15 @@ MonoBehaviour:
     condition: {fileID: 0}
     AccuracyReset: 0
   skillEffectEntry:
-  - visual: {fileID: 11400000, guid: e34959084c5547b42beb1632c6b8b161, type: 2}
+  - visual: {fileID: 11400000, guid: cf5ff3604a947944a8cfe930106493a5, type: 2}
     effect: {fileID: 11400000, guid: 2a21385849a9735439eb6356084ba2fe, type: 2}
-    intValue: 20
+    intValue: 6
+  - visual: {fileID: 11400000, guid: cf5ff3604a947944a8cfe930106493a5, type: 2}
+    effect: {fileID: 11400000, guid: 2a21385849a9735439eb6356084ba2fe, type: 2}
+    intValue: 6
+  - visual: {fileID: 11400000, guid: cf5ff3604a947944a8cfe930106493a5, type: 2}
+    effect: {fileID: 11400000, guid: 2a21385849a9735439eb6356084ba2fe, type: 2}
+    intValue: 6
   skillEffectEntryBonus:
   - visual: {fileID: 11400000, guid: e34959084c5547b42beb1632c6b8b161, type: 2}
     effect: {fileID: 11400000, guid: 2a21385849a9735439eb6356084ba2fe, type: 2}

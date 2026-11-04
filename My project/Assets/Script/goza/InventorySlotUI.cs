@@ -1,3 +1,4 @@
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -10,45 +11,33 @@ public class InventorySlotUI : MonoBehaviour,
 {
     public int Index { get; private set; }
 
-
     [Header("UI")]
     [SerializeField] private Image icon;
     [SerializeField] private TextMeshProUGUI amountText;
 
-
     private InventoryItem currentItem;
-
     private InventoryUI inventoryUI;
-
 
     private void Awake()
     {
         // 부모의 InventoryUI 가져오기
-        inventoryUI =
-            GetComponentInParent<InventoryUI>();
+        inventoryUI = GetComponentInParent<InventoryUI>();
     }
-
 
     public void Init(int index)
     {
         Index = index;
-
         Refresh();
     }
 
-
     public void Refresh()
     {
-        var slots =
-            DataManager.Instance.GetBattleData.slots;
-
+        var slots = DataManager.Instance.GetBattleData.slots;
 
         // 안전 체크
-        if (Index < 0 ||
-            Index >= slots.Count)
+        if (Index < 0 || Index >= slots.Count)
         {
             currentItem = null;
-
             icon.enabled = false;
 
             if (amountText != null)
@@ -56,14 +45,11 @@ public class InventorySlotUI : MonoBehaviour,
 
             return;
         }
-
 
         currentItem = slots[Index];
 
-
         // 빈 슬롯
-        if (currentItem == null ||
-            currentItem.IsEmpty)
+        if (currentItem == null || currentItem.IsEmpty)
         {
             icon.enabled = false;
 
@@ -72,12 +58,10 @@ public class InventorySlotUI : MonoBehaviour,
 
             return;
         }
-
 
         // 아이콘 표시
         icon.enabled = true;
         icon.sprite = currentItem.item.icon;
-
 
         // 수량 표시
         if (amountText != null)
@@ -89,49 +73,64 @@ public class InventorySlotUI : MonoBehaviour,
         }
     }
 
-
-    public void OnPointerClick(
-        PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        // ==========================================
-        // 오른쪽 클릭
-        // ==========================================
-
-        if (eventData.button ==
-            PointerEventData.InputButton.Right)
+        // 오른쪽 클릭 : 아이템 버리기
+        if (eventData.button == PointerEventData.InputButton.Right)
         {
             DropItem();
-
             return;
         }
 
-
-        // ==========================================
-        // 왼쪽 클릭
-        // ==========================================
-
-        if (eventData.button ==
-            PointerEventData.InputButton.Left)
+        // 왼쪽 클릭 : 소모 아이템 사용
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
-            // 장착 / 선택 / 이동 등 나중에 추가
+            if (currentItem == null || currentItem.IsEmpty)
+                return;
+
+            if (currentItem.item is ConsumptionItemInfo)
+            {
+                ConsumptionItemInfo itemInfo =
+                    (ConsumptionItemInfo)currentItem.item;
+
+                if (itemInfo.consumptionSort == ConsumptionItemSort.InMap ||
+                    itemInfo.consumptionSort == ConsumptionItemSort.Both)
+                {
+                    foreach (ItemEffect effect in itemInfo.itemEffectList)
+                    {
+                        effect.Execute();
+                    }
+
+                    // 사용한 아이템 1개 감소
+                    DropItem();
+                }
+            }
         }
     }
 
-
     private void DropItem()
     {
-        if (currentItem == null ||
-            currentItem.IsEmpty)
+        if (currentItem == null || currentItem.IsEmpty)
             return;
 
+        var slots = DataManager.Instance.GetBattleData.slots;
 
-        var slots =
-            DataManager.Instance.GetBattleData.slots;
+        // 수량이 2개 이상이면 1개만 감소
+        if (currentItem.amount > 1)
+        {
+            currentItem.amount--;
+        }
+        // 수량이 1개라면 슬롯 비우기
+        else
+        {
+            slots.RemoveAt(Index);
+            slots.Add(new InventoryItem());
+        }
 
-        slots.RemoveAt(Index);
-        slots.Add(new InventoryItem());
         currentItem = null;
+
         TooltipUI.Instance.Hide();
+
         if (inventoryUI != null)
         {
             inventoryUI.Refresh();
@@ -140,14 +139,10 @@ public class InventorySlotUI : MonoBehaviour,
         DataManager.Instance.SaveData();
     }
 
-
-    public void OnPointerEnter(
-        PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        if (currentItem == null ||
-            currentItem.IsEmpty)
+        if (currentItem == null || currentItem.IsEmpty)
             return;
-
 
         TooltipUI.Instance.Show(
             currentItem.item,
@@ -155,9 +150,7 @@ public class InventorySlotUI : MonoBehaviour,
         );
     }
 
-
-    public void OnPointerExit(
-        PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData)
     {
         TooltipUI.Instance.Hide();
     }

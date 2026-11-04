@@ -16,22 +16,23 @@ public class IconButton : MonoBehaviour,
     [SerializeField] private GameObject unselectableImage;
     [SerializeField] private TextMeshProUGUI specialText;
 
+    [Header("Selection")]
+    [SerializeField] private Image selectedFrame;
+
     [Header("Info")]
     [SerializeField] private int button_index;
     [SerializeField] private Sprite empty_image;
-
 
     private Action clickAction;
     private Action pointerEnterAction;
     private Action pointerExitAction;
 
 
-
     private void Awake()
     {
         ToggleButtonActive(true);
+        SetSelected(false);
     }
-
 
 
     #region Init
@@ -51,23 +52,23 @@ public class IconButton : MonoBehaviour,
         else
             SetImage(sprite);
 
-
         SetAmount(0);
 
         ToggleButtonActive(interactable);
 
-        button.onClick.RemoveAllListeners();
+        ActionRemove();
+
+        SetSelected(false);
     }
 
     #endregion
-
 
 
     #region Click
 
     public void ActionAdd(Action action)
     {
-        clickAction += action;
+        clickAction = action;
 
         button.onClick.RemoveAllListeners();
 
@@ -86,7 +87,6 @@ public class IconButton : MonoBehaviour,
     }
 
     #endregion
-
 
 
     #region Pointer
@@ -115,23 +115,18 @@ public class IconButton : MonoBehaviour,
     }
 
 
-
-    public void OnPointerEnter(
-        PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     {
         pointerEnterAction?.Invoke();
     }
 
 
-
-    public void OnPointerExit(
-        PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData)
     {
         pointerExitAction?.Invoke();
     }
 
     #endregion
-
 
 
     #region UI
@@ -142,7 +137,6 @@ public class IconButton : MonoBehaviour,
     }
 
 
-
     public void SetImage(Sprite sprite)
     {
         button_image.enabled = true;
@@ -150,12 +144,10 @@ public class IconButton : MonoBehaviour,
     }
 
 
-
     public void SetAmount(int amount)
     {
         if (amountText == null)
             return;
-
 
         amountText.text =
             amount > 1
@@ -163,12 +155,14 @@ public class IconButton : MonoBehaviour,
             : "";
     }
 
+
     public void ToggleButtonActive(bool value)
     {
         button.interactable = value;
-        unselectableImage.SetActive(!value);
-    }
 
+        if (unselectableImage != null)
+            unselectableImage.SetActive(!value);
+    }
 
 
     public void SetEmpty()
@@ -181,9 +175,20 @@ public class IconButton : MonoBehaviour,
         SetAmount(0);
     }
 
+
     public void SetText(string s)
     {
-        specialText.text = s;
+        if (specialText != null)
+            specialText.text = s;
+    }
+
+
+    public void SetSelected(bool value)
+    {
+        if (selectedFrame == null)
+            return;
+
+        selectedFrame.enabled = value;
     }
 
     #endregion
