@@ -16,5 +16,7 @@ MonoBehaviour:
   itemName: "\uC2ED\uC790\uAC00"
   description: "\uC2ED\uC790\uAC00\uC758 \uBC18\uB313\uB9D0\uC740 \uC2ED\uCEE4"
   icon: {fileID: 21300000, guid: 5a0ec1becc2f4494f904b135966a999e, type: 3}
-  itemType: 3
+  itemType: 1
+  equipmentType: 1
   maxStack: 1
+  sellPrice: 100

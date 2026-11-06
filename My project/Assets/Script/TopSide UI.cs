@@ -18,6 +18,9 @@ public class TopSideUI : MonoBehaviour
     [Header("시간 변경 텍스트")]
     [SerializeField] private MakingText makingText;
 
+    [Header("유물 아이콘")]
+    [SerializeField] private Transform icons;
+    [SerializeField] private IconButton iconButtonPrefab;
 
     // ==========================================
     // Unity
@@ -63,6 +66,14 @@ public class TopSideUI : MonoBehaviour
 
         // 현재 시간 표시
         RefreshTime();
+
+
+        Debug.Log("아이템 개수: " + DataManager.Instance.GetMainData.relicItems.Count);
+        for (int i = 0; i < DataManager.Instance.GetMainData.relicItems.Count; i++)
+        {
+            IconButton IB = Instantiate(iconButtonPrefab, icons);
+            IB.SetItemData(DataManager.Instance.GetMainData.relicItems[i]);
+        }
     }
 
 

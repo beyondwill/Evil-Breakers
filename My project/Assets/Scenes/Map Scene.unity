@@ -905,7 +905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5301685436191082210, guid: b8cc33c83cd3892469daa81698b9858e, type: 3}
       propertyPath: all_data.battle_data.slots.Array.size
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5301685436191082210, guid: b8cc33c83cd3892469daa81698b9858e, type: 3}
       propertyPath: all_data.battle_data.map_data.hexMapDataSO

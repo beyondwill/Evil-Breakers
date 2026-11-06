@@ -20,6 +20,7 @@ public class MainScreenManager : MonoBehaviour
     // ================================
 
     [SerializeField] private MissionInfoManager missionInfoManager;
+    [SerializeField] private MissionItemManager missionItemManager;
     [SerializeField] private List<LocationInfo> location_info_list;
 
     [SerializeField] private GameObject mission_prefab;
@@ -155,10 +156,6 @@ public class MainScreenManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log(
-                $"[Check] 마우스 클릭 / 현재 index = {index}"
-            );
-
             CheckLocationClick();
         }
     }
@@ -172,10 +169,6 @@ public class MainScreenManager : MonoBehaviour
     {
         if (index < 0)
         {
-            Debug.Log(
-                "[Check] 현재 선택된 지역 없음 → 검사 종료"
-            );
-
             return;
         }
 
@@ -458,6 +451,24 @@ public class MainScreenManager : MonoBehaviour
             "[BattleBegin] 캐릭터 데이터 저장 완료"
         );
 
+
+        // ================================
+        // 선택한 아이템 저장
+        // ================================
+
+        DataManager.Instance.GetBattleData.slots.Clear();
+
+        foreach (InventoryItem item in missionItemManager.GetCarryItemList())
+        {
+            if (item == null || item.IsEmpty)
+                continue;
+
+            DataManager.Instance.GetBattleData.slots.Add(item.Clone());
+        }
+
+        Debug.Log(
+            $"[BattleBegin] 아이템 저장 완료 / 개수 = {DataManager.Instance.GetBattleData.slots.Count}"
+        );
 
         // ================================
         // 데이터 저장

@@ -14,6 +14,8 @@ public class MainData
 
     public List<EquipmentInfo> equipmentInfoList = new();
     public List<MapData> mapDataList = new();
+    public List<ItemData> storagereRelicList = new();
+    public List<ItemData> relicItems = new();
 
     public ShopData shopData = new();
 

@@ -1,3 +1,4 @@
+
 using System;
 using TMPro;
 using UnityEngine;
@@ -27,6 +28,9 @@ public class IconButton : MonoBehaviour,
     private Action pointerEnterAction;
     private Action pointerExitAction;
 
+    private ItemData currentItem;
+    private CharacterInfo currentCharacter;
+
 
     private void Awake()
     {
@@ -45,6 +49,9 @@ public class IconButton : MonoBehaviour,
     {
         button_index = index;
 
+        currentItem = null;
+        currentCharacter = null;
+
         SetColor(color);
 
         if (sprite == null)
@@ -53,10 +60,14 @@ public class IconButton : MonoBehaviour,
             SetImage(sprite);
 
         SetAmount(0);
+        SetText("");
 
         ToggleButtonActive(interactable);
 
         ActionRemove();
+
+        PointerEnterRemove();
+        PointerExitRemove();
 
         SetSelected(false);
     }
@@ -70,12 +81,48 @@ public class IconButton : MonoBehaviour,
     {
         clickAction = action;
 
-        button.onClick.RemoveAllListeners();
+        Debug.Log(
+            $"[IconButton] 이벤트 등록: {gameObject.name}, ID: {GetInstanceID()}"
+        );
 
-        button.onClick.AddListener(() =>
+        if (button == null)
         {
-            clickAction?.Invoke();
-        });
+            Debug.LogError(
+                $"[IconButton] Button이 연결되지 않았습니다: {gameObject.name}"
+            );
+            return;
+        }
+
+        // 기존 IconButton 이벤트만 제거
+        button.onClick.RemoveListener(OnButtonClicked);
+
+        // 클릭 이벤트 등록
+        button.onClick.AddListener(OnButtonClicked);
+    }
+
+
+    private void OnButtonClicked()
+    {
+        Debug.Log(
+            $"[IconButton] 클릭: {gameObject.name}, ID: {GetInstanceID()}"
+        );
+
+        if (TooltipUI.Instance != null)
+            TooltipUI.Instance.Hide();
+
+        if (clickAction == null)
+        {
+            Debug.LogError(
+                $"[IconButton] clickAction이 null입니다: {gameObject.name}"
+            );
+            return;
+        }
+
+        Debug.Log("[IconButton] 콜백 실행 직전");
+
+        clickAction.Invoke();
+
+        Debug.Log("[IconButton] 콜백 실행 완료");
     }
 
 
@@ -83,7 +130,8 @@ public class IconButton : MonoBehaviour,
     {
         clickAction = null;
 
-        button.onClick.RemoveAllListeners();
+        if (button != null)
+            button.onClick.RemoveListener(OnButtonClicked);
     }
 
     #endregion
@@ -129,17 +177,121 @@ public class IconButton : MonoBehaviour,
     #endregion
 
 
+    #region Data
+
+    // ===================================
+    // 아이템 데이터 연결
+    // ===================================
+
+    public void SetItemData(ItemData item)
+    {
+        currentItem = item;
+        currentCharacter = null;
+
+        PointerEnterRemove();
+        PointerExitRemove();
+
+        SetText("");
+
+        if (item == null)
+        {
+            SetEmpty();
+            return;
+        }
+
+        SetImage(item.icon);
+
+        PointerEnterAdd(() =>
+        {
+            if (TooltipUI.Instance != null)
+            {
+                TooltipUI.Instance.Show(
+                    currentItem,
+                    transform as RectTransform
+                );
+            }
+        });
+
+        PointerExitAdd(() =>
+        {
+            if (TooltipUI.Instance != null)
+                TooltipUI.Instance.Hide();
+        });
+    }
+
+
+    // ===================================
+    // 캐릭터 정보 연결
+    // ===================================
+
+    public void SetCharacterData(CharacterInfo character)
+    {
+        currentCharacter = character;
+        currentItem = null;
+
+        PointerEnterRemove();
+        PointerExitRemove();
+
+        SetAmount(0);
+
+        if (character == null)
+        {
+            SetEmpty();
+            SetText("");
+            return;
+        }
+
+        SetImage(character.character_icon);
+    }
+
+
+    // ===================================
+    // 플레이어 캐릭터 데이터 연결
+    // ===================================
+
+    public void SetCharacterData(PlayerCharacterData character)
+    {
+        if (character == null)
+        {
+            SetCharacterData((CharacterInfo)null);
+            return;
+        }
+
+        SetCharacterData(character.player_character_info);
+    }
+
+
+    // 현재 아이템 반환
+    public ItemData GetCurrentItem()
+    {
+        return currentItem;
+    }
+
+
+    // 현재 캐릭터 반환
+    public CharacterInfo GetCurrentCharacter()
+    {
+        return currentCharacter;
+    }
+
+    #endregion
+
+
     #region UI
 
     public void SetColor(Color color)
     {
-        background_image.color = color;
+        if (background_image != null)
+            background_image.color = color;
     }
 
 
     public void SetImage(Sprite sprite)
     {
-        button_image.enabled = true;
+        if (button_image == null)
+            return;
+
+        button_image.enabled = sprite != null;
         button_image.sprite = sprite;
     }
 
@@ -158,19 +310,27 @@ public class IconButton : MonoBehaviour,
 
     public void ToggleButtonActive(bool value)
     {
-        button.interactable = value;
+        if (button != null)
+            button.interactable = value;
 
         if (unselectableImage != null)
             unselectableImage.SetActive(!value);
+
+        Debug.Log(
+            $"[IconButton] {gameObject.name} / Interactable: " +
+            (button != null ? button.interactable.ToString() : "Button Null")
+        );
     }
 
 
     public void SetEmpty()
     {
-        button_image.enabled = false;
+        if (button_image == null)
+            return;
 
-        if (empty_image != null)
-            button_image.sprite = empty_image;
+        button_image.enabled = true;
+
+        button_image.sprite = empty_image;
 
         SetAmount(0);
     }

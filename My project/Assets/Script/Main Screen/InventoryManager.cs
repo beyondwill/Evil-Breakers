@@ -98,6 +98,9 @@ public class InventoryManager : MonoBehaviour
 
         icon.SetAmount(item.amount);
 
+        // 아이템 데이터 연결
+        icon.SetItemData(item.item);
+
         // 클릭 이벤트
         icon.ActionAdd(() =>
         {
@@ -113,6 +116,10 @@ public class InventoryManager : MonoBehaviour
     {
         selectedButton = null;
         selectedItem = null;
+
+        // 툴팁 닫기
+        if (TooltipUI.Instance != null)
+            TooltipUI.Instance.Hide();
 
         for (int i = 0; i < iconList.Count; i++)
         {
