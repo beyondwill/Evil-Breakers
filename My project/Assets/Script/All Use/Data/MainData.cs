@@ -11,15 +11,13 @@ public class MainData
 
     public List<CardData> storage_cards_list = new();
     public List<InventoryItem> inventoryItemList = new();
-
     public List<EquipmentInfo> equipmentInfoList = new();
     public List<MapData> mapDataList = new();
-    public List<ItemData> storagereRelicList = new();
+    public List<ItemData> storageRelicList = new();
+    public List<ItemData> purgedRelicList = new();
     public List<ItemData> relicItems = new();
 
     public ShopData shopData = new();
-
-
 
     // 메인 화면 인벤토리 추가
     // maxStack 무시
@@ -28,8 +26,6 @@ public class MainData
     {
         if (item == null || amount <= 0)
             return;
-
-
 
         // 같은 아이템 찾기
         foreach (var slot in inventoryItemList)
@@ -52,8 +48,6 @@ public class MainData
             return;
         }
 
-
-
         // 없으면 새 슬롯 생성
         InventoryItem newItem = new InventoryItem();
 
@@ -61,10 +55,6 @@ public class MainData
 
         inventoryItemList.Add(newItem);
     }
-
-
-
-
 
     // 아이템 제거
     public bool RemoveInventoryItem(int index, int amount = 1)
@@ -95,10 +85,6 @@ public class MainData
 
         return true;
     }
-
-
-
-
 
     // 아이템 판매/존재 확인용
     public InventoryItem GetInventoryItem(int index)

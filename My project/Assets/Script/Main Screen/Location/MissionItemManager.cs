@@ -1,17 +1,7 @@
-
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-
-[System.Serializable]
-public class PurchaseItemData
-{
-    public ItemData item;
-    public int amount = 1;
-}
-
 
 public class MissionItemManager : MonoBehaviour
 {
@@ -24,12 +14,6 @@ public class MissionItemManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private Color icon_color = Color.white;
-
-
-    [Header("Purchase Item Data")]
-    [SerializeField]
-    private List<PurchaseItemData> purchaseItemDataList =
-        new List<PurchaseItemData>();
 
 
     // 구매할 아이템
@@ -58,12 +42,31 @@ public class MissionItemManager : MonoBehaviour
         purchaseItemList.Clear();
         carryItemList.Clear();
 
-        foreach (PurchaseItemData data in purchaseItemDataList)
+
+        // 플레이어 인벤토리 가져오기
+        List<InventoryItem> inventoryList =
+            DataManager.Instance
+                .GetMainData
+                .inventoryItemList;
+
+
+        if (inventoryList == null)
+            return;
+
+
+        foreach (InventoryItem data in inventoryList)
         {
-            if (data.item == null || data.amount <= 0)
+            if (data == null ||
+                data.IsEmpty ||
+                data.amount <= 0)
                 continue;
 
-            // 구매 목록은 최대 중첩 제한 없이 합산
+
+            // 소모품만 가져오기
+            if (data.item is not ConsumptionItemInfo)
+                continue;
+
+
             AddItemToList(
                 purchaseItemList,
                 data.item,
@@ -338,12 +341,14 @@ public class MissionItemManager : MonoBehaviour
 
     #region Getter
 
+    // 구매할 아이템 목록
     public List<InventoryItem> GetPurchaseItemList()
     {
         return purchaseItemList;
     }
 
 
+    // 챙길 아이템 목록
     public List<InventoryItem> GetCarryItemList()
     {
         return carryItemList;

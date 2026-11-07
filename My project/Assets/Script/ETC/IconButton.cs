@@ -24,6 +24,9 @@ public class IconButton : MonoBehaviour,
     [SerializeField] private int button_index;
     [SerializeField] private Sprite empty_image;
 
+    [Header("Config")]
+    [SerializeField] private ItemColorConfig itemColorConfig;
+
     private Action clickAction;
     private Action pointerEnterAction;
     private Action pointerExitAction;
@@ -81,17 +84,17 @@ public class IconButton : MonoBehaviour,
     {
         clickAction = action;
 
-        Debug.Log(
-            $"[IconButton] 이벤트 등록: {gameObject.name}, ID: {GetInstanceID()}"
-        );
+        //Debug.Log(
+        //    $"[IconButton] 이벤트 등록: {gameObject.name}, ID: {GetInstanceID()}"
+        //);
 
-        if (button == null)
-        {
-            Debug.LogError(
-                $"[IconButton] Button이 연결되지 않았습니다: {gameObject.name}"
-            );
-            return;
-        }
+        //if (button == null)
+        //{
+        //    Debug.LogError(
+        //        $"[IconButton] Button이 연결되지 않았습니다: {gameObject.name}"
+        //    );
+        //    return;
+        //}
 
         // 기존 IconButton 이벤트만 제거
         button.onClick.RemoveListener(OnButtonClicked);
@@ -187,6 +190,8 @@ public class IconButton : MonoBehaviour,
     {
         currentItem = item;
         currentCharacter = null;
+
+        SetColor(itemColorConfig.FindRarityColor(currentItem.itemRarity));
 
         PointerEnterRemove();
         PointerExitRemove();
@@ -316,21 +321,27 @@ public class IconButton : MonoBehaviour,
         if (unselectableImage != null)
             unselectableImage.SetActive(!value);
 
-        Debug.Log(
-            $"[IconButton] {gameObject.name} / Interactable: " +
-            (button != null ? button.interactable.ToString() : "Button Null")
-        );
+        //Debug.Log(
+        //    $"[IconButton] {gameObject.name} / Interactable: " +
+        //    (button != null ? button.interactable.ToString() : "Button Null")
+        //);
     }
 
 
     public void SetEmpty()
     {
-        if (button_image == null)
-            return;
-
         button_image.enabled = true;
 
         button_image.sprite = empty_image;
+
+        SetAmount(0);
+    }
+
+    public void SetNone()
+    {
+        button_image.enabled = true;
+
+        button_image.sprite = null;
 
         SetAmount(0);
     }
@@ -339,7 +350,19 @@ public class IconButton : MonoBehaviour,
     public void SetText(string s)
     {
         if (specialText != null)
+        {
             specialText.text = s;
+
+            //Debug.Log(
+            //    $"[IconButton] {gameObject.name} 텍스트 설정: {s}"
+            //);
+        }
+        else
+        {
+            Debug.LogError(
+                $"[IconButton] specialText가 연결되지 않았습니다: {gameObject.name}"
+            );
+        }
     }
 
 

@@ -31,6 +31,8 @@ public class ItemData : DataEntity
 
     public EquipmentType equipmentType;
 
+    public ItemRarity itemRarity;
+
     public int maxStack = 1;
 
     public int sellPrice = 100;

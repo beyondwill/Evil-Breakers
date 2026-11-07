@@ -25,6 +25,9 @@ public class BattleCharacterManager : MonoBehaviour
     [SerializeField] private GameObject victoryObject;
     [SerializeField] private GameObject defeatObject;
 
+
+    // test
+    public RelicItemInfo r;
     private void Awake()
     {
         Instance = this;
@@ -130,6 +133,10 @@ public class BattleCharacterManager : MonoBehaviour
 
         ShuffleDeck(character.deck_card_list);
 
+        if (DataManager.Instance.GetMainData.relicItems.Contains(r))
+        {
+            character.statContainer.AddBuff(CharacterBuffType.Acceleration, 500);
+        }
         return character;
     }
 

@@ -3097,6 +3097,7 @@ MonoBehaviour:
   missionObjectList: []
   infoBoxList: []
   missionEndButton: {fileID: 768458812}
+  relicSample: {fileID: 11400000, guid: 2e7667cceb9c6c742af237b6de180860, type: 2}
   current_point: {x: 0, y: 0}
   enemy1: {fileID: 11400000, guid: 424600da8d2d0e64d89fc2343df430e9, type: 2}
   enemy2: {fileID: 11400000, guid: fcbef77d9e1fb06418167a68440bbb49, type: 2}
@@ -4875,6 +4876,7 @@ MonoBehaviour:
   edgePrefab: {fileID: 4844041799776952375, guid: f4d8f05c57777f4479aaa05af7594191, type: 3}
   nodeLayer: {fileID: 1845145399}
   edgeLayer: {fileID: 1145700476}
+  r: {fileID: 11400000, guid: fcf314dcb3f7b2c438d024fd096cbe09, type: 2}
 --- !u!1 &1357586488
 GameObject:
   m_ObjectHideFlags: 0
@@ -6808,10 +6810,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemToolTip
       objectReference: {fileID: 0}
-    - target: {fileID: 607624374286472602, guid: 6caf419e771ac7f4092874835e4ca540, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 724966537870808721, guid: 6caf419e771ac7f4092874835e4ca540, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6902,7 +6900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3170756316761449564, guid: 6caf419e771ac7f4092874835e4ca540, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 3170756316761449564, guid: 6caf419e771ac7f4092874835e4ca540, type: 3}
       propertyPath: m_AnchoredPosition.y

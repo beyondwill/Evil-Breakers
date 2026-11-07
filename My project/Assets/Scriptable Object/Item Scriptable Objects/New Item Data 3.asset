@@ -19,5 +19,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: fa26b1fe41fbc6840bfabcc8fd3be3dd, type: 3}
   itemType: 1
   equipmentType: 1
+  itemRarity: 2
   maxStack: 1
   sellPrice: 100

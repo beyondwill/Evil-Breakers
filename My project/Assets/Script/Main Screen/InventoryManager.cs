@@ -32,8 +32,7 @@ public class InventoryManager : MonoBehaviour
 
 
     // 생성된 아이콘
-    private List<IconButton> iconList =
-        new List<IconButton>();
+    private List<IconButton> iconList = new List<IconButton>();
 
 
     // 현재 선택된 아이콘
@@ -49,6 +48,11 @@ public class InventoryManager : MonoBehaviour
         InventoryCategory.All;
 
 
+    // 통합 표시 목록
+    private List<InventoryItem> displayItemList =
+        new List<InventoryItem>();
+
+
     #region Inventory
 
     // 인벤토리 갱신
@@ -56,23 +60,56 @@ public class InventoryManager : MonoBehaviour
     {
         ClearIcons();
 
+        displayItemList.Clear();
+
+        // ================================
+        // 일반 인벤토리 아이템
+        // ================================
+
         List<InventoryItem> inventory =
             DataManager.Instance.GetMainData.inventoryItemList;
 
-
-        for (int i = 0; i < inventory.Count; i++)
+        foreach (InventoryItem item in inventory)
         {
-            InventoryItem item = inventory[i];
-
-            // 빈 슬롯 검사
-            if (item == null || item.IsEmpty)
+            if (item == null || item.IsEmpty || item.amount <= 0)
                 continue;
+
+            displayItemList.Add(item);
+        }
+
+
+        // ================================
+        // 장비 목록
+        // ================================
+
+        List<EquipmentInfo> equipmentList =
+            DataManager.Instance.GetMainData.equipmentInfoList;
+
+        foreach (EquipmentInfo equipment in equipmentList)
+        {
+            if (equipment == null)
+                continue;
+
+            // 장비를 InventoryItem 형태로 변환
+            InventoryItem equipmentItem =
+                new InventoryItem(equipment, 1);
+
+            displayItemList.Add(equipmentItem);
+        }
+
+
+        // ================================
+        // 아이콘 생성
+        // ================================
+
+        for (int i = 0; i < displayItemList.Count; i++)
+        {
+            InventoryItem item = displayItemList[i];
 
             // 카테고리 검사
             if (!IsCategoryMatch(item.item))
                 continue;
 
-            // 아이콘 생성
             CreateIcon(item, i);
         }
 

@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5627760db54594483bc4f2823c6615, type: 3}
   m_Name: New Sight Up
   m_EditorClassIdentifier: 
+  healValue: 10

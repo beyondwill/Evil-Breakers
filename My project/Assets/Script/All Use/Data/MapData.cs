@@ -133,8 +133,6 @@ public class MapData
         current_point = data.current_point;
         missionObjectList = new List<MissionObject>(data.missionObjectList);
 
-        Debug.Log("À¸¾Ó!");
-
         if (!string.IsNullOrEmpty(data.mapDataId))
         {
             Debug.Log(data.mapDataId);

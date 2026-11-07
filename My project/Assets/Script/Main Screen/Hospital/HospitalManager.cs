@@ -42,7 +42,7 @@ public class HospitalManager : MonoBehaviour
 
     private void Initialize()
     {
-        Debug.Log("[Hospital] 초기화 시작");
+        //Debug.Log("[Hospital] 초기화 시작");
 
         if (hospitalSlotIcons == null ||
             hospitalSlotIcons.Length == 0)

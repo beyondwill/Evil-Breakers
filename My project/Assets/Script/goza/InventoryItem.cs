@@ -15,7 +15,8 @@ public class InventoryItem
 
     public InventoryItem()
     {
-
+        item = null;
+        amount = 0;
     }
 
     public InventoryItem(ItemData item, int amount = 1)

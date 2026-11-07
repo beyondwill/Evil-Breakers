@@ -130,7 +130,10 @@ public class MainScreenManager : MonoBehaviour
                 closeGameObject.SetActive(false);
             }
 
-            if (manageBox.activeSelf) { manageBox.SetActive(false); }
+            if (manageBox.activeSelf)
+            {
+                manageBox.SetActive(false);
+            }
             else
             {
                 if (nationBox.activeSelf)
@@ -138,7 +141,6 @@ public class MainScreenManager : MonoBehaviour
                     nationBox.SetActive(false);
                     stateBox.SetActive(true);
                 }
-
                 else
                 {
                     if (mapBox.activeSelf)
@@ -354,11 +356,6 @@ public class MainScreenManager : MonoBehaviour
         // ========================================================
         // 일반적인 Deselected
         // ========================================================
-        //
-        // index는 절대로 -1로 만들지 않는다.
-        //
-        // 마지막으로 선택했던 지역은 계속 기억한다.
-        // ========================================================
 
         enterButton.interactable = false;
 
@@ -427,6 +424,157 @@ public class MainScreenManager : MonoBehaviour
 
 
         // ================================
+        // 가져갈 아이템 목록 확인
+        // ================================
+
+        List<InventoryItem> carryItemList =
+            missionItemManager.GetCarryItemList();
+
+
+        List<InventoryItem> inventoryList =
+            DataManager.Instance.GetAllData.main_data.inventoryItemList;
+
+
+        // ================================
+        // 실제로 가져갈 아이템 목록 구성
+        // 최대 12개 슬롯
+        // ================================
+
+        List<InventoryItem> selectedItems = new List<InventoryItem>();
+
+        foreach (InventoryItem item in carryItemList)
+        {
+            if (item == null || item.IsEmpty || item.amount <= 0)
+            {
+                continue;
+            }
+
+            if (selectedItems.Count >= 12)
+            {
+                break;
+            }
+
+            selectedItems.Add(item);
+        }
+
+
+        // ================================
+        // 아이템 수량 사전 검사
+        // ================================
+        // 같은 아이템이 여러 인벤토리 슬롯에
+        // 나뉘어 있는 경우도 합산해서 검사
+        // ================================
+
+        Dictionary<ItemData, int> requiredAmount = new Dictionary<ItemData, int>();
+
+        foreach (InventoryItem item in selectedItems)
+        {
+            if (requiredAmount.ContainsKey(item.item))
+            {
+                requiredAmount[item.item] += item.amount;
+            }
+            else
+            {
+                requiredAmount.Add(item.item, item.amount);
+            }
+        }
+
+
+        // ================================
+        // 인벤토리 수량 검사
+        // ================================
+
+        foreach (KeyValuePair<ItemData, int> required in requiredAmount)
+        {
+            int availableAmount = 0;
+
+            foreach (InventoryItem inventoryItem in inventoryList)
+            {
+                if (inventoryItem == null ||
+                    inventoryItem.IsEmpty ||
+                    inventoryItem.amount <= 0)
+                {
+                    continue;
+                }
+
+                if (inventoryItem.item == required.Key)
+                {
+                    availableAmount += inventoryItem.amount;
+                }
+            }
+
+
+            // 수량 부족
+            if (availableAmount < required.Value)
+            {
+                Debug.LogWarning(
+                    $"[BattleBegin] 아이템 수량 부족: {required.Key.itemName} / 필요 수량: {required.Value} / 보유 수량: {availableAmount}"
+                );
+
+                return;
+            }
+        }
+
+
+        // ================================
+        // 선택한 아이템 실제 차감
+        // ================================
+
+        foreach (InventoryItem selectedItem in selectedItems)
+        {
+            int remainingAmount = selectedItem.amount;
+
+
+            // 인벤토리의 여러 슬롯을 순회하며 차감
+            foreach (InventoryItem inventoryItem in inventoryList)
+            {
+                if (remainingAmount <= 0)
+                {
+                    break;
+                }
+
+                if (inventoryItem == null ||
+                    inventoryItem.IsEmpty ||
+                    inventoryItem.amount <= 0)
+                {
+                    continue;
+                }
+
+                if (inventoryItem.item != selectedItem.item)
+                {
+                    continue;
+                }
+
+
+                int deductAmount = Mathf.Min(
+                    inventoryItem.amount,
+                    remainingAmount
+                );
+
+
+                inventoryItem.amount -= deductAmount;
+                remainingAmount -= deductAmount;
+
+
+                Debug.Log(
+                    $"[BattleBegin] 아이템 차감: {selectedItem.item.itemName} / {deductAmount}개"
+                );
+            }
+        }
+
+
+        // ================================
+        // 수량이 0이 된 인벤토리 아이템 제거
+        // ================================
+
+        inventoryList.RemoveAll(item =>
+            item == null ||
+            item.IsEmpty ||
+            item.amount <= 0
+        );
+
+
+        // ================================
         // 선택한 지역 맵 데이터 저장
         // ================================
 
@@ -458,17 +606,28 @@ public class MainScreenManager : MonoBehaviour
 
         DataManager.Instance.GetBattleData.slots.Clear();
 
-        foreach (InventoryItem item in missionItemManager.GetCarryItemList())
-        {
-            if (item == null || item.IsEmpty)
-                continue;
 
-            DataManager.Instance.GetBattleData.slots.Add(item.Clone());
+        foreach (InventoryItem item in selectedItems)
+        {
+            DataManager.Instance.GetBattleData.slots.Add(
+                item.Clone()
+            );
         }
 
+
+        // 부족한 슬롯을 12개까지 채우기
+        while (DataManager.Instance.GetBattleData.slots.Count < 12)
+        {
+            DataManager.Instance.GetBattleData.slots.Add(
+                new InventoryItem()
+            );
+        }
+
+
         Debug.Log(
-            $"[BattleBegin] 아이템 저장 완료 / 개수 = {DataManager.Instance.GetBattleData.slots.Count}"
+            $"[BattleBegin] 최종 슬롯 개수 = {DataManager.Instance.GetBattleData.slots.Count}"
         );
+
 
         // ================================
         // 데이터 저장

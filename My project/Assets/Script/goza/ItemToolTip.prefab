@@ -173,7 +173,7 @@ RectTransform:
   - {fileID: 106604426426007025}
   - {fileID: 6051447375330616423}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -277,7 +277,7 @@ MonoBehaviour:
   descriptionText: {fileID: 2235585646404426910}
   priceText: {fileID: 3948775422172621553}
   statConfig: {fileID: 0}
-  offset: {x: -20, y: -20}
+  offset: {x: 0, y: -20}
   showPrice: 0
 --- !u!1 &3346228896383626918
 GameObject:

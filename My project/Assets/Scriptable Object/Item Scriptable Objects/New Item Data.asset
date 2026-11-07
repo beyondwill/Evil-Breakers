@@ -20,5 +20,7 @@ MonoBehaviour:
     \uC544\uBB34\uD2BC \uB3C8\uC774\uB2C8\uAE4C \uC88B\uC740\uAC70\uC8E0 \uBB50."
   icon: {fileID: 21300000, guid: f6f6be9a62333e04080599c42b424d73, type: 3}
   itemType: 0
+  equipmentType: 0
+  itemRarity: 1
   maxStack: 1250
   sellPrice: 100

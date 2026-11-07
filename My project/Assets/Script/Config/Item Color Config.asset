@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40699bd3f12f26c4b95717099646d893, type: 3}
+  m_Name: Item Color Config
+  m_EditorClassIdentifier: Assembly-CSharp::ItemColorConfig
+  itemColorList:
+  - itemRarity: 0
+    color: {r: 0, g: 0, b: 0, a: 1}
+  - itemRarity: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+  - itemRarity: 2
+    color: {r: 0.504717, g: 1, b: 0.6758196, a: 1}
+  - itemRarity: 3
+    color: {r: 0.33490568, g: 0.90002173, b: 1, a: 1}
+  - itemRarity: 4
+    color: {r: 1, g: 0.2971698, b: 0.89480835, a: 1}
+  - itemRarity: 5
+    color: {r: 1, g: 0.6463029, b: 0.06132078, a: 1}
+  - itemRarity: 6
+    color: {r: 1, g: 0.4502957, b: 0.4009434, a: 1}

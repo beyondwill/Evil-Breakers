@@ -429,11 +429,11 @@ public class QuickLocalizationSetup : MonoBehaviour
                     "No translation found"))
                 continue;
 
-            Debug.Log(
-                $"[Localization] 새 TMP 발견: " +
-                $"{tmp.gameObject.name} / " +
-                $"Key = {currentText}"
-            );
+            //Debug.Log(
+            //    $"[Localization] 새 TMP 발견: " +
+            //    $"{tmp.gameObject.name} / " +
+            //    $"Key = {currentText}"
+            //);
 
             RegisterText(
                 tmp,
@@ -1126,10 +1126,10 @@ public class QuickLocalizationSetup : MonoBehaviour
 
         dynamicScanTimer = 0f;
 
-        Debug.Log(
-            $"[Localization] 씬 변경 → Dictionary 초기화: " +
-            $"{scene.name}"
-        );
+        //Debug.Log(
+        //    $"[Localization] 씬 변경 → Dictionary 초기화: " +
+        //    $"{scene.name}"
+        //);
 
         if (isInitialized)
         {

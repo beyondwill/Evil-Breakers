@@ -33,11 +33,7 @@ public class TooltipUI : MonoBehaviour
 
         canvas = GetComponentInParent<Canvas>();
 
-
-        // =====================================================
         // Tooltip이 마우스 이벤트를 막지 않도록 설정
-        // =====================================================
-
         CanvasGroup canvasGroup =
             GetComponent<CanvasGroup>();
 
@@ -50,9 +46,7 @@ public class TooltipUI : MonoBehaviour
         canvasGroup.blocksRaycasts = false;
         canvasGroup.interactable = false;
 
-
         // 자식 UI도 Raycast 차단 방지
-
         if (background != null)
             background.raycastTarget = false;
 
@@ -67,7 +61,6 @@ public class TooltipUI : MonoBehaviour
 
         if (priceText != null)
             priceText.raycastTarget = false;
-
 
         gameObject.SetActive(false);
     }
@@ -90,48 +83,31 @@ public class TooltipUI : MonoBehaviour
         if (canvas == null)
             return;
 
-
-        // =====================================================
         // 이름
-        // =====================================================
-
         if (nameText != null)
         {
             nameText.text =
                 item.itemName;
         }
 
-
-        // =====================================================
         // 타입
-        // =====================================================
-
         if (typeText != null)
         {
             typeText.text =
                 $"분류 : {GetTypeName(item.itemType)}";
         }
 
-
-        // =====================================================
         // 설명
-        // =====================================================
-
         if (descriptionText != null)
         {
             descriptionText.text =
                 GetDescription(item);
         }
 
-
-        // =====================================================
         // 가격
-        // =====================================================
-
         if (priceText != null)
         {
-            priceText.gameObject.SetActive(
-                showPrice);
+            priceText.gameObject.SetActive(showPrice);
 
             if (showPrice)
             {
@@ -140,33 +116,20 @@ public class TooltipUI : MonoBehaviour
             }
         }
 
-
-        // =====================================================
         // 활성화
-        // =====================================================
-
         if (!gameObject.activeSelf)
         {
             gameObject.SetActive(true);
         }
 
-
-        // =====================================================
         // 레이아웃 갱신
-        // =====================================================
+        Canvas.ForceUpdateCanvases();
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rect);
 
         Canvas.ForceUpdateCanvases();
 
-        LayoutRebuilder.ForceRebuildLayoutImmediate(
-            rect);
-
-        Canvas.ForceUpdateCanvases();
-
-
-        // =====================================================
         // 위치
-        // =====================================================
-
         SetPosition(target);
     }
 
@@ -180,37 +143,24 @@ public class TooltipUI : MonoBehaviour
         if (item == null)
             return "";
 
-
         StringBuilder builder =
             new StringBuilder();
 
-
-        // -----------------------------------------------------
         // 기본 설명
-        // -----------------------------------------------------
-
         if (!string.IsNullOrEmpty(item.description))
         {
-            builder.Append(
-                item.description);
+            builder.Append(item.description);
         }
 
-
-        // -----------------------------------------------------
         // 장비인 경우 스탯 추가
-        // -----------------------------------------------------
-
         EquipmentInfo equipment =
             item as EquipmentInfo;
-
 
         if (equipment == null)
             return builder.ToString();
 
-
         if (equipment.baseStatList == null)
             return builder.ToString();
-
 
         foreach (CharacterBaseStatValue stat
                  in equipment.baseStatList)
@@ -218,15 +168,12 @@ public class TooltipUI : MonoBehaviour
             if (stat == null)
                 continue;
 
-
             // 값이 0이면 표시하지 않음
             if (stat.value == 0f)
                 continue;
 
-
             string statName =
                 GetStatName(stat.type);
-
 
             // 설명과 스탯 사이 줄바꿈
             if (builder.Length > 0)
@@ -234,24 +181,10 @@ public class TooltipUI : MonoBehaviour
                 builder.AppendLine();
             }
 
-
-            // =================================================
-            // 최종 출력
-            //
-            // 공격력: 10
-            // 방어력: 5
-            // =================================================
-
-            builder.Append(
-                statName);
-
-            builder.Append(
-                ": ");
-
-            builder.Append(
-                FormatStatValue(stat.value));
+            builder.Append(statName);
+            builder.Append(": ");
+            builder.Append(FormatStatValue(stat.value));
         }
-
 
         return builder.ToString();
     }
@@ -264,23 +197,18 @@ public class TooltipUI : MonoBehaviour
     private string GetStatName(
         CharacterBaseStatType type)
     {
-        // StatConfig가 없으면 enum 이름 사용
         if (statConfig == null)
         {
             return type.ToString();
         }
 
-
         CharacterBaseStatSort stat =
             statConfig.FindBaseStat(type);
 
-
-        // 해당 스탯 설정이 없으면 enum 이름 사용
         if (stat == null)
         {
             return type.ToString();
         }
-
 
         return stat.statName;
     }
@@ -292,17 +220,12 @@ public class TooltipUI : MonoBehaviour
 
     private string FormatStatValue(float value)
     {
-        // 10.0 → 10
-        // 10.5 → 10.5
-
         if (Mathf.Approximately(
             value,
             Mathf.Round(value)))
         {
-            return Mathf.RoundToInt(value)
-                .ToString();
+            return Mathf.RoundToInt(value).ToString();
         }
-
 
         return value.ToString("0.##");
     }
@@ -316,7 +239,6 @@ public class TooltipUI : MonoBehaviour
     {
         if (!gameObject.activeSelf)
             return;
-
 
         gameObject.SetActive(false);
     }
@@ -338,39 +260,18 @@ public class TooltipUI : MonoBehaviour
         if (canvas == null)
             return;
 
-
-        // =====================================================
         // 1. 아이콘의 오른쪽 중앙
-        // =====================================================
-
         Vector3[] corners =
             new Vector3[4];
 
         target.GetWorldCorners(corners);
 
-
-        /*
-        
-        3 ---------------- 2
-        |                  |
-        |       ICON       |
-        |                  |
-        0 ---------------- 1
-        
-        */
-
-
         Vector3 rightCenter =
             (corners[1] + corners[2]) * 0.5f;
 
-
-        // =====================================================
         // 2. World → Screen
-        // =====================================================
-
         Camera camera =
             GetCanvasCamera();
-
 
         Vector2 screenPosition =
             RectTransformUtility.WorldToScreenPoint(
@@ -378,55 +279,50 @@ public class TooltipUI : MonoBehaviour
                 rightCenter
             );
 
-
-        // =====================================================
         // 3. Screen → Tooltip 부모 World
-        // =====================================================
-
         RectTransform parentRect =
             rect.parent as RectTransform;
-
 
         if (parentRect == null)
             return;
 
-
         Vector3 worldPosition;
 
+        RectTransformUtility.ScreenPointToWorldPointInRectangle(
+            parentRect,
+            screenPosition,
+            camera,
+            out worldPosition
+        );
 
-        RectTransformUtility
-            .ScreenPointToWorldPointInRectangle(
-                parentRect,
-                screenPosition,
-                camera,
-                out worldPosition
-            );
-
-
-        // =====================================================
         // 4. Tooltip 위치
-        // =====================================================
-
         rect.position =
             worldPosition;
 
-
-        // =====================================================
-        // 5. Offset
-        // =====================================================
-
+        // 5. 기존 Offset
         Vector3 offsetWorld =
             GetOffsetWorld(offset);
-
 
         rect.position +=
             offsetWorld;
 
-
         // =====================================================
+        // 5-1. 대상 오브젝트 가로 길이의 절반만큼 추가 이동
+        // =====================================================
+
+        Vector3 halfWidthOffset =
+            target.TransformVector(
+                new Vector3(
+                    target.rect.width * 0.5f,
+                    0f,
+                    0f
+                )
+            );
+
+        rect.position +=
+            halfWidthOffset;
+
         // 6. 화면 밖 보정
-        // =====================================================
-
         ClampToScreen(target);
     }
 
@@ -441,28 +337,18 @@ public class TooltipUI : MonoBehaviour
         RectTransform parentRect =
             rect.parent as RectTransform;
 
-
         if (parentRect == null)
             return Vector3.zero;
 
-
         Vector3 right =
             parentRect.TransformVector(
-                new Vector3(
-                    offset.x,
-                    0f,
-                    0f)
+                new Vector3(offset.x, 0f, 0f)
             );
-
 
         Vector3 up =
             parentRect.TransformVector(
-                new Vector3(
-                    0f,
-                    offset.y,
-                    0f)
+                new Vector3(0f, offset.y, 0f)
             );
-
 
         return right + up;
     }
@@ -478,20 +364,15 @@ public class TooltipUI : MonoBehaviour
         if (rect == null)
             return;
 
-
         Canvas.ForceUpdateCanvases();
-
 
         Camera camera =
             GetCanvasCamera();
 
-
         Vector3[] corners =
             new Vector3[4];
 
-
         rect.GetWorldCorners(corners);
-
 
         Vector2 bottomLeft =
             RectTransformUtility.WorldToScreenPoint(
@@ -499,203 +380,127 @@ public class TooltipUI : MonoBehaviour
                 corners[0]
             );
 
-
         Vector2 topRight =
             RectTransformUtility.WorldToScreenPoint(
                 camera,
                 corners[2]
             );
 
+        float left = bottomLeft.x;
+        float right = topRight.x;
+        float bottom = bottomLeft.y;
+        float top = topRight.y;
 
-        float left =
-            bottomLeft.x;
-
-        float right =
-            topRight.x;
-
-        float bottom =
-            bottomLeft.y;
-
-        float top =
-            topRight.y;
-
-
-        float screenWidth =
-            Screen.width;
-
-        float screenHeight =
-            Screen.height;
-
+        float screenWidth = Screen.width;
+        float screenHeight = Screen.height;
 
         Vector3 position =
             rect.position;
 
-
-        // =====================================================
         // 오른쪽 화면 밖
-        // =====================================================
-
         if (right > screenWidth)
         {
             Vector3[] targetCorners =
                 new Vector3[4];
 
-
-            target.GetWorldCorners(
-                targetCorners);
-
+            target.GetWorldCorners(targetCorners);
 
             // 아이콘 왼쪽 중앙
             Vector3 leftCenter =
-                (targetCorners[0] +
-                 targetCorners[3]) * 0.5f;
-
+                (targetCorners[0] + targetCorners[3]) * 0.5f;
 
             Vector2 targetScreen =
-                RectTransformUtility
-                    .WorldToScreenPoint(
-                        camera,
-                        leftCenter
-                    );
-
+                RectTransformUtility.WorldToScreenPoint(
+                    camera,
+                    leftCenter
+                );
 
             RectTransform parentRect =
                 rect.parent as RectTransform;
-
 
             if (parentRect != null)
             {
                 Vector3 worldPosition;
 
-
-                RectTransformUtility
-                    .ScreenPointToWorldPointInRectangle(
-                        parentRect,
-                        targetScreen,
-                        camera,
-                        out worldPosition
-                    );
-
+                RectTransformUtility.ScreenPointToWorldPointInRectangle(
+                    parentRect,
+                    targetScreen,
+                    camera,
+                    out worldPosition
+                );
 
                 rect.position =
-                    worldPosition -
-                    GetOffsetWorld(offset);
+                    worldPosition - GetOffsetWorld(offset);
             }
-
 
             // 다시 갱신
             Canvas.ForceUpdateCanvases();
 
-
-            rect.GetWorldCorners(
-                corners);
-
+            rect.GetWorldCorners(corners);
 
             bottomLeft =
-                RectTransformUtility
-                    .WorldToScreenPoint(
-                        camera,
-                        corners[0]
-                    );
-
+                RectTransformUtility.WorldToScreenPoint(
+                    camera,
+                    corners[0]
+                );
 
             topRight =
-                RectTransformUtility
-                    .WorldToScreenPoint(
-                        camera,
-                        corners[2]
-                    );
+                RectTransformUtility.WorldToScreenPoint(
+                    camera,
+                    corners[2]
+                );
 
-
-            left =
-                bottomLeft.x;
-
-            right =
-                topRight.x;
-
-            bottom =
-                bottomLeft.y;
-
-            top =
-                topRight.y;
+            left = bottomLeft.x;
+            right = topRight.x;
+            bottom = bottomLeft.y;
+            top = topRight.y;
         }
 
-
-        // =====================================================
         // 왼쪽 화면 밖
-        // =====================================================
-
         if (left < 0f)
         {
-            float difference =
-                -left;
-
+            float difference = -left;
 
             position +=
                 GetOffsetWorld(
-                    new Vector2(
-                        difference,
-                        0f)
+                    new Vector2(difference, 0f)
                 );
         }
 
-
-        // =====================================================
         // 오른쪽 화면 밖
-        // =====================================================
-
         if (right > screenWidth)
         {
             float difference =
                 right - screenWidth;
 
-
             position -=
                 GetOffsetWorld(
-                    new Vector2(
-                        difference,
-                        0f)
+                    new Vector2(difference, 0f)
                 );
         }
 
-
-        // =====================================================
         // 아래 화면 밖
-        // =====================================================
-
         if (bottom < 0f)
         {
-            float difference =
-                -bottom;
-
+            float difference = -bottom;
 
             position +=
                 GetOffsetWorld(
-                    new Vector2(
-                        0f,
-                        difference)
+                    new Vector2(0f, difference)
                 );
         }
 
-
-        // =====================================================
         // 위 화면 밖
-        // =====================================================
-
         if (top > screenHeight)
         {
             float difference =
                 top - screenHeight;
 
-
             position -=
                 GetOffsetWorld(
-                    new Vector2(
-                        0f,
-                        difference)
+                    new Vector2(0f, difference)
                 );
         }
-
 
         rect.position =
             position;
@@ -711,13 +516,10 @@ public class TooltipUI : MonoBehaviour
         if (canvas == null)
             return null;
 
-
-        if (canvas.renderMode ==
-            RenderMode.ScreenSpaceOverlay)
+        if (canvas.renderMode == RenderMode.ScreenSpaceOverlay)
         {
             return null;
         }
-
 
         return canvas.worldCamera;
     }

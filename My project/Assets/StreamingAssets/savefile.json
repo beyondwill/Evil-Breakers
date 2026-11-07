@@ -1,11 +1,11 @@
 {
-  "current_state": 3,
+  "current_state": 1,
   "main_data": {
     "player_character_data_list": [
       {
         "player_character_info": "10001",
         "player_character_level": 1,
-        "current_health": 100,
+        "current_health": 200,
         "current_stress": 0,
         "current_weapon_level": 1,
         "current_armor_level": 1,
@@ -51,7 +51,7 @@
       {
         "player_character_info": "10002",
         "player_character_level": 1,
-        "current_health": 100,
+        "current_health": 200,
         "current_stress": 0,
         "current_weapon_level": 1,
         "current_armor_level": 1,
@@ -95,7 +95,7 @@
       {
         "player_character_info": "10003",
         "player_character_level": 1,
-        "current_health": 100,
+        "current_health": 200,
         "current_stress": 0,
         "current_weapon_level": 3,
         "current_armor_level": 1,
@@ -129,18 +129,28 @@
         ]
       }
     ],
-    "money": 10000,
-    "day": 3,
+    "money": 10100,
+    "day": 17,
     "storage_cards_list": [],
     "inventoryItemList": [
       {
         "item": "New Item Data 3",
-        "amount": 16,
+        "amount": 10,
         "IsEmpty": false
       },
       {
-        "item": "New Item Data 2",
-        "amount": 16,
+        "item": "Elixir",
+        "amount": 5,
+        "IsEmpty": false
+      },
+      {
+        "item": "전파 탐지기",
+        "amount": 9,
+        "IsEmpty": false
+      },
+      {
+        "item": "빵",
+        "amount": 10,
         "IsEmpty": false
       }
     ],
@@ -153,21 +163,34 @@
       {
         "hexMapDataSO": "MapData_Normal",
         "current_point": {
-          "x": 1,
-          "y": 0,
-          "magnitude": 1.0,
-          "sqrMagnitude": 1
+          "x": 2,
+          "y": 4,
+          "magnitude": 4.472136,
+          "sqrMagnitude": 20
         },
-        "missionObjectList": [],
-        "IsAllMissionComplete": true
+        "missionObjectList": [
+          {
+            "missionObjectSort": 0,
+            "current_count": 0,
+            "need_count": 6,
+            "IsComplete": false
+          },
+          {
+            "missionObjectSort": 1,
+            "current_count": 0,
+            "need_count": 1,
+            "IsComplete": false
+          }
+        ],
+        "IsAllMissionComplete": false
       },
       {
         "hexMapDataSO": "MapData_Hard",
         "current_point": {
-          "x": 0,
-          "y": 4,
-          "magnitude": 4.0,
-          "sqrMagnitude": 16
+          "x": 5,
+          "y": 1,
+          "magnitude": 5.09901953,
+          "sqrMagnitude": 26
         },
         "missionObjectList": [
           {
@@ -188,10 +211,10 @@
       {
         "hexMapDataSO": "MapData_Easy",
         "current_point": {
-          "x": 0,
-          "y": 2,
-          "magnitude": 2.0,
-          "sqrMagnitude": 4
+          "x": 4,
+          "y": 3,
+          "magnitude": 5.0,
+          "sqrMagnitude": 25
         },
         "missionObjectList": [
           {
@@ -210,16 +233,23 @@
         "IsAllMissionComplete": false
       }
     ],
-    "storagereRelicList": [],
+    "storageRelicList": [
+      "Mouth"
+    ],
+    "purgedRelicList": [
+      "Punch",
+      "Clock"
+    ],
     "relicItems": [
+      "Punch",
       "Clock"
     ],
     "shopData": {
       "shop_items": [
         {
-          "item": "New Item Data 2",
+          "item": null,
           "amount": 1000,
-          "IsEmpty": false
+          "IsEmpty": true
         },
         {
           "item": "New Item Data 3",
@@ -237,6 +267,52 @@
     "nodeType": 2,
     "zoneType": 0,
     "characters_in_battle_data_list": [
+      {
+        "player_character_info": "10001",
+        "player_character_level": 1,
+        "current_health": 200,
+        "current_stress": 0,
+        "current_weapon_level": 1,
+        "current_armor_level": 1,
+        "current_exp": 50,
+        "relicInfoList": [],
+        "player_character_deck": [
+          "다리 걸기",
+          "니킥",
+          "어퍼컷",
+          "분노",
+          "팔꿈치 가격",
+          "니킥",
+          "어퍼컷",
+          "전투태세",
+          "팔꿈치 가격",
+          "분노",
+          "다리 걸기",
+          "전투태세",
+          "주먹 내지르기",
+          "자가 회복",
+          "카드 뽑기",
+          "주먹 내지르기"
+        ],
+        "player_equipment_list": [
+          {
+            "equipment_sort": 0,
+            "equipment_info": "Weapon1"
+          },
+          {
+            "equipment_sort": 1,
+            "equipment_info": "갈색머리 Armor1"
+          },
+          {
+            "equipment_sort": 2,
+            "equipment_info": null
+          },
+          {
+            "equipment_sort": 2,
+            "equipment_info": null
+          }
+        ]
+      },
       {
         "player_character_info": "10003",
         "player_character_level": 1,
@@ -324,54 +400,54 @@
     ],
     "slots": [
       {
-        "item": "New Item Data 2",
+        "item": "빵",
         "amount": 1,
         "IsEmpty": false
       },
       {
-        "item": "New Item Data 3",
+        "item": "빵",
         "amount": 1,
         "IsEmpty": false
       },
       {
-        "item": null,
-        "amount": 0,
-        "IsEmpty": true
+        "item": "빵",
+        "amount": 1,
+        "IsEmpty": false
       },
       {
-        "item": null,
-        "amount": 0,
-        "IsEmpty": true
+        "item": "빵",
+        "amount": 1,
+        "IsEmpty": false
       },
       {
-        "item": null,
-        "amount": 0,
-        "IsEmpty": true
+        "item": "빵",
+        "amount": 1,
+        "IsEmpty": false
       },
       {
-        "item": null,
-        "amount": 0,
-        "IsEmpty": true
+        "item": "빵",
+        "amount": 1,
+        "IsEmpty": false
       },
       {
-        "item": null,
-        "amount": 0,
-        "IsEmpty": true
+        "item": "전파 탐지기",
+        "amount": 1,
+        "IsEmpty": false
       },
       {
-        "item": null,
-        "amount": 0,
-        "IsEmpty": true
+        "item": "전파 탐지기",
+        "amount": 1,
+        "IsEmpty": false
       },
       {
-        "item": null,
-        "amount": 0,
-        "IsEmpty": true
+        "item": "전파 탐지기",
+        "amount": 1,
+        "IsEmpty": false
       },
       {
-        "item": null,
-        "amount": 0,
-        "IsEmpty": true
+        "item": "전파 탐지기",
+        "amount": 1,
+        "IsEmpty": false
       },
       {
         "item": null,
@@ -395,23 +471,23 @@
     "map_data": {
       "mapDataId": "MapData_Hard",
       "current_point": {
-        "x": 0,
-        "y": 3,
-        "magnitude": 3.0,
-        "sqrMagnitude": 9
+        "x": 5,
+        "y": 1,
+        "magnitude": 5.09901953,
+        "sqrMagnitude": 26
       },
       "nodes": [
         {
           "coord": {
-            "x": 0,
-            "y": 4,
-            "magnitude": 4.0,
-            "sqrMagnitude": 16
+            "x": 5,
+            "y": 1,
+            "magnitude": 5.09901953,
+            "sqrMagnitude": 26
           },
-          "uiX": 19.8931046,
-          "uiY": -862.1991,
-          "orgX": 0.0,
-          "orgY": -900.0,
+          "uiX": 1397.9231,
+          "uiY": -253.7195,
+          "orgX": 1428.94189,
+          "orgY": -225.0,
           "distance": 0,
           "node_type": 1,
           "zone_type": 0,
@@ -419,20 +495,20 @@
           "isRevealed": true,
           "linkedCoords": [
             {
-              "x": 0,
-              "y": 3,
-              "magnitude": 3.0,
-              "sqrMagnitude": 9
+              "x": 5,
+              "y": 2,
+              "magnitude": 5.38516474,
+              "sqrMagnitude": 29
             },
             {
-              "x": 0,
-              "y": 5,
+              "x": 5,
+              "y": 0,
               "magnitude": 5.0,
               "sqrMagnitude": 25
             },
             {
-              "x": 1,
-              "y": 4,
+              "x": 4,
+              "y": 1,
               "magnitude": 4.12310553,
               "sqrMagnitude": 17
             }
@@ -440,246 +516,79 @@
         },
         {
           "coord": {
-            "x": 0,
-            "y": 3,
-            "magnitude": 3.0,
-            "sqrMagnitude": 9
+            "x": 5,
+            "y": 2,
+            "magnitude": 5.38516474,
+            "sqrMagnitude": 29
           },
-          "uiX": 135.796417,
-          "uiY": -740.4365,
-          "orgX": 129.903809,
-          "orgY": -675.0,
+          "uiX": 1264.86316,
+          "uiY": -458.6395,
+          "orgX": 1299.03809,
+          "orgY": -450.0,
           "distance": 1,
           "node_type": 2,
-          "zone_type": 0,
-          "isVisited": true,
-          "isRevealed": true,
-          "linkedCoords": [
-            {
-              "x": 0,
-              "y": 4,
-              "magnitude": 4.0,
-              "sqrMagnitude": 16
-            },
-            {
-              "x": 1,
-              "y": 3,
-              "magnitude": 3.1622777,
-              "sqrMagnitude": 10
-            },
-            {
-              "x": 1,
-              "y": 2,
-              "magnitude": 2.236068,
-              "sqrMagnitude": 5
-            },
-            {
-              "x": 0,
-              "y": 2,
-              "magnitude": 2.0,
-              "sqrMagnitude": 4
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 0,
-            "y": 5,
-            "magnitude": 5.0,
-            "sqrMagnitude": 25
-          },
-          "uiX": 96.33056,
-          "uiY": -1162.35181,
-          "orgX": 129.903809,
-          "orgY": -1125.0,
-          "distance": 1,
-          "node_type": 5,
           "zone_type": 1,
           "isVisited": false,
           "isRevealed": true,
           "linkedCoords": [
             {
-              "x": 0,
-              "y": 4,
-              "magnitude": 4.0,
-              "sqrMagnitude": 16
-            },
-            {
-              "x": 1,
-              "y": 5,
+              "x": 5,
+              "y": 1,
               "magnitude": 5.09901953,
               "sqrMagnitude": 26
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 1,
-            "y": 4,
-            "magnitude": 4.12310553,
-            "sqrMagnitude": 17
-          },
-          "uiX": 305.4681,
-          "uiY": -917.522949,
-          "orgX": 259.807617,
-          "orgY": -900.0,
-          "distance": 1,
-          "node_type": 0,
-          "zone_type": 1,
-          "isVisited": false,
-          "isRevealed": true,
-          "linkedCoords": [
-            {
-              "x": 0,
-              "y": 4,
-              "magnitude": 4.0,
-              "sqrMagnitude": 16
             },
             {
-              "x": 2,
-              "y": 4,
+              "x": 4,
+              "y": 2,
               "magnitude": 4.472136,
               "sqrMagnitude": 20
             },
             {
-              "x": 1,
-              "y": 5,
-              "magnitude": 5.09901953,
-              "sqrMagnitude": 26
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 1,
-            "y": 3,
-            "magnitude": 3.1622777,
-            "sqrMagnitude": 10
-          },
-          "uiX": 397.4414,
-          "uiY": -745.704,
-          "orgX": 389.711426,
-          "orgY": -675.0,
-          "distance": 2,
-          "node_type": 2,
-          "zone_type": 0,
-          "isVisited": false,
-          "isRevealed": false,
-          "linkedCoords": [
-            {
-              "x": 0,
+              "x": 4,
               "y": 3,
-              "magnitude": 3.0,
-              "sqrMagnitude": 9
-            },
-            {
-              "x": 2,
-              "y": 2,
-              "magnitude": 2.828427,
-              "sqrMagnitude": 8
-            },
-            {
-              "x": 2,
-              "y": 3,
-              "magnitude": 3.60555124,
-              "sqrMagnitude": 13
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 1,
-            "y": 2,
-            "magnitude": 2.236068,
-            "sqrMagnitude": 5
-          },
-          "uiX": 291.645844,
-          "uiY": -416.4203,
-          "orgX": 259.807617,
-          "orgY": -450.0,
-          "distance": 2,
-          "node_type": 2,
-          "zone_type": 1,
-          "isVisited": false,
-          "isRevealed": false,
-          "linkedCoords": [
-            {
-              "x": 0,
-              "y": 3,
-              "magnitude": 3.0,
-              "sqrMagnitude": 9
-            },
-            {
-              "x": 0,
-              "y": 1,
-              "magnitude": 1.0,
-              "sqrMagnitude": 1
-            },
-            {
-              "x": 1,
-              "y": 1,
-              "magnitude": 1.41421354,
-              "sqrMagnitude": 2
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 0,
-            "y": 2,
-            "magnitude": 2.0,
-            "sqrMagnitude": 4
-          },
-          "uiX": 70.05276,
-          "uiY": -455.537262,
-          "orgX": 0.0,
-          "orgY": -450.0,
-          "distance": 2,
-          "node_type": 0,
-          "zone_type": 1,
-          "isVisited": false,
-          "isRevealed": false,
-          "linkedCoords": [
-            {
-              "x": 0,
-              "y": 3,
-              "magnitude": 3.0,
-              "sqrMagnitude": 9
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 1,
-            "y": 5,
-            "magnitude": 5.09901953,
-            "sqrMagnitude": 26
-          },
-          "uiX": 377.473175,
-          "uiY": -1191.9,
-          "orgX": 389.711426,
-          "orgY": -1125.0,
-          "distance": 2,
-          "node_type": 0,
-          "zone_type": 1,
-          "isVisited": false,
-          "isRevealed": false,
-          "linkedCoords": [
-            {
-              "x": 0,
-              "y": 5,
               "magnitude": 5.0,
               "sqrMagnitude": 25
             },
             {
-              "x": 2,
-              "y": 5,
-              "magnitude": 5.38516474,
-              "sqrMagnitude": 29
+              "x": 5,
+              "y": 3,
+              "magnitude": 5.83095169,
+              "sqrMagnitude": 34
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 5,
+            "y": 0,
+            "magnitude": 5.0,
+            "sqrMagnitude": 25
+          },
+          "uiX": 1260.19189,
+          "uiY": -53.937252,
+          "orgX": 1299.03809,
+          "orgY": 0.0,
+          "distance": 1,
+          "node_type": 2,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": true,
+          "linkedCoords": [
+            {
+              "x": 5,
+              "y": 1,
+              "magnitude": 5.09901953,
+              "sqrMagnitude": 26
             },
             {
-              "x": 1,
-              "y": 4,
+              "x": 4,
+              "y": 0,
+              "magnitude": 4.0,
+              "sqrMagnitude": 16
+            },
+            {
+              "x": 4,
+              "y": 1,
               "magnitude": 4.12310553,
               "sqrMagnitude": 17
             }
@@ -687,100 +596,69 @@
         },
         {
           "coord": {
-            "x": 2,
-            "y": 4,
+            "x": 4,
+            "y": 1,
+            "magnitude": 4.12310553,
+            "sqrMagnitude": 17
+          },
+          "uiX": 1239.83057,
+          "uiY": -206.0784,
+          "orgX": 1169.13428,
+          "orgY": -225.0,
+          "distance": 1,
+          "node_type": 2,
+          "zone_type": 1,
+          "isVisited": false,
+          "isRevealed": true,
+          "linkedCoords": [
+            {
+              "x": 5,
+              "y": 1,
+              "magnitude": 5.09901953,
+              "sqrMagnitude": 26
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "magnitude": 3.1622777,
+              "sqrMagnitude": 10
+            },
+            {
+              "x": 5,
+              "y": 0,
+              "magnitude": 5.0,
+              "sqrMagnitude": 25
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 4,
+            "y": 2,
             "magnitude": 4.472136,
             "sqrMagnitude": 20
           },
-          "uiX": 497.324463,
-          "uiY": -893.907532,
-          "orgX": 519.615234,
-          "orgY": -900.0,
+          "uiX": 1073.48352,
+          "uiY": -417.827637,
+          "orgX": 1039.23047,
+          "orgY": -450.0,
           "distance": 2,
           "node_type": 0,
-          "zone_type": 0,
+          "zone_type": 1,
           "isVisited": false,
-          "isRevealed": false,
+          "isRevealed": true,
           "linkedCoords": [
             {
-              "x": 1,
-              "y": 4,
-              "magnitude": 4.12310553,
-              "sqrMagnitude": 17
-            },
-            {
-              "x": 3,
-              "y": 4,
-              "magnitude": 5.0,
-              "sqrMagnitude": 25
-            },
-            {
-              "x": 2,
-              "y": 5,
+              "x": 5,
+              "y": 2,
               "magnitude": 5.38516474,
               "sqrMagnitude": 29
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 2,
-            "y": 2,
-            "magnitude": 2.828427,
-            "sqrMagnitude": 8
-          },
-          "uiX": 510.050659,
-          "uiY": -450.613647,
-          "orgX": 519.615234,
-          "orgY": -450.0,
-          "distance": 3,
-          "node_type": 0,
-          "zone_type": 0,
-          "isVisited": false,
-          "isRevealed": false,
-          "linkedCoords": [
-            {
-              "x": 1,
-              "y": 3,
-              "magnitude": 3.1622777,
-              "sqrMagnitude": 10
-            },
-            {
-              "x": 2,
-              "y": 1,
-              "magnitude": 2.236068,
-              "sqrMagnitude": 5
             },
             {
               "x": 3,
               "y": 2,
               "magnitude": 3.60555124,
               "sqrMagnitude": 13
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 2,
-            "y": 3,
-            "magnitude": 3.60555124,
-            "sqrMagnitude": 13
-          },
-          "uiX": 706.519836,
-          "uiY": -656.7491,
-          "orgX": 649.519043,
-          "orgY": -675.0,
-          "distance": 3,
-          "node_type": 0,
-          "zone_type": 1,
-          "isVisited": false,
-          "isRevealed": false,
-          "linkedCoords": [
-            {
-              "x": 1,
-              "y": 3,
-              "magnitude": 3.1622777,
-              "sqrMagnitude": 10
             },
             {
               "x": 3,
@@ -792,137 +670,26 @@
         },
         {
           "coord": {
-            "x": 0,
-            "y": 1,
-            "magnitude": 1.0,
-            "sqrMagnitude": 1
-          },
-          "uiX": 87.355545,
-          "uiY": -212.225983,
-          "orgX": 129.903809,
-          "orgY": -225.0,
-          "distance": 3,
-          "node_type": 2,
-          "zone_type": 0,
-          "isVisited": false,
-          "isRevealed": false,
-          "linkedCoords": [
-            {
-              "x": 1,
-              "y": 2,
-              "magnitude": 2.236068,
-              "sqrMagnitude": 5
-            },
-            {
-              "x": 1,
-              "y": 0,
-              "magnitude": 1.0,
-              "sqrMagnitude": 1
-            },
-            {
-              "x": 0,
-              "y": 0,
-              "magnitude": 0.0,
-              "sqrMagnitude": 0
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 1,
-            "y": 1,
-            "magnitude": 1.41421354,
-            "sqrMagnitude": 2
-          },
-          "uiX": 409.2044,
-          "uiY": -227.443909,
-          "orgX": 389.711426,
-          "orgY": -225.0,
-          "distance": 3,
-          "node_type": 0,
-          "zone_type": 1,
-          "isVisited": false,
-          "isRevealed": false,
-          "linkedCoords": [
-            {
-              "x": 1,
-              "y": 2,
-              "magnitude": 2.236068,
-              "sqrMagnitude": 5
-            },
-            {
-              "x": 2,
-              "y": 0,
-              "magnitude": 2.0,
-              "sqrMagnitude": 4
-            },
-            {
-              "x": 1,
-              "y": 0,
-              "magnitude": 1.0,
-              "sqrMagnitude": 1
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 2,
-            "y": 5,
-            "magnitude": 5.38516474,
-            "sqrMagnitude": 29
-          },
-          "uiX": 695.5042,
-          "uiY": -1081.5658,
-          "orgX": 649.519043,
-          "orgY": -1125.0,
-          "distance": 3,
-          "node_type": 2,
-          "zone_type": 1,
-          "isVisited": false,
-          "isRevealed": false,
-          "linkedCoords": [
-            {
-              "x": 1,
-              "y": 5,
-              "magnitude": 5.09901953,
-              "sqrMagnitude": 26
-            },
-            {
-              "x": 3,
-              "y": 5,
-              "magnitude": 5.83095169,
-              "sqrMagnitude": 34
-            },
-            {
-              "x": 2,
-              "y": 4,
-              "magnitude": 4.472136,
-              "sqrMagnitude": 20
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 3,
-            "y": 4,
+            "x": 4,
+            "y": 3,
             "magnitude": 5.0,
             "sqrMagnitude": 25
           },
-          "uiX": 781.3468,
-          "uiY": -858.139038,
-          "orgX": 779.422852,
-          "orgY": -900.0,
-          "distance": 3,
-          "node_type": 4,
-          "zone_type": 0,
+          "uiX": 1158.9635,
+          "uiY": -741.785767,
+          "orgX": 1169.13428,
+          "orgY": -675.0,
+          "distance": 2,
+          "node_type": 0,
+          "zone_type": 1,
           "isVisited": false,
-          "isRevealed": false,
+          "isRevealed": true,
           "linkedCoords": [
             {
-              "x": 2,
-              "y": 4,
-              "magnitude": 4.472136,
-              "sqrMagnitude": 20
+              "x": 5,
+              "y": 2,
+              "magnitude": 5.38516474,
+              "sqrMagnitude": 29
             },
             {
               "x": 4,
@@ -931,47 +698,103 @@
               "sqrMagnitude": 32
             },
             {
-              "x": 3,
-              "y": 5,
-              "magnitude": 5.83095169,
-              "sqrMagnitude": 34
+              "x": 5,
+              "y": 4,
+              "magnitude": 6.40312433,
+              "sqrMagnitude": 41
             }
           ]
         },
         {
           "coord": {
-            "x": 2,
-            "y": 1,
-            "magnitude": 2.236068,
-            "sqrMagnitude": 5
+            "x": 5,
+            "y": 3,
+            "magnitude": 5.83095169,
+            "sqrMagnitude": 34
           },
-          "uiX": 634.6007,
-          "uiY": -222.751892,
-          "orgX": 649.519043,
-          "orgY": -225.0,
-          "distance": 4,
-          "node_type": 0,
-          "zone_type": 1,
+          "uiX": 1397.12341,
+          "uiY": -613.0301,
+          "orgX": 1428.94189,
+          "orgY": -675.0,
+          "distance": 2,
+          "node_type": 5,
+          "zone_type": 0,
           "isVisited": false,
-          "isRevealed": false,
+          "isRevealed": true,
           "linkedCoords": [
             {
-              "x": 2,
+              "x": 5,
               "y": 2,
-              "magnitude": 2.828427,
-              "sqrMagnitude": 8
+              "magnitude": 5.38516474,
+              "sqrMagnitude": 29
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 4,
+            "y": 0,
+            "magnitude": 4.0,
+            "sqrMagnitude": 16
+          },
+          "uiX": 1067.01758,
+          "uiY": 2.10390949,
+          "orgX": 1039.23047,
+          "orgY": 0.0,
+          "distance": 2,
+          "node_type": 5,
+          "zone_type": 1,
+          "isVisited": false,
+          "isRevealed": true,
+          "linkedCoords": [
+            {
+              "x": 5,
+              "y": 0,
+              "magnitude": 5.0,
+              "sqrMagnitude": 25
             },
             {
               "x": 3,
               "y": 0,
               "magnitude": 3.0,
               "sqrMagnitude": 9
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 3,
+            "y": 1,
+            "magnitude": 3.1622777,
+            "sqrMagnitude": 10
+          },
+          "uiX": 892.6416,
+          "uiY": -240.089874,
+          "orgX": 909.32666,
+          "orgY": -225.0,
+          "distance": 2,
+          "node_type": 5,
+          "zone_type": 1,
+          "isVisited": false,
+          "isRevealed": true,
+          "linkedCoords": [
+            {
+              "x": 4,
+              "y": 1,
+              "magnitude": 4.12310553,
+              "sqrMagnitude": 17
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "magnitude": 2.236068,
+              "sqrMagnitude": 5
             },
             {
               "x": 3,
-              "y": 1,
-              "magnitude": 3.1622777,
-              "sqrMagnitude": 10
+              "y": 0,
+              "magnitude": 3.0,
+              "sqrMagnitude": 9
             }
           ]
         },
@@ -982,16 +805,22 @@
             "magnitude": 3.60555124,
             "sqrMagnitude": 13
           },
-          "uiX": 740.0924,
-          "uiY": -491.588928,
+          "uiX": 792.5521,
+          "uiY": -379.3917,
           "orgX": 779.422852,
           "orgY": -450.0,
-          "distance": 4,
-          "node_type": 2,
+          "distance": 3,
+          "node_type": 5,
           "zone_type": 1,
           "isVisited": false,
           "isRevealed": false,
           "linkedCoords": [
+            {
+              "x": 4,
+              "y": 2,
+              "magnitude": 4.472136,
+              "sqrMagnitude": 20
+            },
             {
               "x": 2,
               "y": 2,
@@ -999,10 +828,10 @@
               "sqrMagnitude": 8
             },
             {
-              "x": 4,
-              "y": 2,
-              "magnitude": 4.472136,
-              "sqrMagnitude": 20
+              "x": 2,
+              "y": 3,
+              "magnitude": 3.60555124,
+              "sqrMagnitude": 13
             }
           ]
         },
@@ -1013,28 +842,306 @@
             "magnitude": 4.2426405,
             "sqrMagnitude": 18
           },
-          "uiX": 851.782837,
-          "uiY": -685.9984,
+          "uiX": 848.331238,
+          "uiY": -655.4988,
           "orgX": 909.32666,
           "orgY": -675.0,
-          "distance": 4,
-          "node_type": 2,
-          "zone_type": 1,
+          "distance": 3,
+          "node_type": 0,
+          "zone_type": 0,
           "isVisited": false,
           "isRevealed": false,
           "linkedCoords": [
+            {
+              "x": 4,
+              "y": 2,
+              "magnitude": 4.472136,
+              "sqrMagnitude": 20
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "magnitude": 5.0,
+              "sqrMagnitude": 25
+            },
             {
               "x": 2,
               "y": 3,
               "magnitude": 3.60555124,
               "sqrMagnitude": 13
-            },
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 4,
+            "y": 4,
+            "magnitude": 5.656854,
+            "sqrMagnitude": 32
+          },
+          "uiX": 1014.71808,
+          "uiY": -929.439453,
+          "orgX": 1039.23047,
+          "orgY": -900.0,
+          "distance": 3,
+          "node_type": 0,
+          "zone_type": 1,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
             {
               "x": 4,
               "y": 3,
               "magnitude": 5.0,
               "sqrMagnitude": 25
             },
+            {
+              "x": 3,
+              "y": 5,
+              "magnitude": 5.83095169,
+              "sqrMagnitude": 34
+            },
+            {
+              "x": 4,
+              "y": 5,
+              "magnitude": 6.40312433,
+              "sqrMagnitude": 41
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 5,
+            "y": 4,
+            "magnitude": 6.40312433,
+            "sqrMagnitude": 41
+          },
+          "uiX": 1311.29285,
+          "uiY": -835.7419,
+          "orgX": 1299.03809,
+          "orgY": -900.0,
+          "distance": 3,
+          "node_type": 0,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 4,
+              "y": 3,
+              "magnitude": 5.0,
+              "sqrMagnitude": 25
+            },
+            {
+              "x": 5,
+              "y": 5,
+              "magnitude": 7.071068,
+              "sqrMagnitude": 50
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 3,
+            "y": 0,
+            "magnitude": 3.0,
+            "sqrMagnitude": 9
+          },
+          "uiX": 741.435,
+          "uiY": 51.60858,
+          "orgX": 779.422852,
+          "orgY": 0.0,
+          "distance": 3,
+          "node_type": 2,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 4,
+              "y": 0,
+              "magnitude": 4.0,
+              "sqrMagnitude": 16
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "magnitude": 2.0,
+              "sqrMagnitude": 4
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "magnitude": 3.1622777,
+              "sqrMagnitude": 10
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 2,
+            "y": 1,
+            "magnitude": 2.236068,
+            "sqrMagnitude": 5
+          },
+          "uiX": 656.2646,
+          "uiY": -156.939941,
+          "orgX": 649.519043,
+          "orgY": -225.0,
+          "distance": 3,
+          "node_type": 0,
+          "zone_type": 1,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 3,
+              "y": 1,
+              "magnitude": 3.1622777,
+              "sqrMagnitude": 10
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "magnitude": 1.41421354,
+              "sqrMagnitude": 2
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "magnitude": 2.0,
+              "sqrMagnitude": 4
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 2,
+            "y": 2,
+            "magnitude": 2.828427,
+            "sqrMagnitude": 8
+          },
+          "uiX": 479.660156,
+          "uiY": -471.098145,
+          "orgX": 519.615234,
+          "orgY": -450.0,
+          "distance": 4,
+          "node_type": 0,
+          "zone_type": 1,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 3,
+              "y": 2,
+              "magnitude": 3.60555124,
+              "sqrMagnitude": 13
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "magnitude": 3.1622777,
+              "sqrMagnitude": 10
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "magnitude": 2.236068,
+              "sqrMagnitude": 5
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 2,
+            "y": 3,
+            "magnitude": 3.60555124,
+            "sqrMagnitude": 13
+          },
+          "uiX": 682.015259,
+          "uiY": -682.111633,
+          "orgX": 649.519043,
+          "orgY": -675.0,
+          "distance": 4,
+          "node_type": 0,
+          "zone_type": 1,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 3,
+              "y": 2,
+              "magnitude": 3.60555124,
+              "sqrMagnitude": 13
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "magnitude": 4.472136,
+              "sqrMagnitude": 20
+            },
+            {
+              "x": 3,
+              "y": 3,
+              "magnitude": 4.2426405,
+              "sqrMagnitude": 18
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 3,
+            "y": 4,
+            "magnitude": 5.0,
+            "sqrMagnitude": 25
+          },
+          "uiX": 805.885132,
+          "uiY": -907.7864,
+          "orgX": 779.422852,
+          "orgY": -900.0,
+          "distance": 4,
+          "node_type": 0,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 3,
+              "y": 3,
+              "magnitude": 4.2426405,
+              "sqrMagnitude": 18
+            },
+            {
+              "x": 2,
+              "y": 5,
+              "magnitude": 5.38516474,
+              "sqrMagnitude": 29
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "magnitude": 4.472136,
+              "sqrMagnitude": 20
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 3,
+            "y": 5,
+            "magnitude": 5.83095169,
+            "sqrMagnitude": 34
+          },
+          "uiX": 854.8879,
+          "uiY": -1101.31067,
+          "orgX": 909.32666,
+          "orgY": -1125.0,
+          "distance": 4,
+          "node_type": 3,
+          "zone_type": 1,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
             {
               "x": 4,
               "y": 4,
@@ -1045,14 +1152,76 @@
         },
         {
           "coord": {
-            "x": 1,
-            "y": 0,
-            "magnitude": 1.0,
-            "sqrMagnitude": 1
+            "x": 4,
+            "y": 5,
+            "magnitude": 6.40312433,
+            "sqrMagnitude": 41
           },
-          "uiX": 209.2433,
-          "uiY": 29.3683929,
-          "orgX": 259.807617,
+          "uiX": 1229.54236,
+          "uiY": -1109.76648,
+          "orgX": 1169.13428,
+          "orgY": -1125.0,
+          "distance": 4,
+          "node_type": 0,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 4,
+              "y": 4,
+              "magnitude": 5.656854,
+              "sqrMagnitude": 32
+            },
+            {
+              "x": 5,
+              "y": 5,
+              "magnitude": 7.071068,
+              "sqrMagnitude": 50
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 5,
+            "y": 5,
+            "magnitude": 7.071068,
+            "sqrMagnitude": 50
+          },
+          "uiX": 1423.46973,
+          "uiY": -1073.688,
+          "orgX": 1428.94189,
+          "orgY": -1125.0,
+          "distance": 4,
+          "node_type": 2,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 5,
+              "y": 4,
+              "magnitude": 6.40312433,
+              "sqrMagnitude": 41
+            },
+            {
+              "x": 4,
+              "y": 5,
+              "magnitude": 6.40312433,
+              "sqrMagnitude": 41
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 2,
+            "y": 0,
+            "magnitude": 2.0,
+            "sqrMagnitude": 4
+          },
+          "uiX": 572.22876,
+          "uiY": 48.73888,
+          "orgX": 519.615234,
           "orgY": 0.0,
           "distance": 4,
           "node_type": 2,
@@ -1061,16 +1230,208 @@
           "isRevealed": false,
           "linkedCoords": [
             {
+              "x": 3,
+              "y": 0,
+              "magnitude": 3.0,
+              "sqrMagnitude": 9
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "magnitude": 2.236068,
+              "sqrMagnitude": 5
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 1,
+            "y": 1,
+            "magnitude": 1.41421354,
+            "sqrMagnitude": 2
+          },
+          "uiX": 438.9457,
+          "uiY": -254.766144,
+          "orgX": 389.711426,
+          "orgY": -225.0,
+          "distance": 4,
+          "node_type": 2,
+          "zone_type": 1,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 2,
+              "y": 1,
+              "magnitude": 2.236068,
+              "sqrMagnitude": 5
+            },
+            {
               "x": 0,
               "y": 1,
               "magnitude": 1.0,
               "sqrMagnitude": 1
             },
             {
-              "x": 0,
+              "x": 1,
               "y": 0,
-              "magnitude": 0.0,
-              "sqrMagnitude": 0
+              "magnitude": 1.0,
+              "sqrMagnitude": 1
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 1,
+            "y": 3,
+            "magnitude": 3.1622777,
+            "sqrMagnitude": 10
+          },
+          "uiX": 348.612457,
+          "uiY": -655.2717,
+          "orgX": 389.711426,
+          "orgY": -675.0,
+          "distance": 5,
+          "node_type": 3,
+          "zone_type": 1,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 2,
+              "y": 2,
+              "magnitude": 2.828427,
+              "sqrMagnitude": 8
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "magnitude": 4.12310553,
+              "sqrMagnitude": 17
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "magnitude": 4.472136,
+              "sqrMagnitude": 20
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 1,
+            "y": 2,
+            "magnitude": 2.236068,
+            "sqrMagnitude": 5
+          },
+          "uiX": 206.973145,
+          "uiY": -405.922272,
+          "orgX": 259.807617,
+          "orgY": -450.0,
+          "distance": 5,
+          "node_type": 4,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 2,
+              "y": 2,
+              "magnitude": 2.828427,
+              "sqrMagnitude": 8
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 2,
+            "y": 4,
+            "magnitude": 4.472136,
+            "sqrMagnitude": 20
+          },
+          "uiX": 536.6374,
+          "uiY": -834.912842,
+          "orgX": 519.615234,
+          "orgY": -900.0,
+          "distance": 5,
+          "node_type": 3,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 2,
+              "y": 3,
+              "magnitude": 3.60555124,
+              "sqrMagnitude": 13
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "magnitude": 5.0,
+              "sqrMagnitude": 25
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "magnitude": 3.1622777,
+              "sqrMagnitude": 10
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 2,
+            "y": 5,
+            "magnitude": 5.38516474,
+            "sqrMagnitude": 29
+          },
+          "uiX": 666.7125,
+          "uiY": -1133.375,
+          "orgX": 649.519043,
+          "orgY": -1125.0,
+          "distance": 5,
+          "node_type": 4,
+          "zone_type": 1,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 3,
+              "y": 4,
+              "magnitude": 5.0,
+              "sqrMagnitude": 25
+            }
+          ]
+        },
+        {
+          "coord": {
+            "x": 1,
+            "y": 0,
+            "magnitude": 1.0,
+            "sqrMagnitude": 1
+          },
+          "uiX": 203.003937,
+          "uiY": 14.3923473,
+          "orgX": 259.807617,
+          "orgY": 0.0,
+          "distance": 5,
+          "node_type": 2,
+          "zone_type": 0,
+          "isVisited": false,
+          "isRevealed": false,
+          "linkedCoords": [
+            {
+              "x": 2,
+              "y": 0,
+              "magnitude": 2.0,
+              "sqrMagnitude": 4
             },
             {
               "x": 1,
@@ -1083,47 +1444,16 @@
         {
           "coord": {
             "x": 0,
-            "y": 0,
-            "magnitude": 0.0,
-            "sqrMagnitude": 0
+            "y": 1,
+            "magnitude": 1.0,
+            "sqrMagnitude": 1
           },
-          "uiX": 23.14179,
-          "uiY": 5.52263,
-          "orgX": 0.0,
-          "orgY": 0.0,
-          "distance": 4,
-          "node_type": 0,
-          "zone_type": 1,
-          "isVisited": false,
-          "isRevealed": false,
-          "linkedCoords": [
-            {
-              "x": 0,
-              "y": 1,
-              "magnitude": 1.0,
-              "sqrMagnitude": 1
-            },
-            {
-              "x": 1,
-              "y": 0,
-              "magnitude": 1.0,
-              "sqrMagnitude": 1
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 2,
-            "y": 0,
-            "magnitude": 2.0,
-            "sqrMagnitude": 4
-          },
-          "uiX": 537.155945,
-          "uiY": -50.11951,
-          "orgX": 519.615234,
-          "orgY": 0.0,
-          "distance": 4,
-          "node_type": 4,
+          "uiX": 126.497665,
+          "uiY": -180.794724,
+          "orgX": 129.903809,
+          "orgY": -225.0,
+          "distance": 5,
+          "node_type": 2,
           "zone_type": 0,
           "isVisited": false,
           "isRevealed": false,
@@ -1133,274 +1463,20 @@
               "y": 1,
               "magnitude": 1.41421354,
               "sqrMagnitude": 2
-            },
-            {
-              "x": 3,
-              "y": 0,
-              "magnitude": 3.0,
-              "sqrMagnitude": 9
             }
           ]
         },
         {
           "coord": {
-            "x": 3,
-            "y": 5,
-            "magnitude": 5.83095169,
-            "sqrMagnitude": 34
-          },
-          "uiX": 910.9392,
-          "uiY": -1082.97083,
-          "orgX": 909.32666,
-          "orgY": -1125.0,
-          "distance": 4,
-          "node_type": 3,
-          "zone_type": 1,
-          "isVisited": false,
-          "isRevealed": false,
-          "linkedCoords": [
-            {
-              "x": 2,
-              "y": 5,
-              "magnitude": 5.38516474,
-              "sqrMagnitude": 29
-            },
-            {
-              "x": 4,
-              "y": 5,
-              "magnitude": 6.40312433,
-              "sqrMagnitude": 41
-            },
-            {
-              "x": 3,
-              "y": 4,
-              "magnitude": 5.0,
-              "sqrMagnitude": 25
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 4,
+            "x": 1,
             "y": 4,
-            "magnitude": 5.656854,
-            "sqrMagnitude": 32
+            "magnitude": 4.12310553,
+            "sqrMagnitude": 17
           },
-          "uiX": 987.1648,
-          "uiY": -913.7811,
-          "orgX": 1039.23047,
+          "uiX": 208.5548,
+          "uiY": -866.0182,
+          "orgX": 259.807617,
           "orgY": -900.0,
-          "distance": 4,
-          "node_type": 5,
-          "zone_type": 0,
-          "isVisited": false,
-          "isRevealed": false,
-          "linkedCoords": [
-            {
-              "x": 3,
-              "y": 4,
-              "magnitude": 5.0,
-              "sqrMagnitude": 25
-            },
-            {
-              "x": 5,
-              "y": 4,
-              "magnitude": 6.40312433,
-              "sqrMagnitude": 41
-            },
-            {
-              "x": 3,
-              "y": 3,
-              "magnitude": 4.2426405,
-              "sqrMagnitude": 18
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 3,
-            "y": 0,
-            "magnitude": 3.0,
-            "sqrMagnitude": 9
-          },
-          "uiX": 753.8541,
-          "uiY": -10.4056168,
-          "orgX": 779.422852,
-          "orgY": 0.0,
-          "distance": 5,
-          "node_type": 3,
-          "zone_type": 0,
-          "isVisited": false,
-          "isRevealed": false,
-          "linkedCoords": [
-            {
-              "x": 2,
-              "y": 1,
-              "magnitude": 2.236068,
-              "sqrMagnitude": 5
-            },
-            {
-              "x": 4,
-              "y": 0,
-              "magnitude": 4.0,
-              "sqrMagnitude": 16
-            },
-            {
-              "x": 2,
-              "y": 0,
-              "magnitude": 2.0,
-              "sqrMagnitude": 4
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 3,
-            "y": 1,
-            "magnitude": 3.1622777,
-            "sqrMagnitude": 10
-          },
-          "uiX": 884.7654,
-          "uiY": -185.404648,
-          "orgX": 909.32666,
-          "orgY": -225.0,
-          "distance": 5,
-          "node_type": 0,
-          "zone_type": 1,
-          "isVisited": false,
-          "isRevealed": false,
-          "linkedCoords": [
-            {
-              "x": 2,
-              "y": 1,
-              "magnitude": 2.236068,
-              "sqrMagnitude": 5
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 4,
-            "y": 2,
-            "magnitude": 4.472136,
-            "sqrMagnitude": 20
-          },
-          "uiX": 1094.04224,
-          "uiY": -482.249084,
-          "orgX": 1039.23047,
-          "orgY": -450.0,
-          "distance": 5,
-          "node_type": 5,
-          "zone_type": 1,
-          "isVisited": false,
-          "isRevealed": false,
-          "linkedCoords": [
-            {
-              "x": 3,
-              "y": 2,
-              "magnitude": 3.60555124,
-              "sqrMagnitude": 13
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 4,
-            "y": 3,
-            "magnitude": 5.0,
-            "sqrMagnitude": 25
-          },
-          "uiX": 1150.99707,
-          "uiY": -644.7962,
-          "orgX": 1169.13428,
-          "orgY": -675.0,
-          "distance": 5,
-          "node_type": 2,
-          "zone_type": 0,
-          "isVisited": false,
-          "isRevealed": false,
-          "linkedCoords": [
-            {
-              "x": 3,
-              "y": 3,
-              "magnitude": 4.2426405,
-              "sqrMagnitude": 18
-            },
-            {
-              "x": 5,
-              "y": 4,
-              "magnitude": 6.40312433,
-              "sqrMagnitude": 41
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 4,
-            "y": 5,
-            "magnitude": 6.40312433,
-            "sqrMagnitude": 41
-          },
-          "uiX": 1203.601,
-          "uiY": -1178.52686,
-          "orgX": 1169.13428,
-          "orgY": -1125.0,
-          "distance": 5,
-          "node_type": 3,
-          "zone_type": 0,
-          "isVisited": false,
-          "isRevealed": false,
-          "linkedCoords": [
-            {
-              "x": 3,
-              "y": 5,
-              "magnitude": 5.83095169,
-              "sqrMagnitude": 34
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 5,
-            "y": 4,
-            "magnitude": 6.40312433,
-            "sqrMagnitude": 41
-          },
-          "uiX": 1286.86877,
-          "uiY": -909.87854,
-          "orgX": 1299.03809,
-          "orgY": -900.0,
-          "distance": 5,
-          "node_type": 5,
-          "zone_type": 0,
-          "isVisited": false,
-          "isRevealed": false,
-          "linkedCoords": [
-            {
-              "x": 4,
-              "y": 4,
-              "magnitude": 5.656854,
-              "sqrMagnitude": 32
-            },
-            {
-              "x": 4,
-              "y": 3,
-              "magnitude": 5.0,
-              "sqrMagnitude": 25
-            }
-          ]
-        },
-        {
-          "coord": {
-            "x": 4,
-            "y": 0,
-            "magnitude": 4.0,
-            "sqrMagnitude": 16
-          },
-          "uiX": 1000.87537,
-          "uiY": -11.42787,
-          "orgX": 1039.23047,
-          "orgY": 0.0,
           "distance": 6,
           "node_type": 7,
           "zone_type": 0,
@@ -1408,10 +1484,10 @@
           "isRevealed": false,
           "linkedCoords": [
             {
-              "x": 3,
-              "y": 0,
-              "magnitude": 3.0,
-              "sqrMagnitude": 9
+              "x": 1,
+              "y": 3,
+              "magnitude": 3.1622777,
+              "sqrMagnitude": 10
             }
           ]
         }
@@ -1419,7 +1495,7 @@
       "missionObjectList": [
         {
           "missionObjectSort": 0,
-          "current_count": 1,
+          "current_count": 0,
           "need_count": 12,
           "IsComplete": false
         },
@@ -1431,7 +1507,7 @@
         }
       ]
     },
-    "time": 89,
+    "time": 190,
     "horror": 0
   }
 }

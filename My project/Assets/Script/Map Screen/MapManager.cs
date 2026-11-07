@@ -44,6 +44,8 @@ public class MapManager : MonoBehaviour
 
     [SerializeField] private Button missionEndButton;
 
+    [SerializeField] private RelicItemInfo relicSample;
+
 
     public Dictionary<Vector2Int, HexNode> nodes = new();
     public Dictionary<Vector2Int, Button> nodeToButton = new();
@@ -480,15 +482,27 @@ public class MapManager : MonoBehaviour
             }
         }
 
-        // 행(row)이 홀수인지 짝수인지 확인
-        bool isEvenRow =
-            (current.coord.y % 2 == 0);
+        // 기본 시야 공개 범위는 1칸
+        if (linkchange && DataManager.Instance.GetMainData.relicItems.Contains(relicSample))
+        {
+            RevealNodesInRange(2);
+        }
+
+        else
+        {
+            RevealNodesInRange(1);
+        }
+
+            // 행(row)이 홀수인지 짝수인지 확인
+            bool isEvenRow =
+                (current.coord.y % 2 == 0);
 
         Vector2Int[] currentDirs =
             isEvenRow
                 ? HexMath.EvenRowDirs
                 : HexMath.OddRowDirs;
 
+        // 직접 연결된 노드만 이동 가능하도록 설정
         if (linkchange)
         {
             foreach (HexNode linked in current.links)
@@ -512,15 +526,79 @@ public class MapManager : MonoBehaviour
                             .ShowKeyBox(KeyLabels[index]);
                     }
 
-                    btn.GetComponent<NodeButton>()
-                        .RevealButtonInfo();
-
                     btn.interactable = true;
-
-                    linked.isRevealed = true;
                 }
             }
         }
+    }
+
+    // ========================================
+    // 주변 노드 시야 공개
+    // ========================================
+
+    // range 기본값은 1칸
+    // 아이템 사용 시 RevealNodesInRange(5)처럼 호출 가능
+    public void RevealNodesInRange(int range = 1, float revealDuration = -1f)
+    {
+        if (range < 0)
+            return;
+
+        if (!nodes.TryGetValue(current_point, out HexNode startNode))
+        {
+            Debug.LogWarning("[Map] 현재 위치의 노드를 찾을 수 없습니다.");
+            return;
+        }
+
+        Queue<(HexNode node, int distance)> queue = new();
+        HashSet<Vector2Int> visited = new();
+
+        queue.Enqueue((startNode, 0));
+        visited.Add(startNode.coord);
+
+        while (queue.Count > 0)
+        {
+            var current = queue.Dequeue();
+
+            HexNode node = current.node;
+            int distance = current.distance;
+
+            // 현재 노드 공개
+            node.isRevealed = true;
+
+            if (nodeToButton.TryGetValue(node.coord, out Button btn))
+            {
+                NodeButton nodeButton = btn.GetComponent<NodeButton>();
+
+                if (nodeButton != null)
+                {
+                    // revealDuration이 -1이면 기존 공개 연출 사용
+                    if (revealDuration < 0f)
+                    {
+                        nodeButton.RevealButtonInfo();
+                    }
+                    else
+                    {
+                        nodeButton.RevealButtonInfo(revealDuration);
+                    }
+                }
+            }
+
+            // 지정한 거리까지 공개했으면 더 탐색하지 않음
+            if (distance >= range)
+                continue;
+
+            // 연결된 노드를 다음 거리로 탐색
+            foreach (HexNode linked in node.links)
+            {
+                if (linked == null || visited.Contains(linked.coord))
+                    continue;
+
+                visited.Add(linked.coord);
+                queue.Enqueue((linked, distance + 1));
+            }
+        }
+
+        Debug.Log($"[Map] 현재 위치 기준 {range}칸 시야 공개 완료");
     }
 
     private int GetDirectionIndex(

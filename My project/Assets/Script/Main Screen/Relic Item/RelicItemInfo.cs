@@ -23,4 +23,6 @@ public class RelicItemInfo : ItemData
 
     // 소모 아이템 분류
     public RelicItemSort relicSort;
+
+    public List<ItemEffect> itemEffectList;
 }

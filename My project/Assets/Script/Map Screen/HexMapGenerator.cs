@@ -113,6 +113,10 @@ public class HexMapGenerator : MonoBehaviour
     private Vector2Int startCoord;
 
 
+    //test
+
+    public RelicItemInfo r;
+
     // =========================================================
     // Start
     // =========================================================
@@ -292,14 +296,24 @@ public class HexMapGenerator : MonoBehaviour
             // =================================================
             // 시간 설정
             // =================================================
+            var relicList = DataManager.Instance.GetMainData.relicItems;
 
-            DataManager.Instance
-                .GetBattleData
-                .SetTime(
-                    nodes.Count * 3,
-                    false
-                );
+            bool hasRelic = relicList.Contains(r);
 
+            Debug.Log($"[맵 생성] 검사 유물: {(r == null ? "NULL" : r.name)}");
+            Debug.Log($"[맵 생성] 보유 유물 개수: {relicList.Count}");
+            Debug.Log($"[맵 생성] 유물 보유 여부: {hasRelic}");
+
+            foreach (var relic in relicList)
+            {
+                Debug.Log($"[맵 생성] 보유 목록: {relic.name}");
+            }
+
+            DataManager.Instance.GetBattleData.SetTime(
+                nodes.Count * 3 + (hasRelic ? 100 : 0),
+                false
+            );
+            
 
             // =================================================
             // 공포도 초기화
